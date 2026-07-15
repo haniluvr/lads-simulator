@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Love and Deepspace — Gacha Simulator</title>
+  <link rel="icon" type="image/webp" href="assets/ui/favicon.webp">
   <meta name="description" content="A Love and Deepspace gacha simulator. Pull for Xavier, Zayne, Rafayel, Sylus, Caleb, and Valko on Limited and Standard banners with full pity systems.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -122,7 +123,7 @@
           <div class="arch-outer">
 
             <!-- Planet/Saturn icon absolutely at the arch top center -->
-            <div class="arch-planet-wrap" aria-hidden="true">
+            <div class="arch-planet-wrap-home" aria-hidden="true">
               <svg class="arch-planet-svg" viewBox="0 0 70 48" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M 6 24 A 29 9 0 0 1 64 24" stroke="#c9a96e" stroke-width="1" opacity="0.4" fill="none"/>
                 <circle cx="35" cy="24" r="13" fill="#0e0e30" stroke="#c9a96e" stroke-width="1.2"/>
@@ -142,6 +143,7 @@
                 <span class="arch-div-line"></span>
               </div>
               <p class="arch-sub">Gacha Simulator</p>
+              <button id="collection-open-btn" class="collection-pill-btn">View Collection</button>
             </div>
 
           </div><!-- /.arch-outer -->
@@ -178,28 +180,17 @@
             <div class="bc-content">
               <div class="bc-header-row">
                 <span class="bc-badge bc-badge-gold">✦ LIMITED EVENT</span>
-                <span class="bc-pulls" id="limited-pulls-display">250 / 250</span>
+                <span class="bc-pulls" id="limited-pulls-display">
+                  <img src="assets/ui/deepspace-wish.webp" style="width: 14px; vertical-align: middle; margin-right: 4px;" alt=""> 250
+                </span>
               </div>
-              <p class="bc-title">Limited Wish Event</p>
+              <p class="bc-title">Hearts in Orbit</p>
               <div class="bc-dotrow" aria-hidden="true">· · · · · · · · · · · · · · · · · · · ·</div>
               <div class="bc-footer-row">
-                <span class="bc-featured">Featured: <strong>Valko</strong></span>
-                <span class="bc-pity gold-val" id="limited-pity-display">0 / 70 pity</span>
+                <span class="bc-featured">5-Star Memory guaranteed within</span>
+                <span class="bc-pity gold-val" id="limited-pity-display">70 pulls</span>
               </div>
             </div>
-
-            <!-- Scattered stars in card -->
-            <svg class="bc-stars" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
-              <g fill="white">
-                <circle cx="80" cy="20" r="1" opacity="0.5"/>
-                <circle cx="90" cy="70" r="0.8" opacity="0.4"/>
-                <circle cx="75" cy="85" r="1.2" opacity="0.5"/>
-              </g>
-            </svg>
-
-            <button class="bc-enter-btn" id="enter-limited-btn" aria-label="Enter Limited Banner">
-              Pull Now →
-            </button>
           </article>
 
           <!-- Standard Banner -->
@@ -230,28 +221,17 @@
             <div class="bc-content">
               <div class="bc-header-row">
                 <span class="bc-badge bc-badge-blue">★ STANDARD</span>
-                <span class="bc-pulls blue-val" id="standard-pulls-display">250 / 250</span>
+                <span class="bc-pulls blue-val" id="standard-pulls-display">
+                  <img src="assets/ui/empyrean-wish.webp" style="width: 14px; vertical-align: middle; margin-right: 4px;" alt=""> 250
+                </span>
               </div>
               <p class="bc-title">Xspace Echo</p>
               <div class="bc-dotrow" aria-hidden="true">· · · · · · · · · · · · · · · · · · · ·</div>
               <div class="bc-footer-row">
-                <span class="bc-featured">All love interests</span>
-                <span class="bc-pity blue-val" id="standard-pity-display">0 / 70 pity</span>
+                <span class="bc-featured">5-Star Memory guaranteed within</span>
+                <span class="bc-pity blue-val" id="standard-pity-display">70 pulls</span>
               </div>
             </div>
-
-            <!-- Scattered stars -->
-            <svg class="bc-stars" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
-              <g fill="white">
-                <circle cx="80" cy="20" r="1" opacity="0.5"/>
-                <circle cx="90" cy="70" r="0.8" opacity="0.4"/>
-                <circle cx="75" cy="85" r="1.2" opacity="0.5"/>
-              </g>
-            </svg>
-
-            <button class="bc-enter-btn bc-enter-btn-blue" id="enter-standard-btn" aria-label="Enter Standard Banner">
-              Pull Now →
-            </button>
           </article>
 
         </div><!-- /.banner-row -->
@@ -310,10 +290,7 @@
         <div class="sf-arc-bl-d"></div>
       </div>
 
-      <button class="back-btn" id="back-btn" aria-label="Back to banner selection">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
-        Back
-      </button>
+
 
       <!-- Pull Modal Wrapper -->
       <div class="pull-modal-outer arch-outer">
@@ -321,7 +298,7 @@
         <div class="arch-planet-wrap" aria-hidden="true">
           <svg class="arch-planet-svg" viewBox="0 0 70 48" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M 6 24 A 29 9 0 0 1 64 24" stroke="#c9a96e" stroke-width="1" opacity="0.4" fill="none"/>
-            <circle cx="35" cy="24" r="13" fill="#0e0e30" stroke="#c9a96e" stroke-width="1.2"/>
+            <circle cx="35" cy="24" r="13" class="arch-planet-bg" stroke="#c9a96e" stroke-width="1.2"/>
             <circle cx="35" cy="24" r="8"  fill="none" stroke="rgba(201,169,110,0.22)" stroke-width="0.8"/>
             <path d="M 6 24 A 29 9 0 0 0 64 24" stroke="#c9a96e" stroke-width="1" opacity="0.88" fill="none"/>
             <circle cx="6"  cy="24" r="1.5" fill="#c9a96e" opacity="0.6"/>
@@ -382,7 +359,6 @@
             </div>
 
             <p class="rules-hint">
-              <svg class="star-tiny" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l2.9 6.3 6.9 1-5 4.9 1.2 6.9-6.1-3.2-6.1 3.2 1.2-6.9-5-4.9 6.9-1z"/></svg>
               4★ guaranteed every 10 pulls · 5★ guaranteed at 70 pity
             </p>
           </section>
@@ -397,13 +373,93 @@
     ════════════════════════════════════ -->
     <div id="screen-reveal" class="screen" role="main" aria-label="Card Reveal">
 
-      <!-- Corner circles -->
-      <div class="rv-corner rv-tl" aria-hidden="true"></div>
-      <div class="rv-corner rv-tr" aria-hidden="true"></div>
-      <div class="rv-corner rv-bl" aria-hidden="true"></div>
-      <div class="rv-corner rv-br" aria-hidden="true"></div>
+      <!-- Sci-Fi Decorative Frame -->
+      <div class="sf-frame" aria-hidden="true">
+        <div class="sf-seg sf-seg-top"></div>
+        <div class="sf-seg sf-seg-right"></div>
+        <div class="sf-seg sf-seg-bottom"></div>
+        <div class="sf-seg sf-seg-left"></div>
 
-      <div class="reveal-bg" aria-hidden="true"></div>
+        <!-- Top-left corner (L border) -->
+        <div class="sf-corner-tl">
+          <div class="sf-l-bracket"></div>
+          <div class="sf-c-dot"></div>
+          <div class="sf-c-arc"></div>
+        </div>
+
+        <!-- Bottom-right corner (L border) -->
+        <div class="sf-corner-br">
+          <div class="sf-l-bracket"></div>
+          <div class="sf-c-dot"></div>
+          <div class="sf-c-arc"></div>
+        </div>
+
+        <!-- Top-right corner: circular corner -->
+        <div class="sf-arc-tr-s"></div>
+        <div class="sf-arc-tr-d"></div>
+
+        <!-- Bottom-left corner: circular corner -->
+        <div class="sf-arc-bl-s"></div>
+        <div class="sf-arc-bl-d"></div>
+
+        <!-- Constellation — left side -->
+        <svg class="sf-constellation sf-const-left" viewBox="0 0 120 200" aria-hidden="true">
+          <g stroke="#c9a96e" stroke-width="0.8" fill="none" opacity="0.5">
+            <line x1="30" y1="30"  x2="55" y2="70"/>
+            <line x1="55" y1="70"  x2="45" y2="110"/>
+            <line x1="55" y1="70"  x2="80" y2="85"/>
+            <line x1="45" y1="110" x2="60" y2="148"/>
+          </g>
+          <g fill="#c9a96e">
+            <circle cx="30"  cy="30"  r="2.5" opacity="0.8"/>
+            <circle cx="55"  cy="70"  r="2"   opacity="0.7"/>
+            <circle cx="45"  cy="110" r="1.8" opacity="0.6"/>
+            <circle cx="80"  cy="85"  r="1.5" opacity="0.6"/>
+            <circle cx="60"  cy="148" r="2"   opacity="0.7"/>
+          </g>
+          <g fill="#c9a96e" opacity="0.4">
+            <circle cx="10" cy="60"  r="1"/>
+            <circle cx="95" cy="40"  r="1.2"/>
+            <circle cx="100" cy="160" r="0.8"/>
+          </g>
+        </svg>
+
+        <!-- Constellation — right-bottom -->
+        <svg class="sf-constellation sf-const-right" viewBox="0 0 150 180" aria-hidden="true">
+          <g stroke="#c9a96e" stroke-width="0.8" fill="none" opacity="0.5">
+            <line x1="80"  y1="40"  x2="55"  y2="80"/>
+            <line x1="55"  y1="80"  x2="75"  y2="120"/>
+            <line x1="75"  y1="120" x2="50"  y2="155"/>
+            <line x1="75"  y1="120" x2="100" y2="140"/>
+          </g>
+          <g fill="#c9a96e">
+            <circle cx="80"  cy="40"  r="2.2" opacity="0.8"/>
+            <circle cx="55"  cy="80"  r="1.8" opacity="0.7"/>
+            <circle cx="75"  cy="120" r="2"   opacity="0.7"/>
+            <circle cx="50"  cy="155" r="1.5" opacity="0.6"/>
+            <circle cx="100" cy="140" r="1.8" opacity="0.6"/>
+          </g>
+          <g fill="#c9a96e" opacity="0.4">
+            <circle cx="20"  cy="30"  r="1"/>
+            <circle cx="130" cy="60"  r="1.2"/>
+            <circle cx="15"  cy="140" r="0.8"/>
+          </g>
+        </svg>
+
+        <!-- Scattered stars in frame -->
+        <svg class="sf-stars" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+          <g fill="white">
+            <circle cx="20" cy="15" r="0.6" opacity="0.6"/>
+            <circle cx="70" cy="8"  r="0.8" opacity="0.7"/>
+            <circle cx="85" cy="30" r="0.5" opacity="0.5"/>
+            <circle cx="12" cy="75" r="0.7" opacity="0.6"/>
+            <circle cx="90" cy="80" r="0.6" opacity="0.5"/>
+            <circle cx="55" cy="92" r="0.8" opacity="0.7"/>
+            <circle cx="35" cy="50" r="0.5" opacity="0.4"/>
+            <circle cx="78" cy="55" r="0.7" opacity="0.5"/>
+          </g>
+        </svg>
+      </div>
       <canvas id="particles-canvas" aria-hidden="true"></canvas>
       <div class="reveal-flash" id="reveal-flash" aria-hidden="true"></div>
 
@@ -419,19 +475,34 @@
         <p class="result-summary" id="result-summary" aria-live="polite"></p>
         <button class="collect-btn" id="collect-btn" aria-label="Collect all memories">
           <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l2.9 6.3 6.9 1-5 4.9 1.2 6.9-6.1-3.2-6.1 3.2 1.2-6.9-5-4.9 6.9-1z"/></svg>
-          Collect All
+          <span id="collect-btn-text">Collect All</span>
         </button>
       </footer>
 
       <div id="reveal-click-overlay" class="reveal-click-overlay" aria-hidden="true" style="display:none;"></div>
 
+      <!-- Pre-Reveal 5-Star Video -->
+      <div id="pre-reveal-video-container" class="pre-reveal-video-container">
+        <video id="pre-reveal-video" muted playsinline></video>
+      </div>
+
     </div><!-- /screen-reveal -->
+
+    <!-- Global Audio Player -->
+    <audio id="bg-music" src="assets/ui/love-and-lightyear.mp3" loop autoplay></audio>
+    <button id="music-toggle" class="music-toggle-btn" aria-label="Toggle background music">
+      <svg id="music-icon-play" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+      <svg id="music-icon-pause" viewBox="0 0 24 24" fill="currentColor" style="display:none;"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+    </button>
+
+  </div><!-- /app -->
 
   </div><!-- /app -->
 
   <div class="toast" id="toast" role="alert" aria-live="assertive"></div>
 
   <script src="cards.js"></script>
+  <script src="collection.js"></script>
   <script src="app.js"></script>
 </body>
 </html>

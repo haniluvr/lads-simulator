@@ -93,6 +93,10 @@ function defaultState() {
     limitedPullsToday:  0,
     standardPullsToday: 0,
     lastResetTime: 0,
+    // Collection Tracking: { "Card Name": count }
+    collection: {},
+    // Manual Rank Tracking: { "Card Name": rank }
+    ranks: {}
   };
 }
 
@@ -218,6 +222,29 @@ function performPulls(count, bannerType) {
     const card = resolveCard(rarity, bannerType);
     card.rarity = rarity; // ensure it matches expectations
 
+    // Collection Tracker & Rank logic
+    let isNew = false;
+    let rankUp = 0;
+    let refunded = false;
+    
+    const currentPulls = gs.collection[card.cardName] || 0;
+    
+    if (currentPulls === 0) {
+      isNew = true;
+      gs.collection[card.cardName] = 1;
+    } else if (currentPulls < 4) {
+      // It's a duplicate that can be used for rank up (max 3 ranks requires 4 total copies)
+      rankUp = currentPulls; 
+      gs.collection[card.cardName] = currentPulls + 1;
+    } else {
+      refunded = true;
+      gs[pullsKey]--; // Refund the pull
+    }
+    
+    card.isNew = isNew;
+    card.rankUp = rankUp; // Used to indicate duplicate status
+    card.refunded = refunded;
+
     // Update pity counters
     if (rarity === '5star') {
       gs[pity5Key] = 0;
@@ -246,6 +273,8 @@ let particles      = [];
 let particleAnimId = null;
 let pCanvas, pCtx;
 
+let activePreRevealCleanup = null;
+
 // ── STARFIELD ──────────────────────────────────────────────
 function initStarfield() {
   const canvas = document.getElementById('starfield-canvas');
@@ -272,7 +301,10 @@ function initStarfield() {
   let shoots = [];
 
   function maybeShoot() {
-    if (Math.random() < 0.002 && shoots.length < 2) {
+    const isReveal = typeof revealState !== 'undefined' && revealState.active;
+    const prob = isReveal ? 0.02 : 0.002;
+    const maxShoots = isReveal ? 8 : 2;
+    if (Math.random() < prob && shoots.length < maxShoots) {
       const angle = (Math.random() * 30 + 20) * (Math.PI / 180); // 20°-50° diagonal
       const speed = Math.random() * 5 + 3;
       shoots.push({
@@ -416,12 +448,8 @@ function spawnParticle(character, isInitial = false) {
 }
 
 function triggerParticleBurst(character) {
-  activeParticleCharacter = character;
-  const N = 80;
-  for (let i = 0; i < N; i++) {
-    spawnParticle(character, true);
-  }
-  if (!particleAnimId) animateParticles();
+  // Animations removed per request
+  return;
 }
 
 function animateParticles() {
@@ -586,10 +614,10 @@ function refreshBannerSelect() {
   const lRem = MAX_DAILY_PULLS - gs.limitedPullsToday;
   const sRem = MAX_DAILY_PULLS - gs.standardPullsToday;
 
-  document.getElementById('limited-pulls-display').textContent  = `${lRem} / ${MAX_DAILY_PULLS}`;
-  document.getElementById('standard-pulls-display').textContent = `${sRem} / ${MAX_DAILY_PULLS}`;
-  document.getElementById('limited-pity-display').textContent   = `${gs.limitedPity5} / 70`;
-  document.getElementById('standard-pity-display').textContent  = `${gs.standardPity5} / 70`;
+  document.getElementById('limited-pulls-display').innerHTML  = `<img src="assets/ui/deepspace-wish.webp" style="width: 14px; vertical-align: middle; margin-right: 4px;"> ${lRem}`;
+  document.getElementById('standard-pulls-display').innerHTML = `<img src="assets/ui/empyrean-wish.webp" style="width: 14px; vertical-align: middle; margin-right: 4px;"> ${sRem}`;
+  document.getElementById('limited-pity-display').textContent   = `${70 - gs.limitedPity5} pulls`;
+  document.getElementById('standard-pity-display').textContent  = `${70 - gs.standardPity5} pulls`;
 }
 
 // ── UI: PULL SCREEN ────────────────────────────────────────
@@ -616,7 +644,7 @@ function setupPullScreen(bannerType) {
   `;
 
   // Panel header
-  document.getElementById('panel-banner-title').textContent = isLim ? 'Starbound Tempest' : 'Xspace Echo';
+  document.getElementById('panel-banner-title').textContent = isLim ? 'Heart in Orbit' : 'Xspace Echo';
   const tagEl = document.getElementById('panel-event-tag');
   tagEl.textContent  = isLim ? 'LIMITED EVENT' : 'STANDARD';
   tagEl.className    = `panel-event-tag ${isLim ? 'tag-lim' : 'tag-std'}`;
@@ -643,7 +671,7 @@ function setupPullScreen(bannerType) {
       <span class="guarantee-badge ${isGuaranteed ? 'gb-guaranteed' : 'gb-fifty'}">
         ${isGuaranteed
           ? '✓ Featured character guaranteed next 5★'
-          : '50/50 — Win for featured, lose for standard 5★'}
+          : '50/50 — Win for limited, lose for standard 5★'}
       </span>`;
   } else {
     gzone.innerHTML = '';
@@ -707,16 +735,33 @@ function startCountdown() {
  * @param {number} layout - 1 or 10
  */
 function buildCard(result, layout) {
-  const { rarity, charData, cardName, assetPath, isVideo } = result;
+  const { rarity, charData, cardName, assetPath, isVideo, type } = result;
   const rNum  = rarity === '5star' ? '5' : rarity === '4star' ? '4' : '3';
-  const stars = '★'.repeat(+rNum);
-
+  
   const wrapper = document.createElement('div');
   wrapper.className = 'reveal-card-wrapper';
 
   const artHtml = isVideo
     ? `<video src="${assetPath}" autoplay muted loop playsinline class="card-asset-video"></video>`
     : `<img src="${assetPath}" class="card-asset-img" alt="${cardName}" />`;
+
+  let badgeHtml = '';
+  if (result.isNew) {
+    badgeHtml = `
+      <div class="badge-new-stylized">
+        <span class="new-text">New</span>
+        <svg class="new-sparkle" viewBox="0 0 24 24"><path fill="#fff" d="M12 0l3.5 8.5L24 12l-8.5 3.5L12 24l-3.5-8.5L0 12l8.5-3.5z"/></svg>
+      </div>`;
+  }
+
+  // Same star SVGs from collection
+  const starSvg = `<svg class="reveal-star-icon" viewBox="0 0 24 24" fill="#eab308"><path d="M12 2 L13.8 10.2 L22 12 L13.8 13.8 L12 22 L10.2 13.8 L2 12 L10.2 10.2 Z"/></svg>`;
+  const starsHtml = starSvg.repeat(+rNum);
+
+  // Solar/Lunar SVG from collection
+  const typeIcon = type === 'solar'
+    ? `<svg class="reveal-type-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5" fill="currentColor"/><path stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none" d="M12 2v2m0 16v2m10-10h-2M4 12H2m15.536-7.536l-1.414 1.414M7.879 16.121l-1.414 1.414M16.121 16.121l1.414 1.414M7.879 7.879L6.464 6.464"/></svg>`
+    : `<svg class="reveal-type-icon" viewBox="0 0 24 24"><path fill="currentColor" d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>`;
 
   wrapper.innerHTML = `
     <div class="reveal-card" aria-label="${cardName} — ${rNum} star">
@@ -726,13 +771,18 @@ function buildCard(result, layout) {
       <div class="card-face card-front r${rNum}">
         <div class="card-art ${charData.bgClass}">
           ${artHtml}
+          <div class="card-art-grad" aria-hidden="true"></div>
           ${rarity === '5star' ? '<div class="sheen-5" aria-hidden="true"></div>' : ''}
-        </div>
-        <div class="card-info">
-          <div class="card-stars" aria-label="${rNum} stars" role="img">
-            ${stars.split('').map(() => `<span class="card-star cs-${rNum}" aria-hidden="true">★</span>`).join('')}
+          ${badgeHtml}
+          
+          <div class="card-reveal-info">
+            <div class="card-reveal-stars" aria-hidden="true">${starsHtml}</div>
+            <div class="card-reveal-title">
+              <span class="char-name">${charData.name}: ${cardName}</span>
+              ${typeIcon}
+            </div>
+            <div class="card-reveal-line"></div>
           </div>
-          <div class="card-name">${cardName}</div>
         </div>
       </div>
       <div class="card-glow cg-${rNum}" aria-hidden="true"></div>
@@ -782,30 +832,85 @@ function showReveal(results) {
   singleStage.style.display = 'flex';
   summaryStage.style.display = 'none';
   collectBtn.classList.remove('visible');
+  
+  const collectText = document.getElementById('collect-btn-text');
+  if (collectText) {
+    collectText.textContent = revealState.layout === 1 ? 'Collect' : 'Collect All';
+  }
+
   skipBtn.style.display = revealState.layout > 1 ? 'block' : 'none'; // Only show skip for 10-pull
   overlay.style.display = 'block'; // Always show overlay for click-to-skip
   
   clearParticles();
 
-  const fives  = results.filter(r => r.rarity === '5star');
-  const fours  = results.filter(r => r.rarity === '4star');
-  const threes = results.filter(r => r.rarity === '3star');
-  const parts  = [];
-  if (fives.length)  parts.push(`✦ ${fives.map(r => r.charData.name).join(', ')} (5★)`);
-  if (fours.length)  parts.push(`${fours.length}× 4★`);
-  if (threes.length && !fives.length && !fours.length) parts.push(`${threes.length}× 3★`);
-  summary.textContent = parts.join('  ·  ');
+  summary.textContent = '';
 
   showScreen('reveal');
   resizeParticles();
   
   if (revealState.layout === 1) {
-    playSingleCardAnimation(results[0], singleStage, () => {
-      collectBtn.classList.add('visible');
+    playPreRevealVideo(results[0], () => {
+      if (!revealState.active) return;
+      playSingleCardAnimation(results[0], singleStage, () => {
+        collectBtn.classList.add('visible');
+      });
     });
   } else {
     playNextCardInSequence();
   }
+}
+
+function playPreRevealVideo(result, onComplete) {
+  if (result.rarity !== '5star') {
+    return onComplete();
+  }
+
+  const videoPaths = {
+    'xavier': 'assets/ui/animations/xavier_animation.mp4',
+    'zayne': 'assets/ui/animations/zayne_animation.mp4'
+  };
+
+  const path = videoPaths[result.character.toLowerCase()];
+  if (!path) {
+    return onComplete();
+  }
+
+  const container = document.getElementById('pre-reveal-video-container');
+  const video = document.getElementById('pre-reveal-video');
+  
+  video.src = path;
+  container.style.display = 'block';
+  
+  requestAnimationFrame(() => requestAnimationFrame(() => {
+    container.classList.add('active');
+  }));
+
+  const cleanup = (force = false) => {
+    activePreRevealCleanup = null;
+    container.classList.remove('active');
+    
+    if (force) {
+      container.style.display = 'none';
+      video.pause();
+      video.src = '';
+      onComplete();
+    } else {
+      setTimeout(() => {
+        if (!revealState.active) return; // double check
+        container.style.display = 'none';
+        video.src = '';
+        onComplete();
+      }, 500);
+    }
+  };
+
+  activePreRevealCleanup = cleanup;
+  video.onended = () => cleanup(false);
+
+  video.play().catch(e => {
+    console.warn('Pre-reveal video autoplay failed:', e);
+    cleanup(true);
+  });
 }
 
 function playSingleCardAnimation(result, container, onComplete) {
@@ -848,14 +953,15 @@ function playNextCardInSequence() {
   const singleStage = document.getElementById('single-card-stage');
   const result = revealState.results[revealState.currentIndex];
 
-  playSingleCardAnimation(result, singleStage, null);
+  playPreRevealVideo(result, () => {
+    if (!revealState.active) return;
+    playSingleCardAnimation(result, singleStage, null);
+  });
 }
 
 function showSummaryScreen() {
   clearRevealTimeouts();
   clearParticles();
-  
-  revealState.active = false;
   
   const singleStage = document.getElementById('single-card-stage');
   const summaryStage = document.getElementById('summary-card-stage');
@@ -865,7 +971,6 @@ function showSummaryScreen() {
 
   singleStage.style.display = 'none';
   skipBtn.style.display = 'none';
-  overlay.style.display = 'none';
   
   summaryStage.style.display = 'grid';
   summaryStage.innerHTML = '';
@@ -901,20 +1006,23 @@ function initEvents() {
     });
   });
 
-  // Enter buttons
-  document.getElementById('enter-limited-btn').addEventListener('click', e => {
+  // Enter Banner -> Pull Screen
+  document.getElementById('banner-card-limited').addEventListener('click', e => {
     e.stopPropagation();
+    currentBanner = 'limited';
     setupPullScreen('limited');
     showScreen('pull');
   });
-  document.getElementById('enter-standard-btn').addEventListener('click', e => {
+  document.getElementById('banner-card-standard').addEventListener('click', e => {
     e.stopPropagation();
+    currentBanner = 'standard';
     setupPullScreen('standard');
     showScreen('pull');
   });
 
-  // Back button
-  document.getElementById('back-btn').addEventListener('click', () => {
+  // Click outside to exit
+  document.getElementById('screen-pull').addEventListener('click', (e) => {
+    if (e.target.closest('.pull-modal-outer') || e.target.closest('.toast')) return;
     refreshBannerSelect();
     showScreen('select');
   });
@@ -922,11 +1030,74 @@ function initEvents() {
   // Reset Data
   const resetBtn = document.getElementById('reset-btn');
   if (resetBtn) {
+    const modalHtml = `
+      <style>
+        .alert-overlay {
+          position: fixed; inset: 0; z-index: 3000;
+          background: rgba(5, 5, 15, 0.85); backdrop-filter: blur(10px);
+          display: flex; align-items: center; justify-content: center;
+          opacity: 0; pointer-events: none; transition: opacity 0.25s ease;
+        }
+        .alert-overlay.active { opacity: 1; pointer-events: all; }
+        .alert-modal {
+          width: 90%; max-width: 400px;
+          background: rgba(20, 10, 10, 0.95);
+          border: 1px solid rgba(255, 60, 60, 0.3); border-radius: 12px;
+          box-shadow: 0 10px 40px rgba(0,0,0,0.8), 0 0 20px rgba(255, 60, 60, 0.15);
+          padding: 30px; text-align: center;
+          transform: scale(0.95); transition: transform 0.25s ease;
+        }
+        .alert-overlay.active .alert-modal { transform: scale(1); }
+        .alert-header { font-family: 'Cinzel', serif; font-size: 22px; color: #ff6b6b; letter-spacing: 0.1em; margin-bottom: 24px; }
+        .alert-body { display: flex; flex-direction: column; gap: 24px; }
+        .alert-danger-box { background: rgba(255, 60, 60, 0.08); border: 1px dashed rgba(255, 60, 60, 0.3); padding: 16px; border-radius: 8px; }
+        .alert-danger-title { color: #ff6b6b; font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; display: block; margin-bottom: 8px; }
+        .alert-danger-text { color: var(--txt-2); font-size: 15px; font-weight: 500; letter-spacing: 0.03em; }
+        .alert-btn {
+          flex: 1; height: 44px; border-radius: 22px; font-size: 12px; font-weight: 600; letter-spacing: 0.1em;
+          text-transform: uppercase; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.2s ease;
+        }
+        .alert-btn-cancel { background: transparent; color: var(--txt-2); border: 1px solid rgba(255,255,255,0.2); }
+        .alert-btn-cancel:hover { background: rgba(255,255,255,0.05); color: var(--txt); }
+        .alert-btn-confirm { background: rgba(255, 60, 60, 0.1); color: #ff6b6b; border: 1px solid rgba(255, 60, 60, 0.4); }
+        .alert-btn-confirm:hover { background: rgba(255, 60, 60, 0.2); border-color: rgba(255, 60, 60, 0.6); box-shadow: 0 0 12px rgba(255, 60, 60, 0.2); }
+      </style>
+      <div id="reset-confirm-modal" class="alert-overlay" aria-modal="true" role="dialog">
+        <div class="alert-modal">
+          <div class="alert-header">RESET DATA</div>
+          <div class="alert-body">
+            <p style="color: var(--txt); font-size: 15px; line-height: 1.6; margin: 0;">
+              Are you sure you want to completely reset all gacha data?
+            </p>
+            <div class="alert-danger-box">
+              <span class="alert-danger-title">This will permanently delete:</span>
+              <span class="alert-danger-text">Pulls, Pity, Wishes, and Collection</span>
+            </div>
+            <div style="display: flex; gap: 16px; justify-content: center;">
+              <button id="reset-cancel-btn" class="alert-btn alert-btn-cancel">CANCEL</button>
+              <button id="reset-confirm-action-btn" class="alert-btn alert-btn-confirm">CONFIRM</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+    document.body.insertAdjacentHTML('beforeend', modalHtml);
+    const resetModal = document.getElementById('reset-confirm-modal');
+    
     resetBtn.addEventListener('click', () => {
-      if (confirm('Are you sure you want to completely reset all gacha data (pity, pulls, etc)?')) {
-        localStorage.removeItem(STATE_KEY);
-        location.reload();
-      }
+      resetModal.classList.add('active');
+    });
+
+    document.getElementById('reset-cancel-btn').addEventListener('click', () => {
+      resetModal.classList.remove('active');
+    });
+    resetModal.addEventListener('click', (e) => {
+      if (e.target === resetModal) resetModal.classList.remove('active');
+    });
+
+    document.getElementById('reset-confirm-action-btn').addEventListener('click', () => {
+      localStorage.removeItem(STATE_KEY);
+      location.reload();
     });
   }
 
@@ -950,6 +1121,10 @@ function initEvents() {
   });
 
   document.getElementById('skip-reveal-btn').addEventListener('click', () => {
+    if (activePreRevealCleanup) {
+      activePreRevealCleanup(true);
+    }
+    
     if (revealState.layout > 1) {
       revealState.skipMode = true;
       document.getElementById('skip-reveal-btn').style.display = 'none';
@@ -977,6 +1152,17 @@ function initEvents() {
 
   document.getElementById('reveal-click-overlay').addEventListener('click', () => {
     if (!revealState.active) return;
+    
+    const collectBtn = document.getElementById('collect-btn');
+    if (collectBtn && collectBtn.classList.contains('visible')) {
+      collectBtn.click();
+      return;
+    }
+    
+    if (activePreRevealCleanup) {
+      activePreRevealCleanup(true);
+      return;
+    }
     
     if (revealState.layout > 1) {
       revealState.currentIndex++;
@@ -1031,6 +1217,37 @@ function getCountdownStr() {
   return `${fmt(h)}:${fmt(m)}:${fmt(s)}`;
 }
 
+function initAudio() {
+  const bgMusic = document.getElementById('bg-music');
+  const musicToggleBtn = document.getElementById('music-toggle');
+  const musicIconPlay = document.getElementById('music-icon-play');
+  const musicIconPause = document.getElementById('music-icon-pause');
+
+  bgMusic.volume = 0.4;
+
+  // Attempt autoplay on load
+  bgMusic.play().then(() => {
+    musicIconPlay.style.display = 'none';
+    musicIconPause.style.display = 'block';
+  }).catch((e) => {
+    console.log("Autoplay blocked by browser. User interaction required.");
+    musicIconPlay.style.display = 'block';
+    musicIconPause.style.display = 'none';
+  });
+
+  musicToggleBtn.addEventListener('click', () => {
+    if (bgMusic.paused) {
+      bgMusic.play().catch(e => console.error("Audio play failed:", e));
+      musicIconPlay.style.display = 'none';
+      musicIconPause.style.display = 'block';
+    } else {
+      bgMusic.pause();
+      musicIconPlay.style.display = 'block';
+      musicIconPause.style.display = 'none';
+    }
+  });
+}
+
 // ── INIT ───────────────────────────────────────────────────
 function init() {
   gs = loadState();
@@ -1039,6 +1256,8 @@ function init() {
   initStarfield();
   initParticleCanvas();
   initEvents();
+  initAudio();
+  initCollection();
   refreshBannerSelect();
   startCountdown();
 }
