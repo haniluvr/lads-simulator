@@ -1418,6 +1418,7 @@ svg {
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: visibility 0s 325ms;
 }
 
 .card-back::before {
@@ -1444,6 +1445,10 @@ svg {
 
 .reveal-card.flipped {
   transform: rotateY(180deg);
+}
+
+.reveal-card.flipped .card-back {
+  visibility: hidden;
 }
 
 .card-front.r5 {
@@ -3267,5 +3272,13 @@ body.cursor-zayne * {
   /* ── SELECT SCREEN HEADER TOP ROW ──────────────────────── */
   .top-row-bar {
     padding: var(--sp3) var(--sp4);
+  }
+
+  /* ── iOS Safe Area / Status Bar Padding ────────────────── */
+  .screen,
+  .col-modal-overlay,
+  .settings-overlay {
+    padding-top: max(16px, env(safe-area-inset-top));
+    padding-bottom: max(16px, env(safe-area-inset-bottom));
   }
 }
