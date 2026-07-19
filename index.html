@@ -109,6 +109,15 @@
         </svg>
       </div>
 
+      <!-- Notice button -->
+      <button id="notice-btn" class="sf-reset-btn sf-notice-btn" aria-label="Notices" title="Updates & Mechanics">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"></circle>
+          <line x1="12" y1="16" x2="12" y2="12"></line>
+          <line x1="12" y1="8" x2="12.01" y2="8"></line>
+        </svg>
+      </button>
+
       <!-- Settings button -->
       <button id="settings-btn" class="sf-reset-btn" aria-label="Settings" title="Open Settings">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1Z"/></svg>
@@ -143,7 +152,10 @@
                 <span class="arch-div-line"></span>
               </div>
               <p class="arch-sub">Wish Simulator</p>
-              <button id="collection-open-btn" class="collection-pill-btn">View Collection</button>
+              <div class="home-buttons-row" style="display: flex; gap: 8px;">
+                <button id="collection-open-btn" class="collection-pill-btn">Memories</button>
+                <button id="real-collection-btn" class="collection-pill-btn">Collection</button>
+              </div>
             </div>
 
           </div><!-- /.arch-outer -->
@@ -483,16 +495,16 @@
 
       <div id="reveal-click-overlay" class="reveal-click-overlay" aria-hidden="true" style="display:none;"></div>
 
-      <!-- Pre-Reveal 5-Star Video -->
-      <div id="pre-reveal-video-container" class="pre-reveal-video-container">
-        <video id="pre-reveal-video" muted playsinline></video>
+      <!-- Fullscreen Video Overlay for Pre-Reveal Animation -->
+      <div id="pre-reveal-video-container" class="pre-reveal-video-container" aria-hidden="true" style="display:none;">
+        <video id="pre-reveal-video" playsinline muted preload="auto"></video>
       </div>
 
     </div><!-- /screen-reveal -->
 
     <!-- Pull Start Universal Video -->
     <div id="pull-start-video-container" class="pull-start-video-container" aria-hidden="true" style="display:none;">
-      <video id="pull-start-video" playsinline></video>
+      <video id="pull-start-video" playsinline muted preload="auto"></video>
     </div>
 
     <!-- Global Audio Player -->
@@ -582,9 +594,51 @@
     </div>
   </div>
 
+    <!-- Notice Modal -->
+    <div id="notice-modal" class="settings-overlay" aria-modal="true" role="dialog" style="display: none;">
+      <div class="settings-container">
+        <div class="settings-header">
+          <h2>NOTICES</h2>
+          <button id="notice-close-btn" class="settings-close" aria-label="Close Notices">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg>
+          </button>
+        </div>
+        <div class="settings-body notice-body">
+          <div class="notice-section" style="margin-bottom: 24px;">
+            <h3 style="color: var(--gold); margin-bottom: 12px; font-family: var(--font-d); font-size: 20px;">Patch Notes</h3>
+            <p style="color: var(--txt-2); margin-bottom: 8px;">Changes made since the last update:</p>
+            <ul style="color: #ddd; padding-left: 20px; line-height: 1.6; font-size: 14px;">
+              <li><strong>42 NEW Valko Memories</strong></li>
+              <li><strong>NEW Precise Wish System</strong></li>
+              <li><strong>NEW Memory Collection Tracker</strong></li>
+              <li>Golden Pull Animation and Sound SFX for 5-star cards</li>
+              <li>1 Pull Streamlining</li>
+              <li>Skip Button Bug Fixes</li>
+              <li>Opera GX / Desktop Video Fixes</li>
+              <li>Android / Ecoasia Touch Improvements</li>
+            </ul>
+          </div>
+          
+          <div class="notice-section">
+            <h3 style="color: var(--gold); margin-bottom: 12px; font-family: var(--font-d); font-size: 20px;">Mechanics</h3>
+            <ul style="color: #ddd; padding-left: 20px; line-height: 1.6; font-size: 14px;">
+              <li style="margin-bottom: 8px;"><strong>Limited vs Standard:</strong> Limited banners have exclusive rate-ups while standard has the base 5-star pool.</li>
+              <li style="margin-bottom: 8px;"><strong>Pity System:</strong> 5-stars are guaranteed within 70 pulls, 4-stars within 10 pulls.</li>
+              <li style="margin-bottom: 8px;"><strong>Precise Wish:</strong> Choose a target Love Interest. If you lose the 50/50, your next 5-star is guaranteed to be from your chosen Love Interest.</li>
+              <li style="margin-bottom: 8px;"><strong>Ranking Memories Up:</strong> Pulling duplicates increases the rank of a memory.</li>
+              <li><strong>Duplicate Memories:</strong> If you have more than 4 duplicates of a single memory, it returns it back to you as wishes!</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
   <div class="toast" id="toast" role="alert" aria-live="assertive"></div>
 
   <script src="cards.js"></script>
+  <script src="memories.js"></script>
   <script src="collection.js"></script>
   <script src="app.js"></script>
 </body>

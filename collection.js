@@ -1,34 +1,6 @@
-// collection.js
-
-const CARD_CREDITS = {
-  "Morning Confessions": {
-    artist: "b",
-    ig: "https://www.instagram.com/beejaws",
-    x: "https://x.com/beejawing"
-  },
-  "Pillow Talk": {
-    artist: "b",
-    ig: "https://www.instagram.com/beejaws",
-    x: "https://x.com/beejawing"
-  },
-  "Restless Instincts": {
-    artist: "b",
-    ig: "https://www.instagram.com/beejaws",
-    x: "https://x.com/beejawing"
-  },
-  "Insomnia's Embrace": {
-    artist: "Meimei",
-    x: "https://x.com/okojyomeimei"
-  },
-  "Chocolate Day": {
-    artist: "Kihaiu",
-    x: "https://x.com/Thekawacookiie"
-  }
-};
-
-function injectCollectionModal() {
+function injectRealCollectionModal() {
   const modalHtml = `
-    <div id="collection-modal" class="col-modal-overlay" aria-modal="true" role="dialog">
+    <div id="real-collection-modal" class="col-modal-overlay" aria-modal="true" role="dialog" style="display: none;">
       
       <!-- Frame from limited banner modal -->
       <div class="sf-frame" aria-hidden="true">
@@ -73,191 +45,215 @@ function injectCollectionModal() {
             </svg>
           </div>
 
-          <div class="col-arch-inner">
-            <!-- Divider + Title -->
+          <div class="col-arch-inner" style="width: 100%; padding: 0 16px;">
+            <!-- Divider -->
             <div class="col-arch-divider" aria-hidden="true">
               <span class="col-div-line"></span>
               <span class="col-div-gem">✦</span>
               <span class="col-div-line"></span>
             </div>
-            <h2 class="col-modal-title">Memories</h2>
+            
+            <!-- Header Row -->
+            <div style="display: flex; width: 100%; align-items: center; justify-content: space-between; margin-top: 12px; min-height: 28px;">
+              <!-- Left: Back Button -->
+              <div style="flex: 1; display: flex; justify-content: flex-start;">
+                <button id="rc-back-btn" style="
+                  display: none;
+                  align-items: center;
+                  gap: 4px;
+                  background: none;
+                  border: none;
+                  color: var(--gold);
+                  font-family: var(--font-c);
+                  font-size: 14px;
+                  cursor: pointer;
+                  letter-spacing: 1px;
+                  text-transform: uppercase;
+                  padding: 4px;
+                ">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 18px; height: 18px;"><path d="M15 18l-6-6 6-6"/></svg>
+                  Back
+                </button>
+              </div>
 
-            <!-- Character Tabs: 1 row on desktop, 2 on mobile via CSS grid -->
-            <div class="col-char-tabs">
-              <button class="col-char-tab" data-char="xavier">Xavier</button>
-              <button class="col-char-tab" data-char="zayne">Zayne</button>
-              <button class="col-char-tab" data-char="rafayel">Rafayel</button>
-              <button class="col-char-tab" data-char="sylus">Sylus</button>
-              <button class="col-char-tab" data-char="caleb">Caleb</button>
-              <button class="col-char-tab" data-char="valko">Valko</button>
+              <!-- Center: Title -->
+              <div style="flex: 1; display: flex; justify-content: center; text-align: center;">
+                <h2 class="col-modal-title" id="rc-modal-title" style="margin: 0; white-space: nowrap;">Collection</h2>
+              </div>
+
+              <!-- Right: Progress Pill -->
+              <div style="flex: 1; display: flex; justify-content: flex-end;">
+                <div id="rc-modal-subtitle" style="
+                  display: none;
+                  align-items: center;
+                  justify-content: center;
+                  color: var(--gold);
+                  background: linear-gradient(180deg, rgba(201,169,110,0.1), rgba(201,169,110,0.25));
+                  border: 1px solid rgba(201,169,110,0.5);
+                  box-shadow: 0 2px 8px rgba(201,169,110,0.2);
+                  border-radius: 99px;
+                  padding: 4px 14px;
+                  font-size: 13px;
+                  font-family: var(--font-d);
+                  font-weight: 500;
+                  letter-spacing: 1px;
+                  white-space: nowrap;
+                "></div>
+              </div>
             </div>
           </div>
         </div>
 
         <!-- ── CONTENT BODY (below arch) ──────────────── -->
         <div class="col-body">
-          <!-- Controls: All tab + Sort dropdown -->
-          <div class="col-controls-row">
-            <button class="col-all-tab active" id="col-all-tab">All</button>
-            <div class="col-sort-wrap">
-              <button class="col-sort-pill" id="col-sort-btn">
-                <span id="col-sort-label">Rarity</span>
-                <svg width="10" height="10" viewBox="0 0 10 10" fill="currentColor"><path d="M5 7L1 3h8z"/></svg>
-              </button>
-              <div class="col-sort-dropdown" id="col-sort-dropdown" style="display:none;">
-                <button class="col-sort-option" data-sort="rarity">Rarity</button>
-                <button class="col-sort-option" data-sort="new">New</button>
+          <div class="col-divider-line"></div>
+          
+          <div id="rc-view-main">
+            <div class="li-grid">
+              <div class="li-card" data-char="Xavier">
+                <img src="assets/ui/select/xavier.webp" alt="Xavier">
+              </div>
+              <div class="li-card" data-char="Zayne">
+                <img src="assets/ui/select/zayne.webp" alt="Zayne">
+              </div>
+              <div class="li-card" data-char="Rafayel">
+                <img src="assets/ui/select/rafayel.webp" alt="Rafayel">
+              </div>
+              <div class="li-card" data-char="Sylus">
+                <img src="assets/ui/select/sylus.webp" alt="Sylus">
+              </div>
+              <div class="li-card" data-char="Caleb">
+                <img src="assets/ui/select/caleb.webp" alt="Caleb">
+              </div>
+              <div class="li-card" data-char="Valko">
+                <img src="assets/ui/select/valko.webp" alt="Valko">
               </div>
             </div>
           </div>
 
-          <!-- Gold divider line -->
-          <div class="col-divider-line"></div>
+          <div id="rc-view-char" style="display: none; height: 100%; flex-direction: column; flex: 1; min-height: 0;">
+            <div class="col-grid" id="rc-char-grid"></div>
+          </div>
 
-          <!-- Card Grid -->
-          <div class="col-grid" id="collection-grid"></div>
         </div>
-
       </div><!-- /.col-modal-wrap -->
     </div>
   `;
   document.body.insertAdjacentHTML('beforeend', modalHtml);
 }
 
-function injectCardDetailsModal() {
-  const modalHtml = `
-    <div class="card-details-modal" id="card-details-modal" style="display: none;">
-      <div class="cd-overlay" id="cd-overlay"></div>
-      <div class="cd-wrapper">
-        <div class="cd-art-wrap" id="cd-art-wrap"></div>
-        <div class="cd-text-group">
-          <div class="cd-header-char" id="cd-header-char"></div>
-          <div class="cd-footer-name" id="cd-footer-name"></div>
-          <div class="cd-footer-credit" id="cd-footer-credit"></div>
-        </div>
-        <button class="rank-up-btn" id="rank-up-btn">Rank Up</button>
-      </div>
-    </div>
-  `;
-  document.body.insertAdjacentHTML('beforeend', modalHtml);
-}
+function initRealCollection() {
+  // Inject HTML first
+  injectRealCollectionModal();
 
-// ── COLLECTION MODAL LOGIC ────────────────────────────────────
-let activeDetailsCard = null; // Track which card is open in details
+  const triggerBtn = document.getElementById('real-collection-btn');
+  const modal = document.getElementById('real-collection-modal');
+  const viewMain = document.getElementById('rc-view-main');
+  const viewChar = document.getElementById('rc-view-char');
+  const charGrid = document.getElementById('rc-char-grid');
+  const modalTitle = document.getElementById('rc-modal-title');
+  
+  if (!triggerBtn || !modal) return;
 
-function initCollection() {
-  injectCollectionModal();
-  injectCardDetailsModal();
+  let currentView = 'main'; // 'main' or 'char'
 
-  const openBtn  = document.getElementById('collection-open-btn');
-  const modal    = document.getElementById('collection-modal');
-  const charTabs = document.querySelectorAll('.col-char-tab');
-  const allTab   = document.getElementById('col-all-tab');
-  const sortBtn  = document.getElementById('col-sort-btn');
-  const sortDD   = document.getElementById('col-sort-dropdown');
-  const sortLabel= document.getElementById('col-sort-label');
-
-  let currentChar = 'all';
-  let currentSort = 'rarity';
-
-  function setCharFilter(char) {
-    currentChar = char;
-    charTabs.forEach(t => t.classList.remove('active'));
-    allTab.classList.remove('active');
-    if (char === 'all') {
-      allTab.classList.add('active');
-    } else {
-      document.querySelector(`.col-char-tab[data-char="${char}"]`)?.classList.add('active');
+  const openModal = () => {
+    if (typeof playSFX === 'function') playSFX('click');
+    modal.style.display = 'flex';
+    requestAnimationFrame(() => requestAnimationFrame(() => modal.classList.add('active')));
+    
+    // Always start in main view
+    currentView = 'main';
+    viewMain.style.transition = 'none';
+    viewMain.style.opacity = '1';
+    viewMain.style.display = 'block';
+    viewChar.style.display = 'none';
+    modalTitle.textContent = 'Collection';
+    document.getElementById('rc-modal-subtitle').style.display = 'none';
+    if (document.getElementById('rc-back-btn')) {
+      document.getElementById('rc-back-btn').style.display = 'none';
     }
-    renderCollection();
-  }
+  };
 
-  openBtn.addEventListener('click', () => {
-    modal.classList.add('active');
-    renderCollection();
-  });
-  modal.addEventListener('click', (e) => { 
-    if (!e.target.closest('.col-arch-outer') && !e.target.closest('.col-body')) {
-      modal.classList.remove('active'); 
+  const closeModal = () => {
+    if (typeof playSFX === 'function') playSFX('click');
+    modal.classList.remove('active');
+    setTimeout(() => { modal.style.display = 'none'; }, 300);
+  };
+
+  triggerBtn.addEventListener('click', openModal);
+
+  // Clicking outside modal content to close or go back
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal || e.target.classList.contains('col-modal-wrap')) {
+      if (currentView === 'char') {
+        rcBackBtn.click();
+      } else {
+        closeModal();
+      }
     }
   });
 
-  charTabs.forEach(tab => {
-    tab.addEventListener('click', () => setCharFilter(tab.dataset.char));
+  const rcBackBtn = document.getElementById('rc-back-btn');
+  rcBackBtn.addEventListener('click', () => {
+    if (typeof playSFX === 'function') playSFX('click');
+    
+    viewChar.style.transition = 'opacity 0.2s ease';
+    viewChar.style.opacity = '0';
+    
+    setTimeout(() => {
+      currentView = 'main';
+      viewChar.style.display = 'none';
+      viewMain.style.display = 'block';
+      modalTitle.textContent = 'Collection';
+      rcBackBtn.style.display = 'none';
+      document.getElementById('rc-modal-subtitle').style.display = 'none';
+      
+      viewMain.style.transition = 'opacity 0.2s ease';
+      viewMain.style.opacity = '0';
+      viewMain.getBoundingClientRect(); // force reflow
+      viewMain.style.opacity = '1';
+    }, 200);
   });
-  allTab.addEventListener('click', () => setCharFilter('all'));
 
-  sortBtn.addEventListener('click', (e) => {
-    e.stopPropagation();
-    sortDD.style.display = sortDD.style.display === 'none' ? 'block' : 'none';
-  });
-  document.querySelectorAll('.col-sort-option').forEach(opt => {
-    opt.addEventListener('click', () => {
-      currentSort = opt.dataset.sort;
-      sortLabel.textContent = currentSort === 'rarity' ? 'Rarity' : 'New';
-      sortDD.style.display = 'none';
-      renderCollection();
+  modal.querySelectorAll('.li-card').forEach(card => {
+    card.addEventListener('click', () => {
+      if (typeof playSFX === 'function') playSFX('click');
+      const charName = card.getAttribute('data-char');
+      showCharacterCollection(charName);
     });
   });
-  document.addEventListener('click', () => { sortDD.style.display = 'none'; });
 
-  // Card Details logic
-  const detailsModal = document.getElementById('card-details-modal');
-  const detailsOverlay = document.getElementById('cd-overlay');
-  const rankUpBtn = document.getElementById('rank-up-btn');
-
-  const closeDetails = () => { 
-    detailsModal.style.display = 'none'; 
-    activeDetailsCard = null; 
-  };
-  detailsOverlay.addEventListener('click', closeDetails);
-
-  rankUpBtn.addEventListener('click', () => {
-    if (!activeDetailsCard) return;
-    const cardName = activeDetailsCard.cardName;
-    const count = gs.collection[cardName] || 0;
-    const currentRank = gs.ranks[cardName] || 0;
-    if (count > currentRank + 1 && currentRank < 3) {
-      playSFX('collectionModal');
-      gs.ranks[cardName] = currentRank + 1;
-      saveState();
-      renderCollection();
-      openCardDetails(activeDetailsCard); // Refresh modal
-    }
-  });
-
-  function renderCollection() {
-    const grid = document.getElementById('collection-grid');
-    grid.innerHTML = '';
-
-    let cards = CARD_CATALOG.filter(c => (gs.collection[c.cardName] || 0) > 0);
-    if (currentChar !== 'all') {
-      cards = cards.filter(c => c.character === currentChar);
-    }
-
-    if (currentSort === 'rarity') {
-      cards.sort((a, b) => b.rarity - a.rarity);
-    } else {
-      cards.sort((a, b) => {
-        const aNew = gs.collection[a.cardName] === 1 ? 0 : 1;
-        const bNew = gs.collection[b.cardName] === 1 ? 0 : 1;
-        if (aNew !== bNew) return aNew - bNew;
-        return b.rarity - a.rarity;
-      });
-    }
-
-    if (cards.length === 0) {
-      grid.innerHTML = '<div class="col-empty">No memories collected yet.</div>';
-      return;
-    }
-
-    cards.forEach(card => {
+  function showCharacterCollection(charName) {
+    viewMain.style.transition = 'opacity 0.2s ease';
+    viewMain.style.opacity = '0';
+    
+    setTimeout(() => {
+      currentView = 'char';
+      viewMain.style.display = 'none';
+      viewChar.style.display = 'flex';
+      modalTitle.textContent = charName;
+      document.getElementById('rc-back-btn').style.display = 'flex';
+      
+      charGrid.innerHTML = '';
+    
+    const charCards = CARD_CATALOG.filter(c => c.character === charName.toLowerCase())
+      .sort((a, b) => b.rarity - a.rarity);
+      
+    let owned = 0;
+    charCards.forEach(card => {
+      if ((gs.collection[card.cardName] || 0) > 0) owned++;
+    });
+    
+    const subtitle = document.getElementById('rc-modal-subtitle');
+    subtitle.textContent = `${owned}/${charCards.length}`;
+    subtitle.style.display = 'block';
+      
+    charCards.forEach(card => {
       const count = gs.collection[card.cardName] || 0;
-      const rank  = gs.ranks[card.cardName] || 0;
-      const isNew = count === 1 && currentSort === 'new';
-      const canRankUp = count > rank + 1 && rank < 3;
-      const charCapitalized = card.character.charAt(0).toUpperCase() + card.character.slice(1);
-      // 4-pointed sparkle star (image 2 style)
+      const rank = gs.ranks[card.cardName] || 0;
+      const isOwned = count > 0;
+      
       const starSvg = `<svg class="col-star-icon" viewBox="0 0 24 24" fill="#eab308"><path d="M12 2 L13.8 10.2 L22 12 L13.8 13.8 L12 22 L10.2 13.8 L2 12 L10.2 10.2 Z"/></svg>`;
       const starsHtml = starSvg.repeat(card.rarity);
 
@@ -266,123 +262,48 @@ function initCollection() {
         : `<svg class="col-type-icon" viewBox="0 0 24 24"><path fill="currentColor" d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>`;
 
       const artHtml = card.isVideo
-        ? `<video src="${card.assetPath}#t=0.001" class="col-card-media" loop muted playsinline preload="metadata" onloadedmetadata="this.currentTime=0.1;"></video>`
-        : `<img src="${card.assetPath}" class="col-card-media" alt="${card.cardName}" loading="lazy">`;
+        ? `<video data-src="${card.assetPath}#t=0.001" class="col-card-media lazy-media" loop muted playsinline preload="metadata" onloadedmetadata="this.currentTime=0.1;"></video>`
+        : `<img data-src="${card.assetPath}" class="col-card-media lazy-media" alt="${card.cardName}" loading="lazy">`;
 
-      const item = document.createElement('div');
       const isMaxRank = rank >= 3;
+      const item = document.createElement('div');
       item.className = `col-card ${isMaxRank ? 'max-rank' : ''}`;
+      
+      const inactiveClass = !isOwned ? 'card-inactive' : '';
+
       item.innerHTML = `
-        ${(isNew || canRankUp) ? '<div class="col-notif-dot"></div>' : ''}
-        <div class="col-card-art">
+        <div class="col-card-art ${inactiveClass}">
           ${artHtml}
           <div class="col-card-grad"></div>
           <div class="col-card-type">${typeIcon}</div>
           <div class="col-card-stars">${starsHtml}</div>
-          <!-- 3-Floating-Diamond rank indicator (Image 2 style) -->
-          <svg class="col-rank-cube rank-${rank}" viewBox="0 0 100 100">
-            <!-- Top diamond (45 deg) -->
-            <rect class="cube-top"   x="37" y="17" width="26" height="26" rx="1" transform="rotate(45, 50, 30)" />
-            <!-- Left diamond (49.3 deg) -->
-            <rect class="cube-left"  x="1" y="45" width="26" height="26" rx="1" transform="rotate(45, 25, 70)" />
-            <!-- Right diamond (45 deg) -->
-            <rect class="cube-right" x="51" y="45" width="26" height="26" rx="1" transform="rotate(45, 75, 70)" />
-          </svg>
         </div>
-        <div class="col-card-label">${charCapitalized}: ${card.cardName}</div>
+        <div class="col-card-label">${card.cardName}</div>
       `;
+
+      if (card.isVideo && isOwned) {
+        item.addEventListener('mouseenter', () => {
+          const v = item.querySelector('video');
+          if (v) v.play().catch(()=>{});
+        });
+        item.addEventListener('mouseleave', () => {
+          const v = item.querySelector('video');
+          if (v) { v.pause(); v.currentTime = 0.1; }
+        });
+      }
+
+      charGrid.appendChild(item);
       
-      item.addEventListener('click', () => openCardDetails(card));
-      grid.appendChild(item);
+      const mediaEl = item.querySelector('.lazy-media');
+      if (mediaEl && window.mediaObserver) {
+        window.mediaObserver.observe(mediaEl);
+      }
     });
-  }
 
-  function openCardDetails(card) {
-    activeDetailsCard = card;
-    const detailsModal = document.getElementById('card-details-modal');
-    const artWrap = document.getElementById('cd-art-wrap');
-    const rankUpBtn = document.getElementById('rank-up-btn');
-    
-    const count = gs.collection[card.cardName] || 0;
-    const rank = gs.ranks[card.cardName] || 0;
-    const canRankUp = count > rank + 1 && rank < 3;
-    const charCapitalized = card.character.charAt(0).toUpperCase() + card.character.slice(1);
-
-    const starSvg = `<svg class="col-star-icon" viewBox="0 0 24 24" fill="#eab308"><path d="M12 2 L13.8 10.2 L22 12 L13.8 13.8 L12 22 L10.2 13.8 L2 12 L10.2 10.2 Z"/></svg>`;
-    const starsHtml = starSvg.repeat(card.rarity);
-    const typeIcon = card.type === 'solar'
-      ? `<svg class="col-type-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5" fill="currentColor"/><path stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none" d="M12 2v2m0 16v2m10-10h-2M4 12H2m15.536-7.536l-1.414 1.414M7.879 16.121l-1.414 1.414M16.121 16.121l1.414 1.414M7.879 7.879L6.464 6.464"/></svg>`
-      : `<svg class="col-type-icon" viewBox="0 0 24 24"><path fill="currentColor" d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>`;
-
-    const artHtml = card.isVideo
-      ? `<video src="${card.assetPath}" class="cd-card-media" loop muted autoplay playsinline onloadedmetadata="this.currentTime=0.1;"></video>`
-      : `<img src="${card.assetPath}" class="cd-card-media" alt="${card.cardName}">`;
-
-    document.getElementById('cd-header-char').textContent = charCapitalized;
-    document.getElementById('cd-footer-name').textContent = card.cardName;
-
-    const cdCredit = document.getElementById('cd-footer-credit');
-    const cred = CARD_CREDITS[card.cardName];
-    if (cred) {
-      const igIcon = cred.ig ? `
-        <a href="${cred.ig}" target="_blank" title="Instagram">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
-        </a>` : '';
-      const xIcon = cred.x ? `
-        <a href="${cred.x}" target="_blank" title="X">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-        </a>` : '';
-        
-      cdCredit.innerHTML = `<span>Art by: ${cred.artist}</span> <span class="cd-credit-pipe">|</span> <div class="cd-credit-icons">${igIcon}${xIcon}</div>`;
-      cdCredit.style.display = 'flex';
-    } else {
-      cdCredit.innerHTML = '';
-      cdCredit.style.display = 'none';
-    }
-
-    artWrap.innerHTML = `
-      ${artHtml}
-      <div class="col-card-grad"></div>
-      <div class="col-card-type">${typeIcon}</div>
-      <div class="col-card-stars">${starsHtml}</div>
-      <svg class="col-rank-cube rank-${rank}" viewBox="0 0 100 100">
-        <rect class="cube-top"   x="37" y="17" width="26" height="26" rx="1" transform="rotate(45, 50, 30)" />
-        <rect class="cube-left"  x="12" y="57" width="26" height="26" rx="1" transform="rotate(49.3, 25, 70)" />
-        <rect class="cube-right" x="62" y="57" width="26" height="26" rx="1" transform="rotate(45, 75, 70)" />
-      </svg>
-    `;
-
-    rankUpBtn.disabled = !canRankUp;
-
-    detailsModal.style.display = 'flex';
-  }
-}
-
-function updateCollectionNotification() {
-  if (typeof CARD_CATALOG === 'undefined' || !gs || !gs.collection) return;
-  let hasNotif = false;
-  for (const card of CARD_CATALOG) {
-    const count = gs.collection[card.cardName] || 0;
-    if (count > 0) {
-      const rank = gs.ranks[card.cardName] || 0;
-      if (count > rank + 1 && rank < 3) {
-        hasNotif = true;
-        break;
-      }
-    }
-  }
-  
-  const btn = document.getElementById('collection-open-btn');
-  if (btn) {
-    let dot = btn.querySelector('.col-notif-dot');
-    if (hasNotif) {
-      if (!dot) {
-        dot = document.createElement('div');
-        dot.className = 'col-notif-dot';
-        btn.appendChild(dot);
-      }
-    } else {
-      if (dot) dot.remove();
-    }
+    viewChar.style.transition = 'opacity 0.2s ease';
+    viewChar.style.opacity = '0';
+    viewChar.getBoundingClientRect(); // force reflow
+    viewChar.style.opacity = '1';
+  }, 200);
   }
 }

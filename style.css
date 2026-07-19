@@ -360,6 +360,10 @@ svg {
   box-shadow: 0 0 12px var(--gold-glow);
 }
 
+.sf-notice-btn {
+  right: 66px;
+}
+
 
 /* ════════════════════════════════════════════════════════════
    SCREEN 1 — BANNER SELECT
@@ -2111,6 +2115,12 @@ svg {
   overflow-y: auto;
 }
 
+.notice-body {
+  max-height: 50vh;
+  overflow-y: auto;
+  padding-right: 12px;
+}
+
 .settings-body::-webkit-scrollbar {
   width: 6px;
 }
@@ -3041,6 +3051,55 @@ body.cursor-zayne * {
   opacity: 0.7;
 }
 
+.li-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  padding: 16px;
+}
+
+.li-card {
+  display: flex;
+  cursor: pointer;
+  transition: transform var(--t-fast), box-shadow var(--t-fast), border-color var(--t-fast);
+  border-radius: 8px;
+  overflow: hidden;
+  border: 2px solid rgba(201, 169, 110, 0.3);
+}
+
+.li-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(201, 169, 110, 0.8);
+  box-shadow: 0 6px 16px rgba(201, 169, 110, 0.3);
+}
+
+.li-card img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  display: block;
+}
+
+.li-name {
+  color: var(--gold);
+  font-family: var(--font-d);
+  font-size: 16px;
+  margin-bottom: 4px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.li-progress {
+  color: var(--txt-2);
+  font-size: 13px;
+  font-variant-numeric: tabular-nums;
+}
+
+.card-inactive {
+  filter: grayscale(100%) opacity(0.5);
+}
+
 /* ═══════════════════════════════════════════════════════════
    COMPREHENSIVE MOBILE RESPONSIVE
    Targets screens ≤ 600px (phones)
@@ -3284,6 +3343,14 @@ body.cursor-zayne * {
   }
 
   /* Grid: 3 columns for mobile cards */
+  .collection-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+    gap: 16px;
+    padding: 16px;
+  }
+
+
   .col-grid {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -3376,6 +3443,10 @@ body.cursor-zayne * {
     max-height: 70vh;
   }
 
+  .notice-body {
+    max-height: 60vh;
+  }
+
   /* ── SELECT SCREEN HEADER TOP ROW ──────────────────────── */
   .top-row-bar {
     padding: var(--sp3) var(--sp4);
@@ -3389,3 +3460,192 @@ body.cursor-zayne * {
     padding-bottom: max(36px, env(safe-area-inset-bottom));
   }
 }
+
+/* ── PRECISE WISH SYSTEM ── */
+.precise-wish-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  z-index: 50;
+  position: relative;
+}
+
+.pw-trigger-btn {
+  background: rgba(20, 20, 40, 0.85);
+  border: 1px solid var(--gold-border);
+  color: var(--gold-lt);
+  padding: 6px 16px;
+  border-radius: var(--r-full);
+  font-family: var(--font-d);
+  font-size: 13px;
+  letter-spacing: 0.05em;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+}
+
+.pw-trigger-btn:hover {
+  background: rgba(201, 169, 110, 0.15);
+  box-shadow: 0 0 16px rgba(201, 169, 110, 0.4);
+  transform: translateY(-1px);
+}
+
+.pw-trigger-btn:active {
+  transform: scale(0.97);
+}
+
+#pw-status-text {
+  color: #fff;
+  font-family: var(--font-m);
+}
+
+/* Modal Overlay Removed (using settings-overlay) */
+.pw-status-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: var(--r-md);
+  padding: 10px 16px;
+  margin-bottom: var(--sp5);
+  font-size: 14px;
+}
+
+.pw-status-bar strong {
+  color: var(--gold-lt);
+}
+
+.pw-points {
+  font-family: var(--font-d);
+  color: #fff;
+  background: rgba(201, 169, 110, 0.2);
+  border: 1px solid var(--gold-border);
+  padding: 2px 8px;
+  border-radius: var(--r-full);
+}
+
+/* Character Grid */
+.pw-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: var(--sp6);
+}
+
+.pw-char-btn {
+  background: rgba(0, 0, 0, 0.4);
+  border: 2px solid transparent;
+  border-radius: var(--r-lg);
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.pw-char-btn img {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: var(--r-md);
+  opacity: 0.7;
+  transition: opacity 0.2s ease;
+}
+
+.pw-char-btn span {
+  font-size: 13px;
+  color: var(--txt-2);
+  transition: color 0.2s ease;
+  font-family: var(--font-m);
+}
+
+.pw-char-btn:hover img {
+  opacity: 0.9;
+}
+
+.pw-char-btn:hover span {
+  color: #fff;
+}
+
+.pw-char-btn.selected {
+  border-color: var(--gold-lt);
+  background: rgba(201, 169, 110, 0.1);
+  box-shadow: 0 0 16px rgba(201, 169, 110, 0.2);
+}
+
+.pw-char-btn.selected img {
+  opacity: 1;
+  box-shadow: 0 0 8px var(--gold-glow);
+}
+
+.pw-char-btn.selected span {
+  color: var(--gold-lt);
+  font-weight: 600;
+}
+
+/* Action Buttons */
+.pw-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+}
+
+.pw-action-btn {
+  padding: 10px 24px;
+  border-radius: var(--r-md);
+  font-family: var(--font-d);
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.pw-cancel {
+  background: transparent;
+  color: var(--txt-2);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.pw-cancel:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: #fff;
+}
+
+.pw-confirm {
+  background: var(--gold-lt);
+  color: #000;
+  border: none;
+}
+
+.pw-confirm:hover:not(:disabled) {
+  background: #fff;
+  box-shadow: 0 0 16px var(--gold-glow);
+}
+
+.pw-confirm:disabled {
+  background: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.3);
+  cursor: not-allowed;
+}
+
+/* Mobile Responsive */
+@media (max-width: 600px) {
+  .pw-grid {
+    gap: 10px;
+  }
+  .pw-modal-box {
+    padding: var(--sp4);
+  }
+  .pw-title {
+    font-size: 20px;
+  }
+}@ k e y f r a m e s   c o l F a d e I n   {   f r o m   {   o p a c i t y :   0 ;   t r a n s f o r m :   t r a n s l a t e Y ( 5 p x ) ;   }   t o   {   o p a c i t y :   1 ;   t r a n s f o r m :   t r a n s l a t e Y ( 0 ) ;   }   }  
+ @ k e y f r a m e s   c o l F a d e O u t   {   f r o m   {   o p a c i t y :   1 ;   t r a n s f o r m :   t r a n s l a t e Y ( 0 ) ;   }   t o   {   o p a c i t y :   0 ;   t r a n s f o r m :   t r a n s l a t e Y ( - 5 p x ) ;   }   }  
+ . c o l - a n i m a t e - f a d e - i n   {   a n i m a t i o n :   c o l F a d e I n   0 . 3 s   e a s e - o u t   f o r w a r d s ;   }  
+ . c o l - a n i m a t e - f a d e - o u t   {   a n i m a t i o n :   c o l F a d e O u t   0 . 2 s   e a s e - i n   f o r w a r d s ;   }  
+ 

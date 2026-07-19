@@ -706,16 +706,6 @@ const CARD_CATALOG = [
     "rarityStr": "5star",
     "type": "lunar",
     "bannerType": "standard",
-    "assetPath": "assets/rafayel/five-star/lunar/standard/before sunrise.temp.mp4",
-    "cardName": "Before Sunrise.temp",
-    "isVideo": true
-  },
-  {
-    "character": "rafayel",
-    "rarity": 5,
-    "rarityStr": "5star",
-    "type": "lunar",
-    "bannerType": "standard",
     "assetPath": "assets/rafayel/five-star/lunar/standard/blossoms.mp4",
     "cardName": "Blossoms",
     "isVideo": true
@@ -2075,6 +2065,36 @@ const CARD_CATALOG = [
     "rarity": 5,
     "rarityStr": "5star",
     "type": "lunar",
+    "bannerType": "limited",
+    "assetPath": "assets/valko/five-star/lunar/limited/sleeping wolf.webp",
+    "cardName": "Sleeping Wolf",
+    "isVideo": false
+  },
+  {
+    "character": "valko",
+    "rarity": 5,
+    "rarityStr": "5star",
+    "type": "lunar",
+    "bannerType": "limited",
+    "assetPath": "assets/valko/five-star/lunar/limited/sunkissed wolf.webp",
+    "cardName": "Sunkissed Wolf",
+    "isVideo": false
+  },
+  {
+    "character": "valko",
+    "rarity": 5,
+    "rarityStr": "5star",
+    "type": "lunar",
+    "bannerType": "limited",
+    "assetPath": "assets/valko/five-star/lunar/limited/tethered alpha.webp",
+    "cardName": "Tethered Alpha",
+    "isVideo": false
+  },
+  {
+    "character": "valko",
+    "rarity": 5,
+    "rarityStr": "5star",
+    "type": "lunar",
     "bannerType": "standard",
     "assetPath": "assets/valko/five-star/lunar/standard/cuddle exercise.mp4",
     "cardName": "Cuddle Exercise",
@@ -2136,6 +2156,26 @@ const CARD_CATALOG = [
     "rarityStr": "4star",
     "type": "lunar",
     "bannerType": "both",
+    "assetPath": "assets/valko/four-star/lunar/beloved wolflord.webp",
+    "cardName": "Beloved Wolflord",
+    "isVideo": false
+  },
+  {
+    "character": "valko",
+    "rarity": 4,
+    "rarityStr": "4star",
+    "type": "lunar",
+    "bannerType": "both",
+    "assetPath": "assets/valko/four-star/lunar/beware of the night.webp",
+    "cardName": "Beware Of The Night",
+    "isVideo": false
+  },
+  {
+    "character": "valko",
+    "rarity": 4,
+    "rarityStr": "4star",
+    "type": "lunar",
+    "bannerType": "both",
     "assetPath": "assets/valko/four-star/lunar/charging password.webp",
     "cardName": "Charging Password",
     "isVideo": false
@@ -2156,8 +2196,68 @@ const CARD_CATALOG = [
     "rarityStr": "4star",
     "type": "lunar",
     "bannerType": "both",
+    "assetPath": "assets/valko/four-star/lunar/my lost dog.webp",
+    "cardName": "My Lost Dog",
+    "isVideo": false
+  },
+  {
+    "character": "valko",
+    "rarity": 4,
+    "rarityStr": "4star",
+    "type": "lunar",
+    "bannerType": "both",
+    "assetPath": "assets/valko/four-star/lunar/proof of my sincerity.webp",
+    "cardName": "Proof Of My Sincerity",
+    "isVideo": false
+  },
+  {
+    "character": "valko",
+    "rarity": 4,
+    "rarityStr": "4star",
+    "type": "lunar",
+    "bannerType": "both",
+    "assetPath": "assets/valko/four-star/lunar/scaredy wolf.webp",
+    "cardName": "Scaredy Wolf",
+    "isVideo": false
+  },
+  {
+    "character": "valko",
+    "rarity": 4,
+    "rarityStr": "4star",
+    "type": "lunar",
+    "bannerType": "both",
+    "assetPath": "assets/valko/four-star/lunar/square up.webp",
+    "cardName": "Square Up",
+    "isVideo": false
+  },
+  {
+    "character": "valko",
+    "rarity": 4,
+    "rarityStr": "4star",
+    "type": "lunar",
+    "bannerType": "both",
+    "assetPath": "assets/valko/four-star/lunar/tales from winter.webp",
+    "cardName": "Tales From Winter",
+    "isVideo": false
+  },
+  {
+    "character": "valko",
+    "rarity": 4,
+    "rarityStr": "4star",
+    "type": "lunar",
+    "bannerType": "both",
     "assetPath": "assets/valko/four-star/lunar/tameless game.webp",
     "cardName": "Tameless Game",
+    "isVideo": false
+  },
+  {
+    "character": "valko",
+    "rarity": 4,
+    "rarityStr": "4star",
+    "type": "lunar",
+    "bannerType": "both",
+    "assetPath": "assets/valko/four-star/lunar/the scapegoat.webp",
+    "cardName": "The Scapegoat",
     "isVideo": false
   },
   {
@@ -2176,6 +2276,16 @@ const CARD_CATALOG = [
     "rarityStr": "4star",
     "type": "solar",
     "bannerType": "both",
+    "assetPath": "assets/valko/four-star/solar/alpha's restraint.webp",
+    "cardName": "Alpha's Restraint",
+    "isVideo": false
+  },
+  {
+    "character": "valko",
+    "rarity": 4,
+    "rarityStr": "4star",
+    "type": "solar",
+    "bannerType": "both",
     "assetPath": "assets/valko/four-star/solar/by your side.webp",
     "cardName": "By Your Side",
     "isVideo": false
@@ -2186,8 +2296,58 @@ const CARD_CATALOG = [
     "rarityStr": "4star",
     "type": "solar",
     "bannerType": "both",
+    "assetPath": "assets/valko/four-star/solar/daylight questioning.webp",
+    "cardName": "Daylight Questioning",
+    "isVideo": false
+  },
+  {
+    "character": "valko",
+    "rarity": 4,
+    "rarityStr": "4star",
+    "type": "solar",
+    "bannerType": "both",
     "assetPath": "assets/valko/four-star/solar/in your arms.webp",
     "cardName": "In Your Arms",
+    "isVideo": false
+  },
+  {
+    "character": "valko",
+    "rarity": 4,
+    "rarityStr": "4star",
+    "type": "solar",
+    "bannerType": "both",
+    "assetPath": "assets/valko/four-star/solar/night visitor.webp",
+    "cardName": "Night Visitor",
+    "isVideo": false
+  },
+  {
+    "character": "valko",
+    "rarity": 3,
+    "rarityStr": "3star",
+    "type": "lunar",
+    "bannerType": "both",
+    "assetPath": "assets/valko/three-star/lunar/butterfly effect.webp",
+    "cardName": "Butterfly Effect",
+    "isVideo": false
+  },
+  {
+    "character": "valko",
+    "rarity": 3,
+    "rarityStr": "3star",
+    "type": "lunar",
+    "bannerType": "both",
+    "assetPath": "assets/valko/three-star/lunar/choco comfort.webp",
+    "cardName": "Choco Comfort",
+    "isVideo": false
+  },
+  {
+    "character": "valko",
+    "rarity": 3,
+    "rarityStr": "3star",
+    "type": "lunar",
+    "bannerType": "both",
+    "assetPath": "assets/valko/three-star/lunar/friend or foe.webp",
+    "cardName": "Friend Or Foe",
     "isVideo": false
   },
   {
@@ -2204,10 +2364,90 @@ const CARD_CATALOG = [
     "character": "valko",
     "rarity": 3,
     "rarityStr": "3star",
+    "type": "lunar",
+    "bannerType": "both",
+    "assetPath": "assets/valko/three-star/lunar/iron bite.webp",
+    "cardName": "Iron Bite",
+    "isVideo": false
+  },
+  {
+    "character": "valko",
+    "rarity": 3,
+    "rarityStr": "3star",
+    "type": "lunar",
+    "bannerType": "both",
+    "assetPath": "assets/valko/three-star/lunar/lone wolf by the moon.webp",
+    "cardName": "Lone Wolf By The Moon",
+    "isVideo": false
+  },
+  {
+    "character": "valko",
+    "rarity": 3,
+    "rarityStr": "3star",
+    "type": "lunar",
+    "bannerType": "both",
+    "assetPath": "assets/valko/three-star/lunar/night-time territorial.webp",
+    "cardName": "Night-time Territorial",
+    "isVideo": false
+  },
+  {
+    "character": "valko",
+    "rarity": 3,
+    "rarityStr": "3star",
+    "type": "lunar",
+    "bannerType": "both",
+    "assetPath": "assets/valko/three-star/lunar/steadfast belief.webp",
+    "cardName": "Steadfast Belief",
+    "isVideo": false
+  },
+  {
+    "character": "valko",
+    "rarity": 3,
+    "rarityStr": "3star",
+    "type": "solar",
+    "bannerType": "both",
+    "assetPath": "assets/valko/three-star/solar/birthday plushie.webp",
+    "cardName": "Birthday Plushie",
+    "isVideo": false
+  },
+  {
+    "character": "valko",
+    "rarity": 3,
+    "rarityStr": "3star",
     "type": "solar",
     "bannerType": "both",
     "assetPath": "assets/valko/three-star/solar/chocolate day.webp",
     "cardName": "Chocolate Day",
+    "isVideo": false
+  },
+  {
+    "character": "valko",
+    "rarity": 3,
+    "rarityStr": "3star",
+    "type": "solar",
+    "bannerType": "both",
+    "assetPath": "assets/valko/three-star/solar/notice me.webp",
+    "cardName": "Notice Me",
+    "isVideo": false
+  },
+  {
+    "character": "valko",
+    "rarity": 3,
+    "rarityStr": "3star",
+    "type": "solar",
+    "bannerType": "both",
+    "assetPath": "assets/valko/three-star/solar/pouty.webp",
+    "cardName": "Pouty",
+    "isVideo": false
+  },
+  {
+    "character": "valko",
+    "rarity": 3,
+    "rarityStr": "3star",
+    "type": "solar",
+    "bannerType": "both",
+    "assetPath": "assets/valko/three-star/solar/tail tells all.webp",
+    "cardName": "Tail Tells All",
     "isVideo": false
   },
   {

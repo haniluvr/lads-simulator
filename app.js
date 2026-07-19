@@ -5,6 +5,21 @@
 
 'use strict';
 
+// Global IntersectionObserver for lazy-loading media elements
+window.mediaObserver = new IntersectionObserver((entries, observer) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const el = entry.target;
+      const src = el.getAttribute('data-src');
+      if (src) {
+        el.src = src;
+        el.removeAttribute('data-src');
+      }
+      observer.unobserve(el);
+    }
+  });
+}, { rootMargin: '200px' });
+
 // ── CHARACTER DATA ─────────────────────────────────────────
 const CHARACTERS = {
   xavier: {
@@ -84,7 +99,8 @@ const sfxUrls = {
   pullRevealGold: 'assets/audio-cue/open_wish_gold_cue.mp3',
   pullRevealAll: 'assets/audio-cue/pull_reveal_all_cue.mp3',
   select: 'assets/audio-cue/select_cue.mp3',
-  pullStart: 'assets/audio-cue/pull_start_cue.mp3'
+  pullStart: 'assets/audio-cue/pull_start_cue.mp3',
+  pullStartGold: 'assets/audio-cue/pull_start_gold_cue.mp3'
 };
 
 async function initSFX() {
@@ -327,11 +343,13 @@ function initSettings() {
 }
 
 // ── STATE ──────────────────────────────────────────────────
+const APP_VERSION = 1; // For displaying notice on update
 const STATE_KEY = 'lds_gacha_v1';
 
 /** @returns {object} Default state object */
 function defaultState() {
   return {
+    lastNoticeVersion: 0,
     // 5★ pity counters (pulls since last 5★, resets on 5★)
     limitedPity5:   0,
     standardPity5:  0,
@@ -341,6 +359,9 @@ function defaultState() {
     // 50/50 state for limited banner
     // true = user lost last 50/50 → next 5★ is GUARANTEED to be featured
     limitedGuarantee: false,
+    // Precise Wish State
+    preciseWishChar: null,
+    preciseWishPoint: 0,
     // Daily pull tracking
     limitedPullsToday:  0,
     standardPullsToday: 0,
@@ -434,12 +455,15 @@ function resolveCard(rarityStr, bannerType) {
       const limitedPool = pool.filter(c => c.bannerType === 'limited');
       const standardPool = pool.filter(c => c.bannerType === 'standard');
 
-      if (gs.limitedGuarantee || Math.random() < 0.5) {
-        gs.limitedGuarantee = false;
-        finalPool = limitedPool.length > 0 ? limitedPool : pool;
+      if (gs.preciseWishChar && gs.preciseWishPoint >= 1) {
+        const pwPool = limitedPool.filter(c => c.character === gs.preciseWishChar);
+        finalPool = pwPool.length > 0 ? pwPool : limitedPool;
       } else {
-        gs.limitedGuarantee = true;
-        finalPool = standardPool.length > 0 ? standardPool : pool;
+        if (gs.limitedGuarantee || Math.random() < 0.5) {
+          finalPool = limitedPool.length > 0 ? limitedPool : pool;
+        } else {
+          finalPool = standardPool.length > 0 ? standardPool : pool;
+        }
       }
     } else {
       finalPool = pool.filter(c => c.bannerType === 'standard');
@@ -449,7 +473,7 @@ function resolveCard(rarityStr, bannerType) {
 
   let totalWeight = 0;
   const weights = finalPool.map(c => {
-    const w = (c.character === 'valko' && bannerType === 'limited') ? 1.50 : 1;
+    const w = 1;
     totalWeight += w;
     return w;
   });
@@ -464,6 +488,22 @@ function resolveCard(rarityStr, bannerType) {
     }
   }
   
+  if (rarityStr === '5star' && bannerType === 'limited') {
+    if (gs.preciseWishChar) {
+      if (selectedCard.character === gs.preciseWishChar && selectedCard.bannerType === 'limited') {
+        gs.preciseWishChar = null;
+        gs.preciseWishPoint = 0;
+        gs.limitedGuarantee = false;
+      } else {
+        gs.preciseWishPoint = 1;
+        gs.limitedGuarantee = selectedCard.bannerType === 'standard';
+      }
+      updatePreciseWishUI();
+    } else {
+      gs.limitedGuarantee = selectedCard.bannerType === 'standard';
+    }
+  }
+
   return { ...selectedCard, charData: CHARACTERS[selectedCard.character] || CHARACTERS['xavier'] };
 }
 
@@ -537,6 +577,7 @@ function performPulls(count, bannerType) {
 
 // ── GLOBAL STATE & CANVAS REFS ─────────────────────────────
 let gs;           // game state
+let currentActiveCard = null;
 let currentBanner = null;
 let countdownInterval = null;
 
@@ -904,6 +945,12 @@ function setupPullScreen(bannerType) {
   const screenEl = document.getElementById('screen-pull');
   screenEl.classList.toggle('banner-standard', !isLim);
 
+  const pwContainer = document.getElementById('pw-container');
+  if (pwContainer) {
+    pwContainer.style.display = isLim ? 'flex' : 'none';
+  }
+  updatePreciseWishUI();
+
   // Background gradient
   document.getElementById('pull-bg').style.background = isLim
     ? 'linear-gradient(160deg,#1c1605 0%,#302409 30%,#110d02 65%,#020008 100%)'
@@ -937,15 +984,7 @@ function setupPullScreen(bannerType) {
 
   // 50/50 guarantee indicator (limited only)
   const gzone = document.getElementById('guarantee-zone');
-  if (isLim) {
-    const isGuaranteed = gs.limitedGuarantee;
-    gzone.innerHTML = `
-      <span class="guarantee-badge ${isGuaranteed ? 'gb-guaranteed' : 'gb-fifty'}">
-        ${isGuaranteed
-          ? '✓ Limited memory guaranteed next 5★'
-          : '50/50 — Win for limited, lose for standard 5★'}
-      </span>`;
-  } else {
+  if (gzone) {
     gzone.innerHTML = '';
   }
 
@@ -1136,6 +1175,18 @@ function playPullStartVideo(results, onComplete) {
   const container = document.getElementById('pull-start-video-container');
   const video = document.getElementById('pull-start-video');
   const bgMusic = document.getElementById('bg-music');
+  const skipBtn = document.getElementById('skip-pull-start-btn');
+
+  if (skipBtn) skipBtn.style.display = 'none';
+
+  const tapHandler = (e) => {
+    if (skipBtn && !e.target.closest('#skip-pull-start-btn')) {
+      skipBtn.style.display = 'flex';
+    }
+  };
+  
+  container.addEventListener('pointerup', tapHandler);
+  container.addEventListener('click', tapHandler);
 
   container.style.display = 'block';
   // Force reflow
@@ -1145,10 +1196,21 @@ function playPullStartVideo(results, onComplete) {
   const hasFiveStar = results.some(r => r.rarity === '5star');
   video.src = hasFiveStar ? 'assets/ui/animations/pull_start_gold.mp4' : 'assets/ui/animations/pull_start.mp4';
   video.muted = true;
-  playSFX('pullStart');
+  video.load();
+  if (hasFiveStar) {
+    playSFX('pullStartGold');
+  } else {
+    playSFX('pullStart');
+  }
   
   const finish = () => {
     video.removeEventListener('ended', finish);
+    container.removeEventListener('pointerup', tapHandler);
+    container.removeEventListener('click', tapHandler);
+    if (skipBtn) {
+      skipBtn.removeEventListener('click', finishSkip);
+      skipBtn.removeEventListener('pointerup', finishSkip);
+    }
     video.pause();
     video.removeAttribute('src');
     video.load();
@@ -1159,6 +1221,17 @@ function playPullStartVideo(results, onComplete) {
       onComplete();
     }, 500); // fade out duration
   };
+
+  const finishSkip = (e) => {
+    e.stopPropagation();
+    e.preventDefault();
+    finish();
+  };
+
+  if (skipBtn) {
+    skipBtn.addEventListener('click', finishSkip);
+    skipBtn.addEventListener('pointerup', finishSkip);
+  }
 
   video.addEventListener('ended', finish);
 
@@ -1192,8 +1265,9 @@ function playPreRevealVideo(result, onComplete) {
 
   const container = document.getElementById('pre-reveal-video-container');
   const video = document.getElementById('pre-reveal-video');
-  
   video.src = path;
+  video.muted = true;
+  video.load();
   container.style.display = 'block';
   
   requestAnimationFrame(() => requestAnimationFrame(() => {
@@ -1545,11 +1619,156 @@ function init() {
   initEvents();
   initAudio();
   initCollection();
+  if (typeof initRealCollection === 'function') initRealCollection();
+  initPreciseWishEvents();
+  initNoticeEvents();
   refreshBannerSelect();
   startCountdown();
+
+  updateCurrencyUI();
+  updatePityUI();
+  
+  // Show initial screen
+  showScreen('screen-select');
+  
   if (typeof updateCollectionNotification === 'function') {
     updateCollectionNotification();
+  }
+
+  // Auto-open notice modal if version is new
+  if (gs.lastNoticeVersion < APP_VERSION) {
+    const noticeModal = document.getElementById('notice-modal');
+    if (noticeModal) {
+      noticeModal.style.display = '';
+      requestAnimationFrame(() => requestAnimationFrame(() => noticeModal.classList.add('active')));
+      gs.lastNoticeVersion = APP_VERSION;
+      saveState();
+    }
   }
 }
 
 document.addEventListener('DOMContentLoaded', init);
+
+// ── PRECISE WISH LOGIC ──────────────────────────────────────
+function updatePreciseWishUI() {
+  const triggerBtnText = document.getElementById('pw-status-text');
+  const currentWishText = document.getElementById('pw-current-wish');
+  const pointsDisplay = document.getElementById('pw-points-display');
+  const cancelBtn = document.getElementById('pw-cancel-choice-btn');
+  const confirmBtn = document.getElementById('pw-confirm-btn');
+
+  if (!triggerBtnText) return;
+
+  if (gs.preciseWishChar) {
+    const charName = CHARACTERS[gs.preciseWishChar]?.name || gs.preciseWishChar;
+    triggerBtnText.textContent = `${charName} (${gs.preciseWishPoint}/1)`;
+    currentWishText.textContent = charName;
+    pointsDisplay.textContent = `${gs.preciseWishPoint}/1`;
+    cancelBtn.style.display = 'inline-block';
+  } else {
+    triggerBtnText.textContent = 'None';
+    currentWishText.textContent = 'None';
+    pointsDisplay.textContent = '0/1';
+    cancelBtn.style.display = 'none';
+  }
+
+  // Deselect all buttons in grid
+  document.querySelectorAll('.pw-char-btn').forEach(btn => {
+    if (btn.dataset.char === gs.preciseWishChar) {
+      btn.classList.add('selected');
+    } else {
+      btn.classList.remove('selected');
+    }
+  });
+
+  if (confirmBtn) confirmBtn.disabled = true; // reset until a new selection is made
+}
+
+function initPreciseWishEvents() {
+  const modal = document.getElementById('precise-wish-modal');
+  const triggerBtn = document.getElementById('pw-trigger-btn');
+  const closeBtn = document.getElementById('pw-close-btn');
+  const charBtns = document.querySelectorAll('.pw-char-btn');
+  const confirmBtn = document.getElementById('pw-confirm-btn');
+  const cancelBtn = document.getElementById('pw-cancel-choice-btn');
+
+  let tempSelectedChar = null;
+
+  if (!modal) return;
+
+  const openModal = () => {
+    playSFX('click');
+    tempSelectedChar = gs.preciseWishChar;
+    updatePreciseWishUI();
+    modal.style.display = '';
+    requestAnimationFrame(() => requestAnimationFrame(() => modal.classList.add('active')));
+  };
+
+  const closeModal = () => {
+    playSFX('click');
+    modal.classList.remove('active');
+    setTimeout(() => { modal.style.display = 'none'; }, 300);
+  };
+
+  triggerBtn.addEventListener('click', openModal);
+  closeBtn.addEventListener('click', closeModal);
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) closeModal();
+  });
+
+  charBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      playSFX('click');
+      charBtns.forEach(b => b.classList.remove('selected'));
+      btn.classList.add('selected');
+      tempSelectedChar = btn.dataset.char;
+      confirmBtn.disabled = tempSelectedChar === gs.preciseWishChar;
+    });
+  });
+
+  confirmBtn.addEventListener('click', () => {
+    if (tempSelectedChar && tempSelectedChar !== gs.preciseWishChar) {
+      playSFX('click');
+      gs.preciseWishChar = tempSelectedChar;
+      gs.preciseWishPoint = 0; // changing choice resets points
+      saveState();
+      updatePreciseWishUI();
+      closeModal();
+    }
+  });
+
+  cancelBtn.addEventListener('click', () => {
+    playSFX('click');
+    gs.preciseWishChar = null;
+    gs.preciseWishPoint = 0;
+    saveState();
+    updatePreciseWishUI();
+    closeModal();
+  });
+}
+
+function initNoticeEvents() {
+  const noticeBtn = document.getElementById('notice-btn');
+  const noticeModal = document.getElementById('notice-modal');
+  const noticeClose = document.getElementById('notice-close-btn');
+
+  if (!noticeBtn || !noticeModal) return;
+
+  const openNoticeModal = () => {
+    playSFX('click');
+    noticeModal.style.display = '';
+    requestAnimationFrame(() => requestAnimationFrame(() => noticeModal.classList.add('active')));
+  };
+
+  const closeNoticeModal = () => {
+    playSFX('click');
+    noticeModal.classList.remove('active');
+    setTimeout(() => { noticeModal.style.display = 'none'; }, 300);
+  };
+
+  noticeBtn.addEventListener('click', openNoticeModal);
+  noticeClose.addEventListener('click', closeNoticeModal);
+  noticeModal.addEventListener('click', (e) => {
+    if (e.target === noticeModal) closeNoticeModal();
+  });
+}
