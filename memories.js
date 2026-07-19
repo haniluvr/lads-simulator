@@ -95,7 +95,7 @@ const CARD_CREDITS = {
     x: "https://x.com/Starry_Lottie",
     ig: "https://instagram.com/starry.lottie"
   },
-  "Friend or Foe": {
+  "Friend Or Foe": {
     artist: "Lottie",
     x: "https://x.com/Starry_Lottie",
     ig: "https://instagram.com/starry.lottie"
@@ -145,12 +145,12 @@ const CARD_CREDITS = {
     ig: "https://instagram.com/c0axyz",
     tiktok: "https://www.tiktok.com/@c0axyz"
   },
-  "Night-Time Territorial": {
+  "Night-time Territorial": {
     artist: "solisweirddd",
     x: "https://x.com/solisweirddd",
     tiktok: "https://www.tiktok.com/@solis_055"
   },
-  "Lily of the Valley Lover's": {
+  "Lily Of The Valley Lover's": {
     artist: "pinkieplum",
     ig: "https://instagram.com/pinkieplum"
   },
