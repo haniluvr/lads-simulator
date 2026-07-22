@@ -2036,6 +2036,36 @@ const CARD_CATALOG = [
     "rarityStr": "5star",
     "type": "lunar",
     "bannerType": "limited",
+    "assetPath": "assets/valko/five-star/lunar/limited/a piece of cake.webp",
+    "cardName": "A Piece Of Cake",
+    "isVideo": false
+  },
+  {
+    "character": "valko",
+    "rarity": 5,
+    "rarityStr": "5star",
+    "type": "lunar",
+    "bannerType": "limited",
+    "assetPath": "assets/valko/five-star/lunar/limited/chocolate milk & charm.webp",
+    "cardName": "Chocolate Milk & Charm",
+    "isVideo": false
+  },
+  {
+    "character": "valko",
+    "rarity": 5,
+    "rarityStr": "5star",
+    "type": "lunar",
+    "bannerType": "limited",
+    "assetPath": "assets/valko/five-star/lunar/limited/framing perfection.webp",
+    "cardName": "Framing Perfection",
+    "isVideo": false
+  },
+  {
+    "character": "valko",
+    "rarity": 5,
+    "rarityStr": "5star",
+    "type": "lunar",
+    "bannerType": "limited",
     "assetPath": "assets/valko/five-star/lunar/limited/morning confessions.mp4",
     "cardName": "Morning Confessions",
     "isVideo": true
@@ -2116,8 +2146,28 @@ const CARD_CATALOG = [
     "rarityStr": "5star",
     "type": "lunar",
     "bannerType": "limited",
+    "assetPath": "assets/valko/five-star/lunar/limited/temptation.webp",
+    "cardName": "Temptation",
+    "isVideo": false
+  },
+  {
+    "character": "valko",
+    "rarity": 5,
+    "rarityStr": "5star",
+    "type": "lunar",
+    "bannerType": "limited",
     "assetPath": "assets/valko/five-star/lunar/limited/tethered alpha.webp",
     "cardName": "Tethered Alpha",
+    "isVideo": false
+  },
+  {
+    "character": "valko",
+    "rarity": 5,
+    "rarityStr": "5star",
+    "type": "lunar",
+    "bannerType": "limited",
+    "assetPath": "assets/valko/five-star/lunar/limited/unexpected invitation.webp",
+    "cardName": "Unexpected Invitation",
     "isVideo": false
   },
   {
@@ -2185,6 +2235,26 @@ const CARD_CATALOG = [
     "rarity": 5,
     "rarityStr": "5star",
     "type": "solar",
+    "bannerType": "limited",
+    "assetPath": "assets/valko/five-star/solar/limited/behind closed doors.webp",
+    "cardName": "Behind Closed Doors",
+    "isVideo": false
+  },
+  {
+    "character": "valko",
+    "rarity": 5,
+    "rarityStr": "5star",
+    "type": "solar",
+    "bannerType": "limited",
+    "assetPath": "assets/valko/five-star/solar/limited/behind the desk.webp",
+    "cardName": "Behind The Desk",
+    "isVideo": false
+  },
+  {
+    "character": "valko",
+    "rarity": 5,
+    "rarityStr": "5star",
+    "type": "solar",
     "bannerType": "standard",
     "assetPath": "assets/valko/five-star/solar/standard/verdancy entwined.mp4",
     "cardName": "Verdancy Entwined",
@@ -2238,6 +2308,16 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/valko/four-star/lunar/foregone fall.webp",
     "cardName": "Foregone Fall",
+    "isVideo": false
+  },
+  {
+    "character": "valko",
+    "rarity": 4,
+    "rarityStr": "4star",
+    "type": "lunar",
+    "bannerType": "both",
+    "assetPath": "assets/valko/four-star/lunar/holydays.webp",
+    "cardName": "Holydays",
     "isVideo": false
   },
   {
@@ -2338,6 +2418,16 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/valko/four-star/lunar/under staidrain.webp",
     "cardName": "Under Staidrain",
+    "isVideo": false
+  },
+  {
+    "character": "valko",
+    "rarity": 4,
+    "rarityStr": "4star",
+    "type": "lunar",
+    "bannerType": "both",
+    "assetPath": "assets/valko/four-star/lunar/under the moon.webp",
+    "cardName": "Under The Moon",
     "isVideo": false
   },
   {
@@ -2488,6 +2578,16 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/valko/three-star/solar/chocolate day.webp",
     "cardName": "Chocolate Day",
+    "isVideo": false
+  },
+  {
+    "character": "valko",
+    "rarity": 3,
+    "rarityStr": "3star",
+    "type": "solar",
+    "bannerType": "both",
+    "assetPath": "assets/valko/three-star/solar/kitty's affection.webp",
+    "cardName": "Kitty's Affection",
     "isVideo": false
   },
   {

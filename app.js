@@ -1161,24 +1161,12 @@ function showReveal(results, startSkipped = false) {
   
   if (startSkipped) {
     if (revealState.layout === 1) {
-      if (results[0].rarity === '5star') {
-        playPreRevealVideo(results[0], () => {
-          if (!revealState.active) return;
-          playSingleCardAnimation(results[0], singleStage, () => {
-            collectBtn.classList.add('visible');
-          });
+      playPreRevealVideo(results[0], () => {
+        if (!revealState.active) return;
+        playSingleCardAnimation(results[0], singleStage, () => {
+          collectBtn.classList.add('visible');
         });
-      } else {
-        singleStage.innerHTML = '';
-        const wrapper = buildCard(results[0], 1);
-        singleStage.appendChild(wrapper);
-        wrapper.classList.add('visible');
-        wrapper.querySelector('.reveal-card').classList.add('flipped');
-        wrapper.querySelector('.card-glow').classList.add('visible');
-        skipBtn.style.display = 'none';
-        collectBtn.classList.add('visible');
-        revealState.active = false;
-      }
+      });
     } else {
       const has5Star = results.some(r => r.rarity === '5star');
       if (has5Star) {
@@ -1232,7 +1220,7 @@ function playPullStartVideo(results, onComplete) {
   container.classList.add('active');
 
   const hasFiveStar = results.some(r => r.rarity === '5star');
-  video.src = hasFiveStar ? 'assets/ui/animations/pull_start_gold.mp4' : 'assets/ui/animations/pull_start.mp4';
+  video.src = hasFiveStar ? 'assets/ui/animations/pull_start_gold.mp4?v=2' : 'assets/ui/animations/pull_start.mp4';
   video.muted = true;
   video.load();
 
@@ -1816,3 +1804,4 @@ function initNoticeEvents() {
     if (e.target === noticeModal) closeNoticeModal();
   });
 }
+

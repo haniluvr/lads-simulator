@@ -1,6 +1,59 @@
 // collection.js
 
 const CARD_CREDITS = {
+  "Holydays": {
+    artist: "Mephisto",
+    x: "https://x.com/Harlock_Mephistokitten",
+    ig: "https://instagram.com/Harlock_Mephistokitten",
+    tiktok: "https://tiktok.com/@Harlock_Mephistokitten"
+  },
+  "Under The Moon": {
+    artist: "Mephisto",
+    x: "https://x.com/Harlock_Mephistokitten",
+    ig: "https://instagram.com/Harlock_Mephistokitten",
+    tiktok: "https://tiktok.com/@Harlock_Mephistokitten"
+  },
+  "Kitty's Affection": {
+    artist: "KC_7385",
+    x: "https://x.com/KC_7385"
+  },
+  "Unexpected Invitation": {
+    artist: "KC_7385",
+    x: "https://x.com/KC_7385"
+  },
+  "Temptation": {
+    artist: "uulyaax",
+    x: "https://x.com/uulyaax",
+    ig: "https://instagram.com/uulyaax"
+  },
+  "Behind The Desk": {
+    artist: "SpiritFucker93",
+    x: "https://x.com/SpiritFucker93",
+    tumblr: "https://SpiritFucker93.tumblr.com/"
+  },
+  "Behind Closed Doors": {
+    artist: "SpiritFucker93",
+    x: "https://x.com/SpiritFucker93",
+    tumblr: "https://SpiritFucker93.tumblr.com/"
+  },
+  "Framing Perfection": {
+    artist: "salad",
+    x: "https://x.com/SALADYUMI",
+    ig: "https://instagram.com/saladcorny",
+    patreon: "https://www.patreon.com/cw/SaladCorny"
+  },
+  "A Piece Of Cake": {
+    artist: "salad",
+    x: "https://x.com/SALADYUMI",
+    ig: "https://instagram.com/saladcorny",
+    patreon: "https://www.patreon.com/cw/SaladCorny"
+  },
+  "Chocolate Milk & Charm": {
+    artist: "salad",
+    x: "https://x.com/SALADYUMI",
+    ig: "https://instagram.com/saladcorny",
+    patreon: "https://www.patreon.com/cw/SaladCorny"
+  },
   "Tasting Victory": {
     artist: "jin",
     x: "https://x.com/starsxav"
@@ -622,3 +675,4 @@ function updateCharTabNotifications() {
     }
   });
 }
+
