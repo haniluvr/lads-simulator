@@ -522,9 +522,16 @@
           emScore++;
           playSound(audio.wish);
         } else if (item.type === 'bomb') {
-          // -2 total: -1 from each ticket type
-          dsScore = Math.max(0, dsScore - 1);
-          emScore = Math.max(0, emScore - 1);
+          // -5 total penalty: take from the higher score first
+          let penalty = 5;
+          while (penalty > 0 && (dsScore > 0 || emScore > 0)) {
+            if (dsScore >= emScore && dsScore > 0) {
+              dsScore--;
+            } else if (emScore > 0) {
+              emScore--;
+            }
+            penalty--;
+          }
           playSound(audio.bomb);
         }
         items.splice(i, 1);
