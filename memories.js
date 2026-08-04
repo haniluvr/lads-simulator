@@ -277,6 +277,21 @@ const CARD_CREDITS = {
   "After Dark": {
     artist: "Morgenty",
     x: "https://x.com/fine_fiction"
+  },
+  "Heat Of The Moment": {
+    artist: "Ayu",
+    x: "https://x.com/ayushnz_/"
+  },
+  "Warm Touch": {
+    artist: "NheaLonn",
+    x: "https://x.com/NheaLonn",
+    ig: "https://instagram.com/nhea.l",
+    tumblr: "https://nhealonn.tumblr.com",
+    bsky: "https://bsky.app/profile/nhealonn.bsky.social"
+  },
+  "Ramp Romance": {
+    artist: "Mephisto",
+    ig: "https://instagram.com/Harlock_Mephistokitten"
   }
 };
 

@@ -1804,4 +1804,31 @@ function initNoticeEvents() {
     if (e.target === noticeModal) closeNoticeModal();
   });
 }
+// --- ARCADE MINIGAME INTEGRATION ---
+window.addArcadeWishes = function(dsTickets, emTickets) {
+  // Cap tickets at 250 max (pullsToday cannot drop below 0)
+  gs.limitedPullsToday  = Math.max(0, gs.limitedPullsToday - dsTickets);
+  gs.standardPullsToday = Math.max(0, gs.standardPullsToday - emTickets);
+  saveState();
+  if (typeof updatePreciseWishUI === 'function') {
+    updatePreciseWishUI();
+  }
+  if (typeof currentBanner !== 'undefined' && currentBanner && typeof setupPullScreen === 'function') {
+    setupPullScreen(currentBanner);
+  }
+};
 
+window.pauseMainBGM = function() {
+  const bgMusic = document.getElementById('bg-music');
+  if (bgMusic) {
+    window.mainBgmWasPlaying = !bgMusic.paused;
+    bgMusic.pause();
+  }
+};
+
+window.resumeMainBGM = function() {
+  const bgMusic = document.getElementById('bg-music');
+  if (bgMusic && window.mainBgmWasPlaying) {
+    bgMusic.play().catch(e => console.error("Audio play failed:", e));
+  }
+};

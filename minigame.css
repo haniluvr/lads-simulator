@@ -1,0 +1,537 @@
+/* ═══════════════════════════════════════════════
+   WISHFALL FRENZY — Mini-Game Styles
+   Frame natural size: ~971 × 1241px (ratio ~0.7825)
+   Play area inside frame (approx percentages):
+     left: 8.5%  right: 8.5%  top: 13.5%  bottom: 24.5%
+═══════════════════════════════════════════════ */
+
+/* ── CSS Custom Properties for the frame layout ── */
+:root {
+  --frame-ratio: 0.7825;      /* width / height of game-frame.webp */
+  --play-top: 13.5%;          /* below character heads */
+  --play-left: 5.5%;          /* measured: purple left border */
+  --play-right: 5.5%;         /* measured: purple right border */
+  --play-bottom: 25.5%;       /* gamepad section below white area */
+
+  --arcade-purple: #8b6dc4;
+  --arcade-light: #c9b8f0;
+  --arcade-bg: #f0eafb;
+  --arcade-white: #ffffff;
+}
+
+/* ── Full-screen page ── */
+.minigame-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  background-image: url('assets/ui/arcade/game-mainbg.webp');
+  background-size: cover;
+  background-position: center center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 16px;
+  box-sizing: border-box;
+  gap: 8px;
+}
+
+/* ── WISHFALL FRENZY title — arc via per-letter vertical offset ── */
+.wishfall-title {
+  font-family: 'Rubik Bubbles', system-ui, sans-serif;
+  font-size: clamp(32px, 7.5vw, 64px);
+  color: var(--arcade-white);
+  letter-spacing: 2px;
+  margin: 0 0 10px;
+  user-select: none;
+  /* One line on desktop, handled via whitespace-nowrap */
+  white-space: nowrap;
+  /* Arc the whole line slightly in 3D */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Each letter is a span — JS sets --i for staggered arc */
+.wishfall-title .arc-letter {
+  display: inline-block;
+  /* arc: letters near center rise up, outer letters stay lower */
+  transform: translateY(var(--arc-y, 0px));
+  text-shadow:
+    0 2px 0 #7b58b8,
+    0 4px 0 rgba(100,60,180,0.25),
+    0 0 18px rgba(200,170,255,0.55);
+  transition: transform 0.2s ease;
+}
+
+/* Mobile: allow two lines */
+@media (max-width: 480px) {
+  .wishfall-title {
+    white-space: normal;
+    text-align: center;
+    flex-wrap: wrap;
+    font-size: clamp(30px, 11vw, 52px);
+    line-height: 1.05;
+    margin-bottom: 6px;
+  }
+  .wishfall-title .arc-letter.line-break {
+    flex-basis: 100%;
+    height: 0;
+  }
+}
+
+/* ── Frame wrapper: positions everything relative to frame image ── */
+.minigame-frame-wrapper {
+  position: relative;
+  /* Slightly wider to fill side padding of the frame decoration */
+  width: min(440px, 96vw);
+  /* height is determined by frame image ratio */
+  aspect-ratio: 0.7825;
+  flex-shrink: 0;
+}
+
+/* ── Background image fills only the transparent play zone ── */
+.minigame-bg-fill {
+  position: absolute;
+  top: var(--play-top);
+  left: var(--play-left);
+  right: var(--play-right);
+  bottom: var(--play-bottom);
+  background-image: url('assets/ui/arcade/game-background.webp');
+  background-size: cover;
+  background-position: center top;
+  border-radius: 10px;
+  overflow: hidden;
+  z-index: 0;
+}
+
+/* ── Canvas occupies the exact same play zone ── */
+#minigame-canvas {
+  position: absolute;
+  top: var(--play-top);
+  left: var(--play-left);
+  right: var(--play-right);
+  bottom: var(--play-bottom);
+  /* actual pixel dimensions set by JS */
+  width: calc(100% - var(--play-left) - var(--play-right));
+  height: calc(100% - var(--play-top) - var(--play-bottom));
+  display: block;
+  z-index: 1;
+  touch-action: none;
+}
+
+/* ── Frame image sits on top of bg + canvas but below HUD + overlays ── */
+.game-frame-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  pointer-events: none;
+  user-select: none;
+  z-index: 2;
+}
+
+/* ── In-frame HUD ── */
+.in-frame-hud {
+  position: absolute;
+  top: var(--play-top);
+  left: var(--play-left);
+  right: var(--play-right);
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; /* score stays left */
+  padding: 6px 8px;
+  background: rgba(255,255,255,0.75);
+  backdrop-filter: blur(4px);
+  border-radius: 8px 8px 0 0;
+  pointer-events: none;
+}
+
+/* Pause button: absolutely positioned, direct child of frame-wrapper.
+   Default z-index 3 = same as HUD (hidden behind intro/gameover overlays).
+   .show-above class is toggled by JS only when game is paused. */
+.hud-pause-btn {
+  position: absolute;
+  top: calc(var(--play-top) + 4px);
+  right: calc(var(--play-right) + 4px);
+  z-index: 3;
+  background: #8b6dc4;
+  border: none;
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: white;
+  transition: background 0.15s, transform 0.1s;
+  flex-shrink: 0;
+}
+
+.hud-pause-btn.show-above {
+  z-index: 6; /* rises above pause overlay only when paused */
+}
+
+.hud-pause-btn:hover {
+  background: #7558b0;
+  transform: scale(1.1);
+}
+
+.hud-pause-btn:active {
+  transform: scale(0.95);
+}
+
+.hud-score {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.hud-score-item {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-family: 'Rubik Bubbles', system-ui, sans-serif;
+  font-size: clamp(10px, 2.2vw, 14px);
+  color: #5a3fa0;
+}
+
+.hud-wish-icon {
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+}
+
+.hud-timer {
+  position: absolute;
+  left: 0;
+  right: 0;
+  text-align: center;
+  pointer-events: none;
+  font-family: 'Rubik Bubbles', system-ui, sans-serif;
+  font-size: clamp(14px, 3.5vw, 22px);
+  color: #5a3fa0;
+  text-shadow: 0 1px 0 rgba(255,255,255,0.8);
+  letter-spacing: 2px;
+  font-weight: 400;
+}
+
+
+
+/* ── In-frame overlay (countdown, character select, game over) ── */
+.in-frame-overlay {
+  position: absolute;
+  top: var(--play-top);
+  left: var(--play-left);
+  right: var(--play-right);
+  bottom: var(--play-bottom);
+  z-index: 4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(240, 234, 251, 0.92);
+  backdrop-filter: blur(2px);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+/* ── Countdown number ── */
+.countdown-num {
+  font-family: 'Rubik Bubbles', system-ui, sans-serif;
+  font-size: clamp(60px, 15vw, 100px);
+  color: #7b58b8;
+  text-shadow:
+    0 3px 0 #5a3fa0,
+    0 0 30px rgba(139,109,196,0.4);
+  margin: 0;
+  animation: countPop 0.9s ease-out forwards;
+}
+
+@keyframes countPop {
+  0%   { transform: scale(0.5); opacity: 0; }
+  30%  { transform: scale(1.2); opacity: 1; }
+  60%  { transform: scale(1.0); opacity: 1; }
+  100% { transform: scale(0.8); opacity: 0; }
+}
+
+/* ── Pause overlay ── */
+#minigame-pause-overlay {
+  position: absolute;
+  top: var(--play-top);
+  left: var(--play-left);
+  right: var(--play-right);
+  bottom: var(--play-bottom);
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  background: rgba(80, 50, 140, 0.55);
+  backdrop-filter: blur(6px);
+  border-radius: 10px;
+  animation: pauseFadeIn 0.2s ease-out forwards;
+}
+
+@keyframes pauseFadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.pause-overlay-text {
+  font-family: 'Rubik Bubbles', system-ui, sans-serif;
+  font-size: clamp(28px, 8vw, 48px);
+  color: #fff;
+  text-shadow:
+    0 3px 0 #3d1f8a,
+    0 0 24px rgba(180,140,255,0.7);
+  letter-spacing: 4px;
+  margin: 0;
+}
+
+.pause-overlay-sub {
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(10px, 2.5vw, 13px);
+  color: rgba(255,255,255,0.75);
+  margin: 0;
+}
+
+/* ── Intro / Character select ── */
+.intro-scroll {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 12px;
+  width: 100%;
+  overflow-y: auto;
+  max-height: 100%;
+  box-sizing: border-box;
+}
+
+.intro-title {
+  font-family: 'Rubik Bubbles', system-ui, sans-serif;
+  font-size: clamp(14px, 3.5vw, 20px);
+  color: #5a3fa0;
+  margin: 0;
+  text-align: center;
+}
+
+.minigame-character-select {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4px;
+  justify-items: center;
+  width: 100%;
+  margin-top: 12px;
+}
+
+.char-basket {
+  width: clamp(52px, 14vw, 72px);
+  height: clamp(52px, 14vw, 72px);
+  object-fit: contain;
+  cursor: pointer;
+  border: 2.5px solid transparent;
+  border-radius: 10px;
+  transition: all 0.2s;
+  padding: 4px;
+  background: rgba(255,255,255,0.6);
+  box-sizing: border-box;
+}
+
+.char-basket:hover {
+  background: rgba(255,255,255,0.9);
+  transform: translateY(-2px);
+}
+
+.char-basket.selected {
+  border-color: #8b6dc4;
+  background: rgba(139,109,196,0.2);
+  box-shadow: 0 0 10px rgba(139,109,196,0.5);
+}
+
+/* ── Shared arcade button ── */
+.arcade-btn {
+  font-family: 'Rubik Bubbles', system-ui, sans-serif;
+  font-size: clamp(11px, 2.5vw, 15px);
+  border: none;
+  border-radius: 40px;
+  cursor: pointer;
+  padding: 8px 20px;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+
+.arcade-btn:hover {
+  transform: translateY(-2px);
+}
+
+.arcade-btn:active {
+  transform: translateY(0px);
+}
+
+.primary-btn {
+  background: linear-gradient(135deg, #9b7dd4 0%, #7558b0 100%);
+  color: white;
+  box-shadow: 0 4px 0 #5a3fa0, 0 6px 12px rgba(90,63,160,0.3);
+}
+
+.primary-btn:hover {
+  box-shadow: 0 6px 0 #5a3fa0, 0 8px 16px rgba(90,63,160,0.35);
+}
+
+.ghost-btn {
+  background: rgba(255,255,255,0.7);
+  color: #7558b0;
+  border: 2px solid #c0a8e8;
+  box-shadow: 0 2px 8px rgba(139,109,196,0.2);
+}
+
+.ghost-btn:hover {
+  background: rgba(255,255,255,0.9);
+  box-shadow: 0 4px 12px rgba(139,109,196,0.3);
+}
+
+/* ── Rewards panel ── */
+.rewards-panel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 12px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.rewards-title {
+  font-family: 'Rubik Bubbles', system-ui, sans-serif;
+  font-size: clamp(16px, 4vw, 22px);
+  color: #5a3fa0;
+  margin: 0;
+}
+
+.rewards-list {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.reward-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  background: rgba(255,255,255,0.7);
+  border: 1.5px solid #c0a8e8;
+  border-radius: 12px;
+  padding: 10px 14px;
+}
+
+.reward-item img {
+  width: clamp(36px, 8vw, 48px);
+  height: clamp(36px, 8vw, 48px);
+  object-fit: contain;
+}
+
+.reward-label {
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(9px, 2vw, 11px);
+  color: #7558b0;
+  text-align: center;
+}
+
+.reward-count {
+  font-family: 'Rubik Bubbles', system-ui, sans-serif;
+  font-size: clamp(18px, 4.5vw, 28px);
+  color: #5a3fa0;
+}
+
+.reward-sep {
+  width: 1.5px;
+  height: 50px;
+  background: #c0a8e8;
+  border-radius: 2px;
+}
+
+/* ── Below-frame section ── */
+.below-frame {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+  width: min(380px, 90vw);
+}
+
+.mechanic-hint {
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(10px, 2.2vw, 13px);
+  color: #5a3fa0;
+  text-align: center;
+  margin: 0;
+  line-height: 1.7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 4px;
+  background: rgba(255,255,255,0.55);
+  border-radius: 10px;
+  padding: 8px 12px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.key-icon {
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
+  vertical-align: middle;
+}
+
+/* Desktop/Mobile hint switching */
+.mobile-hint  { display: none; }
+.desktop-hint { display: flex; }
+
+@media (hover: none) and (pointer: coarse) {
+  .mobile-hint  { display: flex; }
+  .desktop-hint { display: none; }
+}
+
+/* ── Mobile layout adjustments ── */
+@media (max-width: 480px) {
+  .minigame-screen {
+    padding: 10px 6px 12px;
+    gap: 6px;
+    justify-content: center;
+    /* Show top of the landscape bg on portrait screens */
+    background-position: center top;
+  }
+
+  .wishfall-title {
+    font-size: clamp(38px, 13vw, 58px);
+  }
+
+  /* Width-driven sizing: constrained by px cap, viewport width,
+     AND the width that corresponds to the height that fits.
+     200px reserved = title (~80px) + below-frame (~90px) + padding + gaps */
+  .minigame-frame-wrapper {
+    width: min(340px, 92vw, calc((100dvh - 200px) * 0.7825));
+    height: auto;
+    aspect-ratio: 0.7825;
+    max-width: 92vw;
+  }
+
+  .below-frame {
+    width: 92vw;
+    max-width: 340px;
+    margin-top: 4px;
+  }
+}
+
