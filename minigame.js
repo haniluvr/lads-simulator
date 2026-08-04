@@ -36,6 +36,7 @@
     countdown: new Audio('assets/ui/arcade/audio/countdown-cue.mp3'),
     rewards:   new Audio('assets/ui/arcade/audio/rewards-cue.mp3'),
     wish:      new Audio('assets/ui/arcade/audio/wish-cue.mp3'),
+    claim:     new Audio('assets/audio-cue/claim_cue.mp3'),
   };
   audio.bgm.loop = true;
   window.updateMinigameVolume = function() {
@@ -289,7 +290,7 @@
   });
 
   claimBtn.addEventListener('click', () => {
-    playSound(audio.click);
+    playSound(audio.claim);
     if (window.addArcadeWishes) {
       window.addArcadeWishes(dsScore, emScore);
     }
