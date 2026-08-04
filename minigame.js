@@ -37,9 +37,16 @@
     rewards:   new Audio('assets/ui/arcade/audio/rewards-cue.mp3'),
     wish:      new Audio('assets/ui/arcade/audio/wish-cue.mp3'),
   };
-  audio.bgm.loop   = true;
-  audio.bgm.volume = 0.5;
-  Object.values(audio).forEach(a => { if (a !== audio.bgm) a.volume = 0.8; });
+  audio.bgm.loop = true;
+  window.updateMinigameVolume = function() {
+    if (typeof gs !== 'undefined') {
+      audio.bgm.volume = gs.volume ?? 0.5;
+      const sfxVol = gs.sfxVolume ?? 0.5;
+      Object.values(audio).forEach(a => { if (a !== audio.bgm) a.volume = sfxVol; });
+    }
+  };
+  // Initialize immediately just in case
+  window.updateMinigameVolume();
 
   // ── Arc Title Builder ─────────────────────────────────────────────
   // Splits "WISHFALL FRENZY" into per-letter spans with arc offset.

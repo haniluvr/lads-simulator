@@ -239,6 +239,7 @@ function initSettings() {
     const vol = parseFloat(e.target.value);
     document.getElementById('bg-music').volume = vol;
     gs.volume = vol;
+    if (window.updateMinigameVolume) window.updateMinigameVolume();
     saveState();
   });
 
@@ -249,6 +250,7 @@ function initSettings() {
   sfxSlider.addEventListener('input', (e) => {
     const vol = parseFloat(e.target.value);
     gs.sfxVolume = vol;
+    if (window.updateMinigameVolume) window.updateMinigameVolume();
     saveState();
   });
 
