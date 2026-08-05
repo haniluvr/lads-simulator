@@ -1848,9 +1848,9 @@ document.addEventListener('visibilitychange', () => {
       window._bgmPlayingBeforeHide = !bgMusic.paused;
       bgMusic.pause();
     }
-    if (window.audio && window.audio.bgm) {
-      window._minigameBgmPlayingBeforeHide = !window.audio.bgm.paused;
-      window.audio.bgm.pause();
+    if (window.minigameAudio && window.minigameAudio.bgm) {
+      window._minigameBgmPlayingBeforeHide = !window.minigameAudio.bgm.paused;
+      window.minigameAudio.bgm.pause();
     }
     if (memVideo) {
       window._memVideoPlayingBeforeHide = !memVideo.paused;
@@ -1860,8 +1860,8 @@ document.addEventListener('visibilitychange', () => {
     if (bgMusic && window._bgmPlayingBeforeHide) {
       bgMusic.play().catch(e => {});
     }
-    if (window._minigameBgmPlayingBeforeHide && window.audio && window.audio.bgm) {
-      window.audio.bgm.play().catch(e => {});
+    if (window._minigameBgmPlayingBeforeHide && window.minigameAudio && window.minigameAudio.bgm) {
+      window.minigameAudio.bgm.play().catch(e => {});
     }
     if (memVideo && window._memVideoPlayingBeforeHide) {
       memVideo.play().catch(e => {});

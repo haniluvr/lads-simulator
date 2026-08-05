@@ -38,6 +38,7 @@
     wish:      new Audio('assets/ui/arcade/audio/wish-cue.mp3'),
     claim:     new Audio('assets/audio-cue/claim_cue.mp3'),
   };
+  window.minigameAudio = audio;
   audio.bgm.loop = true;
   window.updateMinigameVolume = function() {
     if (typeof gs !== 'undefined') {
@@ -101,6 +102,7 @@
 
   function playSound(snd) {
     snd.currentTime = 0;
+    snd.muted = false; // ensure unmuted when intentionally played
     snd.play().catch(() => {});
   }
 
@@ -244,18 +246,16 @@
     // Mobile/Safari hack: unlock all audio contexts during this first user gesture
     Object.values(audio).forEach(a => {
       if (a !== audio.bgm && a !== audio.click) {
-        a.muted = true; // Mute to prevent "blip"
+        a.muted = true; // Mute permanently until specifically played
         const p = a.play();
         if (p !== undefined) {
           p.catch(() => {}).then(() => { 
             a.pause(); 
             a.currentTime = 0; 
-            a.muted = false; // Restore mute state
           });
         } else {
           a.pause();
           a.currentTime = 0;
-          a.muted = false;
         }
       }
     });
