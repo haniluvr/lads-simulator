@@ -1834,3 +1834,34 @@ window.resumeMainBGM = function() {
     bgMusic.play().catch(e => console.error("Audio play failed:", e));
   }
 };
+
+// --- PAGE VISIBILITY HANDLING ---
+document.addEventListener('visibilitychange', () => {
+  const bgMusic = document.getElementById('bg-music');
+  const memVideo = document.getElementById('mem-video');
+  
+  if (document.hidden) {
+    if (bgMusic) {
+      window._bgmPlayingBeforeHide = !bgMusic.paused;
+      bgMusic.pause();
+    }
+    if (window.audio && window.audio.bgm) {
+      window._minigameBgmPlayingBeforeHide = !window.audio.bgm.paused;
+      window.audio.bgm.pause();
+    }
+    if (memVideo) {
+      window._memVideoPlayingBeforeHide = !memVideo.paused;
+      memVideo.pause();
+    }
+  } else {
+    if (bgMusic && window._bgmPlayingBeforeHide) {
+      bgMusic.play().catch(e => {});
+    }
+    if (window._minigameBgmPlayingBeforeHide && window.audio && window.audio.bgm) {
+      window.audio.bgm.play().catch(e => {});
+    }
+    if (memVideo && window._memVideoPlayingBeforeHide) {
+      memVideo.play().catch(e => {});
+    }
+  }
+});
