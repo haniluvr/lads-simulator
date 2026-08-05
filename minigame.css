@@ -85,8 +85,8 @@
 /* ── Frame wrapper: positions everything relative to frame image ── */
 .minigame-frame-wrapper {
   position: relative;
-  /* Slightly wider to fill side padding of the frame decoration */
-  width: min(440px, 96vw);
+  /* Dynamic width that scales up based on screen height for desktop, capped at 480px */
+  width: min(480px, 92vw, calc((100vh - 240px) * 0.7825));
   /* height is determined by frame image ratio */
   aspect-ratio: 0.7825;
   flex-shrink: 0;

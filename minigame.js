@@ -150,10 +150,15 @@
 
   function syncCanvasSize() {
     const rect = canvas.getBoundingClientRect();
+    const dpr = window.devicePixelRatio || 1;
     CW = rect.width;
     CH = rect.height;
-    canvas.width  = CW;
-    canvas.height = CH;
+    canvas.width  = CW * dpr;
+    canvas.height = CH * dpr;
+    ctx.setTransform(1, 0, 0, 1, 0, 0);
+    ctx.scale(dpr, dpr);
+    ctx.imageSmoothingEnabled = true;
+    ctx.imageSmoothingQuality = 'high';
     // Reposition basket Y to bottom of play area (leaving a little gap)
     basket.y = CH - scaledSize(BASKET_SIZE) - 4;
     if (!isPlaying && !isPaused) {
@@ -295,9 +300,9 @@
       window.addArcadeWishes(dsScore, emScore);
     }
     gameoverEl.style.display = 'none';
-    container.style.display  = 'none';
     isPlaying = false;
-    if (window.resumeMainBGM) window.resumeMainBGM();
+    // Show intro screen to allow playing again without exiting
+    introEl.style.display = 'flex';
   });
 
   // ── Countdown helper ──────────────────────────────────────────────
@@ -562,14 +567,14 @@
         let dw, dh;
         if (nat >= 1) { dw = item.size; dh = item.size / nat; }
         else           { dh = item.size; dw = item.size * nat; }
-        const ox = item.x + (item.size - dw) / 2;
-        const oy = item.y + (item.size - dh) / 2;
+        const ox = Math.floor(item.x + (item.size - dw) / 2);
+        const oy = Math.floor(item.y + (item.size - dh) / 2);
         
         if (item.type === 'bomb') {
           ctx.shadowColor = 'rgba(255, 60, 60, 0.9)';
           ctx.shadowBlur = 15;
         }
-        ctx.drawImage(item.img, ox, oy, dw, dh);
+        ctx.drawImage(item.img, ox, oy, Math.floor(dw), Math.floor(dh));
         if (item.type === 'bomb') {
           ctx.shadowColor = 'transparent';
           ctx.shadowBlur = 0;
@@ -577,16 +582,16 @@
       }
     });
 
-    // Draw basket (no stretching)
+    // Draw basket (no stretching, integer coordinates for crispness)
     const bw = scaledSize(BASKET_SIZE);
     if (basket.img.complete && basket.img.naturalWidth > 0) {
       const nat   = basket.img.naturalWidth / basket.img.naturalHeight;
       let dw, dh;
       if (nat >= 1) { dw = bw; dh = bw / nat; }
       else           { dh = bw; dw = bw * nat; }
-      const ox = basket.x + (bw - dw) / 2;
-      const oy = basket.y + (bw - dh) / 2;
-      ctx.drawImage(basket.img, ox, oy, dw, dh);
+      const ox = Math.floor(basket.x + (bw - dw) / 2);
+      const oy = Math.floor(basket.y + (bw - dh) / 2);
+      ctx.drawImage(basket.img, ox, oy, Math.floor(dw), Math.floor(dh));
     }
   }
 
