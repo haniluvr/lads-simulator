@@ -244,14 +244,23 @@
     // Mobile/Safari hack: unlock all audio contexts during this first user gesture
     Object.values(audio).forEach(a => {
       if (a !== audio.bgm && a !== audio.click) {
+        a.muted = true; // Mute to prevent "blip"
         const p = a.play();
         if (p !== undefined) {
-          p.catch(() => {}).then(() => { a.pause(); a.currentTime = 0; });
+          p.catch(() => {}).then(() => { 
+            a.pause(); 
+            a.currentTime = 0; 
+            a.muted = false; // Restore mute state
+          });
+        } else {
+          a.pause();
+          a.currentTime = 0;
+          a.muted = false;
         }
       }
     });
 
-    playSound(audio.click);
+    // click sound removed to let global select_cue handle main page buttons
     container.style.display = 'flex';
     introEl.style.display   = 'flex';
     gameoverEl.style.display = 'none';

@@ -145,6 +145,9 @@ function playSFX(name) {
 }
 
 document.addEventListener('click', (e) => {
+  // Let the minigame handle its own sound cues
+  if (e.target.closest('.minigame-screen')) return;
+
   const btn = e.target.closest('button, .banner-nav-item, .banner-card');
   if (btn) {
     const id = btn.id || '';

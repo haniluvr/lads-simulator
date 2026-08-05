@@ -85,8 +85,8 @@
 /* ── Frame wrapper: positions everything relative to frame image ── */
 .minigame-frame-wrapper {
   position: relative;
-  /* Dynamic width that scales up based on screen height for desktop, capped at 480px */
-  width: min(480px, 92vw, calc((100vh - 240px) * 0.7825));
+  /* Dynamic width that scales up based on screen height for desktop, capped at 480px, with a 300px playable minimum before 92vw takes over */
+  width: min(480px, 92vw, max(300px, calc((100vh - 240px) * 0.7825)));
   /* height is determined by frame image ratio */
   aspect-ratio: 0.7825;
   flex-shrink: 0;
@@ -522,7 +522,7 @@
      AND the width that corresponds to the height that fits.
      200px reserved = title (~80px) + below-frame (~90px) + padding + gaps */
   .minigame-frame-wrapper {
-    width: min(340px, 92vw, calc((100dvh - 200px) * 0.7825));
+    width: min(340px, 92vw, max(280px, calc((100dvh - 200px) * 0.7825)));
     height: auto;
     aspect-ratio: 0.7825;
     max-width: 92vw;
