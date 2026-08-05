@@ -319,6 +319,7 @@
     countdownEl.style.display = 'flex';
     // countdown-cue.mp3 timing: audio starts, "3" shows at ~1s in
     audio.countdown.currentTime = 0;
+    audio.countdown.muted = false;
     audio.countdown.play().catch(() => {});
 
     countdownTxt.style.animation = 'none';
@@ -389,13 +390,14 @@
   function endGame() {
     isPlaying = false;
     cancelAnimationFrame(animationId);
-    audio.bgm.pause();
+    // audio.bgm.pause() removed so BGM plays continuously
 
     rewardDsEl.textContent = dsScore;
     rewardEmEl.textContent = emScore;
 
     setTimeout(() => {
       audio.rewards.currentTime = 0;
+      audio.rewards.muted = false;
       audio.rewards.play().catch(() => {});
       gameoverEl.style.display = 'flex';
     }, 200);
