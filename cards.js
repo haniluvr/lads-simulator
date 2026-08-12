@@ -86,6 +86,16 @@ const CARD_CATALOG = [
     "rarityStr": "5star",
     "type": "lunar",
     "bannerType": "limited",
+    "assetPath": "assets/caleb/five-star/lunar/limited/summer surge.mp4",
+    "cardName": "Summer Surge",
+    "isVideo": true
+  },
+  {
+    "character": "caleb",
+    "rarity": 5,
+    "rarityStr": "5star",
+    "type": "lunar",
+    "bannerType": "limited",
     "assetPath": "assets/caleb/five-star/lunar/limited/tainted cuts.mp4",
     "cardName": "Tainted Cuts",
     "isVideo": true
@@ -676,8 +686,28 @@ const CARD_CATALOG = [
     "rarityStr": "5star",
     "type": "lunar",
     "bannerType": "limited",
+    "assetPath": "assets/rafayel/five-star/lunar/limited/tipsy invitation.mp4",
+    "cardName": "Tipsy Invitation",
+    "isVideo": true
+  },
+  {
+    "character": "rafayel",
+    "rarity": 5,
+    "rarityStr": "5star",
+    "type": "lunar",
+    "bannerType": "limited",
     "assetPath": "assets/rafayel/five-star/lunar/limited/unforgettable adventure.mp4",
     "cardName": "Unforgettable Adventure",
+    "isVideo": true
+  },
+  {
+    "character": "rafayel",
+    "rarity": 5,
+    "rarityStr": "5star",
+    "type": "lunar",
+    "bannerType": "limited",
+    "assetPath": "assets/rafayel/five-star/lunar/limited/whispers.mp4",
+    "cardName": "Whispers",
     "isVideo": true
   },
   {
@@ -2076,6 +2106,16 @@ const CARD_CATALOG = [
     "rarityStr": "5star",
     "type": "lunar",
     "bannerType": "limited",
+    "assetPath": "assets/valko/five-star/lunar/limited/heat of the moment.webp",
+    "cardName": "Heat Of The Moment",
+    "isVideo": false
+  },
+  {
+    "character": "valko",
+    "rarity": 5,
+    "rarityStr": "5star",
+    "type": "lunar",
+    "bannerType": "limited",
     "assetPath": "assets/valko/five-star/lunar/limited/kiss attack.webp",
     "cardName": "Kiss Attack",
     "isVideo": false
@@ -2218,6 +2258,16 @@ const CARD_CATALOG = [
     "bannerType": "limited",
     "assetPath": "assets/valko/five-star/lunar/limited/unexpected invitation.webp",
     "cardName": "Unexpected Invitation",
+    "isVideo": false
+  },
+  {
+    "character": "valko",
+    "rarity": 5,
+    "rarityStr": "5star",
+    "type": "lunar",
+    "bannerType": "limited",
+    "assetPath": "assets/valko/five-star/lunar/limited/warm touch.webp",
+    "cardName": "Warm Touch",
     "isVideo": false
   },
   {
@@ -2398,6 +2448,16 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/valko/four-star/lunar/proof of my sincerity.webp",
     "cardName": "Proof Of My Sincerity",
+    "isVideo": false
+  },
+  {
+    "character": "valko",
+    "rarity": 4,
+    "rarityStr": "4star",
+    "type": "lunar",
+    "bannerType": "both",
+    "assetPath": "assets/valko/four-star/lunar/ramp romance.webp",
+    "cardName": "Ramp Romance",
     "isVideo": false
   },
   {

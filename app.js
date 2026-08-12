@@ -138,6 +138,9 @@ document.addEventListener('pointerup', unlockAudio, { once: true, capture: true 
 document.addEventListener('touchstart', unlockAudio, { once: true, capture: true });
 
 document.addEventListener('click', (e) => {
+  // Let the minigame handle its own sound cues
+  if (e.target.closest('.minigame-screen')) return;
+
   const btn = e.target.closest('button, .banner-nav-item, .banner-card');
   if (btn) {
     const id = btn.id || '';
@@ -232,6 +235,7 @@ function initSettings() {
     const vol = parseFloat(e.target.value);
     document.getElementById('bg-music').volume = vol;
     gs.volume = vol;
+    if (window.updateMinigameVolume) window.updateMinigameVolume();
     saveState();
   });
 
@@ -242,6 +246,7 @@ function initSettings() {
   sfxSlider.addEventListener('input', (e) => {
     const vol = parseFloat(e.target.value);
     gs.sfxVolume = vol;
+    if (window.updateMinigameVolume) window.updateMinigameVolume();
     saveState();
   });
 
@@ -1798,4 +1803,62 @@ function initNoticeEvents() {
     if (e.target === noticeModal) closeNoticeModal();
   });
 }
+// --- ARCADE MINIGAME INTEGRATION ---
+window.addArcadeWishes = function(dsTickets, emTickets) {
+  // Cap tickets at 250 max (pullsToday cannot drop below 0)
+  gs.limitedPullsToday  = Math.max(0, gs.limitedPullsToday - dsTickets);
+  gs.standardPullsToday = Math.max(0, gs.standardPullsToday - emTickets);
+  saveState();
+  if (typeof updatePreciseWishUI === 'function') {
+    updatePreciseWishUI();
+  }
+  if (typeof currentBanner !== 'undefined' && currentBanner && typeof setupPullScreen === 'function') {
+    setupPullScreen(currentBanner);
+  }
+};
 
+window.pauseMainBGM = function() {
+  const bgMusic = document.getElementById('bg-music');
+  if (bgMusic) {
+    window.mainBgmWasPlaying = !bgMusic.paused;
+    bgMusic.pause();
+  }
+};
+
+window.resumeMainBGM = function() {
+  const bgMusic = document.getElementById('bg-music');
+  if (bgMusic && window.mainBgmWasPlaying) {
+    bgMusic.play().catch(e => console.error("Audio play failed:", e));
+  }
+};
+
+// --- PAGE VISIBILITY HANDLING ---
+document.addEventListener('visibilitychange', () => {
+  const bgMusic = document.getElementById('bg-music');
+  const memVideo = document.getElementById('mem-video');
+  
+  if (document.hidden) {
+    if (bgMusic) {
+      window._bgmPlayingBeforeHide = !bgMusic.paused;
+      bgMusic.pause();
+    }
+    if (window.minigameAudio && window.minigameAudio.bgm) {
+      window._minigameBgmPlayingBeforeHide = !window.minigameAudio.bgm.paused;
+      window.minigameAudio.bgm.pause();
+    }
+    if (memVideo) {
+      window._memVideoPlayingBeforeHide = !memVideo.paused;
+      memVideo.pause();
+    }
+  } else {
+    if (bgMusic && window._bgmPlayingBeforeHide) {
+      bgMusic.play().catch(e => {});
+    }
+    if (window._minigameBgmPlayingBeforeHide && window.minigameAudio && window.minigameAudio.bgm) {
+      window.minigameAudio.bgm.play().catch(e => {});
+    }
+    if (memVideo && window._memVideoPlayingBeforeHide) {
+      memVideo.play().catch(e => {});
+    }
+  }
+});

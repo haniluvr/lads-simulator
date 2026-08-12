@@ -1,6 +1,6 @@
 function injectRealCollectionModal() {
   const modalHtml = `
-    <div id="real-collection-modal" class="col-modal-overlay" aria-modal="true" role="dialog" style="display: none;">
+    <div id="real-collection-modal" class="col-modal-overlay" aria-modal="true" role="dialog">
       
       <!-- Frame from limited banner modal -->
       <div class="sf-frame" aria-hidden="true">
@@ -111,22 +111,22 @@ function injectRealCollectionModal() {
           <div id="rc-view-main">
             <div class="li-grid">
               <div class="li-card" data-char="Xavier">
-                <img src="assets/ui/select/xavier.webp" alt="Xavier">
+                <img src="assets/ui/select/xavier.webp" alt="Xavier" loading="lazy">
               </div>
               <div class="li-card" data-char="Zayne">
-                <img src="assets/ui/select/zayne.webp" alt="Zayne">
+                <img src="assets/ui/select/zayne.webp" alt="Zayne" loading="lazy">
               </div>
               <div class="li-card" data-char="Rafayel">
-                <img src="assets/ui/select/rafayel.webp" alt="Rafayel">
+                <img src="assets/ui/select/rafayel.webp" alt="Rafayel" loading="lazy">
               </div>
               <div class="li-card" data-char="Sylus">
-                <img src="assets/ui/select/sylus.webp" alt="Sylus">
+                <img src="assets/ui/select/sylus.webp" alt="Sylus" loading="lazy">
               </div>
               <div class="li-card" data-char="Caleb">
-                <img src="assets/ui/select/caleb.webp" alt="Caleb">
+                <img src="assets/ui/select/caleb.webp" alt="Caleb" loading="lazy">
               </div>
               <div class="li-card" data-char="Valko">
-                <img src="assets/ui/select/valko.webp" alt="Valko">
+                <img src="assets/ui/select/valko.webp" alt="Valko" loading="lazy">
               </div>
             </div>
           </div>
@@ -159,8 +159,7 @@ function initRealCollection() {
 
   const openModal = () => {
     if (typeof playSFX === 'function') playSFX('collectionModal');
-    modal.style.display = 'flex';
-    requestAnimationFrame(() => requestAnimationFrame(() => modal.classList.add('active')));
+    modal.classList.add('active');
     
     // Always start in main view
     currentView = 'main';
@@ -178,7 +177,6 @@ function initRealCollection() {
   const closeModal = () => {
     if (typeof playSFX === 'function') playSFX('click');
     modal.classList.remove('active');
-    setTimeout(() => { modal.style.display = 'none'; }, 300);
   };
 
   triggerBtn.addEventListener('click', openModal);

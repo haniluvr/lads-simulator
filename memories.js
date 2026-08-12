@@ -129,7 +129,7 @@ const CARD_CREDITS = {
     x: "https://x.com/OrangeTart_",
     ig: "https://instagram.com/firadhl"
   },
-  "Lone Wolf by the Moon": {
+  "Lone Wolf By The Moon": {
     artist: "godzileen",
     x: "https://x.com/godzileen",
     ig: "https://instagram.com/godzileen"
@@ -154,7 +154,7 @@ const CARD_CREDITS = {
     x: "https://x.com/raonnni",
     ig: "https://instagram.com/raonnniart"
   },
-  "Beware of the Night": {
+  "Beware Of The Night": {
     artist: "zeitvon",
     x: "https://x.com/zeitvon",
     ig: "https://instagram.com/zeitvon",
@@ -199,7 +199,7 @@ const CARD_CREDITS = {
     artist: "Acolyptic",
     x: "https://x.com/acolyptic"
   },
-  "Proof of My Sincerity": {
+  "Proof Of My Sincerity": {
     artist: "Chel",
     x: "https://x.com/PencintaApelll"
   },
@@ -277,6 +277,21 @@ const CARD_CREDITS = {
   "After Dark": {
     artist: "Morgenty",
     x: "https://x.com/fine_fiction"
+  },
+  "Heat Of The Moment": {
+    artist: "Ayu",
+    x: "https://x.com/ayushnz_/"
+  },
+  "Warm Touch": {
+    artist: "NheaLonn",
+    x: "https://x.com/NheaLonn",
+    ig: "https://instagram.com/nhea.l",
+    tumblr: "https://nhealonn.tumblr.com",
+    bsky: "https://bsky.app/profile/nhealonn.bsky.social"
+  },
+  "Ramp Romance": {
+    artist: "Mephisto",
+    ig: "https://instagram.com/Harlock_Mephistokitten"
   }
 };
 
