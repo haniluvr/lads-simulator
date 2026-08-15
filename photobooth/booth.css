@@ -1616,6 +1616,13 @@
 
 .filter-option {
   cursor: pointer;
+  position: relative;
+}
+
+.filter-option input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
 }
 
 .filter-preview {
@@ -1644,7 +1651,8 @@
   z-index: 1;
 }
 
-.filter-option:has(input:checked) .filter-preview {
+.filter-option:has(input:checked) .filter-preview,
+.filter-option input[type="radio"]:checked + .filter-preview {
   border-color: #C8B87A;
   box-shadow: 0 0 12px rgba(200, 184, 122, 0.4);
 }
