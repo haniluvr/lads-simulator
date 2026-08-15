@@ -2087,12 +2087,19 @@ async function drawStudioCanvas() {
     }
     studioCtx.clip();
 
-    // Apply CSS filter to photo layer
-    if (state.activeFilter && FILTERS[state.activeFilter]) {
-      studioCtx.filter = FILTERS[state.activeFilter];
-    }
-
     if (img) {
+      let sourceImg = img;
+      // Apply CSS filter using an offscreen canvas to bypass iOS Safari clip+filter bug
+      if (state.activeFilter && FILTERS[state.activeFilter]) {
+        const off = document.createElement('canvas');
+        off.width = img.width;
+        off.height = img.height;
+        const oCtx = off.getContext('2d');
+        oCtx.filter = FILTERS[state.activeFilter];
+        oCtx.drawImage(img, 0, 0);
+        sourceImg = off;
+      }
+
       let winX, winY, winW, winH;
       if (win.shape === 'ellipse') {
         winX = win.cx - win.rx; winY = win.cy - win.ry;
@@ -2108,12 +2115,11 @@ async function drawStudioCanvas() {
       const dx = winX + (winW - dw) / 2 + t.x;
       const dy = winY + (winH - dh) / 2 + t.y;
 
-      studioCtx.drawImage(img, dx, dy, dw, dh);
+      studioCtx.drawImage(sourceImg, dx, dy, dw, dh);
     } else {
       drawWindowPlaceholder(studioCtx, win, frame);
     }
 
-    studioCtx.filter = 'none';
     studioCtx.restore();
   }
 
