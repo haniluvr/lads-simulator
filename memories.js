@@ -291,7 +291,9 @@ const CARD_CREDITS = {
   },
   "Ramp Romance": {
     artist: "Mephisto",
-    ig: "https://instagram.com/Harlock_Mephistokitten"
+    x: "https://x.com/Harlock_Mephistokitten",
+    ig: "https://instagram.com/Harlock_Mephistokitten",
+    tiktok: "https://tiktok.com/@Harlock_Mephistokitten"
   }
 };
 

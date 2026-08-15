@@ -9,8 +9,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Infant:ital,wght@0,300;0,400;0,600;1,400&family=Inter:wght@300;400;500;600&family=Rubik+Bubbles&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=6">
-  <link rel="stylesheet" href="minigame.css?v=12">
+  <link rel="stylesheet" href="style.css?v=33">
+  <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body>
   <div id="app">
@@ -119,10 +119,7 @@
         </svg>
       </button>
 
-      <!-- Settings button -->
-      <button id="settings-btn" class="sf-reset-btn" aria-label="Settings" title="Open Settings">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1Z"/></svg>
-      </button>
+      <!-- Settings button injected by global-settings.js?v=6 -->
 
       <!-- ── Center content ── -->
       <div class="select-center">
@@ -153,10 +150,19 @@
                 <span class="arch-div-line"></span>
               </div>
               <p class="arch-sub">Wish Simulator</p>
-              <div class="home-buttons-row" style="display: flex; gap: 8px;">
-                <button id="arcade-open-btn" class="collection-pill-btn">Arcade</button>
-                <button id="collection-open-btn" class="collection-pill-btn">Memories</button>
-                <button id="real-collection-btn" class="collection-pill-btn">Collection</button>
+              <div class="home-buttons-row" style="display: flex; gap: 16px; justify-content: center; align-items: center;">
+                <a href="photobooth/index.html" class="home-img-btn">
+                  <img src="assets/ui/photobooth.webp" alt="Photobooth">
+                </a>
+                <button class="home-img-btn" id="arcade-open-btn">
+                  <img src="assets/ui/arcade.webp" alt="Arcade">
+                </button>
+                <button id="collection-open-btn" class="home-img-btn">
+                  <img src="assets/ui/memories.webp" alt="Memories">
+                </button>
+                <button id="real-collection-btn" class="home-img-btn">
+                  <img src="assets/ui/collection.webp" alt="Collection">
+                </button>
               </div>
             </div>
 
@@ -520,8 +526,8 @@
     <!-- Global Audio Player -->
     <audio id="bg-music" src="assets/ui/love-and-lightyear.mp3" loop autoplay></audio>
     <button id="music-toggle" class="music-toggle-btn" aria-label="Toggle background music">
-      <svg id="music-icon-play" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
-      <svg id="music-icon-pause" viewBox="0 0 24 24" fill="currentColor" style="display:none;"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+      <i data-lucide="play" id="music-icon-play"></i>
+      <i data-lucide="pause" id="music-icon-pause" style="display:none;"></i>
     </button>
 
     <!-- Precise Wish Modal -->
@@ -577,84 +583,7 @@
     </div>
   </div><!-- /app -->
 
-  <!-- ── Settings Modal ── -->
-  <div id="settings-modal" class="settings-overlay" aria-modal="true" role="dialog" style="display:none;">
-    <div class="settings-container">
-      <div class="settings-header">
-        <h2>SETTINGS</h2>
-        <button id="settings-close-btn" class="settings-close" aria-label="Close settings">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg>
-        </button>
-      </div>
-      <div class="settings-body">
-        
-        <details class="settings-accordion" open>
-          <summary>Audio</summary>
-          <div class="accordion-content">
-            <p class="settings-desc">Adjust the volume for background music and sound effects.</p>
-            <div class="slider-row">
-              <span>Music</span>
-              <input type="range" id="volume-slider" class="settings-slider" min="0" max="1" step="0.01" value="1">
-            </div>
-            <div class="slider-row">
-              <span>SFX</span>
-              <input type="range" id="sfx-slider" class="settings-slider" min="0" max="1" step="0.01" value="0.5">
-            </div>
-          </div>
-        </details>
-
-        <details class="settings-accordion" id="cursor-settings-section">
-          <summary>Cursor</summary>
-          <div class="accordion-content">
-            <p class="settings-desc">Select your preferred mouse cursor.</p>
-            <div class="cursor-options">
-              <button class="cursor-btn active" data-cursor="default" aria-label="Reset Cursor" title="Reset Cursor">
-                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
-              </button>
-              <button class="cursor-btn" data-cursor="xavier" title="Xavier"><img src="assets/ui/cursors/xavier_cursor.png" alt="Xavier"></button>
-              <button class="cursor-btn" data-cursor="zayne" title="Zayne"><img src="assets/ui/cursors/zayne_cursor.png" alt="Zayne"></button>
-              <button class="cursor-btn" data-cursor="rafayel" title="Rafayel"><img src="assets/ui/cursors/rafayel_cursor.png" alt="Rafayel"></button>
-              <button class="cursor-btn" data-cursor="sylus" title="Sylus"><img src="assets/ui/cursors/sylus_cursor.png" alt="Sylus"></button>
-              <button class="cursor-btn" data-cursor="caleb" title="Caleb"><img src="assets/ui/cursors/caleb_cursor.png" alt="Caleb"></button>
-              <button class="cursor-btn" data-cursor="valko" title="Valko"><img src="assets/ui/cursors/valko_cursor.png" alt="Valko"></button>
-            </div>
-          </div>
-        </details>
-
-        <details class="settings-accordion">
-          <summary>Reset Data</summary>
-          <div class="accordion-content">
-            <p class="settings-desc">Clear your local progress, pity, and collection completely.</p>
-            <button id="settings-reset-btn" class="settings-action-btn">Reset Progress</button>
-          </div>
-        </details>
-
-        <details class="settings-accordion">
-          <summary>Information</summary>
-          <div class="accordion-content info-content">
-            <p class="settings-desc">A fan-made, beautifully crafted wish (gacha) simulator for the game <b>Love and Deepspace</b>. Test your luck without spending real money!</p>
-            <p class="settings-desc">This project aims to recreate the authentic summoning experience from the game, featuring dynamic animations, a pity system, character collections, and a gorgeous, responsive UI built entirely with vanilla web technologies.</p>
-            <p class="settings-desc">Credits: [to be added]</p>
-            <p class="settings-desc" style="font-size: 11px;font-style: italic;">Disclaimer: This is an unofficial, fan-made web application and is not affiliated with, endorsed, sponsored, or approved by Papergames or Infold Games. Love and Deepspace, its characters, artwork, audio, and all associated intellectual property are the exclusive property of their respective copyright holders. This project is created strictly for entertainment and fan purposes, with no commercial intent. No copyright infringement is intended.</p>
-          </div>
-        </details>
-
-      </div>
-      
-      <!-- Footer Info (Always visible) -->
-      <div class="info-footer">
-        <p class="info-copy">LADS Wish Simulator, Code and Design © 2026 haniluvr.<br>Assets copyrights belong to their respective owners.</p>
-        <div class="info-socials">
-          <a href="https://ko-fi.com/haniluvr" aria-label="Ko-fi"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.881 8.948c-.773-4.085-4.859-4.593-4.859-4.593H.723c-.604 0-.679.798-.679.798s-.082 7.324-.022 11.822c.164 2.424 2.586 2.672 2.586 2.672s8.267-.023 11.966-.049c2.438-.426 2.683-2.566 2.658-3.734 4.352.24 7.422-2.831 6.649-6.916zm-11.062 3.511c-1.246 1.453-4.011 3.976-4.011 3.976s-.121.119-.31.023c-.076-.057-.108-.09-.108-.09-.443-.441-3.368-3.049-4.034-3.954-.709-.965-1.041-2.46-.091-3.71.951-1.252 2.771-1.082 3.839.055.05.048.093.094.135.14.041-.046.085-.092.135-.14 1.068-1.137 2.888-1.307 3.839-.055.95 1.25.218 2.745-.491 3.711zm9.589-2.023c-.22.955-1.42 1.442-2.316 1.547-.11.011-.22.016-.33.023V7.202c.866-.021 2.378-.061 3.036 1.261.262.525.257 1.487-.39 2.462z"/></svg></a>
-          <a href="https://github.com/haniluvr" aria-label="GitHub"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg></a>
-          <a href="https://x.com/hvnibun" aria-label="X"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
-          <a href="https://discordapp.com/users/914445892180906005" aria-label="Discord"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 00-4.885-1.515.074.074 0 00-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 00-5.487 0 12.64 12.64 0 00-.617-1.25.077.077 0 00-.079-.037A19.736 19.736 0 003.677 4.37a.05.05 0 00-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 00.031.057 19.9 19.9 0 005.993 3.03.078.078 0 00.084-.028 14.09 14.09 0 001.226-1.994.076.076 0 00-.041-.106 13.107 13.107 0 01-1.872-.892.077.077 0 01-.008-.128 10.2 10.2 0 00.372-.292.074.074 0 01.077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 01.078.01c.12.098.246.198.373.292a.077.077 0 01-.006.127 12.299 12.299 0 01-1.873.892.077.077 0 00-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 00.084.028 19.839 19.839 0 006.002-3.03.077.077 0 00.032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 00-.031-.028zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg></a>
-          <a href="https://www.instagram.com/hvniluvr" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
-        </div>
-      </div>
-      
-    </div>
-  </div>
+  <!-- Settings modal injected by global-settings.js?v=6 -->
 
     <!-- Notice Modal -->
     <div id="notice-modal" class="settings-overlay" aria-modal="true" role="dialog" style="display: none;">
@@ -670,20 +599,31 @@
             <h3 style="color: var(--gold); margin-bottom: 12px; font-family: var(--font-d); font-size: 20px;">Patch Notes</h3>
             <p style="color: var(--txt-2); margin-bottom: 8px;">Changes made since the last update:</p>
             <ul style="color: #ddd; padding-left: 20px; line-height: 1.6; font-size: 14px;">
-              <li><strong>NEW Arcade Minigame: Wishfall Frenzy!</strong></li>
-              <li><strong>3 NEW Valko Memories</strong></li>
-              <li><strong>NEW Precise Wish System</strong></li>
-              <li><strong>NEW Memory Collection Tracker</strong></li>
+              <li><strong>[NEW]</strong> Cosmo Photobooth</li>
+              <li><strong>[NEW]</strong> Arcade Minigames</li>
+              <ul style="color: #ddd; padding-left: 20px; line-height: 1.6; font-size: 14px;">
+                <li><strong>[NEW]</strong> Wishfall Frenzy</li>
+                <li><strong>[NEW]</strong> FLAMES Ticket</li>
+                <li><strong>[NEW]</strong> MASH Future</li>
+              </ul>              
+              <li><strong>[NEW]</strong> Valko Memories</li>
             </ul>
           </div>
-        <div class="notice-section">
-            <h3 style="color: var(--gold); margin-bottom: 12px; font-family: var(--font-d); font-size: 20px;">Mechanics</h3>
+          <div class="notice-section" style="margin-bottom: 24px;">
+            <h3 style="color: var(--gold); margin-bottom: 12px; font-family: var(--font-d); font-size: 20px;">Developer's Notes</h3>
             <ul style="color: #ddd; padding-left: 20px; line-height: 1.6; font-size: 14px;">
-              <li style="margin-bottom: 8px;"><strong>Limited vs Standard:</strong> Limited banners have exclusive rate-ups while standard has the base 5-star pool.</li>
-              <li style="margin-bottom: 8px;"><strong>Pity System:</strong> 5-stars are guaranteed within 70 pulls, 4-stars within 10 pulls.</li>
-              <li style="margin-bottom: 8px;"><strong>Precise Wish:</strong> Choose a target Love Interest. If you lose the 50/50, your next 5-star is guaranteed to be from your chosen Love Interest.</li>
-              <li style="margin-bottom: 8px;"><strong>Ranking Memories Up:</strong> Pulling duplicates increases the rank of a memory.</li>
-              <li style="margin-bottom: 8px;"><strong>Arcade Minigame:</strong> Compete for the highest score to earn rewards like deepspace wish and empyrean wish tickets.</li>
+              <li style="margin-bottom: 8px;"><strong>For Bugs, Suggestions, and Partnerships: </strong> You may contact me via <a href="https://discordapp.com/users/914445892180906005"  target="_blank" style="color:inherit;">Discord</a>, <a href="https://github.com/haniluvr"  target="_blank" style="color:inherit;">Github</a>, <a href="https://www.instagram.com/hvniluvr"  target="_blank" style="color:inherit;">Instagram</a>, and <a href="https://x.com/hvnibun"  target="_blank" style="color:inherit;">X/Twitter</a>.</li>
+              <li style="margin-bottom: 8px;"><strong>For Valko Art Submissions:</strong> You can submit your art through this <a href="https://docs.google.com/forms/d/e/1FAIpQLScIjuCsRg_gmfTsiwVwbN-2_bRgaliG34vUs3N1IQGgD__9hg/viewform?usp=header"  target="_blank" style="color:inherit;">form</a>.</li>
+              <li style="margin-bottom: 8px;"><strong>For Pose Suggestions & Contributions for the Photobooth:</strong> Please contact me through the aforementioned socials.</li>
+            </ul>
+          </div>
+          <div class="notice-section">
+            <h3 style="color: var(--gold); margin-bottom: 12px; font-family: var(--font-d); font-size: 20px;">Future Plans</h3>
+            <ul style="color: #ddd; padding-left: 20px; line-height: 1.6; font-size: 14px;">
+              <li style="margin-bottom: 8px;"><strong>Simplified Chinese Translations</strong> For our sisters in China, I plan to add a translated version of the site. I just need help in the translations of the memories and UI.</li>
+              <li style="margin-bottom: 8px;"><strong>Claw Machine Minigame:</strong> Just like in-game, it's a claw machine game where you can collect variants of multiple plushies. For the first phase, I'll be adding a plush versions of the LI's (up to 4 variants).</li>
+              <li style="margin-bottom: 8px;"><strong>Kindled Memories:</strong> Connect kindles through memories (as if in-game). Still studying the architecture for the implementation.</li>
+              <li style="margin-bottom: 8px;"><strong>Interactive Companion of the LI's:</strong> This won't be through AI. Just randomized messages whenever you tap on your companion, but with rules and logic for the responses.</li>
             </ul>
           </div>
         </div>
@@ -692,120 +632,71 @@
 
 
 
-  <!-- Mini Game Screen (full-page replacement layout) -->
-  <div id="minigame-container" class="minigame-screen" style="display: none;">
 
-    <!-- Page title -->
-    <h1 class="wishfall-title" id="wishfall-title-el">WISHFALL FRENZY</h1>
-
-    <!-- Frame + canvas wrapper -->
-    <div class="minigame-frame-wrapper">
-      <!-- The background fills the transparent zone inside the frame -->
-      <div class="minigame-bg-fill"></div>
-
-      <!-- In-frame HUD: score top-left, timer top-center -->
-      <div class="in-frame-hud">
-        <div class="hud-score">
-          <div class="hud-score-item">
-            <img src="assets/ui/deepspace-wish.webp" alt="DS" class="hud-wish-icon">
-            <span id="minigame-ds-score">0</span>
-          </div>
-          <div class="hud-score-item">
-            <img src="assets/ui/empyrean-wish.webp" alt="EM" class="hud-wish-icon">
-            <span id="minigame-em-score">0</span>
-          </div>
-        </div>
-        <div class="hud-timer" id="minigame-time">01:30</div>
-      </div>
-
-      <!-- Pause button: floats above ALL overlays (z-index 6) -->
-      <button id="minigame-pause-btn" class="hud-pause-btn" aria-label="Pause">
-        <svg id="pause-icon" viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><rect x="5" y="4" width="4" height="16" rx="1"/><rect x="15" y="4" width="4" height="16" rx="1"/></svg>
-        <svg id="play-icon" viewBox="0 0 24 24" fill="currentColor" width="20" height="20" style="display:none;"><path d="M8 5v14l11-7z"/></svg>
-      </button>
-
-      <!-- The canvas is clipped to the transparent zone -->
-      <canvas id="minigame-canvas"></canvas>
-
-      <!-- The frame image sits on top of everything -->
-      <img src="assets/ui/arcade/game-frame.webp" alt="" class="game-frame-img" draggable="false">
-
-      <!-- Pause overlay (shown while paused) -->
-      <div id="minigame-pause-overlay" style="display: none;">
-        <p class="pause-overlay-text">PAUSED</p>
-        <div style="display: flex; gap: 8px; margin-top: 12px; flex-direction: column; width: 60%; max-width: 160px;">
-          <button id="minigame-resume-btn" class="arcade-btn primary-btn" style="width: 100%; font-size: 14px; padding: 10px;">&#9654; Resume</button>
-          <button id="minigame-end-btn" class="arcade-btn ghost-btn" style="width: 100%; font-size: 14px; padding: 10px;">&#9632; End Game</button>
-        </div>
-      </div>
-
-      <!-- Countdown overlay (within frame) -->
-      <div id="minigame-countdown" class="in-frame-overlay" style="display: none;">
-        <h1 id="countdown-text" class="countdown-num"></h1>
-      </div>
-
-      <!-- Intro / Character Select Modal (within frame) -->
-      <div id="minigame-intro" class="in-frame-overlay">
-        <div class="intro-scroll">
-          <h2 class="intro-title">Choose Your Basket</h2>
-          <div class="minigame-character-select">
-            <img src="assets/ui/arcade/xavier-basket.webp" data-char="xavier" class="char-basket selected" title="Xavier">
-            <img src="assets/ui/arcade/zayne-basket.webp" data-char="zayne" class="char-basket" title="Zayne">
-            <img src="assets/ui/arcade/rafayel-basket.webp" data-char="rafayel" class="char-basket" title="Rafayel">
-            <img src="assets/ui/arcade/sylus-basket.webp" data-char="sylus" class="char-basket" title="Sylus">
-            <img src="assets/ui/arcade/caleb-basket.webp" data-char="caleb" class="char-basket" title="Caleb">
-            <img src="assets/ui/arcade/valko-basket.webp" data-char="valko" class="char-basket" title="Valko">
-          </div>
-          <button id="minigame-start-btn" class="arcade-btn primary-btn" style="margin-top: 12px;">&#9654; Start Game</button>
-        </div>
-      </div>
-
-      <!-- Game Over / Rewards (within frame) -->
-      <div id="minigame-gameover" class="in-frame-overlay" style="display: none;">
-        <div class="rewards-panel">
-          <h2 class="rewards-title">&#10022; Results &#10022;</h2>
-          <div class="rewards-list">
-            <div class="reward-item">
-              <img src="assets/ui/deepspace-wish.webp" alt="Deepspace Wish">
-              <div class="reward-label">Deepspace Wish</div>
-              <div class="reward-count">&#215;<span id="reward-ds-count">0</span></div>
-            </div>
-            <div class="reward-sep"></div>
-            <div class="reward-item">
-              <img src="assets/ui/empyrean-wish.webp" alt="Empyrean Wish">
-              <div class="reward-label">Empyrean Wish</div>
-              <div class="reward-count">&#215;<span id="reward-em-count">0</span></div>
-            </div>
-          </div>
-          <button id="minigame-claim-btn" class="arcade-btn primary-btn">&#10022; Claim</button>
-        </div>
-      </div>
-    </div><!-- /.minigame-frame-wrapper -->
-
-    <!-- Below-frame section -->
-    <div class="below-frame">
-      <p class="mechanic-hint desktop-hint">
-        Use
-        <img src="assets/ui/arcade/icon-left.webp" alt="Left" class="key-icon">
-        <img src="assets/ui/arcade/icon-right.webp" alt="Right" class="key-icon">
-        or
-        <img src="assets/ui/arcade/icon-a.webp" alt="A" class="key-icon">
-        <img src="assets/ui/arcade/icon-d.webp" alt="D" class="key-icon">
-        to move the basket and collect wishes!<br>Don't forget to avoid the bombs!
-      </p>
-      <p class="mechanic-hint mobile-hint">
-        Drag the basket to collect wishes!<br>Don't forget to avoid the bombs!
-      </p>
-      <button id="minigame-exit-btn" class="arcade-btn ghost-btn">&#8592; Back to Home</button>
-    </div>
-  </div><!-- /#minigame-container -->
 
   <div class="toast" id="toast" role="alert" aria-live="assertive"></div>
 
   <script src="cards.js?v=23"></script>
   <script src="memories.js?v=22"></script>
   <script src="collection.js?v=22"></script>
-  <script src="app.js?v=28"></script>
-  <script src="minigame.js?v=17"></script>
+  <script src="audio-bridge.js?v=4"></script>
+  <script src="app.js?v=29"></script>
+  <script>
+    window.PAGE_FAQ = {
+      title: 'Gacha FAQ',
+      items: [
+        { q: 'How does the pity system work?', a: '5-stars are guaranteed within 70 pulls. 4-stars are guaranteed within 10 pulls. Your pity counter is shared across all pulls on the same banner.' },
+        { q: 'What is the 50/50 system?', a: 'On limited banners, you have a 50% chance of pulling the featured character. If you lose the 50/50, your next 5-star on that banner is guaranteed to be the featured character.' },
+        { q: 'What is Precise Wish?', a: 'Precise Wish lets you designate a target Love Interest. If you lose the 50/50, your next guaranteed 5-star will always be from your chosen Love Interest instead of a random one.' },
+        { q: 'What are Deepspace Wish and Empyrean Wish tickets?', a: 'These are two different currency types. Deepspace Wishes are used for standard and limited banners, while Empyrean Wishes are used for the exclusive Empyrean banner. You can earn them from the Wishfall Frenzy arcade game.' },
+        { q: 'How do I rank up memories?', a: 'Pulling duplicate cards automatically increases the rank (stars) of the memory. Higher ranks unlock additional bonuses.' },
+        { q: 'How do I reset my data?', a: 'Open Settings → Reset Data → Confirm. This permanently deletes all pulls, pity, wishes, and your collection.' },
+        { q: 'Is this affiliated with Infold Games or Papergames?', a: 'No. This is a completely unofficial fan-made project for entertainment purposes only. No copyright infringement is intended.' }
+      ]
+    };
+  </script>
+  <script src="global-settings.js?v=6"></script>
+  <script src="global-faq.js?v=3"></script>
+  <script>
+    lucide.createIcons();
+  </script>
+
+  <!-- Arcade Modal -->
+  <div id="arcade-modal" class="settings-overlay" aria-modal="true" role="dialog" style="display:none;">
+    <div class="arcade-modal-inner">
+      <h2 class="arcade-modal-title">ARCADE</h2>
+      <div class="arcade-modal-grid">
+
+        <a href="arcade/wishfall-frenzy.html" class="arcade-game-card">
+          <div class="arcade-game-img-wrap">
+            <img src="assets/ui/wishfall-frenzy.webp" alt="Wishfall Frenzy" class="arcade-game-img floating">
+          </div>
+          <span class="arcade-game-name">Wishfall Frenzy</span>
+        </a>
+
+        <div class="arcade-game-card arcade-game-soon">
+          <div class="arcade-game-img-wrap">
+            <img src="assets/ui/claw-machine.webp" alt="MASH" class="arcade-game-img floating" style="animation-delay: 0.8s;">
+          </div>
+          <span class="arcade-game-name">Claw Machine</span>
+        </div>
+
+        <a href="arcade/flames-ticket.html" class="arcade-game-card">
+          <div class="arcade-game-img-wrap">
+            <img src="assets/ui/flames-ticket.webp" alt="FLAMES Calculator" class="arcade-game-img floating" style="animation-delay: 0.4s;">
+          </div>
+          <span class="arcade-game-name">FLAMES Ticket</span>
+        </a>
+
+        <a href="arcade/mash-future.html" class="arcade-game-card">
+          <div class="arcade-game-img-wrap">
+            <img src="assets/ui/mash.webp" alt="MASH" class="arcade-game-img floating" style="animation-delay: 0.8s;">
+          </div>
+          <span class="arcade-game-name">MASH Future</span>
+        </a>
+
+      </div>
+    </div>
+  </div>
 </body>
 </html>

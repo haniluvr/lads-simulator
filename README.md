@@ -8,29 +8,47 @@ This project aims to recreate the authentic summoning experience from the game, 
 
 - **Authentic Wish System:** Pull on both Standard and Limited banners with realistic gacha rates.
 - **Pity Mechanics:** Features a soft pity system starting at 60 pulls and a hard guarantee at 70 pulls, accurate to the game.
-- **Dynamic Animations:** Enjoy immersive 5-star character reveal videos for Xavier and Zayne, followed by seamless CSS-based card reveal animations.
-- **Collection & Memories:** View all the cards you've collected in the "Memories" modal. Track duplicates through a visual Rank-Up cube system!
+- **Dynamic Animations:** Enjoy immersive 5-star character reveal videos for Xavier, Zayne, Rafayel, Sylus, Caleb, and Valko followed by seamless CSS-based card reveal animations.
+- **Collection & Memories:** View all the cards you've collected in the "Memories" modal. Track duplicates through a visual Rank-Up cube system with real-time red badge notifications.
+- **`[NEW]` Photobooth Studio:** Take custom photos with your favorite memories! Decorate your photostrips with stickers, drag to swap frames, and export your creations.
+- **`[NEW]` Arcade Hub:** Access interactive minigames designed to test your luck and skills.
+    - **Wishfall Frenzy:** A fast-paced catcher game where you can earn wishes for your pulls. But be careful to avoid bombs!
+    - **FLAMES Calculator:** A nostalgic game used to playfully predict relationship compatibility between you and your bias based on your names.
+    - **M.A.S.H. Future Predictor:** A classic fortune-telling game to predict a person's future lifestyle.
+    - **`[FUTURE]` Claw Machine:** Win plushies with various designs to complete your collection.
 - **Persistent Data:** Your pity count, collection, and settings are saved locally in your browser so you don't lose progress when you refresh or close the tab.
-- **Customizable Experience:** Toggle background music and switch between custom character-themed mouse cursors in the Settings menu.
+- **Global Audio & Settings:** A unified Settings and FAQ system across all pages to toggle background music, sound effects, and custom character-themed mouse cursors.
 - **Responsive UI:** A premium, space-themed user interface heavily utilizing glassmorphism, CSS grid/flexbox, and micro-animations.
 
 ## 🚀 Tech Stack
 
-- **HTML5:** Semantic, accessible structure.
+- **HTML5:** Semantic, accessible structure, including Canvas API for image rendering and interactions.
 - **CSS3:** Advanced styling using CSS Variables, Flexbox, Grid, keyframe animations, and backdrop filters for glassmorphism. (No external CSS frameworks!)
-- **JavaScript (Vanilla):** DOM manipulation, state management (via `localStorage`), and core game logic.
+- **JavaScript (Vanilla):** DOM manipulation, state management (via `localStorage`), Canvas drawing/drag-and-drop, and core game logic.
 
 ## 🎮 How to Play
 
-1. **Visit the site** (or clone the repository and open `index.html` in your browser).
-2. **Choose your banner:** Click on the "Standard" or "Limited" banner cards on the home screen.
-3. **Wish!** Click the "1 Wish" or "10 Wishes" button to try your luck.
-4. **Skip or Watch:** Watch the authentic 5-star animations play out, or click the skip button in the top right corner.
-5. **Check your Collection:** Go back to the home screen and click the "Memories" button (at the top right corner) to view your pulled cards and their rank status.
+### Wish Simulator
+1. **Choose your banner:** Click on the "Standard" or "Limited" banner cards on the home screen.
+2. **Wish!** Click the "1 Wish" or "10 Wishes" button to try your luck.
+3. **Skip or Watch:** Watch the authentic 5-star animations play out, or click the skip button in the top right corner.
+4. **Check your Collection:** Go back to the home screen and click the "Memories" button to view your pulled cards and their rank status.
+
+### Arcade Minigames
+1. **Enter Arcade:** Click the "Arcade" button on the home screen to access the arcade selection.
+2. **Wishfall Frenzy:** A rhythm-based catching game where you must collect falling wishes while avoiding bombs.
+3. **M.A.S.H. Future Predictor:** A nostalgic fortune-telling game to predict your future with your favorite characters.
+4. **FLAMES Calculator:** Discover your relationship compatibility through this classic name-matching game.
+
+### Photobooth
+1. **Enter Photobooth:** Click the "Photobooth" image button on the home screen.
+2. **Select Template & Photos:** Choose a photostrip template and select up to 4 photos from your collection.
+3. **Customize:** Add stickers, drag to swap photo frames, and personalize your photostrip!
+4. **Print:** Save or print your photostrip and turn it into a bookmark as your very own memento!
 
 ## 🛠️ Installation & Local Setup
 
-Since this is a purely static web application, no build tools or servers are required!
+Since this application uses modules and assets, a local server is required to avoid CORS policy errors.
 
 1. Clone the repository:
    ```bash
@@ -40,7 +58,11 @@ Since this is a purely static web application, no build tools or servers are req
    ```bash
    cd pseudo-gacha
    ```
-3. Open `index.html` directly in your favorite web browser!
+3. Start a local server:
+   ```bash
+   python -m http.server 8080
+   ```
+4. Open your browser and navigate to `http://localhost:8080`.
 
 ## ⚠️ Disclaimer
 
@@ -52,3 +74,10 @@ This project is created strictly for entertainment and fan purposes, with absolu
 
 - Code and Design © 2026 haniluvr
 - All game assets (images, videos, audio) belong to **Infold Games / Papergames**.
+
+### Acknowledgement
+- Thank you to [Chey](https://x.com/SkylusRose), [Tasha](https://x.com/Tashter), and [Yuhina](https://x.com/YuhinaSan) for helping me gather the missing memories in my collection.
+
+### Fanart Artists
+- **Cards:** [Cee](https://x.com/celh0_0), [Mephisto](https://x.com/Harlock_Mephistokitten), [KC_7385](https://x.com/KC_7385), [uulyaax](https://x.com/uulyaax), [SpiritFucker93](https://x.com/SpiritFucker93), [salad](https://x.com/SALADYUMI), [jin](https://x.com/starsxav), [b](https://x.com/beejawing), [Meimei](https://x.com/okojyomeimei), [Kihaiu](https://x.com/Thekawacookiie), [Aagknorr](https://x.com/Aagknorr), [Syer](https://x.com/imuyumiii), [Nika](https://x.com/WanderingNika), [ASH](https://x.com/OrangeTart_), [godzileen](https://x.com/godzileen), [Cereza_cristal](https://x.com/Cereza_cristal), [raonnni](https://x.com/raonnni), [zeitvon](https://x.com/zeitvon), [Lottie](https://x.com/Starry_Lottie), [very_octoink](https://x.com/very_octoink), [n0niiiiii](https://x.com/n0niiiiii), [Acolyptic](https://x.com/acolyptic), [Chel](https://x.com/PencintaApelll), [c0axyz](https://x.com/c0axyz), [solisweirdddd](https://x.com/solisweirdddd), [pinkieplum](https://instagram.com/pinkieplum), [Yuhina.san](https://x.com/YuhinaSan), [Auniméa](https://x.com/Aunimea), [CELYNSICAL](https://x.com/CELYNSICAL), [bones](https://x.com/bonesandchocos), [Morgenty](https://x.com/fine_fiction), [Ayu](https://x.com/ayushnz_/), [NheaLonn](https://x.com/NheaLonn)
+- **Stickers:** [_Valko_](https://xhslink.cn/m/8NTZMgjK6NN), [Rei](https://x.com/Astareion), [Bento](https://x.com/smallbento), [Ellie](https://x.com/fantasyartist26)

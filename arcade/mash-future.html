@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MASH Future — Love and Deepspace Simulator</title>
+  <meta name="description" content="Play MASH online! Draw a spiral to reveal your destiny — partner, home, career, and more.">
+  <link rel="icon" type="image/webp" href="../assets/ui/favicon.webp">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Cinzel:wght@400..900&family=Cormorant+Infant:ital,wght@0,300..700;1,300..700&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../style.css?v=33">
+  <link rel="stylesheet" href="mash.css?v=8">
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+
+  <!-- BGM -->
+  <audio id="bg-music" src="../assets/ui/sunny-summer.mp3" loop></audio>
+
+  <!-- Back Button -->
+  <a href="../index.html" class="enter-btn back-btn" aria-label="Back to Home">
+    <i data-lucide="arrow-left"></i> BACK TO HOME
+  </a>
+
+  <!-- BGM Toggle -->
+  <button id="music-toggle" class="music-toggle-btn" aria-label="Toggle background music">
+    <i data-lucide="play" id="music-icon-play"></i>
+    <i data-lucide="pause" id="music-icon-pause" style="display:none;"></i>
+  </button>
+  
+  <!-- MASH Letter Boxes (fixed options, participate in elimination) -->
+  <div class="mash-letters-display" id="mashLettersDisplay">
+    <div class="mash-box" id="mbox-M">
+      <span class="mbox-letter">M</span>
+      <span class="mbox-label">Mansion</span>
+    </div>
+    <div class="mash-box" id="mbox-A">
+      <span class="mbox-letter">A</span>
+      <span class="mbox-label">Apartment</span>
+    </div>
+    <div class="mash-box" id="mbox-S">
+      <span class="mbox-letter">S</span>
+      <span class="mbox-label">Shack</span>
+    </div>
+    <div class="mash-box" id="mbox-H">
+      <span class="mbox-letter">H</span>
+      <span class="mbox-label">House</span>
+    </div>
+  </div>
+
+  <div class="mash-page-header">
+    <p class="mash-subtitle-small">- where your future is written -</p>
+  </div>
+
+  <!-- Main Container -->
+  <div class="mash-container" id="mashContainer">
+
+    <!-- ═══ PHASE 1: Input Card (two-panel layout on desktop) ═══ -->
+    <div id="inputCard">
+      <div class="input-panels">
+
+        <!-- Left panel: categories -->
+        <div class="mash-card input-panel-left">
+          <div class="mash-card-header">
+            <p class="mash-booth-tagline">✦ FILL IN YOUR FATE ✦</p>
+            <button class="randomize-btn" id="randomizeBtn" onclick="randomizeAll()"><i data-lucide="dices"></i></span> Randomize</button>
+          </div>
+
+          <div class="categories-grid" id="categoriesGrid">
+
+            <!-- Partner -->
+            <div class="category-block">
+              <h3 class="cat-title"><span class="cat-icon"><i data-lucide="heart"></i></span>Partner</h3>
+              <div class="cat-inputs" data-cat="partner">
+                <input type="text" class="mash-input" placeholder="Name 1…" maxlength="40" autocomplete="off">
+                <input type="text" class="mash-input" placeholder="Name 2…" maxlength="40" autocomplete="off">
+                <input type="text" class="mash-input" placeholder="Name 3…" maxlength="40" autocomplete="off">
+                <input type="text" class="mash-input" placeholder="Name 4…" maxlength="40" autocomplete="off">
+              </div>
+            </div>
+
+            <!-- Transport -->
+            <div class="category-block">
+              <h3 class="cat-title"><span class="cat-icon"><i data-lucide="rocket"></i></span>Car</h3>
+              <div class="cat-inputs" data-cat="transport">
+                <input type="text" class="mash-input" placeholder="Option 1…" maxlength="40" autocomplete="off">
+                <input type="text" class="mash-input" placeholder="Option 2…" maxlength="40" autocomplete="off">
+                <input type="text" class="mash-input" placeholder="Option 3…" maxlength="40" autocomplete="off">
+                <input type="text" class="mash-input" placeholder="Option 4…" maxlength="40" autocomplete="off">
+              </div>
+            </div>
+
+            <!-- Fave Color -->
+            <div class="category-block">
+              <h3 class="cat-title"><span class="cat-icon"><i data-lucide="palette"></i></span>Colors</h3>
+              <div class="cat-inputs" data-cat="color">
+                <input type="text" class="mash-input" placeholder="Color 1…" maxlength="40" autocomplete="off">
+                <input type="text" class="mash-input" placeholder="Color 2…" maxlength="40" autocomplete="off">
+                <input type="text" class="mash-input" placeholder="Color 3…" maxlength="40" autocomplete="off">
+                <input type="text" class="mash-input" placeholder="Color 4…" maxlength="40" autocomplete="off">
+              </div>
+            </div>
+
+            <!-- Occupation -->
+            <div class="category-block">
+              <h3 class="cat-title"><span class="cat-icon"><i data-lucide="briefcase"></i></span>Job</h3>
+              <div class="cat-inputs" data-cat="job">
+                <input type="text" class="mash-input" placeholder="Job 1…" maxlength="40" autocomplete="off">
+                <input type="text" class="mash-input" placeholder="Job 2…" maxlength="40" autocomplete="off">
+                <input type="text" class="mash-input" placeholder="Job 3…" maxlength="40" autocomplete="off">
+                <input type="text" class="mash-input" placeholder="Job 4…" maxlength="40" autocomplete="off">
+              </div>
+            </div>
+
+            <!-- # of Kids -->
+            <div class="category-block">
+              <h3 class="cat-title"><span class="cat-icon"><i data-lucide="baby"></i></span>Kids</h3>
+              <div class="cat-inputs" data-cat="kids">
+                <input type="text" class="mash-input" placeholder="e.g. 0" maxlength="10" autocomplete="off">
+                <input type="text" class="mash-input" placeholder="e.g. 2" maxlength="10" autocomplete="off">
+                <input type="text" class="mash-input" placeholder="e.g. 5" maxlength="10" autocomplete="off">
+                <input type="text" class="mash-input" placeholder="e.g. 10" maxlength="10" autocomplete="off">
+              </div>
+            </div>
+
+            <!-- Location -->
+            <div class="category-block">
+              <h3 class="cat-title"><span class="cat-icon"><i data-lucide="map-pin"></i></span>Location</h3>
+              <div class="cat-inputs" data-cat="location">
+                <input type="text" class="mash-input" placeholder="Place 1…" maxlength="40" autocomplete="off">
+                <input type="text" class="mash-input" placeholder="Place 2…" maxlength="40" autocomplete="off">
+                <input type="text" class="mash-input" placeholder="Place 3…" maxlength="40" autocomplete="off">
+                <input type="text" class="mash-input" placeholder="Place 4…" maxlength="40" autocomplete="off">
+              </div>
+            </div>
+
+          </div><!-- /categories-grid -->
+        </div><!-- /input-panel-left -->
+
+        <!-- Right panel: spiral -->
+        <div class="mash-card input-panel-right">
+          <div class="spiral-section">
+            <p class="spiral-label">Draw a spiral<br>to seal your fate</p>
+            <p class="spiral-sub">Each crossing of the center line counts — that's your magic number!</p>
+            <div class="spiral-canvas-wrap">
+              <canvas id="spiralCanvas" width="280" height="280"></canvas>
+              <div class="count-badge">
+                <span class="count-badge-label">Crossings</span>
+                <strong id="loopCount" class="count-badge-num">0</strong>
+              </div>
+            </div>
+            <button class="clear-spiral-btn" onclick="clearSpiral()">✕ Clear</button>
+          </div>
+
+          <p class="mash-error" id="mashError" style="display:none;"></p>
+
+          <button class="mash-btn mash-btn-primary" id="predictBtn" onclick="predictFuture()">
+            ✦ PREDICT MY FUTURE ✦
+          </button>
+        </div><!-- /input-panel-right -->
+
+      </div><!-- /input-panels -->
+    </div><!-- /inputCard -->
+
+    <!-- ═══ PHASE 2: Elimination ═══ -->
+    <div class="elim-card" id="elimCard" style="display:none;">
+      <div class="elim-header">
+        <p class="mash-booth-tagline">✦ Revealing your destiny ✦</p>
+        <div class="elim-magic-num">
+          Magic Number: <strong id="elimN">—</strong>
+        </div>
+        <div class="elim-progress-label" id="elimLabel">Counting…</div>
+      </div>
+      <div class="elim-grid" id="elimGrid"></div>
+    </div>
+
+    <!-- ═══ PHASE 3: Result Scroll ═══ -->
+    <div class="result-wrap" id="resultWrap" style="display:none;">
+      <div class="result-scroll" id="resultScroll">
+        <div class="scroll-stamp">★ OFFICIAL ★<br>Proclamation</div>
+        <div class="scroll-top">
+          <div class="scroll-kicker">✦ Your MASH Future ✦</div>
+          <div class="scroll-headline" id="rHeadline"></div>
+          <div class="scroll-summary" id="rSummary"></div>
+          <div class="scroll-details-grid">
+            <div class="scroll-detail-card" id="rPartner"></div>
+            <div class="scroll-detail-card" id="rMash"></div>
+            <div class="scroll-detail-card" id="rJob"></div>
+            <div class="scroll-detail-card" id="rTransport"></div>
+            <div class="scroll-detail-card" id="rKids"></div>
+            <div class="scroll-detail-card" id="rLocation"></div>
+          </div>
+          <div class="scroll-decree" id="rDecree"></div>
+        </div>
+        <div class="scroll-barcode"></div>
+        <div class="scroll-perf"></div>
+        <div class="scroll-stub">
+          <span>Scroll No<b id="rId">—</b></span>
+          <span>Issued<b id="rDate">—</b></span>
+          <span class="booth">Read at<br><b>LADS SIMULATOR</b></span>
+        </div>
+      </div>
+
+      <div class="result-actions">
+        <button class="mash-btn mash-btn-primary" id="rDownload" onclick="downloadResult()"><i data-lucide="download" style="width: 14px; height: 14px; color: #0a0a22;"></i> Save</button>
+        <button class="mash-btn mash-btn-ghost" id="rShare" onclick="shareResult()"><i data-lucide="share" style="width: 14px; height: 14px; color: #c9a96e;"></i> Share</button>
+        <button class="mash-btn mash-btn-ghost" onclick="resetGame()"><i data-lucide="rotate-ccw" style="width: 14px; height: 14px; color: #c9a96e;"></i> Again</button>
+      </div>
+    </div>
+
+  </div><!-- /mash-container -->
+
+
+
+  <canvas id="resultCanvas" style="display:none;"></canvas>
+
+  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+  <script src="../audio-bridge.js?v=4"></script>
+  <script src="mash.js?v=6" charset="utf-8"></script>
+  <script>
+    window.PAGE_FAQ = {
+      title: 'MASH Future FAQ',
+      items: [
+        { q: 'What is MASH?', a: 'MASH stands for Mansion, Apartment, Shack, House. It\'s a classic fortune-telling game that predicts your future life!' },
+        { q: 'How does the elimination work?', a: 'Pick your number of "strikes", then the game counts through all options and eliminates every Nth item until only one remains in each category.' },
+        { q: 'Can I customize my options?', a: 'Yes! Each category has default options but you can edit them to personalize your reading.' },
+        { q: 'What do the categories mean?', a: 'Each category represents a different aspect of your future — your home, career, Love Interest partner, where you live, and more. It\'s all in good fun!' },
+        { q: 'Can I save or share my result?', a: 'Yes! After the game concludes, use the Share/Download button to export your MASH result as an image.' },
+        { q: 'Can I replay?', a: 'Yes! Click the replay button at the end to run a new elimination round with the same or different options.' }
+      ]
+    };
+  </script>
+  <script src="../global-settings.js?v=6"></script>
+  <script src="../global-faq.js?v=3"></script>
+  <script>
+    lucide.createIcons();
+  </script>
+</body>
+</html>

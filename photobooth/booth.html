@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cosmo Photobooth Studio — Love and Deepspace Simulator</title>
+  <link rel="icon" type="image/webp" href="assets/ui/favicon.webp">
+  <meta name="description" content="Create your photostrip with Love and Deepspace characters inside Cosmo Photobooth Studio." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&family=Cormorant+Infant:ital,wght@0,300..700;1,300..700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css?v=5" />
+  <link rel="stylesheet" href="landing.css" />
+  <link rel="stylesheet" href="booth.css?v=2" />
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="booth-body">
+
+
+<div class="landing-bg-image booth-bg" aria-hidden="true"></div>
+<canvas id="starfield-canvas" aria-hidden="true"></canvas>
+
+<!-- ============================================================
+     COSMO BORDERS
+     ============================================================ -->
+<div class="cosmo-borders" aria-hidden="true">
+  <div class="border-line outer-top"></div>
+  <div class="border-line outer-bottom"></div>
+  <div class="border-line outer-left"></div>
+  <div class="border-line outer-right"></div>
+  <svg class="corner-svg outer-tl" viewBox="0 0 32 32">
+    <path d="M 32 0.5 A 31.5 31.5 0 0 1 0.5 32" fill="none" stroke="#C8BB7A" stroke-width="1.2"/>
+    <circle cx="7" cy="7" r="1.5" fill="#C8BB7A" opacity="0.8"/>
+  </svg>
+  <svg class="corner-svg outer-tr" viewBox="0 0 32 32">
+    <path d="M 0 0.5 A 31.5 31.5 0 0 0 31.5 32" fill="none" stroke="#C8BB7A" stroke-width="1.2"/>
+    <circle cx="25" cy="7" r="1.5" fill="#C8BB7A" opacity="0.8"/>
+  </svg>
+  <svg class="corner-svg outer-bl" viewBox="0 0 32 32">
+    <path d="M 0.5 0 A 31.5 31.5 0 0 1 32 31.5" fill="none" stroke="#C8BB7A" stroke-width="1.2"/>
+    <circle cx="7" cy="25" r="1.5" fill="#C8BB7A" opacity="0.8"/>
+  </svg>
+  <svg class="corner-svg outer-br" viewBox="0 0 32 32">
+    <path d="M 31.5 0 A 31.5 31.5 0 0 0 0 31.5" fill="none" stroke="#C8BB7A" stroke-width="1.2"/>
+    <circle cx="25" cy="25" r="1.5" fill="#C8BB7A" opacity="0.8"/>
+  </svg>
+  <div class="inner-frame">
+    <svg class="star-svg inner-tl" viewBox="0 0 24 24"><path d="M12 0 Q12 12 24 12 Q12 12 12 24 Q12 12 0 12 Q12 12 12 0 Z" fill="#E8E0C4"/></svg>
+    <svg class="star-svg inner-tr" viewBox="0 0 24 24"><path d="M12 0 Q12 12 24 12 Q12 12 12 24 Q12 12 0 12 Q12 12 12 0 Z" fill="#E8E0C4"/></svg>
+    <svg class="star-svg inner-bl" viewBox="0 0 24 24"><path d="M12 0 Q12 12 24 12 Q12 12 12 24 Q12 12 0 12 Q12 12 12 0 Z" fill="#E8E0C4"/></svg>
+    <svg class="star-svg inner-br" viewBox="0 0 24 24"><path d="M12 0 Q12 12 24 12 Q12 12 12 24 Q12 12 0 12 Q12 12 12 0 Z" fill="#E8E0C4"/></svg>
+  </div>
+</div>
+
+
+<!-- ============================================================
+     CONTROLS OVERLAY
+     ============================================================ -->
+<div class="booth-controls-overlay">
+  <!-- Top Left Back Button -->
+  <a href="index.html" class="booth-back-btn" id="booth-back" aria-label="Back to landing page">
+    <i data-lucide="chevron-left"></i>
+
+
+    Exit
+  </a>
+
+  <!-- Top Right Music Button -->
+  <button id="bgm-toggle" class="bgm-btn" aria-label="Toggle background music" aria-pressed="true">
+    <svg class="icon-play" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+    <svg class="icon-pause" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="4" width="4" height="16"></rect><rect x="14" y="4" width="4" height="16"></rect></svg>
+  </button>
+</div>
+
+
+
+<!-- ============================================================
+     PHASE 1: LAYOUT SELECTION
+     ============================================================ -->
+<section class="phase-screen" id="phase-1" data-phase="1" aria-label="Layout selection">
+  <div class="phase-inner">
+
+    <div class="phase-header text-center">
+      <p class="section-label">Step 1</p>
+      <h1 class="phase-title">Choose Your <em>Layout</em></h1>
+      <p class="phase-subtitle">How many frames will your strip have?</p>
+    </div>
+
+    <!-- Layout Carousel -->
+    <div class="template-carousel-wrap">
+      <button class="carousel-nav prev" id="layout-nav-prev" aria-label="Previous layouts">
+        <i data-lucide="chevron-left"></i>
+
+
+      </button>
+
+      <div class="template-grid" id="template-grid-dynamic" role="radiogroup" aria-label="Frame templates">
+        <!-- Injected by JS -->
+      </div>
+
+      <button class="carousel-nav next" id="layout-nav-next" aria-label="Next layouts">
+        <i data-lucide="chevron-right"></i>
+
+
+      </button>
+    </div>
+
+    <div class="phase-actions">
+      <button class="btn-primary" id="phase1-next" disabled>
+        Start Shooting
+        <i data-lucide="camera" style="margin-left: 8px; height: 21px; width: 21px;"></i>
+
+
+      </button>
+    </div>
+
+  </div>
+</section>
+
+
+
+<!-- ============================================================
+     PHASE 3: PHOTOSHOOT
+     ============================================================ -->
+<section class="phase-screen hidden" id="phase-2" data-phase="2" aria-label="Photoshoot">
+
+  <div class="phase-header text-center">
+    <p class="section-label">Step 2</p>
+    <h1 class="phase-title">Strike a <em>Pose</em></h1>
+    <p class="phase-subtitle">Get ready for your photoshoot</p>
+  </div>
+
+  <!-- Camera area with 3-column layout -->
+  <div class="shoot-main">
+
+    <!-- Left panel: Captured Moments -->
+    <div class="shoot-left-panel" id="shoot-left-panel">
+      <div class="captured-moments-header">
+        <p class="captured-title">Captured<br>Moments</p>
+        <p class="captured-count" id="shoot-frame-count">0/4</p>
+      </div>
+      <div class="captured-moments-list" id="shoot-frame-dots">
+        <!-- Vertical frame placeholders injected here -->
+      </div>
+    </div>
+
+    <!-- Camera view -->
+    <div class="camera-area">
+      <div class="camera-viewport" id="camera-viewport">
+        <!-- Live video feed -->
+        <video id="camera-video" autoplay muted playsinline aria-label="Camera feed"></video>
+        
+        <!-- Uploaded image view -->
+        <img id="camera-uploaded-image" style="display: none; width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0;" aria-label="Uploaded image" />
+
+        <!-- Upload fallback (shown when camera fails) -->
+        <div class="camera-upload-fallback" id="camera-upload-fallback" style="display: none;">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/>
+          </svg>
+          <p>Camera not available</p>
+          <label class="btn-primary btn-sm" for="photo-upload-input">
+            Upload Photo Instead
+          </label>
+          <input type="file" id="photo-upload-input" accept="image/*" hidden />
+          <a href="#" id="retry-camera-btn" style="display: block; margin-top: 16px; color: #E8DFC8; text-decoration: underline; font-size: 0.8rem; cursor: pointer;">Retry Camera Permissions</a>
+        </div>
+
+        <!-- Character overlay container -->
+        <div class="char-overlay-container" id="char-overlay-container" aria-hidden="true">
+          <!-- Character overlays injected here by JS -->
+        </div>
+
+        <!-- Countdown Overlay -->
+        <div class="shoot-countdown-display" id="shoot-countdown-display" aria-live="assertive" style="display: none; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 150px; height: 150px; background-color: rgba(200, 184, 122, 0.2); border-radius: 16px; align-items: center; justify-content: center; z-index: 50;">
+          <span id="countdown-number" style="font-size: 6rem; font-weight: 700; color: white; text-shadow: 0 4px 20px rgba(0,0,0,0.5);">—</span>
+        </div>
+
+        <!-- Frame corner guides -->
+        <div class="frame-guide" aria-hidden="true">
+          <div class="fg-corner tl"></div>
+          <div class="fg-corner tr"></div>
+          <div class="fg-corner bl"></div>
+          <div class="fg-corner br"></div>
+        </div>
+      </div>
+
+      <!-- Camera controls -->
+      <div class="camera-controls">
+        <button class="btn-secondary btn-sm" id="upload-btn" aria-label="Upload Photo Instead">
+          <i data-lucide="upload"></i>
+
+
+        </button>
+
+        <button class="btn-secondary btn-sm" id="mirror-camera" aria-label="Mirror camera">
+          <i data-lucide="flip-horizontal-2"></i>
+
+
+        </button>
+
+        <!-- Red Circle Capture Button -->
+        <button class="shoot-btn-circle" id="shoot-btn" aria-label="Start countdown and capture photo">
+          <div class="shoot-inner-circle"></div>
+        </button>
+
+        <button class="btn-secondary btn-sm" id="toggle-camera" aria-label="Switch camera">
+          <i data-lucide="switch-camera"></i>
+
+
+        </button>
+        
+        <button class="btn-secondary btn-sm" id="toggle-flash" aria-label="Toggle Flash">
+          <i data-lucide="zap"></i>
+
+
+        </button>
+      </div>
+    </div>
+
+    <!-- Right panel: quick character swap -->
+    <div class="shoot-side-panel" id="shoot-side-panel">
+      <div style="margin-top: 8px;">
+        <p class="panel-label">Companions</p>
+        <div class="shoot-char-list" id="shoot-char-list" role="group" aria-label="Toggle characters in frame">
+          <!-- Injected by JS -->
+        </div>
+        <div id="shoot-char-poses-container"></div>
+      </div>
+    </div>
+  </div> <!-- closes shoot-main -->
+
+  <!-- Step 2 Bottom Actions -->
+  <div class="phase-actions" id="shoot-actions">
+    <button class="btn-secondary" id="shoot-back" onclick="goToPhase(1)" aria-label="Go back"><span class="btn-icon">&#8592;</span><span class="btn-text">Back</span></button>
+    <button class="btn-secondary" id="retake-btn" onclick="retakePhotos()" disabled aria-label="Retake photos" style="background: #E8DFC8; color: #12122B; border-color: #E8DFC8;"><span class="btn-icon">&#8635;</span><span class="btn-text">Retake</span></button>
+    <button class="btn-primary" id="decorate-btn" onclick="proceedToDecorate()" disabled aria-label="Decorate photos">
+      Decorate
+      <i data-lucide="arrow-right" style="margin-left: 8px;"></i>
+
+
+    </button>
+  </div>
+
+  <!-- Developing overlay -->
+  <div class="developing-overlay hidden" id="developing-overlay" aria-live="assertive">
+    <div class="developing-inner">
+      <video id="developing-video" src="assets/developing.webm" muted playsinline style="max-width: 140px; margin-bottom: 16px; border-radius: 8px;"></video>
+      <div class="developing-strip" aria-hidden="true">
+        <div class="dev-progress" id="dev-progress"></div>
+      </div>
+      <p class="developing-text">Developing your memories...</p>
+    </div>
+  </div>
+
+</section>
+
+<!-- ============================================================
+     PHASE 4: DECORATION STUDIO
+     ============================================================ -->
+<section class="phase-screen hidden" id="phase-3" data-phase="3" aria-label="Decoration studio">
+  <div class="phase-header text-center" style="padding-top: 24px; padding-bottom: 12px;">
+    <p class="section-label">Step 3</p>
+    <h1 class="phase-title">Decorate Your <em>Memories</em></h1>
+    <p class="phase-subtitle">Add filters, stickers, and text to your photostrip</p>
+  </div>
+  
+  <div class="studio-layout">
+
+    <!-- Left: Strip canvas column -->
+    <div class="studio-canvas-column" style="flex: 1; display: flex; flex-direction: column; overflow: hidden; min-width: 0;">
+      <div class="studio-canvas-panel" aria-label="Photostrip canvas" style="flex: 1; overflow-y: auto; padding: 16px 0; justify-content: flex-start;">
+        <div class="studio-strip-wrap" id="studio-strip-wrap" style="margin: 0 auto;">
+        <!-- The final assembled strip canvas -->
+        <canvas id="studio-canvas" aria-label="Your photostrip"></canvas>
+        <!-- Photo zoom controls (absolute positioned over active window) -->
+        <div id="photo-zoom-controls" style="display: none; position: absolute; z-index: 40; flex-direction: row; gap: 4px; transform: translate(-50%, -50%);">
+          <button class="btn-secondary icon-btn" id="photo-zoom-out" aria-label="Zoom Out Photo" style="padding: 0; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px;">-</button>
+          <button class="btn-secondary icon-btn" id="photo-zoom-in" aria-label="Zoom In Photo" style="padding: 0; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px;">+</button>
+        </div>
+        <div id="deco-controls" style="display: none; position: absolute; z-index: 50; pointer-events: none;">
+          <button class="btn-secondary icon-btn" id="deco-delete" aria-label="Delete Decoration" style="position: absolute; top: -14px; left: -14px; width: 28px; height: 28px; padding: 0; display: flex; align-items: center; justify-content: center; color: #ff3333; background-color: rgba(255,255,255,0.9); border: 1px solid #1a1a2e; box-shadow: 0 2px 4px rgba(0,0,0,0.5); pointer-events: auto; border-radius: 50%;"><i data-lucide="trash-2" style="width: 16px; height: 16px;"></i></button>
+          <button class="btn-secondary icon-btn" id="deco-rotate" aria-label="Rotate Decoration" style="position: absolute; top: -14px; right: -14px; width: 28px; height: 28px; padding: 0; display: flex; align-items: center; justify-content: center; color: #1a1a2e; background-color: rgba(255,255,255,0.9); border: 1px solid #1a1a2e; box-shadow: 0 2px 4px rgba(0,0,0,0.5); pointer-events: auto; border-radius: 50%; cursor: grab;"><i data-lucide="refresh-cw" style="width: 16px; height: 16px;"></i></button>
+          <button class="btn-secondary icon-btn" id="deco-scale" aria-label="Scale Decoration" style="position: absolute; bottom: -14px; right: -14px; width: 28px; height: 28px; padding: 0; display: flex; align-items: center; justify-content: center; color: #1a1a2e; background-color: rgba(255,255,255,0.9); border: 1px solid #1a1a2e; box-shadow: 0 2px 4px rgba(0,0,0,0.5); pointer-events: auto; border-radius: 50%; cursor: nwse-resize;"><i data-lucide="move-diagonal-2" style="width: 16px; height: 16px;"></i></button>
+        </div>
+        <!-- Overlay layer for draggable stickers/text (on top of canvas) -->
+        <div class="overlay-layer" id="overlay-layer" aria-label="Decoration layer"></div>
+      </div>
+      </div>
+
+      <!-- Zoom and Undo controls -->
+      <div class="studio-history-bar" style="flex-shrink: 0; padding: 16px; border-top: 1px solid rgba(200,184,122,0.15); justify-content: center;">
+        <button class="btn-secondary btn-sm icon-btn" id="zoom-out-btn" aria-label="Zoom Out">
+          <i data-lucide="zoom-out" style="width: 16px; height: 16px;"></i>
+
+
+        </button>
+        <button class="btn-secondary btn-sm icon-btn" id="zoom-in-btn" aria-label="Zoom In">
+          <i data-lucide="zoom-in" style="width: 16px; height: 16px;"></i>
+
+
+        </button>
+        <button class="btn-secondary btn-sm icon-btn" id="undo-btn" aria-label="Undo" disabled>
+          <i data-lucide="rotate-ccw" style="width: 16px; height: 16px;"></i>
+
+
+          Undo
+        </button>
+        <button class="btn-secondary btn-sm icon-btn" id="redo-btn" aria-label="Redo" disabled>
+          Redo
+          <i data-lucide="rotate-cw" style="width: 16px; height: 16px;"></i>
+
+
+        </button>
+      </div>
+    </div>
+
+    <!-- Right: Tool panel -->
+    <div class="studio-tool-panel" aria-label="Decoration tools">
+
+      <!-- Tabs -->
+      <div class="studio-tabs" role="tablist" aria-label="Decoration tools">
+        <button class="studio-tab" role="tab" aria-selected="false" aria-controls="tab-filters" id="tab-btn-filters" data-tab="filters">Filters</button>
+        <button class="studio-tab" role="tab" aria-selected="false" aria-controls="tab-stickers" id="tab-btn-stickers" data-tab="stickers">Stickers</button>
+        <button class="studio-tab" role="tab" aria-selected="false" aria-controls="tab-text" id="tab-btn-text" data-tab="text">Text</button>
+      </div>
+
+      <!-- Filters Tab -->
+      <div class="tab-panel" role="tabpanel" id="tab-filters" aria-labelledby="tab-btn-filters" style="display: none;">
+        <div class="filter-grid" role="radiogroup" aria-label="Photo filters">
+          <label class="filter-option" for="filter-none">
+            <input type="radio" name="filter" id="filter-none" value="none" checked hidden />
+            <div class="filter-preview none-filter"><span>None</span></div>
+          </label>
+          <label class="filter-option" for="filter-bloom">
+            <input type="radio" name="filter" id="filter-bloom" value="bloom" hidden />
+            <div class="filter-preview bloom-filter"><span>Soft Bloom</span></div>
+          </label>
+          <label class="filter-option" for="filter-vintage">
+            <input type="radio" name="filter" id="filter-vintage" value="vintage" hidden />
+            <div class="filter-preview vintage-filter"><span>Vintage</span></div>
+          </label>
+          <label class="filter-option" for="filter-cool">
+            <input type="radio" name="filter" id="filter-cool" value="cool" hidden />
+            <div class="filter-preview cool-filter"><span>Cool Mist</span></div>
+          </label>
+          <label class="filter-option" for="filter-rose">
+            <input type="radio" name="filter" id="filter-rose" value="rose" hidden />
+            <div class="filter-preview rose-filter"><span>Rose Tint</span></div>
+          </label>
+          <label class="filter-option" for="filter-bw">
+            <input type="radio" name="filter" id="filter-bw" value="bw" hidden />
+            <div class="filter-preview bw-filter"><span>B&amp;W</span></div>
+          </label>
+          <label class="filter-option" for="filter-noir">
+            <input type="radio" name="filter" id="filter-noir" value="noir" hidden />
+            <div class="filter-preview noir-filter"><span>Noir</span></div>
+          </label>
+        </div>
+      </div>
+
+      <!-- Stickers Tab -->
+      <div class="tab-panel" role="tabpanel" id="tab-stickers" aria-labelledby="tab-btn-stickers" style="display: none;">
+        <div class="sticker-grid" id="sticker-grid" role="list" aria-label="Available stickers">
+          <!-- Stickers rendered by JS -->
+        </div>
+      </div>
+
+      <!-- Text Tab -->
+      <div class="tab-panel" role="tabpanel" id="tab-text" aria-labelledby="tab-btn-text" style="display: none;">
+        <div class="text-tool">
+          <div class="text-inputs-row">
+            <div>
+              <label class="tool-label" for="text-input">Text</label>
+              <input class="text-tool-input" type="text" id="text-input" placeholder="Type something..." maxlength="60" />
+            </div>
+            <div>
+              <label class="tool-label" for="text-font">Font</label>
+              <select id="text-font" class="text-tool-select" aria-label="Font family">
+                <option value="cormorant">Cormorant Garamond</option>
+                <option value="inter">Inter</option>
+                <option value="chakra">Chakra Petch</option>
+                <option value="roboto">Roboto</option>
+                <option value="oswald">Oswald</option>
+                <option value="pacifico">Pacifico</option>
+                <option value="dancing">Dancing Script</option>
+                <option value="playfair">Playfair Display</option>
+                <option value="outfit">Outfit</option>
+                <option value="caveat">Caveat</option>
+              </select>
+            </div>
+          </div>
+
+          <label class="tool-label">Color</label>
+          <div class="text-color-row">
+            <button class="text-color-btn active" style="background-color: #FFFFFF;" data-color="#FFFFFF" aria-label="White"></button>
+            <button class="text-color-btn" style="background-color: #000000;" data-color="#000000" aria-label="Black"></button>
+            <button class="text-color-btn" style="background-color: #FF4B4B;" data-color="#FF4B4B" aria-label="Red"></button>
+            <button class="text-color-btn" style="background-color: #FF9EE4;" data-color="#FF9EE4" aria-label="Pink"></button>
+            <button class="text-color-btn" style="background-color: #FFA040;" data-color="#FFA040" aria-label="Orange"></button>
+            <button class="text-color-btn" style="background-color: #FFD700;" data-color="#FFD700" aria-label="Yellow"></button>
+            <button class="text-color-btn" style="background-color: #4CAF50;" data-color="#4CAF50" aria-label="Green"></button>
+            <button class="text-color-btn" style="background-color: #A8E6A3;" data-color="#A8E6A3" aria-label="Light Green"></button>
+            <button class="text-color-btn" style="background-color: #4B7BFF;" data-color="#4B7BFF" aria-label="Blue"></button>
+            <button class="text-color-btn" style="background-color: #9EE4FF;" data-color="#9EE4FF" aria-label="Light Blue"></button>
+            <button class="text-color-btn" style="background-color: #B14BFF;" data-color="#B14BFF" aria-label="Purple"></button>
+            <button class="text-color-btn" style="background-color: #9E9E9E;" data-color="#9E9E9E" aria-label="Grey"></button>
+            <button class="text-color-btn" style="background-color: #F5F5DC;" data-color="#F5F5DC" aria-label="Beige"></button>
+            <button class="text-color-btn" style="background-color: #8B4513;" data-color="#8B4513" aria-label="Brown"></button>
+            
+            <!-- Custom Color Picker -->
+            <label class="text-color-btn color-picker-btn" style="background-image: conic-gradient(from 0deg, #ff0000, #ffff00, #00ff00, #00ffff, #0000ff, #ff00ff, #ff0000); display: inline-block; position: relative; overflow: hidden; padding: 0;">
+              <input type="color" id="custom-text-color" value="#ffffff" style="position: absolute; top: 0; left: 0; opacity: 0; width: 100%; height: 100%; cursor: pointer;" aria-label="Custom color picker" />
+            </label>
+          </div>
+
+          <button class="btn-primary btn-sm" id="add-text-btn" style="width: 100%; margin-top: var(--space-4);">
+            Add Text to Strip
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div> <!-- Closes studio-layout -->
+
+  <!-- Bottom action bar -->
+  <div class="phase-actions" id="studio-actions">
+    <button class="btn-secondary" id="phase4-back">
+      <i data-lucide="rotate-ccw" style="margin-right: 8px; width: 18px; height: 18px;"></i>
+      Reshoot
+    </button>
+    <button class="btn-primary" id="phase4-next">
+      Print
+      <i data-lucide="printer" style="margin-left: 8px; width: 18px; height: 18px;"></i>
+
+
+
+
+    </button>
+  </div>
+
+  <!-- Printing overlay (shown when transitioning to phase 4) -->
+  <div class="developing-overlay hidden" id="printing-overlay" aria-live="assertive">
+    <div class="developing-inner">
+      <video id="printing-video" src="assets/printing.webm" muted playsinline style="max-width: 140px; margin-bottom: 16px; border-radius: 8px;"></video>
+      <div class="developing-strip" aria-hidden="true">
+        <div class="dev-progress" id="print-progress"></div>
+      </div>
+      <p class="developing-text">Printing your memories...</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     PHASE 5: EXPORT & SHARE
+     ============================================================ -->
+
+<section class="phase-screen hidden" id="phase-4" data-phase="4" aria-label="Save and share">
+
+  <div class="export-layout">
+
+    <!-- LEFT: Phase header + Animated Printer + Buttons -->
+    <div class="export-actions-panel">
+      <p class="section-label">Your strip is ready!</p>
+      <h2 class="phase-title" style="font-size: clamp(1.6rem, 4vw, 2.5rem);">
+        Capture the <em>Moment</em>
+      </h2>
+      <p class="phase-subtitle" style="margin-bottom: var(--space-6);">
+        Save your photostrip to your device or share it with the community.
+      </p>
+
+      <div class="export-content-row">
+        <!-- Animated Printer -->
+        <div class="export-printer-wrap">
+          <div class="printer-section" aria-label="Animated photostrip printer">
+          <div class="printer-body">
+            <div class="printer-arch" aria-hidden="true">
+              <svg class="arch-deco" viewBox="0 0 260 36" fill="none">
+                <path d="M10,28 Q130,2 250,28" stroke="#C4A96A" stroke-width="0.8" opacity="0.5"/>
+                <circle cx="60"  cy="18" r="2" fill="#C4A96A" opacity="0.7"/>
+                <circle cx="130" cy="10" r="3" fill="#C4A96A" opacity="0.8"/>
+                <circle cx="200" cy="18" r="2" fill="#C4A96A" opacity="0.7"/>
+              </svg>
+            </div>
+
+            <div class="printer-header">
+              <div class="printer-brand">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="#C4A96A">
+                  <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/>
+                </svg>
+                COSMO
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="#C4A96A">
+                  <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/>
+                </svg>
+              </div>
+              <div class="printer-status-led"></div>
+            </div>
+
+            <div class="printer-orbital" aria-hidden="true">
+              <svg viewBox="0 0 220 30" fill="none">
+                <circle cx="110" cy="15" r="12" stroke="#C4A96A" stroke-width="0.6" opacity="0.4"/>
+                <circle cx="110" cy="15" r="6"  stroke="#C4A96A" stroke-width="0.5" opacity="0.35"/>
+                <ellipse cx="110" cy="15" rx="28" ry="9" stroke="#C4A96A" stroke-width="0.5" opacity="0.3"/>
+                <circle cx="110" cy="15" r="2"  fill="#C4A96A" opacity="0.5"/>
+                <circle cx="138" cy="15" r="2" fill="#C4A96A" opacity="0.4"/>
+                <circle cx="82"  cy="15" r="2" fill="#C4A96A" opacity="0.4"/>
+              </svg>
+            </div>
+
+            <div class="printer-slot-row">
+              <div class="printer-slot-line"></div>
+              <div class="printer-slot-opening"></div>
+              <div class="printer-slot-line"></div>
+            </div>
+          </div>
+
+          <div class="strip-output">
+            <div class="strip-clip-window">
+              <div class="strip-animate" id="export-strip-animate">
+                <canvas id="export-canvas" aria-label="Your final photostrip"></canvas>
+              </div>
+            </div>
+          </div>
+
+          <div class="printer-caption">
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="#C4A96A">
+              <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/>
+            </svg>
+            Printing your memories...
+          </div>
+        </div>
+      </div>
+
+      <div class="export-buttons-wrap">
+        <!-- Action buttons: 3 rows of rounded pills -->
+        <div class="export-btn-group">
+          <!-- Row 1: Download -->
+          <button class="btn-primary btn-pill btn-hero" id="download-strip" aria-label="Download photostrip">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
+            </svg>
+            Download Strip
+          </button>
+
+          <!-- Row 2: Print + Share -->
+          <div class="export-btn-row">
+            <button class="btn-secondary btn-pill" id="print-strip" aria-label="Print photostrip">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/>
+              </svg>
+              Print
+            </button>
+            <button class="btn-secondary btn-pill" id="share-strip" aria-label="Share photostrip">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
+              </svg>
+              Share
+            </button>
+          </div>
+
+          <!-- Row 3: Enter Again -->
+          <button class="btn-ghost btn-pill" id="print-again" aria-label="Start over in photobooth">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M1 4v6h6"/><path d="M3.51 15a9 9 0 1 0 .49-4.68"/>
+            </svg>
+            Enter Photobooth Again
+          </button>
+        </div>
+
+        <!-- Hashtag copy block -->
+        <div class="share-prompt">
+          <p class="share-text">Share your strip and tag:<br>
+            <button class="hashtag-copy-block" id="hashtag-copy-btn" aria-label="Click to copy all hashtags" title="Click to copy">
+              <span id="hashtag-copy-text">#全世界都爱敖尹 #NoValkoNoTrust #NoValkoNoMoney #LADSIs6 #SpeakUpInfold #ValkoIsLoved #ValkoIsValuable #BringValkoBack #BringBackValko</span>
+              <span class="hashtag-copy-icon" aria-hidden="true">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+                </svg>
+              </span>
+            </button>
+          </p>
+        </div>
+      </div> <!-- /export-buttons-wrap -->
+      </div> <!-- /export-content-row -->
+
+    </div><!-- /export-actions-panel -->
+
+  </div>
+</section>
+
+
+<!-- Hidden canvas for frame capture -->
+<canvas id="capture-canvas" style="display: none;" aria-hidden="true"></canvas>
+
+
+<script src="assets/stickers/stickersData.js"></script>
+  <script src="assets/frames/framesData.js"></script>
+<script src="../audio-bridge.js?v=4"></script>
+<script src="booth.js?v=13"></script>
+<script>
+  (function() {
+    const canvas = document.getElementById('starfield-canvas');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+    resize();
+    window.addEventListener('resize', resize);
+    const stars = Array.from({ length: 200 }, () => ({
+      nx: Math.random(), ny: Math.random(),
+      size: Math.pow(Math.random(), 2) * 1.6 + 0.2,
+      base: Math.random() * 0.45 + 0.1,
+      phase: Math.random() * Math.PI * 2,
+      speed: Math.random() * 0.012 + 0.004,
+    }));
+    let shoots = [], t = 0;
+    function maybeShoot() {
+      if (Math.random() < 0.002 && shoots.length < 3) {
+        const angle = (Math.random() * 30 + 20) * (Math.PI / 180);
+        const speed = Math.random() * 5 + 3;
+        shoots.push({ x: Math.random() * canvas.width, y: Math.random() * canvas.height * 0.4,
+          vx: Math.cos(angle) * speed, vy: Math.sin(angle) * speed,
+          life: 1, decay: Math.random() * 0.018 + 0.012, tail: Math.random() * 80 + 40 });
+      }
+    }
+    function tick() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      t += 0.008;
+      for (const s of stars) {
+        const alpha = s.base * (0.5 + 0.5 * Math.sin(t * s.speed * 7 + s.phase));
+        ctx.beginPath();
+        ctx.arc(s.nx * canvas.width, s.ny * canvas.height, s.size, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(255,255,255,${alpha.toFixed(3)})`;
+        ctx.fill();
+      }
+      maybeShoot();
+      for (let i = shoots.length - 1; i >= 0; i--) {
+        const sh = shoots[i];
+        sh.x += sh.vx; sh.y += sh.vy; sh.life -= sh.decay;
+        if (sh.life <= 0 || sh.y > canvas.height || sh.x > canvas.width) { shoots.splice(i, 1); continue; }
+        const grad = ctx.createLinearGradient(sh.x, sh.y, sh.x - sh.vx * sh.tail, sh.y - sh.vy * sh.tail);
+        grad.addColorStop(0, `rgba(255,255,255,${sh.life})`);
+        grad.addColorStop(1, 'rgba(255,255,255,0)');
+        ctx.beginPath(); ctx.moveTo(sh.x, sh.y);
+        ctx.lineTo(sh.x - sh.vx * sh.tail, sh.y - sh.vy * sh.tail);
+        ctx.strokeStyle = grad; ctx.lineWidth = 1.5; ctx.lineCap = 'round'; ctx.stroke();
+      }
+      requestAnimationFrame(tick);
+    }
+    tick();
+  })();
+</script>
+
+<!-- Global Audio Player -->
+<audio id="bg-music" src="assets/ui/heartstring-and-harmony.mp3" loop autoplay></audio>
+
+  <!-- Flash overlay for the entire screen -->
+  <div class="camera-flash" id="camera-flash" aria-hidden="true"></div>
+
+  <script>
+    lucide.createIcons();
+  </script>
+  <script>
+    window.PAGE_FAQ = {
+      title: 'Studio FAQ',
+      items: [
+        { q: 'How do I capture photos?', a: 'On the camera screen, position yourself and click the shutter button. The booth will automatically take a series of photos for your strip.' },
+        { q: 'Can I retake a photo?', a: 'Use the back arrow on the camera screen to go back and retake. You can redo any shot before confirming the strip.' },
+        { q: 'How do I add stickers?', a: 'Switch to the Stickers tab in the right panel. Tap any sticker to place it on your strip, then drag and resize it as you like.' },
+        { q: 'How do I apply filters?', a: 'Open the Filters tab in the right panel and select a filter. The effect is instantly previewed on your strip.' },
+        { q: 'How do I add text?', a: 'Go to the Text tab, type your message, and place it on the strip. You can drag and resize text overlays.' },
+        { q: 'How do I delete a sticker or text?', a: 'Select the decoration by tapping it, then use the red trash icon that appears on the top-left corner of the selected item.' },
+        { q: 'How do I download my strip?', a: 'On the final export screen, click the download button. Your photostrip will be saved as a PNG image.' },
+        { q: 'How do I print my strip?', a: 'After downloading, you can open the image and print it from your device. The strip is designed in a standard photostrip aspect ratio.' }
+      ]
+    };
+  </script>
+  <script src="../global-settings.js?v=6"></script>
+  <script src="../global-faq.js?v=3"></script>
+</body>
+</html>
+
+

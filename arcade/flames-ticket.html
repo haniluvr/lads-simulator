@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FLAMES Calculator — Love and Deepspace Simulator</title>
+  <link rel="icon" type="image/webp" href="../assets/ui/favicon.webp">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Cinzel:wght@400..900&family=Cormorant+Infant:ital,wght@0,300..700;1,300..700&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="../style.css?v=33">
+  <link rel="stylesheet" href="flames.css?v=10">
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+  <!-- BGM: own track for this page -->
+  <audio id="bg-music" src="../assets/ui/sunny-summer.mp3" loop></audio>
+
+  <!-- CSS-only starfield — no JS needed -->
+  <div class="flames-stars" aria-hidden="true"></div>
+
+  <!-- Back Button -->
+  <a href="../index.html" class="enter-btn back-btn" aria-label="Back to Home">
+    <i data-lucide="arrow-left"></i> BACK TO HOME
+  </a>
+
+  <!-- BGM Toggle -->
+  <button id="music-toggle" class="music-toggle-btn" aria-label="Toggle background music">
+    <i data-lucide="play" id="music-icon-play"></i>
+    <i data-lucide="pause" id="music-icon-pause" style="display:none;"></i>
+  </button>
+
+  <header class="page-header">
+    <img src="../assets/ui/arcade/flame-ticket/lotus.svg" alt="" class="royal-lotus">
+    <h1>FLAMES Tickets</h1>
+    <p class="subtitle-small">- written in the stars -</p>
+    <p class="subtitle-medium">Discover your true compatibility</p>
+  </header>
+
+  <div class="flames-container" id="flamesContainer">
+    <!-- Calculator Card -->
+    <div class="calc-card" id="calcCard">
+      <p class="booth-tagline">♡ find your FLAMES match ♡</p>
+
+      <div class="inputs-row">
+        <div class="input-group">
+          <label for="name1">Your Name</label>
+          <div class="input-shell">
+            <span class="input-ava" aria-hidden="true">1</span>
+            <input type="text" id="name1" placeholder="e.g. MC..." maxlength="60" autocomplete="off" onkeydown="if(event.key==='Enter') document.getElementById('name2').focus()">
+          </div>
+        </div>
+
+        <div class="heart-divider pulsing-heart">♡</div>
+
+        <div class="input-group">
+          <label for="name2">Their Name</label>
+          <div class="input-shell">
+            <span class="input-ava" aria-hidden="true">2</span>
+            <input type="text" id="name2" placeholder="e.g. Valko..." maxlength="60" autocomplete="off" onkeydown="if(event.key==='Enter') calculateFlames()">
+          </div>
+        </div>
+      </div>
+
+      <!-- Name strike animation stage -->
+      <div class="strike-stage" id="strikeStage" aria-live="polite">
+        <div class="strike-name" id="strikeName1Label">Name 1</div>
+        <div class="strike-row" id="strikeName1"></div>
+        <div class="strike-name" id="strikeName2Label">Name 2</div>
+        <div class="strike-row" id="strikeName2"></div>
+        <div class="strike-status" id="strikeStatus"></div>
+      </div>
+
+      <!-- FLAMES Letters -->
+      <div class="count-display" id="countDisplay"></div>
+      <div class="flames-row" id="flamesRow">
+        <div class="flame-box" data-l="F"><span>F</span><span class="flame-label">Friends</span></div>
+        <div class="flame-box" data-l="L"><span>L</span><span class="flame-label">Love</span></div>
+        <div class="flame-box" data-l="A"><span>A</span><span class="flame-label">Affection</span></div>
+        <div class="flame-box" data-l="M"><span>M</span><span class="flame-label">Marriage</span></div>
+        <div class="flame-box" data-l="E"><span>E</span><span class="flame-label">Enemies</span></div>
+        <div class="flame-box" data-l="S"><span>S</span><span class="flame-label">Siblings</span></div>
+      </div>
+
+      <button class="flames-btn flames-btn-primary" id="calcBtn" onclick="calculateFlames()">CALCULATE <i data-lucide="calculator" style="width: 20px; height: 20px; color: #0a0a22;"></i></button>
+    </div>
+
+    <!-- Ticket Column -->
+    <div class="ticket-column" id="ticketColumn">
+      <div class="ticket" id="loveTicket">
+        <div class="ticket-stamp">★ FLAMES ★<br>Official</div>
+        <div class="ticket-top">
+          <div class="ticket-kicker">♡ Admit Two · No Refunds on Feelings ♡</div>
+          <div class="ticket-title">FLAMES Love Ticket</div>
+          <div class="ticket-names" id="tkNames"></div>
+          <div class="ticket-result"><span class="emoji" id="tkEmoji"></span><span id="tkWord"></span></div>
+          <div class="match-wrap">
+            <div class="match-label"><span>Compatibility</span><b id="tkScore">0%</b></div>
+            <div class="match-track"><div class="match-fill" id="tkFill"></div></div>
+          </div>
+          <div class="ticket-meaning" id="tkMeaning"></div>
+        </div>
+        <div class="ticket-barcode"></div>
+        <div class="ticket-perf"></div>
+        <div class="ticket-stub">
+          <span>Ticket No<b id="tkId">—</b></span>
+          <span>Issued<b id="tkDate">—</b></span>
+          <span class="booth">Play free at<br><b>LADS SIMULATOR</b></span>
+        </div>
+      </div> <!-- Close .ticket -->
+
+      <div class="ticket-actions">
+        <button class="flames-btn flames-btn-primary" id="tkDownload" onclick="downloadTicket()"><i data-lucide="download" style="width: 14px; height: 14px; color: #0a0a22;"></i> Save</button>
+        <button class="flames-btn flames-btn-ghost" id="tkShare" onclick="shareTicket()"><i data-lucide="share" style="width: 14px; height: 14px; color: #c9a96e;"></i> Share</button>
+        <button class="flames-btn flames-btn-ghost" onclick="resetCalculator()"><i data-lucide="rotate-ccw" style="width: 14px; height: 14px; color: #c9a96e;"></i> Again</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+  <script src="../audio-bridge.js?v=4"></script>
+  <script src="flames.js?v=3"></script>
+  <script>
+    window.PAGE_FAQ = {
+      title: 'FLAMES Ticket FAQ',
+      items: [
+        { q: 'What does FLAMES stand for?', a: 'FLAMES stands for Friends, Love, Affection, Marriage, Enemies, Siblings. Each letter represents a possible relationship outcome between two people.' },
+        { q: 'How is the FLAMES result calculated?', a: 'Enter two names. The shared letters are counted and eliminated alternately. The letter remaining at the end is your FLAMES result.' },
+        { q: 'Is the result accurate?', a: 'FLAMES is a classic fortune-telling game for fun — it\'s not scientifically accurate! Take the result with a smile.' },
+        { q: 'What is the ticket?', a: 'The ticket is a shareable image of your FLAMES result, styled like a concert or lottery ticket. You can download it and share it with your friends!' },
+        { q: 'Can I try again?', a: 'Yes! Click the "Again" button to reset and try a new pair of names.' },
+        { q: 'Can I change the names after calculating?', a: 'Click "Again" to reset, then enter new names and calculate again.' }
+      ]
+    };
+  </script>
+  <script src="../global-settings.js?v=6"></script>
+  <script src="../global-faq.js?v=3"></script>
+  <script>
+    lucide.createIcons();
+  </script>
+</body>
+</html>

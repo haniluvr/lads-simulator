@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cosmo Photobooth — Love and Deepspace Simulator</title>
+  <link rel="icon" type="image/webp" href="assets/ui/favicon.webp">
+  <meta name="description" content="Step inside Cosmo Photobooth — take cinematic photostrips with your favorite Love and Deepspace characters." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&family=Cormorant+Infant:ital,wght@0,300..700;1,300..700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css?v=5" />
+  <link rel="stylesheet" href="landing.css" />
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="landing-body">
+  <div class="landing-bg-image" aria-hidden="true"></div>
+  <canvas id="starfield-canvas" aria-hidden="true"></canvas>
+
+  <!-- ============================================================
+       COSMO BORDERS (Overlay)
+       ============================================================ -->
+  <div class="cosmo-borders" aria-hidden="true">
+    <!-- Outer Frame Lines -->
+    <div class="border-line outer-top"></div>
+    <div class="border-line outer-bottom"></div>
+    <div class="border-line outer-left"></div>
+    <div class="border-line outer-right"></div>
+
+    <!-- Outer Corners (Concave Cutouts) -->
+    <svg class="corner-svg outer-tl" viewBox="0 0 32 32">
+      <path d="M 32 0.5 A 31.5 31.5 0 0 1 0.5 32" fill="none" stroke="#C8BB7A" stroke-width="1.2"/>
+      <circle cx="7" cy="7" r="1.5" fill="#C8BB7A" opacity="0.8"/>
+    </svg>
+    <svg class="corner-svg outer-tr" viewBox="0 0 32 32">
+      <path d="M 0 0.5 A 31.5 31.5 0 0 0 31.5 32" fill="none" stroke="#C8BB7A" stroke-width="1.2"/>
+      <circle cx="25" cy="7" r="1.5" fill="#C8BB7A" opacity="0.8"/>
+    </svg>
+    <svg class="corner-svg outer-bl" viewBox="0 0 32 32">
+      <path d="M 0.5 0 A 31.5 31.5 0 0 1 32 31.5" fill="none" stroke="#C8BB7A" stroke-width="1.2"/>
+      <circle cx="7" cy="25" r="1.5" fill="#C8BB7A" opacity="0.8"/>
+    </svg>
+    <svg class="corner-svg outer-br" viewBox="0 0 32 32">
+      <path d="M 31.5 0 A 31.5 31.5 0 0 0 0 31.5" fill="none" stroke="#C8BB7A" stroke-width="1.2"/>
+      <circle cx="25" cy="25" r="1.5" fill="#C8BB7A" opacity="0.8"/>
+    </svg>
+
+    <!-- Inner Frame -->
+    <div class="inner-frame">
+      <!-- Inner Corners (Stars) -->
+      <svg class="star-svg inner-tl" viewBox="0 0 24 24">
+        <path d="M12 0 Q12 12 24 12 Q12 12 12 24 Q12 12 0 12 Q12 12 12 0 Z" fill="#E8E0C4"/>
+      </svg>
+      <svg class="star-svg inner-tr" viewBox="0 0 24 24">
+        <path d="M12 0 Q12 12 24 12 Q12 12 12 24 Q12 12 0 12 Q12 12 12 0 Z" fill="#E8E0C4"/>
+      </svg>
+      <svg class="star-svg inner-bl" viewBox="0 0 24 24">
+        <path d="M12 0 Q12 12 24 12 Q12 12 12 24 Q12 12 0 12 Q12 12 12 0 Z" fill="#E8E0C4"/>
+      </svg>
+      <svg class="star-svg inner-br" viewBox="0 0 24 24">
+        <path d="M12 0 Q12 12 24 12 Q12 12 12 24 Q12 12 0 12 Q12 12 12 0 Z" fill="#E8E0C4"/>
+      </svg>
+    </div>
+  </div>
+<!-- ============================================================
+     CONTENT LAYOUT — sits on top of the background
+     ============================================================ -->
+<main class="landing-hero" aria-label="Cosmo Photobooth landing page">
+
+  <!-- ── LEFT PANEL ── title + enter -->
+  <div class="left-panel">
+    <div class="left-content">
+      <h1 class="left-title logo-title">
+        <img src="assets/cosmo-photobooth.webp" alt="Cosmo Photobooth" class="title-logo" draggable="false" />
+        <svg class="logo-x-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M18 6 6 18"/>
+          <path d="m6 6 12 12"/>
+        </svg>
+        <img src="assets/love-and-deepspace.webp" alt="Love and Deepspace" class="title-logo" draggable="false" />
+      </h1>
+      
+      <div class="project-badge">Love &amp; Deepspace Fan Project</div>
+      
+      <p class="booth-description">
+        Step into the cosmos and capture your celestial moments. Choose exclusive frames featuring your favorite Love and Deepspace companions and instantly print gorgeous, personalized memory strips.
+      </p>
+
+      <a href="../index.html" class="enter-btn back-btn" aria-label="Back to Home">
+        <i data-lucide="arrow-left"></i>
+        BACK TO HOME
+      </a>
+    </div>
+  </div>
+
+    <!-- ✦✦ CENTER PANEL ✦✦ photobooth -->
+    <div class="center-panel">
+      <a href="booth.html" class="booth-display flip-container" aria-label="Cosmo Photobooth machine">
+        <div class="flipper">
+          <div class="flip-front">
+            <img
+              src="assets/photobooth.webp"
+              alt="Cosmo Photobooth — a royal blue celestial photobooth cabinet with gold engravings"
+              class="booth-image"
+              draggable="false"
+            />
+          </div>
+          <div class="flip-back">
+            <img
+              src="assets/photobooth-2.webp"
+              alt="Cosmo Photobooth - Secret Chamber"
+              class="booth-image"
+              draggable="false"
+            />
+            <div class="secret-chamber-text">
+              <span>Enter</span>
+              <span>the</span>
+              <span>Secret</span>
+              <span>Chamber</span>
+            </div>
+          </div>
+        </div>
+      </a>
+    </div>
+
+  <!-- ── RIGHT PANEL ── printer -->
+  <div class="right-panel">
+    <div class="printer-section" aria-label="Animated photostrip printer">
+
+      <div class="printer-body">
+        <div class="printer-arch" aria-hidden="true">
+          <svg class="arch-deco" viewBox="0 0 220 36" fill="none">
+            <path d="M10,28 Q110,2 210,28" stroke="#C4A96A" stroke-width="0.8" opacity="0.5"/>
+            <circle cx="50"  cy="18" r="2" fill="#C4A96A" opacity="0.7"/>
+            <circle cx="110" cy="10" r="3" fill="#C4A96A" opacity="0.8"/>
+            <circle cx="170" cy="18" r="2" fill="#C4A96A" opacity="0.7"/>
+          </svg>
+        </div>
+
+        <div class="printer-header">
+          <div class="printer-brand">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="#C4A96A">
+              <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/>
+            </svg>
+            COSMO
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="#C4A96A">
+              <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/>
+            </svg>
+          </div>
+          <div class="printer-status-led"></div>
+        </div>
+
+        <div class="printer-orbital" aria-hidden="true">
+          <svg viewBox="0 0 180 30" fill="none">
+            <circle cx="90" cy="15" r="12" stroke="#C4A96A" stroke-width="0.6" opacity="0.4"/>
+            <circle cx="90" cy="15" r="6"  stroke="#C4A96A" stroke-width="0.5" opacity="0.35"/>
+            <ellipse cx="90" cy="15" rx="24" ry="8" stroke="#C4A96A" stroke-width="0.5" opacity="0.3"/>
+            <circle cx="90" cy="15" r="2"  fill="#C4A96A" opacity="0.5"/>
+            <circle cx="114" cy="15" r="2" fill="#C4A96A" opacity="0.4"/>
+            <circle cx="66"  cy="15" r="2" fill="#C4A96A" opacity="0.4"/>
+          </svg>
+        </div>
+
+        <div class="printer-slot-row">
+          <div class="printer-slot-line"></div>
+          <div class="printer-slot-opening"></div>
+          <div class="printer-slot-line"></div>
+        </div>
+      </div>
+
+      <div class="strip-output">
+        <div class="strip-clip-window">
+          <div class="strip-animate" id="emerging-strip">
+            <img id="sample-strip" src="assets/sample/sample_1.webp" alt="Sample photostrip" class="sample-strip-img" />
+          </div>
+        </div>
+      </div>
+
+      <div class="printer-caption">
+        <svg width="10" height="10" viewBox="0 0 24 24" fill="#C4A96A">
+          <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/>
+        </svg>
+        Printing your memories...
+      </div>
+    </div>
+  </div>
+
+</main>
+
+
+  
+<!-- Global Audio Player -->
+    <audio id="bg-music" src="assets/ui/heartstring-and-harmony.mp3" loop autoplay></audio>
+    <button id="music-toggle" class="music-toggle-btn" aria-label="Toggle background music">
+      <i data-lucide="play" id="music-icon-play"></i>
+      <i data-lucide="pause" id="music-icon-pause" style="display:none;"></i>
+    </button>
+<!-- Notice button -->
+      <button id="notice-btn" class="sf-reset-btn sf-notice-btn" aria-label="Notices" title="Updates & Mechanics">
+        <i data-lucide="info"></i>
+      </button>
+<!-- Settings button -->
+<!-- Settings button injected by global-settings.js?v=6 -->
+<!-- Settings modal injected by global-settings.js?v=6 -->
+
+  <!-- Notice Modal -->
+    <div id="notice-modal" class="settings-overlay" aria-modal="true" role="dialog" style="display: none;">
+      <div class="settings-container">
+        <div class="settings-header">
+          <h2>NOTICES</h2>
+          <button id="notice-close-btn" class="settings-close" aria-label="Close Notices">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg>
+          </button>
+        </div>
+        <div class="settings-body notice-body">
+          <div class="notice-section" style="margin-bottom: 24px;">
+            <h3 style="color: var(--gold); margin-bottom: 12px; font-family: var(--font-d); font-size: 20px;">Patch Notes</h3>
+            <p style="color: var(--txt-2); margin-bottom: 8px;">Changes made since the last update:</p>
+            <ul style="color: #ddd; padding-left: 20px; line-height: 1.6; font-size: 14px;">
+              <li><strong>NEW Arcade Minigame: Wishfall Frenzy!</strong></li>
+              <li><strong>3 NEW Valko Memories</strong></li>
+              <li><strong>NEW Precise Wish System</strong></li>
+              <li><strong>NEW Memory Collection Tracker</strong></li>
+            </ul>
+          </div>
+        <div class="notice-section">
+            <h3 style="color: var(--gold); margin-bottom: 12px; font-family: var(--font-d); font-size: 20px;">Mechanics</h3>
+            <ul style="color: #ddd; padding-left: 20px; line-height: 1.6; font-size: 14px;">
+              <li style="margin-bottom: 8px;"><strong>Limited vs Standard:</strong> Limited banners have exclusive rate-ups while standard has the base 5-star pool.</li>
+              <li style="margin-bottom: 8px;"><strong>Pity System:</strong> 5-stars are guaranteed within 70 pulls, 4-stars within 10 pulls.</li>
+              <li style="margin-bottom: 8px;"><strong>Precise Wish:</strong> Choose a target Love Interest. If you lose the 50/50, your next 5-star is guaranteed to be from your chosen Love Interest.</li>
+              <li style="margin-bottom: 8px;"><strong>Ranking Memories Up:</strong> Pulling duplicates increases the rank of a memory.</li>
+              <li style="margin-bottom: 8px;"><strong>Arcade Minigame:</strong> Compete for the highest score to earn rewards like deepspace wish and empyrean wish tickets.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+<script src="../audio-bridge.js?v=4"></script>
+<script src="main.js"></script>
+<script>
+  window.PAGE_FAQ = {
+    title: 'Photobooth FAQ',
+    items: [
+      { q: 'How do I start the photobooth?', a: 'Select a frame from the banner list on the main screen, then click "Enter Photobooth" to begin your session.' },
+      { q: 'What frames are available?', a: 'Each Love Interest has their own unique themed frame. You can preview each frame before entering the booth.' },
+      { q: 'Can I use my own photos?', a: 'Yes! Inside the booth, tap the upload button in the camera controls to upload a photo from your device instead of using the live camera.' },
+      { q: 'How do I add stickers and filters?', a: 'After capturing your photos, use the decoration panel on the right side to apply filters, add stickers, or add text overlays to your strip.' },
+      { q: 'How do I save my photostrip?', a: 'On the export screen, click the download button to save your photostrip as an image file. You can also share it directly.' },
+      { q: 'Why is my camera not working?', a: 'Make sure you have granted camera permissions to your browser. If using HTTPS is required, try accessing via localhost or a secure connection.' }
+    ]
+  };
+</script>
+<script src="../global-settings.js?v=6"></script>
+<script src="../global-faq.js?v=3"></script>
+<script>
+  lucide.createIcons();
+</script>
+</body>
+</html>

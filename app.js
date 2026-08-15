@@ -159,8 +159,11 @@ document.addEventListener('click', (e) => {
     } else if (id === 'collect-btn') {
       playSFX('claim_cue');
       return;
-    } else if (id === 'close-modal-btn' || id === 'col-back-btn' || id === 'settings-close-btn' || id === 'skip-reveal-btn') {
+    } else if (id === 'close-modal-btn' || id === 'col-back-btn' || id === 'settings-close-btn' || id === 'skip-reveal-btn' || id === 'arcade-modal-close') {
       playSFX('back');
+      return;
+    } else if (id === 'arcade-open-btn') {
+      playSFX('openWish');
       return;
     } else if (classList.contains('banner-nav-item') || classList.contains('banner-card')) {
       playSFX('openWish');
@@ -177,178 +180,30 @@ function applyCursorClass(cursorName) {
 }
 
 function initSettings() {
-  const settingsBtn = document.getElementById('settings-btn');
-  const settingsModal = document.getElementById('settings-modal');
-  const settingsClose = document.getElementById('settings-close-btn');
+  // Settings modal + cursor + audio sliders now handled by global-settings.js
+  // Only the arcade picker modal is still wired here.
 
-  // Toggle modal
-  settingsBtn.addEventListener('click', () => {
-    settingsModal.style.display = ''; // Remove display:none if set
-    requestAnimationFrame(() => requestAnimationFrame(() => settingsModal.classList.add('active')));
-  });
-  
-  const closeModal = () => {
-    settingsModal.classList.remove('active');
-    setTimeout(() => { settingsModal.style.display = 'none'; }, 300);
+  // ── Arcade Game Picker Modal ──
+  const arcadeOpenBtn  = document.getElementById('arcade-open-btn');
+  const arcadeModal    = document.getElementById('arcade-modal');
+
+  if (!arcadeOpenBtn || !arcadeModal) return;
+
+  const openArcade = () => {
+    arcadeModal.style.display = '';
+    requestAnimationFrame(() => requestAnimationFrame(() => arcadeModal.classList.add('active')));
   };
-  
-  settingsClose.addEventListener('click', closeModal);
-  settingsModal.addEventListener('click', (e) => {
-    if (e.target === settingsModal) closeModal();
-  });
-
-  // Accordion Logic
-  const accordions = document.querySelectorAll('.settings-accordion');
-  accordions.forEach(acc => {
-    const summary = acc.querySelector('summary');
-    const content = acc.querySelector('.accordion-content');
-    
-    summary.addEventListener('click', (e) => {
-      e.preventDefault(); // Take over the toggle
-      
-      if (acc.hasAttribute('open')) {
-        // Close this one with animation
-        content.style.animation = 'slideUp 0.2s ease-in forwards';
-        content.addEventListener('animationend', function handler() {
-          acc.removeAttribute('open');
-          content.style.animation = ''; // reset
-          content.removeEventListener('animationend', handler);
-        });
-      } else {
-        // Close others
-        accordions.forEach(other => {
-          if (other !== acc && other.hasAttribute('open')) {
-            const otherContent = other.querySelector('.accordion-content');
-            otherContent.style.animation = 'slideUp 0.2s ease-in forwards';
-            otherContent.addEventListener('animationend', function handler() {
-              other.removeAttribute('open');
-              otherContent.style.animation = '';
-              otherContent.removeEventListener('animationend', handler);
-            });
-          }
-        });
-        
-        // Open this one
-        acc.setAttribute('open', '');
-        content.style.animation = 'slideDown 0.3s ease-out forwards';
-      }
-    });
-  });
-
-  // Audio Slider
-  const volumeSlider = document.getElementById('volume-slider');
-  volumeSlider.value = gs.volume ?? 0.4;
-  volumeSlider.addEventListener('input', (e) => {
-    const vol = parseFloat(e.target.value);
-    document.getElementById('bg-music').volume = vol;
-    gs.volume = vol;
-    if (window.updateMinigameVolume) window.updateMinigameVolume();
-    saveState();
-  });
-
-  const sfxSlider = document.getElementById('sfx-slider');
-  const initialSfxVol = gs.sfxVolume ?? 0.5;
-  sfxSlider.value = initialSfxVol;
-  
-  sfxSlider.addEventListener('input', (e) => {
-    const vol = parseFloat(e.target.value);
-    gs.sfxVolume = vol;
-    if (window.updateMinigameVolume) window.updateMinigameVolume();
-    saveState();
-  });
-
-  // Cursor Buttons
-  const cursorBtns = document.querySelectorAll('.cursor-btn');
-  cursorBtns.forEach(btn => {
-    if (btn.dataset.cursor === (gs.cursor || 'default')) {
-      cursorBtns.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-    }
-    btn.addEventListener('click', () => {
-      cursorBtns.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      const cursorName = btn.dataset.cursor;
-      gs.cursor = cursorName;
-      saveState();
-      applyCursorClass(cursorName);
-    });
-  });
-
-  // Reset Button Inside Settings
-  const resetConfirmModalHtml = `
-      <style>
-        .alert-overlay {
-          position: fixed; inset: 0; z-index: 3000;
-          background: rgba(5, 5, 15, 0.85); backdrop-filter: blur(10px);
-          display: flex; align-items: center; justify-content: center;
-          opacity: 0; pointer-events: none; transition: opacity 0.25s ease;
-        }
-        .alert-overlay.active { opacity: 1; pointer-events: all; }
-        .alert-modal {
-          width: 90%; max-width: 400px;
-          background: rgba(20, 10, 10, 0.95);
-          border: 1px solid rgba(255, 60, 60, 0.3); border-radius: 12px;
-          box-shadow: 0 10px 40px rgba(0,0,0,0.8), 0 0 20px rgba(255, 60, 60, 0.15);
-          padding: 30px; text-align: center;
-          transform: scale(0.95); transition: transform 0.25s ease;
-        }
-        .alert-overlay.active .alert-modal { transform: scale(1); }
-        .alert-header { font-family: 'Cinzel', serif; font-size: 22px; color: #ff6b6b; letter-spacing: 0.1em; margin-bottom: 24px; }
-        .alert-body { display: flex; flex-direction: column; gap: 24px; }
-        .alert-danger-box { background: rgba(255, 60, 60, 0.08); border: 1px dashed rgba(255, 60, 60, 0.3); padding: 16px; border-radius: 8px; }
-        .alert-danger-title { color: #ff6b6b; font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; display: block; margin-bottom: 8px; }
-        .alert-danger-text { color: var(--txt-2); font-size: 15px; font-weight: 500; letter-spacing: 0.03em; }
-        .alert-btn {
-          flex: 1; height: 44px; border-radius: 22px; font-size: 12px; font-weight: 600; letter-spacing: 0.1em;
-          text-transform: uppercase; display: flex; align-items: center; justify-content: center; transition: all 0.2s ease;
-        }
-        .alert-btn-cancel { background: transparent; color: var(--txt-2); border: 1px solid rgba(255,255,255,0.2); }
-        .alert-btn-cancel:hover { background: rgba(255,255,255,0.05); color: var(--txt); }
-        .alert-btn-confirm { background: rgba(255, 60, 60, 0.1); color: #ff6b6b; border: 1px solid rgba(255, 60, 60, 0.4); }
-        .alert-btn-confirm:hover { background: rgba(255, 60, 60, 0.2); border-color: rgba(255, 60, 60, 0.6); box-shadow: 0 0 12px rgba(255, 60, 60, 0.2); }
-      </style>
-      <div id="reset-confirm-modal" class="alert-overlay" aria-modal="true" role="dialog" style="display:none;">
-        <div class="alert-modal">
-          <div class="alert-header">RESET DATA</div>
-          <div class="alert-body">
-            <p style="color: var(--txt); font-size: 15px; line-height: 1.6; margin: 0;">
-              Are you sure you want to completely reset all gacha data?
-            </p>
-            <div class="alert-danger-box">
-              <span class="alert-danger-title">This will permanently delete:</span>
-              <span class="alert-danger-text">Pulls, Pity, Wishes, and Collection</span>
-            </div>
-            <div style="display: flex; gap: 16px; justify-content: center;">
-              <button id="reset-cancel-btn" class="alert-btn alert-btn-cancel">CANCEL</button>
-              <button id="reset-confirm-action-btn" class="alert-btn alert-btn-confirm">CONFIRM</button>
-            </div>
-          </div>
-        </div>
-      </div>
-  `;
-  document.body.insertAdjacentHTML('beforeend', resetConfirmModalHtml);
-  
-  const resetBtn = document.getElementById('settings-reset-btn');
-  const resetModal = document.getElementById('reset-confirm-modal');
-  
-  resetBtn.addEventListener('click', () => {
-    resetModal.style.display = '';
-    requestAnimationFrame(() => requestAnimationFrame(() => resetModal.classList.add('active')));
-  });
-
-  const closeResetModal = () => {
-    resetModal.classList.remove('active');
-    setTimeout(() => { resetModal.style.display = 'none'; }, 250);
+  const closeArcade = () => {
+    arcadeModal.classList.remove('active');
+    setTimeout(() => { arcadeModal.style.display = 'none'; }, 300);
   };
 
-  document.getElementById('reset-cancel-btn').addEventListener('click', closeResetModal);
-  resetModal.addEventListener('click', (e) => {
-    if (e.target === resetModal) closeResetModal();
+  arcadeOpenBtn.addEventListener('click', openArcade);
+  arcadeModal.addEventListener('click', (e) => {
+    if (e.target === arcadeModal) closeArcade();
   });
-
-  document.getElementById('reset-confirm-action-btn').addEventListener('click', () => {
-    localStorage.removeItem(STATE_KEY);
-    location.reload();
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && arcadeModal.classList.contains('active')) closeArcade();
   });
 }
 
@@ -1617,31 +1472,17 @@ function getCountdownStr() {
 function initAudio() {
   const bgMusic = document.getElementById('bg-music');
   const musicToggleBtn = document.getElementById('music-toggle');
-  const musicIconPlay = document.getElementById('music-icon-play');
-  const musicIconPause = document.getElementById('music-icon-pause');
 
-  bgMusic.volume = gs.volume ?? 0.4;
+  // Apply saved volume (reads lds_gacha_v1, picks up changes from photobooth settings)
+  bgMusic.volume = AudioBridge.getVolume();
+  gs.volume = bgMusic.volume; // keep gs in sync
 
-  // Attempt autoplay on load
-  bgMusic.play().then(() => {
-    musicIconPlay.style.display = 'none';
-    musicIconPause.style.display = 'block';
-  }).catch((e) => {
-    console.log("Autoplay blocked by browser. User interaction required.");
-    musicIconPlay.style.display = 'block';
-    musicIconPause.style.display = 'none';
-  });
+  // Use shared bridge: plays immediately if user has interacted before,
+  // waits for first click otherwise. Respects bgmOn mute preference.
+  AudioBridge.init(bgMusic, 'music-icon-play', 'music-icon-pause');
 
   musicToggleBtn.addEventListener('click', () => {
-    if (bgMusic.paused) {
-      bgMusic.play().catch(e => console.error("Audio play failed:", e));
-      musicIconPlay.style.display = 'none';
-      musicIconPause.style.display = 'block';
-    } else {
-      bgMusic.pause();
-      musicIconPlay.style.display = 'block';
-      musicIconPause.style.display = 'none';
-    }
+    AudioBridge.toggle(bgMusic, 'music-icon-play', 'music-icon-pause');
   });
 }
 
@@ -1809,19 +1650,7 @@ function initNoticeEvents() {
     if (e.target === noticeModal) closeNoticeModal();
   });
 }
-// --- ARCADE MINIGAME INTEGRATION ---
-window.addArcadeWishes = function(dsTickets, emTickets) {
-  // Cap tickets at 250 max (pullsToday cannot drop below 0)
-  gs.limitedPullsToday  = Math.max(0, gs.limitedPullsToday - dsTickets);
-  gs.standardPullsToday = Math.max(0, gs.standardPullsToday - emTickets);
-  saveState();
-  if (typeof updatePreciseWishUI === 'function') {
-    updatePreciseWishUI();
-  }
-  if (typeof currentBanner !== 'undefined' && currentBanner && typeof setupPullScreen === 'function') {
-    setupPullScreen(currentBanner);
-  }
-};
+// --- ARCADE MINIGAME INTEGRATION MOVED ---
 
 window.pauseMainBGM = function() {
   const bgMusic = document.getElementById('bg-music');

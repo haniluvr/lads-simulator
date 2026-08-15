@@ -1,0 +1,535 @@
+{
+  "6x2 Strip": {
+    "stripWidth": 566,
+    "stripHeight": 1700,
+    "frames": {
+      "2 Frames": {
+        "templates": {
+          "Romantic Wedding": {
+            "file": "6x2 Strip/2 Frames/Romantic Wedding.webp",
+            "frameCount": 2,
+            "windows": [
+              {
+                "id": 1,
+                "shape": "ellipse",
+                "cx": 283,
+                "cy": 367.4,
+                "rx": 170,
+                "ry": 235
+              },
+              {
+                "id": 2,
+                "shape": "ellipse",
+                "cx": 283,
+                "cy": 984.2,
+                "rx": 170,
+                "ry": 235
+              }
+            ]
+          },
+          "Snowy Fairytale": {
+            "file": "6x2 Strip/2 Frames/Snowy Fairytale.webp",
+            "frameCount": 2,
+            "windows": [
+              {
+                "id": 1,
+                "shape": "rect",
+                "x": 93.6,
+                "y": 184.5,
+                "w": 378.8,
+                "h": 492
+              },
+              {
+                "id": 2,
+                "shape": "rect",
+                "x": 95,
+                "y": 804,
+                "w": 378.8,
+                "h": 492,
+                "rotation": 6.7
+              }
+            ]
+          },
+          "Soulmates Forever": {
+            "file": "6x2 Strip/2 Frames/Soulmates Forever.webp",
+            "frameCount": 2,
+            "windows": [
+              {
+                "id": 1,
+                "shape": "rect",
+                "x": 54.4,
+                "y": 250.2,
+                "w": 457.3,
+                "h": 497
+              },
+              {
+                "id": 2,
+                "shape": "rect",
+                "x": 54.4,
+                "y": 773.8,
+                "w": 457.3,
+                "h": 497
+              }
+            ]
+          },
+          "Starry Sky": {
+            "file": "6x2 Strip/2 Frames/Starry Sky.webp",
+            "frameCount": 2,
+            "windows": [
+              {
+                "id": 1,
+                "shape": "rect",
+                "x": 102.6,
+                "y": 107.6,
+                "w": 370.8,
+                "h": 477.3
+              },
+              {
+                "id": 2,
+                "shape": "ellipse",
+                "cx": 283,
+                "cy": 1217,
+                "rx": 226.1,
+                "ry": 287.6
+              }
+            ]
+          },
+          "Sweet Apple": {
+            "file": "6x2 Strip/2 Frames/Sweet Apple.webp",
+            "frameCount": 2,
+            "windows": [
+              {
+                "id": 1,
+                "shape": "rect",
+                "x": 82,
+                "y": 237.7,
+                "w": 400.7,
+                "h": 367.5
+              },
+              {
+                "id": 2,
+                "shape": "rect",
+                "x": 82,
+                "y": 861.6,
+                "w": 400.7,
+                "h": 367.5
+              }
+            ]
+          },
+          "Sweet Ocean": {
+            "file": "6x2 Strip/2 Frames/Sweet Ocean.webp",
+            "frameCount": 2,
+            "windows": [
+              {
+                "id": 1,
+                "shape": "rect",
+                "x": 72,
+                "y": 259.8,
+                "w": 410.3,
+                "h": 411.6
+              },
+              {
+                "id": 2,
+                "shape": "rect",
+                "x": 77,
+                "y": 852.4,
+                "w": 410.3,
+                "h": 411.6,
+                "rotation": -10.4
+              }
+            ]
+          }
+        }
+      },
+      "4 Frames": {
+        "templates": {
+          "Baby Pink": {
+            "file": "6x2 Strip/4 Frames/Baby Pink.webp",
+            "frameCount": 4,
+            "windows": [
+              {
+                "id": 1,
+                "shape": "rect",
+                "x": 56.6,
+                "y": 95.5,
+                "w": 452.8,
+                "h": 330.8
+              },
+              {
+                "id": 2,
+                "shape": "rect",
+                "x": 56.6,
+                "y": 453.8,
+                "w": 452.8,
+                "h": 330.8
+              },
+              {
+                "id": 3,
+                "shape": "rect",
+                "x": 56.6,
+                "y": 812.2,
+                "w": 452.8,
+                "h": 330.8
+              },
+              {
+                "id": 4,
+                "shape": "rect",
+                "x": 56.6,
+                "y": 1170.6,
+                "w": 452.8,
+                "h": 330.8
+              }
+            ]
+          },
+          "Blue Denim": {
+            "file": "6x2 Strip/4 Frames/Blue Denim.webp",
+            "frameCount": 4,
+            "windows": [
+              {
+                "id": 1,
+                "shape": "rect",
+                "x": 83.2,
+                "y": 189.2,
+                "w": 399.7,
+                "h": 249.5
+              },
+              {
+                "id": 2,
+                "shape": "rect",
+                "x": 83.2,
+                "y": 546.1,
+                "w": 399.7,
+                "h": 249.5
+              },
+              {
+                "id": 3,
+                "shape": "rect",
+                "x": 83.2,
+                "y": 903,
+                "w": 399.7,
+                "h": 249.5
+              },
+              {
+                "id": 4,
+                "shape": "rect",
+                "x": 83.2,
+                "y": 1261.3,
+                "w": 399.7,
+                "h": 249.5
+              }
+            ]
+          },
+          "Blue Jeans": {
+            "file": "6x2 Strip/4 Frames/Blue Jeans.webp",
+            "frameCount": 4,
+            "windows": [
+              {
+                "id": 1,
+                "shape": "rect",
+                "x": 44.3,
+                "y": 68.8,
+                "w": 374.9,
+                "h": 271.2
+              },
+              {
+                "id": 2,
+                "shape": "rect",
+                "x": 131.4,
+                "y": 450.1,
+                "w": 374.9,
+                "h": 271.2
+              },
+              {
+                "id": 3,
+                "shape": "rect",
+                "x": 44.3,
+                "y": 831.1,
+                "w": 374.9,
+                "h": 271.2
+              },
+              {
+                "id": 4,
+                "shape": "rect",
+                "x": 131.4,
+                "y": 1212.1,
+                "w": 374.9,
+                "h": 271.2
+              }
+            ]
+          },
+          "Lace Wedding": {
+            "file": "6x2 Strip/4 Frames/Lace Wedding.webp",
+            "frameCount": 4,
+            "windows": [
+              {
+                "id": 1,
+                "shape": "rect",
+                "x": 92.9,
+                "y": 29,
+                "w": 382.3,
+                "h": 395.8
+              },
+              {
+                "id": 2,
+                "shape": "rect",
+                "x": 92.9,
+                "y": 443.6,
+                "w": 382.3,
+                "h": 395.8
+              },
+              {
+                "id": 3,
+                "shape": "rect",
+                "x": 92.9,
+                "y": 859.1,
+                "w": 382.3,
+                "h": 395.8
+              },
+              {
+                "id": 4,
+                "shape": "rect",
+                "x": 92.9,
+                "y": 1273.7,
+                "w": 382.3,
+                "h": 395.8
+              }
+            ]
+          },
+          "Playful Friends": {
+            "file": "6x2 Strip/4 Frames/Playful Friends.webp",
+            "frameCount": 4,
+            "windows": [
+              {
+                "id": 1,
+                "shape": "rect",
+                "x": 90,
+                "y": 56.6,
+                "w": 386,
+                "h": 364.9
+              },
+              {
+                "id": 2,
+                "shape": "rect",
+                "x": 90,
+                "y": 462.1,
+                "w": 435,
+                "h": 385
+              },
+              {
+                "id": 3,
+                "shape": "rect",
+                "x": 90,
+                "y": 865.4,
+                "w": 435,
+                "h": 385
+              },
+              {
+                "id": 4,
+                "shape": "rect",
+                "x": 90,
+                "y": 1268.6,
+                "w": 435,
+                "h": 385
+              }
+            ]
+          },
+          "Retro Vintage": {
+            "file": "6x2 Strip/4 Frames/Retro Vintage.webp",
+            "frameCount": 4,
+            "windows": [
+              {
+                "id": 1,
+                "shape": "rect",
+                "x": 47.1,
+                "y": 57.6,
+                "w": 471.7,
+                "h": 342.3
+              },
+              {
+                "id": 2,
+                "shape": "rect",
+                "x": 47.1,
+                "y": 423,
+                "w": 471.7,
+                "h": 342.3
+              },
+              {
+                "id": 3,
+                "shape": "rect",
+                "x": 47.1,
+                "y": 789.2,
+                "w": 471.7,
+                "h": 342.3
+              },
+              {
+                "id": 4,
+                "shape": "rect",
+                "x": 47.1,
+                "y": 1155.6,
+                "w": 471.7,
+                "h": 342.3
+              }
+            ]
+          },
+          "Romantic Coquette": {
+            "file": "6x2 Strip/4 Frames/Romantic Coquette.webp",
+            "frameCount": 4,
+            "windows": [
+              {
+                "id": 1,
+                "shape": "rect",
+                "x": 113.8,
+                "y": 87.3,
+                "w": 335.8,
+                "h": 302.8
+              },
+              {
+                "id": 2,
+                "shape": "rect",
+                "x": 115.4,
+                "y": 496,
+                "w": 335.8,
+                "h": 302.8,
+                "rotation": 10.4
+              },
+              {
+                "id": 3,
+                "shape": "rect",
+                "x": 113.8,
+                "y": 901,
+                "w": 335.8,
+                "h": 302.8,
+                "rotation": -10.5
+              },
+              {
+                "id": 4,
+                "shape": "rect",
+                "x": 115.4,
+                "y": 1305.9,
+                "w": 335.8,
+                "h": 302.8
+              }
+            ]
+          }
+        }
+      }
+    }
+  },
+  "6x4 Strip": {
+    "stripWidth": 1200,
+    "stripHeight": 1800,
+    "frames": {
+      "3 Frames": {
+        "templates": {
+          "Baby Pink": {
+            "file": "6x4 Strip/3 Frames/Baby Pink.webp",
+            "frameCount": 3,
+            "windows": [
+              {
+                "id": 1,
+                "shape": "rect",
+                "x": 435,
+                "y": 231,
+                "w": 765,
+                "h": 415
+              },
+              {
+                "id": 2,
+                "shape": "rect",
+                "x": 435,
+                "y": 695,
+                "w": 765,
+                "h": 415
+              },
+              {
+                "id": 3,
+                "shape": "rect",
+                "x": 435,
+                "y": 1160,
+                "w": 765,
+                "h": 415
+              }
+            ]
+          },
+          "Notebook": {
+            "file": "6x4 Strip/3 Frames/Notebook.webp",
+            "frameCount": 3,
+            "stripWidth": 1272,
+            "windows": [
+              {
+                "id": 1,
+                "shape": "rect",
+                "x": 235,
+                "y": 80,
+                "w": 555,
+                "h": 555,
+                "rotation": 0
+              },
+              {
+                "id": 2,
+                "shape": "rect",
+                "x": 365,
+                "y": 673,
+                "w": 700,
+                "h": 555,
+                "rotation": -4.05
+              },
+              {
+                "id": 3,
+                "shape": "rect",
+                "x": 235,
+                "y": 1275,
+                "w": 640,
+                "h": 475,
+                "rotation": 0
+              }
+            ]
+          }
+        }
+      },
+      "4 Frames": {
+        "templates": {
+          "Minimalist Wedding": {
+            "file": "6x4 Strip/4 Frames/Minimalist Wedding.webp",
+            "frameCount": 4,
+            "stripWidth": 1276,
+            "windows": [
+              {
+                "id": 1,
+                "shape": "rect",
+                "x": 30,
+                "y": 140,
+                "w": 590,
+                "h": 765
+              },
+              {
+                "id": 2,
+                "shape": "rect",
+                "x": 655,
+                "y": 140,
+                "w": 590,
+                "h": 765
+              },
+              {
+                "id": 3,
+                "shape": "rect",
+                "x": 30,
+                "y": 930,
+                "w": 590,
+                "h": 765
+              },
+              {
+                "id": 4,
+                "shape": "rect",
+                "x": 655,
+                "y": 930,
+                "w": 590,
+                "h": 765
+              }
+            ]
+          }
+        }
+      }
+    }
+  }
+}
