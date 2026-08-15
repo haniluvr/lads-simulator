@@ -1622,7 +1622,8 @@
 .filter-option input[type="radio"] {
   position: absolute;
   opacity: 0;
-  pointer-events: none;
+  width: 1px;
+  height: 1px;
 }
 
 .filter-preview {

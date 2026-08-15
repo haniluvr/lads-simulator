@@ -1827,6 +1827,18 @@ function updateDecoControls() {
     });
   });
 
+  // iOS Safari bulletproof fallback for label clicks
+  document.querySelectorAll('.filter-option').forEach(label => {
+    label.addEventListener('click', (e) => {
+      const radio = label.querySelector('input[type="radio"]');
+      if (radio && !radio.checked) {
+        radio.checked = true;
+        state.activeFilter = radio.value;
+        drawStudioCanvas();
+      }
+    });
+  });
+
   // Zoom controls
   function updateZoomState() {
     const zoomOutBtn = document.getElementById('zoom-out-btn');
