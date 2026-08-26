@@ -1,6 +1,14 @@
 // collection.js
 
 const CARD_CREDITS = {
+  "After Mission Reprieve": {
+    artist: "KonekoHoshi",
+    x: "https://x.com/koneko_hoshi"
+  },
+  "Intense Stare": {
+    artist: "BellaVictoria",
+    bluesky: "https://bsky.app/profile/bellavictoria.bsky.social"
+  },
   "Breaking The Leash": {
     artist: "Cee",
     x: "https://x.com/celh0_0",

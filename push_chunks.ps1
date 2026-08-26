@@ -33,7 +33,7 @@ for ($i = 0; $i -lt $batchCount; $i++) {
     }
     
     Write-Host "Committing Batch $($i + 1)..."
-    git commit -m "Add video assets chunk $($i + 1) of $batchCount"
+    git commit -m "Add video assets chunk $($i + 1) of $batchCount [skip ci]"
     
     Write-Host "Pushing Batch $($i + 1)..."
     $pushResult = git push
@@ -49,7 +49,7 @@ for ($i = 0; $i -lt $batchCount; $i++) {
 # Add any remaining stray files (like images in assets)
 Write-Host "Pushing any remaining images or tiny assets..."
 git add .
-git commit -m "Add remaining assets"
+git commit -m "Add remaining assets [skip ci]"
 git push
 
 Write-Host "All done! Repository fully synced to GitHub."
