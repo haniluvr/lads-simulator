@@ -457,7 +457,7 @@ function initPhase2() {
             imgView.src = img.src;
             imgView.style.display = 'block';
           }
-          const fallbackUI = document.getElementById('camera-fallback');
+          const fallbackUI = document.getElementById('camera-upload-fallback');
           if (fallbackUI) fallbackUI.style.display = 'none';
         };
         img.src = ev.target.result;
