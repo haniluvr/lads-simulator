@@ -205,12 +205,12 @@ function getAllTemplates(registry) {
 
 const FILTERS = {
   none:    '',
-  bloom:   'brightness(1.15) saturate(1.2) contrast(0.95)',
-  vintage: 'sepia(0.6) contrast(1.1) brightness(0.9)',
-  cool:    'hue-rotate(15deg) saturate(1.2) brightness(1.05)',
-  rose:    'hue-rotate(-20deg) saturate(1.3) brightness(1.05)',
-  bw:      'grayscale(1) contrast(1.1)',
-  noir:    'grayscale(1) contrast(1.3) brightness(0.8)',
+  bloom:   'brightness(115%) saturate(120%) contrast(95%)',
+  vintage: 'sepia(60%) contrast(110%) brightness(90%)',
+  cool:    'hue-rotate(15deg) saturate(120%) brightness(105%)',
+  rose:    'hue-rotate(-20deg) saturate(130%) brightness(105%)',
+  bw:      'grayscale(100%) contrast(110%)',
+  noir:    'grayscale(100%) contrast(130%) brightness(80%)',
 };
 
 const STICKERS = [
@@ -2092,11 +2092,14 @@ async function drawStudioCanvas() {
       // Apply CSS filter using an offscreen canvas to bypass iOS Safari clip+filter bug
       if (state.activeFilter && FILTERS[state.activeFilter]) {
         const off = document.createElement('canvas');
-        off.width = img.width;
-        off.height = img.height;
+        const imgW = img.naturalWidth || img.width || 800;
+        const imgH = img.naturalHeight || img.height || 1200;
+        off.width = imgW;
+        off.height = imgH;
         const oCtx = off.getContext('2d');
         oCtx.filter = FILTERS[state.activeFilter];
-        oCtx.drawImage(img, 0, 0);
+        oCtx.drawImage(img, 0, 0, imgW, imgH);
+        oCtx.filter = 'none';
         sourceImg = off;
       }
 
