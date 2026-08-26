@@ -240,6 +240,7 @@ const state = {
   capturedImages: [],     // dataURL per frame
   capturedImageElements: [], // HTMLImageElement per frame
   currentUploadedImage: null, // HTMLImageElement if user uploaded an image for current frame
+  uploadTransform: { x: 0, y: 0, scale: 1 }, // Pan/zoom state for uploaded image
   activeFilter:   'none',
   decorations:    [],
   history:        [],
@@ -448,13 +449,17 @@ function initPhase2() {
         const img = new Image();
         img.onload = () => {
           state.currentUploadedImage = img;
+          state.uploadTransform = { x: 0, y: 0, scale: 1 };
           const video = document.getElementById('camera-video');
           const imgView = document.getElementById('camera-uploaded-image');
           if (video) video.style.display = 'none';
           if (imgView) {
             imgView.src = img.src;
+            imgView.style.transform = 'translate(-50%, -50%) scale(1)';
             imgView.style.display = 'block';
           }
+          const hint = document.getElementById('camera-drag-hint');
+          if (hint) hint.style.display = 'block';
           const fallbackUI = document.getElementById('camera-upload-fallback');
           if (fallbackUI) fallbackUI.style.display = 'none';
         };
@@ -524,6 +529,10 @@ async function startCamera() {
     await video.play().catch(e => console.warn('Video play interrupted:', e));
     
     if (fallback) fallback.style.display = 'none';
+    const imgView = document.getElementById('camera-uploaded-image');
+    if (imgView) imgView.style.display = 'none';
+    const hint = document.getElementById('camera-drag-hint');
+    if (hint) hint.style.display = 'none';
 
   } catch (err) {
     console.warn('Camera error caught:', err);
@@ -1087,15 +1096,31 @@ function captureFrameFromImage(img) {
   captureCanvas.width  = targetW;
   captureCanvas.height = targetH;
 
+  captureCtx.save();
+  // Translate to center for scaling
+  captureCtx.translate(targetW / 2, targetH / 2);
+  // Apply drag translation mapping viewport scale to canvas scale
+  const scaleX = targetW / vw;
+  const scaleY = targetH / vh;
+  const ut = state.uploadTransform || { x: 0, y: 0, scale: 1 };
+  captureCtx.translate(ut.x * scaleX, ut.y * scaleY);
+  captureCtx.scale(ut.scale, ut.scale);
+  // Translate back
+  captureCtx.translate(-targetW / 2, -targetH / 2);
+
   drawImageCover(captureCtx, img, captureCanvas.width, captureCanvas.height);
+  
+  captureCtx.restore();
   
   drawCharOverlaysToContext(captureCtx, viewport, captureCanvas);
   
   state.capturedImages[state.currentFrame] = captureCanvas.toDataURL('image/jpeg', 0.92);
 
-  // Hide upload fallback UI after capturing
+  // Hide upload fallback UI and hint after capturing
   const fallbackUI = document.getElementById('camera-upload-fallback');
   if (fallbackUI) fallbackUI.style.display = 'none';
+  const hint = document.getElementById('camera-drag-hint');
+  if (hint) hint.style.display = 'none';
 
   advanceFrame();
 }
@@ -2839,6 +2864,7 @@ function resetBooth() {
 // ============================================================
 
 document.addEventListener('DOMContentLoaded', () => {
+  setupUploadedImageDrag();
   // Initialize Phase 1 (active by default)
   initPhase1();
 
@@ -2878,7 +2904,94 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 
+function setupUploadedImageDrag() {
+  const viewport = document.getElementById('camera-viewport');
+  const imgView = document.getElementById('camera-uploaded-image');
+  if (!viewport || !imgView) return;
 
+  let isDragging = false;
+  let startX, startY;
+  let origX = 0, origY = 0;
+  let initialDist = null;
+  let initialScale = 1.0;
+
+  const getXY = (e) => {
+    const src = e.touches ? e.touches[0] : e;
+    return { x: src.clientX, y: src.clientY };
+  };
+
+  const getDist = (touches) => {
+    const dx = touches[0].clientX - touches[1].clientX;
+    const dy = touches[0].clientY - touches[1].clientY;
+    return Math.sqrt(dx * dx + dy * dy);
+  };
+
+  const updateTransform = () => {
+    state.uploadTransform.scale = Math.max(0.1, state.uploadTransform.scale);
+    imgView.style.transform = `translate(calc(-50% + ${state.uploadTransform.x}px), calc(-50% + ${state.uploadTransform.y}px)) scale(${state.uploadTransform.scale})`;
+  };
+
+  viewport.addEventListener('pointerdown', (e) => {
+    if (imgView.style.display === 'none') return;
+    if (e.pointerType === 'mouse' && e.button !== 0) return;
+    isDragging = true;
+    const pos = getXY(e);
+    startX = pos.x;
+    startY = pos.y;
+    origX = state.uploadTransform.x;
+    origY = state.uploadTransform.y;
+    e.preventDefault();
+  }, { passive: false });
+
+  window.addEventListener('pointermove', (e) => {
+    if (!isDragging || imgView.style.display === 'none') return;
+    const pos = getXY(e);
+    state.uploadTransform.x = origX + (pos.x - startX);
+    state.uploadTransform.y = origY + (pos.y - startY);
+    updateTransform();
+    e.preventDefault();
+  }, { passive: false });
+
+  window.addEventListener('pointerup', () => {
+    isDragging = false;
+  });
+
+  // Touch pinch-to-zoom
+  viewport.addEventListener('touchstart', (e) => {
+    if (imgView.style.display === 'none') return;
+    if (e.touches && e.touches.length === 2) {
+      initialDist = getDist(e.touches);
+      initialScale = state.uploadTransform.scale;
+      isDragging = false; // override drag
+      e.preventDefault();
+    }
+  }, { passive: false });
+
+  viewport.addEventListener('touchmove', (e) => {
+    if (imgView.style.display === 'none') return;
+    if (e.touches && e.touches.length === 2 && initialDist) {
+      const dist = getDist(e.touches);
+      state.uploadTransform.scale = initialScale * (dist / initialDist);
+      updateTransform();
+      e.preventDefault();
+    }
+  }, { passive: false });
+
+  viewport.addEventListener('touchend', (e) => {
+    if (e.touches.length < 2) {
+      initialDist = null;
+    }
+  });
+
+  // Wheel to zoom
+  viewport.addEventListener('wheel', (e) => {
+    if (imgView.style.display === 'none') return;
+    e.preventDefault();
+    const zoomFactor = e.deltaY < 0 ? 1.05 : 0.95;
+    state.uploadTransform.scale *= zoomFactor;
+    updateTransform();
+  }, { passive: false });
+}
 
 function makeDraggable(el, bounds) {
   let startX, startY, origX, origY;
