@@ -1878,16 +1878,18 @@ function updateDecoControls() {
     });
   });
 
-  // iOS Safari bulletproof fallback for label clicks
+  // iOS Safari bulletproof fallback for label clicks and touch
   document.querySelectorAll('.filter-option').forEach(label => {
-    label.addEventListener('click', (e) => {
+    const handleFilterSelect = () => {
       const radio = label.querySelector('input[type="radio"]');
       if (radio && !radio.checked) {
         radio.checked = true;
         state.activeFilter = radio.value;
         drawStudioCanvas();
       }
-    });
+    };
+    label.addEventListener('click', handleFilterSelect);
+    label.addEventListener('touchstart', handleFilterSelect, { passive: true });
   });
 
   // Zoom controls
@@ -2982,6 +2984,7 @@ function setupUploadedImageDrag() {
   };
 
   viewport.addEventListener('pointerdown', (e) => {
+    if (e.target !== viewport && e.target !== imgView) return; // Ignore character overlays
     if (imgView.style.display === 'none') return;
     if (e.pointerType === 'mouse' && e.button !== 0) return;
     isDragging = true;
@@ -3008,6 +3011,7 @@ function setupUploadedImageDrag() {
 
   // Touch pinch-to-zoom
   viewport.addEventListener('touchstart', (e) => {
+    if (e.target !== viewport && e.target !== imgView) return;
     if (imgView.style.display === 'none') return;
     if (e.touches && e.touches.length === 2) {
       initialDist = getDist(e.touches);
@@ -3035,6 +3039,7 @@ function setupUploadedImageDrag() {
 
   // Wheel to zoom
   viewport.addEventListener('wheel', (e) => {
+    if (e.target !== viewport && e.target !== imgView) return;
     if (imgView.style.display === 'none') return;
     e.preventDefault();
     const zoomFactor = e.deltaY < 0 ? 1.05 : 0.95;
