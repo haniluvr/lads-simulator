@@ -1566,6 +1566,16 @@ const CARD_CATALOG = [
     "rarityStr": "5star",
     "type": "lunar",
     "bannerType": "limited",
+    "assetPath": "assets/sylus/five-star/lunar/limited/no defense zone.mp4",
+    "cardName": "No Defense Zone",
+    "isVideo": true
+  },
+  {
+    "character": "sylus",
+    "rarity": 5,
+    "rarityStr": "5star",
+    "type": "lunar",
+    "bannerType": "limited",
     "assetPath": "assets/sylus/five-star/lunar/limited/passionate appraisal.mp4",
     "cardName": "Passionate Appraisal",
     "isVideo": true
@@ -2116,6 +2126,16 @@ const CARD_CATALOG = [
     "rarityStr": "5star",
     "type": "lunar",
     "bannerType": "limited",
+    "assetPath": "assets/valko/five-star/lunar/limited/intense stare.webp",
+    "cardName": "Intense Stare",
+    "isVideo": false
+  },
+  {
+    "character": "valko",
+    "rarity": 5,
+    "rarityStr": "5star",
+    "type": "lunar",
+    "bannerType": "limited",
     "assetPath": "assets/valko/five-star/lunar/limited/kiss attack.webp",
     "cardName": "Kiss Attack",
     "isVideo": false
@@ -2286,6 +2306,16 @@ const CARD_CATALOG = [
     "rarityStr": "5star",
     "type": "lunar",
     "bannerType": "standard",
+    "assetPath": "assets/valko/five-star/lunar/standard/duskfall prelude.compressed.mp4",
+    "cardName": "Duskfall Prelude.compressed",
+    "isVideo": true
+  },
+  {
+    "character": "valko",
+    "rarity": 5,
+    "rarityStr": "5star",
+    "type": "lunar",
+    "bannerType": "standard",
     "assetPath": "assets/valko/five-star/lunar/standard/duskfall prelude.mp4",
     "cardName": "Duskfall Prelude",
     "isVideo": true
@@ -2369,6 +2399,16 @@ const CARD_CATALOG = [
     "assetPath": "assets/valko/five-star/solar/standard/verdancy wildwind.mp4",
     "cardName": "Verdancy Wildwind",
     "isVideo": true
+  },
+  {
+    "character": "valko",
+    "rarity": 4,
+    "rarityStr": "4star",
+    "type": "lunar",
+    "bannerType": "both",
+    "assetPath": "assets/valko/four-star/lunar/after mission reprieve.webp",
+    "cardName": "After Mission Reprieve",
+    "isVideo": false
   },
   {
     "character": "valko",
@@ -3108,6 +3148,16 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/xavier/four-star/lunar/a day of snow.webp",
     "cardName": "A Day Of Snow",
+    "isVideo": false
+  },
+  {
+    "character": "xavier",
+    "rarity": 4,
+    "rarityStr": "4star",
+    "type": "lunar",
+    "bannerType": "both",
+    "assetPath": "assets/xavier/four-star/lunar/beachside victory.webp",
+    "cardName": "Beachside Victory",
     "isVideo": false
   },
   {
@@ -4288,6 +4338,16 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/zayne/four-star/lunar/thoughtful words.webp",
     "cardName": "Thoughtful Words",
+    "isVideo": false
+  },
+  {
+    "character": "zayne",
+    "rarity": 4,
+    "rarityStr": "4star",
+    "type": "lunar",
+    "bannerType": "both",
+    "assetPath": "assets/zayne/four-star/lunar/your voice.webp",
+    "cardName": "Your Voice",
     "isVideo": false
   },
   {
