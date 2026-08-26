@@ -56,7 +56,7 @@ Since this application uses modules and assets, a local server is required to av
    ```
 2. Navigate to the directory:
    ```bash
-   cd pseudo-gacha
+   cd lads-simulator
    ```
 3. Start a local server:
    ```bash
