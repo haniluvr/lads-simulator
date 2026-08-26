@@ -2150,7 +2150,7 @@ async function drawStudioCanvas() {
           const imgH = img.naturalHeight || img.height || 1200;
           off.width = imgW;
           off.height = imgH;
-          const oCtx = off.getContext('2d', { willReadFrequently: true });
+          const oCtx = off.getContext('2d');
           oCtx.clearRect(0, 0, imgW, imgH);
           oCtx.filter = FILTERS[state.activeFilter];
           oCtx.drawImage(img, 0, 0, imgW, imgH);
@@ -2680,30 +2680,8 @@ function initPhase4() {
   state.selectedDecoIndex = -1;
   renderStudioStrip();
 
-  // --- NEW CORRECTION FOR SAFARI IOS WEBAPP FILTER FIX ---
-  if (state.activeFilter && FILTERS[state.activeFilter]) {
-    // Use the DOM-bound canvas hack to ensure iOS Safar applies the hardware filter
-    const off = document.getElementById('filter-offscreen');
-    if (off) {
-      off.width = studioCanvas.width;
-      off.height = studioCanvas.height;
-      const oCtx = off.getContext('2d');
-      oCtx.clearRect(0, 0, off.width, off.height);
-      
-      // Apply the active CSS filter styles safely inside the DOM 
-      oCtx.filter = FILTERS[state.activeFilter];
-      oCtx.drawImage(studioCanvas, 0, 0);
-      oCtx.filter = 'none';
-      
-      // Draw the filtered offscreen results directly to your final output canvas
-      exportCtx.drawImage(off, 0, 0);
-    } else {
-      exportCtx.drawImage(studioCanvas, 0, 0);
-    }
-  } else {
-    exportCtx.drawImage(studioCanvas, 0, 0);
-  }
-  // -------------------------------------------------------
+  // Composite: studio canvas + any DOM decorations
+  exportCtx.drawImage(studioCanvas, 0, 0);
 
   // Draw DOM overlay elements onto the export canvas
   const overlayItems = document.querySelectorAll('#overlay-layer > *');
