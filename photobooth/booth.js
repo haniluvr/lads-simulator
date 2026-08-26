@@ -213,6 +213,144 @@ const FILTERS = {
   noir:    'grayscale(100%) contrast(130%) brightness(80%)',
 };
 
+// ============================================================
+// PIXEL-BASED FILTER ENGINE
+// ------------------------------------------------------------
+// iOS Safari / WKWebView support for the Canvas2D `ctx.filter`
+// property is inconsistent (missing entirely in older WebKit,
+// silently no-op'd in some in-app browsers, and unreliable even
+// on recent versions depending on accelerated/software backing).
+// To guarantee filters render on every platform, we replicate
+// each named filter as direct pixel math via getImageData /
+// putImageData instead of relying on ctx.filter at all.
+// ============================================================
+
+// Same op list as the FILTERS CSS strings above, expressed as
+// [operation, value] pairs so we can apply them manually.
+const FILTER_OPS = {
+  none:    [],
+  bloom:   [['brightness', 1.15], ['saturate', 1.20], ['contrast', 0.95]],
+  vintage: [['sepia', 0.60], ['contrast', 1.10], ['brightness', 0.90]],
+  cool:    [['hue-rotate', 15], ['saturate', 1.20], ['brightness', 1.05]],
+  rose:    [['hue-rotate', -20], ['saturate', 1.30], ['brightness', 1.05]],
+  bw:      [['grayscale', 1.0], ['contrast', 1.10]],
+  noir:    [['grayscale', 1.0], ['contrast', 1.30], ['brightness', 0.80]],
+};
+
+function _clamp255(v) { return v < 0 ? 0 : v > 255 ? 255 : v; }
+
+function _opBrightness(data, factor) {
+  for (let i = 0; i < data.length; i += 4) {
+    data[i]     = _clamp255(data[i] * factor);
+    data[i + 1] = _clamp255(data[i + 1] * factor);
+    data[i + 2] = _clamp255(data[i + 2] * factor);
+  }
+}
+
+function _opContrast(data, factor) {
+  const intercept = 128 * (1 - factor);
+  for (let i = 0; i < data.length; i += 4) {
+    data[i]     = _clamp255(data[i] * factor + intercept);
+    data[i + 1] = _clamp255(data[i + 1] * factor + intercept);
+    data[i + 2] = _clamp255(data[i + 2] * factor + intercept);
+  }
+}
+
+function _opSaturate(data, factor) {
+  for (let i = 0; i < data.length; i += 4) {
+    const r = data[i], g = data[i + 1], b = data[i + 2];
+    const gray = 0.2126 * r + 0.7152 * g + 0.0722 * b;
+    data[i]     = _clamp255(gray + (r - gray) * factor);
+    data[i + 1] = _clamp255(gray + (g - gray) * factor);
+    data[i + 2] = _clamp255(gray + (b - gray) * factor);
+  }
+}
+
+function _opGrayscale(data, amount) {
+  for (let i = 0; i < data.length; i += 4) {
+    const r = data[i], g = data[i + 1], b = data[i + 2];
+    const gray = 0.2126 * r + 0.7152 * g + 0.0722 * b;
+    data[i]     = r + (gray - r) * amount;
+    data[i + 1] = g + (gray - g) * amount;
+    data[i + 2] = b + (gray - b) * amount;
+  }
+}
+
+function _opSepia(data, amount) {
+  for (let i = 0; i < data.length; i += 4) {
+    const r = data[i], g = data[i + 1], b = data[i + 2];
+    const sr = 0.393 * r + 0.769 * g + 0.189 * b;
+    const sg = 0.349 * r + 0.686 * g + 0.168 * b;
+    const sb = 0.272 * r + 0.534 * g + 0.131 * b;
+    data[i]     = _clamp255(r + (sr - r) * amount);
+    data[i + 1] = _clamp255(g + (sg - g) * amount);
+    data[i + 2] = _clamp255(b + (sb - b) * amount);
+  }
+}
+
+// Matches the CSS Filter Effects spec's hue-rotate matrix (same
+// math browsers use internally), so results match the old
+// ctx.filter look as closely as possible.
+function _opHueRotate(data, deg) {
+  const rad = deg * Math.PI / 180;
+  const cosA = Math.cos(rad), sinA = Math.sin(rad);
+  const m = [
+    0.213 + cosA * 0.787 - sinA * 0.213, 0.715 - cosA * 0.715 - sinA * 0.715, 0.072 - cosA * 0.072 + sinA * 0.928,
+    0.213 - cosA * 0.213 + sinA * 0.143, 0.715 + cosA * 0.285 + sinA * 0.140, 0.072 - cosA * 0.072 - sinA * 0.283,
+    0.213 - cosA * 0.213 - sinA * 0.787, 0.715 - cosA * 0.715 + sinA * 0.715, 0.072 + cosA * 0.928 + sinA * 0.072,
+  ];
+  for (let i = 0; i < data.length; i += 4) {
+    const r = data[i], g = data[i + 1], b = data[i + 2];
+    data[i]     = _clamp255(r * m[0] + g * m[1] + b * m[2]);
+    data[i + 1] = _clamp255(r * m[3] + g * m[4] + b * m[5]);
+    data[i + 2] = _clamp255(r * m[6] + g * m[7] + b * m[8]);
+  }
+}
+
+function applyPixelFilter(imageData, filterKey) {
+  const ops = FILTER_OPS[filterKey];
+  if (!ops || !ops.length) return imageData;
+  const data = imageData.data;
+  for (const [type, value] of ops) {
+    switch (type) {
+      case 'brightness':  _opBrightness(data, value); break;
+      case 'contrast':    _opContrast(data, value);   break;
+      case 'saturate':    _opSaturate(data, value);   break;
+      case 'grayscale':   _opGrayscale(data, value);  break;
+      case 'sepia':       _opSepia(data, value);      break;
+      case 'hue-rotate':  _opHueRotate(data, value);  break;
+    }
+  }
+  return imageData;
+}
+
+// Per-window cache of {filterKey, srcImg, canvas} so we only
+// redo the pixel-crunching when the photo or filter actually
+// changes, not on every drag/zoom redraw of the studio canvas.
+const _filteredImageCache = {};
+
+function getFilteredSourceImage(img, filterKey, cacheKey) {
+  if (!filterKey || filterKey === 'none' || !FILTER_OPS[filterKey] || !FILTER_OPS[filterKey].length) {
+    return img;
+  }
+  const cached = _filteredImageCache[cacheKey];
+  if (cached && cached.filterKey === filterKey && cached.srcImg === img) {
+    return cached.canvas;
+  }
+  const imgW = img.naturalWidth || img.width || 800;
+  const imgH = img.naturalHeight || img.height || 1200;
+  const off = document.createElement('canvas');
+  off.width = imgW;
+  off.height = imgH;
+  const octx = off.getContext('2d');
+  octx.drawImage(img, 0, 0, imgW, imgH);
+  const imageData = octx.getImageData(0, 0, imgW, imgH);
+  applyPixelFilter(imageData, filterKey);
+  octx.putImageData(imageData, 0, 0);
+  _filteredImageCache[cacheKey] = { filterKey, srcImg: img, canvas: off };
+  return off;
+}
+
 const STICKERS = [
   { id: 'star',     symbol: '✦', label: 'Star' },
   { id: 'heart',    symbol: '♡', label: 'Heart' },
@@ -2141,23 +2279,10 @@ async function drawStudioCanvas() {
     studioCtx.clip();
 
     if (img) {
-      let sourceImg = img;
-      // Apply CSS filter using a DOM-attached canvas to bypass iOS Safari detached-canvas filter bug
-      if (state.activeFilter && FILTERS[state.activeFilter]) {
-        const off = document.getElementById('filter-offscreen');
-        if (off) {
-          const imgW = img.naturalWidth || img.width || 800;
-          const imgH = img.naturalHeight || img.height || 1200;
-          off.width = imgW;
-          off.height = imgH;
-          const oCtx = off.getContext('2d');
-          oCtx.clearRect(0, 0, imgW, imgH);
-          oCtx.filter = FILTERS[state.activeFilter];
-          oCtx.drawImage(img, 0, 0, imgW, imgH);
-          oCtx.filter = 'none';
-          sourceImg = off;
-        }
-      }
+      // Pixel-based filter (works reliably on iOS Safari, unlike ctx.filter).
+      // Cached per window index so we don't re-crunch pixels on every
+      // drag/zoom redraw — only when the photo or the active filter changes.
+      const sourceImg = getFilteredSourceImage(img, state.activeFilter, 'window_' + i);
 
       let winX, winY, winW, winH;
       if (win.shape === 'ellipse') {
