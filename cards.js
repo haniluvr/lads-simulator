@@ -786,6 +786,26 @@ const CARD_CATALOG = [
     "rarityStr": "5star",
     "type": "solar",
     "bannerType": "limited",
+    "assetPath": "assets/rafayel/five-star/solar/limited/masked dissolution.mp4",
+    "cardName": "Masked Dissolution",
+    "isVideo": true
+  },
+  {
+    "character": "rafayel",
+    "rarity": 5,
+    "rarityStr": "5star",
+    "type": "solar",
+    "bannerType": "limited",
+    "assetPath": "assets/rafayel/five-star/solar/limited/masked radiance.mp4",
+    "cardName": "Masked Radiance",
+    "isVideo": true
+  },
+  {
+    "character": "rafayel",
+    "rarity": 5,
+    "rarityStr": "5star",
+    "type": "solar",
+    "bannerType": "limited",
     "assetPath": "assets/rafayel/five-star/solar/limited/mistea descent.mp4",
     "cardName": "Mistea Descent",
     "isVideo": true
@@ -2298,16 +2318,6 @@ const CARD_CATALOG = [
     "bannerType": "standard",
     "assetPath": "assets/valko/five-star/lunar/standard/cuddle exercise.mp4",
     "cardName": "Cuddle Exercise",
-    "isVideo": true
-  },
-  {
-    "character": "valko",
-    "rarity": 5,
-    "rarityStr": "5star",
-    "type": "lunar",
-    "bannerType": "standard",
-    "assetPath": "assets/valko/five-star/lunar/standard/duskfall prelude.compressed.mp4",
-    "cardName": "Duskfall Prelude.compressed",
     "isVideo": true
   },
   {

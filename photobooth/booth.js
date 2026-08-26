@@ -996,7 +996,35 @@ function captureCurrentFrame() {
 
   if (state.currentUploadedImage) {
     captureCtx.save();
-    drawImageCover(captureCtx, state.currentUploadedImage, captureCanvas.width, captureCanvas.height);
+    
+    // Mathematically match object-fit: contain
+    const img = state.currentUploadedImage;
+    const nw = img.naturalWidth || img.width;
+    const nh = img.naturalHeight || img.height;
+    const aspect = nw / nh;
+    const vAspect = vw / vh;
+    
+    let drawW, drawH;
+    if (aspect > vAspect) {
+      drawW = vw;
+      drawH = vw / aspect;
+    } else {
+      drawH = vh;
+      drawW = vh * aspect;
+    }
+    
+    const scaleRatio = targetW / vw;
+    const targetDrawW = drawW * scaleRatio;
+    const targetDrawH = drawH * scaleRatio;
+    
+    captureCtx.translate(targetW / 2, targetH / 2);
+    
+    const ut = state.uploadTransform || { x: 0, y: 0, scale: 1 };
+    captureCtx.translate(ut.x * scaleRatio, ut.y * scaleRatio);
+    captureCtx.scale(ut.scale, ut.scale);
+    
+    captureCtx.drawImage(img, -targetDrawW / 2, -targetDrawH / 2, targetDrawW, targetDrawH);
+    
     captureCtx.restore();
     
     drawCharOverlaysToContext(captureCtx, viewport, captureCanvas);
@@ -2650,8 +2678,30 @@ function initPhase4() {
   state.selectedDecoIndex = -1;
   renderStudioStrip();
 
-  // Composite: studio canvas + any DOM decorations
-  exportCtx.drawImage(studioCanvas, 0, 0);
+  // --- NEW CORRECTION FOR SAFARI IOS WEBAPP FILTER FIX ---
+  if (state.activeFilter && FILTERS[state.activeFilter]) {
+    // Use the DOM-bound canvas hack to ensure iOS Safar applies the hardware filter
+    const off = document.getElementById('filter-offscreen');
+    if (off) {
+      off.width = studioCanvas.width;
+      off.height = studioCanvas.height;
+      const oCtx = off.getContext('2d');
+      oCtx.clearRect(0, 0, off.width, off.height);
+      
+      // Apply the active CSS filter styles safely inside the DOM 
+      oCtx.filter = FILTERS[state.activeFilter];
+      oCtx.drawImage(studioCanvas, 0, 0);
+      oCtx.filter = 'none';
+      
+      // Draw the filtered offscreen results directly to your final output canvas
+      exportCtx.drawImage(off, 0, 0);
+    } else {
+      exportCtx.drawImage(studioCanvas, 0, 0);
+    }
+  } else {
+    exportCtx.drawImage(studioCanvas, 0, 0);
+  }
+  // -------------------------------------------------------
 
   // Draw DOM overlay elements onto the export canvas
   const overlayItems = document.querySelectorAll('#overlay-layer > *');
