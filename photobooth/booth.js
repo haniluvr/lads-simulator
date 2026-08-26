@@ -436,13 +436,11 @@ function initPhase2() {
 
   const uploadBtn = document.getElementById('upload-btn');
   const uploadInput = document.getElementById('photo-upload-input');
-  if (uploadBtn && uploadInput) {
-    uploadBtn.onclick = () => uploadInput.click();
-    // Remove old listeners to prevent duplicates
-    const newUploadInput = uploadInput.cloneNode(true);
-    uploadInput.parentNode.replaceChild(newUploadInput, uploadInput);
-    
-    newUploadInput.addEventListener('change', (e) => {
+  if (uploadInput) {
+    if (uploadBtn) {
+      uploadBtn.onclick = () => uploadInput.click();
+    }
+    uploadInput.onchange = (e) => {
       const file = e.target.files[0];
       if (!file) return;
       const reader = new FileReader();
@@ -463,7 +461,7 @@ function initPhase2() {
         img.src = ev.target.result;
       };
       reader.readAsDataURL(file);
-    });
+    };
   }
 
   const retryCameraBtn = document.getElementById('retry-camera-btn');
@@ -2089,18 +2087,21 @@ async function drawStudioCanvas() {
 
     if (img) {
       let sourceImg = img;
-      // Apply CSS filter using an offscreen canvas to bypass iOS Safari clip+filter bug
+      // Apply CSS filter using a DOM-attached canvas to bypass iOS Safari detached-canvas filter bug
       if (state.activeFilter && FILTERS[state.activeFilter]) {
-        const off = document.createElement('canvas');
-        const imgW = img.naturalWidth || img.width || 800;
-        const imgH = img.naturalHeight || img.height || 1200;
-        off.width = imgW;
-        off.height = imgH;
-        const oCtx = off.getContext('2d');
-        oCtx.filter = FILTERS[state.activeFilter];
-        oCtx.drawImage(img, 0, 0, imgW, imgH);
-        oCtx.filter = 'none';
-        sourceImg = off;
+        const off = document.getElementById('filter-offscreen');
+        if (off) {
+          const imgW = img.naturalWidth || img.width || 800;
+          const imgH = img.naturalHeight || img.height || 1200;
+          off.width = imgW;
+          off.height = imgH;
+          const oCtx = off.getContext('2d', { willReadFrequently: true });
+          oCtx.clearRect(0, 0, imgW, imgH);
+          oCtx.filter = FILTERS[state.activeFilter];
+          oCtx.drawImage(img, 0, 0, imgW, imgH);
+          oCtx.filter = 'none';
+          sourceImg = off;
+        }
       }
 
       let winX, winY, winW, winH;
