@@ -1,3 +1,13 @@
+<div align="center">
+  <img src="assets/ui/favicon.webp" alt="Love and Deepspace" width="120" />
+  <br><br>
+  <a href="https://haniluvr.github.io/lads-simulator/index.html"><img src="https://img.shields.io/badge/Play%20Now!-28a745.svg?style=flat"></a>
+  <a href="https://ko-fi.com/haniluvr"><img src="https://img.shields.io/badge/Ko--fi-F16061.svg?logo=ko-fi&logoColor=white"></a>
+  <a href="https://x.com/hvnibun"><img src="https://img.shields.io/badge/X-black.svg?logo=X&logoColor=white"></a>
+  <a href="https://discordapp.com/users/914445892180906005"><img src="https://img.shields.io/badge/Discord-%237289DA.svg?logo=discord&logoColor=white"></a>
+  <a href="https://instagram.com/hvniluvr"><img src="https://img.shields.io/badge/Instagram-%23E4405F.svg?logo=Instagram&logoColor=white"></a>
+</div>
+
 # Love and Deepspace Wish Simulator
 
 A fan-made, beautifully crafted wish (gacha) simulator for the game **Love and Deepspace**. Test your luck without spending real money! 
