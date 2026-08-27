@@ -172,7 +172,7 @@ async function loadFramesRegistry() {
   }
 
   try {
-    const resp = await fetch('./assets/frames/frames.json');
+    const resp = await fetch('../assets/photobooth/frames/frames.json');
     FRAMES_REGISTRY = await resp.json();
   } catch (e) {
     console.warn('Could not load frames.json, using fallback:', e);
@@ -492,7 +492,7 @@ function renderTemplateGrid(allTmpls) {
     const preview = document.createElement('div');
     preview.className = 'template-preview-wrap';
     const img = document.createElement('img');
-    img.src = `./assets/frames/${t.file}`;
+    img.src = `../assets/photobooth/frames/${t.file}`;
     img.alt = t.name;
     img.loading = 'lazy';
     preview.appendChild(img);
@@ -780,7 +780,7 @@ function renderCharOverlays(frameIdx) {
       body.style.background = 'transparent';
       const img = document.createElement('img');
       img.className = 'char-overlay-img';
-      img.src = `assets/characters/${char}/${frame.poses[char]}.webp`;
+      img.src = `../assets/${char}/sprites/${frame.poses[char]}.webp`;
       img.style.width = '100%';
       img.style.height = '100%';
       img.style.objectFit = 'contain';
@@ -922,7 +922,7 @@ function createPoseButton(char, pose, isActive, frame) {
   const charData = CHARACTERS[char];
   if (charData.poses) {
     const img = document.createElement('img');
-    img.src = `assets/characters/${char}/${pose.id}.webp`;
+    img.src = `../assets/${char}/sprites/${pose.id}.webp`;
     img.loading = 'lazy';
     img.style.width = '100%';
     img.style.height = '100%';
@@ -1365,9 +1365,11 @@ function showDeveloping() {
 
   overlay.classList.remove('hidden');
   
+  // Restart the animated WebP by re-setting the src
   if (devVideo) {
-    devVideo.currentTime = 0;
-    devVideo.play().catch(e => console.warn('Could not play developing video:', e));
+    const src = devVideo.src;
+    devVideo.src = '';
+    devVideo.src = src;
   }
 
   requestAnimationFrame(() => {
@@ -1611,7 +1613,7 @@ async function initPhase3() {
 
     if (cfg && cfg.file) {
       try {
-        frameImage = await loadImage('./assets/frames/' + cfg.file);
+        frameImage = await loadImage('../assets/photobooth/frames/' + cfg.file);
       } catch (e) {
         console.error("Failed to load frameImage", e);
       }
@@ -2937,7 +2939,8 @@ function showPrintingOverlay() {
   const progress = document.getElementById('print-progress');
   if (!overlay) return;
   overlay.classList.remove('hidden');
-  if (video) { video.currentTime = 0; video.play().catch(() => {}); }
+  // Restart the animated WebP by re-setting the src
+  if (video) { const s = video.src; video.src = ''; video.src = s; }
   if (progress) {
     progress.style.width = '0%';
     requestAnimationFrame(() => { progress.style.width = '100%'; });
@@ -2948,7 +2951,7 @@ function hidePrintingOverlay() {
   const overlay = document.getElementById('printing-overlay');
   const video   = document.getElementById('printing-video');
   if (overlay) overlay.classList.add('hidden');
-  if (video) video.pause();
+  // No-op for img — animated WebP stops when hidden
 }
 
 function showToast(msg) {
@@ -3289,7 +3292,7 @@ const initAudioCues = () => {
     const elapsed = (Date.now() - goldStart) / 1000;
     
     if (elapsed < 5) {
-      const goldSfx = new Audio('assets/audio-cue/open_wish_gold_cue.mp3');
+      const goldSfx = new Audio('../assets/audio-cue/open_wish_gold_cue.mp3');
       goldSfx.volume = 0.6;
       goldSfx.currentTime = elapsed;
       goldSfx.play().catch(()=>{});

@@ -43,7 +43,7 @@
   position: fixed;
   inset: 16px;
   z-index: 0;
-  background: #0D1138 url("assets/background.webp") no-repeat center center;
+  background: #0D1138 url("../assets/photobooth/background.webp") no-repeat center center;
   background-size: cover;
 
   -webkit-mask-image:

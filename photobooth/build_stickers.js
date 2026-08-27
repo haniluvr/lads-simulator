@@ -1,8 +1,8 @@
 const fs = require('fs');
 const path = require('path');
 
-const stickersDir = path.join(__dirname, 'assets', 'stickers');
-const outputFile = path.join(__dirname, 'assets', 'stickers', 'stickersData.js');
+const stickersDir = path.join(__dirname, '..', 'assets', 'photobooth', 'stickers');
+const outputFile = path.join(__dirname, '..', 'assets', 'photobooth', 'stickers', 'stickersData.js');
 
 let stickers = {};
 
@@ -17,7 +17,7 @@ function scanDir(dir) {
             const relPath = path.relative(stickersDir, fullPath).replace(/\\/g, '/');
             const category = path.dirname(relPath) === '.' ? 'General' : path.dirname(relPath);
             if (!stickers[category]) stickers[category] = [];
-            stickers[category].push(`assets/stickers/${relPath}`);
+            stickers[category].push(`../assets/photobooth/stickers/${relPath}`);
         }
     }
 }

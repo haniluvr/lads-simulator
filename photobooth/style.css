@@ -620,27 +620,27 @@ body.cursor-default * {
 }
 
 body.cursor-caleb * {
-  cursor: url('assets/ui/cursors/caleb_cursor.png'), auto !important;
+  cursor: url('../assets/ui/cursors/caleb_cursor.png'), auto !important;
 }
 
 body.cursor-rafayel * {
-  cursor: url('assets/ui/cursors/rafayel_cursor.png'), auto !important;
+  cursor: url('../assets/ui/cursors/rafayel_cursor.png'), auto !important;
 }
 
 body.cursor-sylus * {
-  cursor: url('assets/ui/cursors/sylus_cursor.png'), auto !important;
+  cursor: url('../assets/ui/cursors/sylus_cursor.png'), auto !important;
 }
 
 body.cursor-valko * {
-  cursor: url('assets/ui/cursors/valko_cursor.png'), auto !important;
+  cursor: url('../assets/ui/cursors/valko_cursor.png'), auto !important;
 }
 
 body.cursor-xavier * {
-  cursor: url('assets/ui/cursors/xavier_cursor.png'), auto !important;
+  cursor: url('../assets/ui/cursors/xavier_cursor.png'), auto !important;
 }
 
 body.cursor-zayne * {
-  cursor: url('assets/ui/cursors/zayne_cursor.png'), auto !important;
+  cursor: url('../assets/ui/cursors/zayne_cursor.png'), auto !important;
 }
 
 

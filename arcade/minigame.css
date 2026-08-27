@@ -24,7 +24,7 @@
   position: fixed;
   inset: 0;
   z-index: 10000;
-  background-image: url('../../assets/ui/arcade/game-mainbg.webp');
+  background-image: url('../assets/ui/arcade/game-mainbg.webp');
   background-size: cover;
   background-position: center center;
   display: flex;
@@ -99,7 +99,7 @@
   left: var(--play-left);
   right: var(--play-right);
   bottom: var(--play-bottom);
-  background-image: url('../../assets/ui/arcade/game-background.webp');
+  background-image: url('../assets/ui/arcade/game-background.webp');
   background-size: cover;
   background-position: center top;
   border-radius: 10px;

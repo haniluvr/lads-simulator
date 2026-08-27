@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Cosmo Photobooth Studio — Love and Deepspace Simulator</title>
-  <link rel="icon" type="image/webp" href="assets/ui/favicon.webp">
+  <link rel="icon" type="image/webp" href="../assets/ui/favicon.webp">
   <meta name="description" content="Create your photostrip with Love and Deepspace characters inside Cosmo Photobooth Studio." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -248,7 +248,7 @@
   <!-- Developing overlay -->
   <div class="developing-overlay hidden" id="developing-overlay" aria-live="assertive">
     <div class="developing-inner">
-      <video id="developing-video" src="assets/developing.webm" muted playsinline style="max-width: 140px; margin-bottom: 16px; border-radius: 8px;"></video>
+      <img id="developing-video" src="../assets/photobooth/developing.webp" alt="" style="max-width: 140px; margin-bottom: 16px; border-radius: 8px; mix-blend-mode: lighten;" />
       <div class="developing-strip" aria-hidden="true">
         <div class="dev-progress" id="dev-progress"></div>
       </div>
@@ -445,7 +445,7 @@
   <!-- Printing overlay (shown when transitioning to phase 4) -->
   <div class="developing-overlay hidden" id="printing-overlay" aria-live="assertive">
     <div class="developing-inner">
-      <video id="printing-video" src="assets/printing.webm" muted playsinline style="max-width: 140px; margin-bottom: 16px; border-radius: 8px;"></video>
+      <img id="printing-video" src="../assets/photobooth/printing.webp" alt="" style="max-width: 140px; margin-bottom: 16px; border-radius: 8px; mix-blend-mode: lighten;" />
       <div class="developing-strip" aria-hidden="true">
         <div class="dev-progress" id="print-progress"></div>
       </div>
@@ -596,8 +596,8 @@
 <canvas id="capture-canvas" style="display: none;" aria-hidden="true"></canvas>
 
 
-<script src="assets/stickers/stickersData.js"></script>
-  <script src="assets/frames/framesData.js"></script>
+<script src="../assets/photobooth/stickers/stickersData.js"></script>
+  <script src="../assets/photobooth/frames/framesData.js"></script>
 <script src="../audio-bridge.js?v=6"></script>
 <script src="booth.js?v=20"></script>
 <script>
@@ -654,7 +654,7 @@
 </script>
 
 <!-- Global Audio Player -->
-<audio id="bg-music" src="assets/ui/heartstring-and-harmony.mp3" loop autoplay></audio>
+<audio id="bg-music" src="../assets/ui/heartstring-and-harmony.mp3" loop autoplay></audio>
 
   <!-- Flash overlay for the entire screen -->
   <div class="camera-flash" id="camera-flash" aria-hidden="true"></div>

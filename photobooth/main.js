@@ -51,7 +51,7 @@ const setupSampleCycler = () => {
   // At the end of the loop (100%), the strip is fully hidden at translateY(-100%).
   stripContainer.addEventListener('animationiteration', () => {
     currentSample = currentSample >= TOTAL_SAMPLES ? 1 : currentSample + 1;
-    stripImg.src = `assets/sample/sample_${currentSample}.webp`;
+    stripImg.src = `../assets/photobooth/sample/sample_${currentSample}.webp`;
   });
 };
 
@@ -309,9 +309,9 @@ const initAudioCues = () => {
       e.preventDefault();
       // Use AudioBridge if available to play gold SFX without delay
       if (window.AudioBridge && window.AudioBridge.playSfx) {
-        window.AudioBridge.playSfx('assets/audio-cue/open_wish_gold_cue.mp3');
+        window.AudioBridge.playSfx('../assets/audio-cue/open_wish_gold_cue.mp3');
       } else {
-        const goldSfx = new Audio('assets/audio-cue/open_wish_gold_cue.mp3');
+        const goldSfx = new Audio('../assets/audio-cue/open_wish_gold_cue.mp3');
         goldSfx.volume = window.AudioBridge ? window.AudioBridge.getSfxVol() : 0.6;
         goldSfx.play().catch(()=>{});
       }

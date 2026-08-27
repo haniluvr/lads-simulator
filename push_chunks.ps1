@@ -6,7 +6,7 @@ git reset HEAD
 Write-Host "Adding and pushing core files..."
 # Add core web files first
 git add index.html style.css app.js build_catalog.js cards.js .gitattributes compress.ps1
-git commit -m "Update UI and logic to use mp4 videos"
+git commit -m "Update UI and logic to use mp4 videos [skip ci]"
 git push
 
 Write-Host "Fetching list of all untracked mp4 files..."
@@ -49,7 +49,7 @@ for ($i = 0; $i -lt $batchCount; $i++) {
 # Add any remaining stray files (like images in assets)
 Write-Host "Pushing any remaining images or tiny assets..."
 git add .
-git commit -m "Add remaining assets [skip ci]"
+git commit -m "Add remaining assets"
 git push
 
 Write-Host "All done! Repository fully synced to GitHub."
