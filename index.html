@@ -143,13 +143,13 @@
 
             <!-- Inner solid arch with all content -->
             <div class="arch-inner">
-              <img src="assets/ui/love and deepspace.png" alt="Love and Deepspace" class="arch-logo">
+              <img id="arch-logo-img" src="assets/ui/love and deepspace.png" alt="Love and Deepspace" class="arch-logo">
               <div class="arch-divider" aria-hidden="true">
                 <span class="arch-div-line"></span>
                 <span class="arch-div-gem">✦</span>
                 <span class="arch-div-line"></span>
               </div>
-              <p class="arch-sub">Wish Simulator</p>
+              <p class="arch-sub" data-i18n="app.title_simulator">Wish Simulator</p>
               <div class="home-buttons-row" style="display: flex; gap: 16px; justify-content: center; align-items: center;">
                 <a href="photobooth/index.html" class="home-img-btn">
                   <img src="assets/ui/photobooth.webp" alt="Photobooth">
@@ -199,16 +199,15 @@
             <!-- Card content -->
             <div class="bc-content">
               <div class="bc-header-row">
-                <span class="bc-badge bc-badge-gold">✦ LIMITED EVENT</span>
+                <span class="bc-badge bc-badge-gold" data-i18n="banner.limited_badge">✦ LIMITED</span>
                 <span class="bc-pulls" id="limited-pulls-display">
                   <img src="assets/ui/deepspace-wish.webp" style="width: 14px; vertical-align: middle; margin-right: 4px;" alt=""> 250
                 </span>
               </div>
-              <p class="bc-title">Hearts in Orbit</p>
+              <p class="bc-title" data-i18n="banner.hearts_in_orbit">Hearts in Orbit</p>
               <div class="bc-dotrow" aria-hidden="true">· · · · · · · · · · · · · · · · · · · ·</div>
               <div class="bc-footer-row">
-                <span class="bc-featured">5-Star Memory guaranteed within</span>
-                <span class="bc-pity gold-val" id="limited-pity-display">70 pulls</span>
+                <span class="bc-featured"><span data-i18n="banner.guarantee_pre">5-Star Memory guaranteed within </span><span class="bc-pity gold-val" id="limited-pity-display">70</span><span data-i18n="banner.guarantee_post"> pulls</span></span>
               </div>
             </div>
           </article>
@@ -240,16 +239,15 @@
             <!-- Card content -->
             <div class="bc-content">
               <div class="bc-header-row">
-                <span class="bc-badge bc-badge-blue">★ STANDARD</span>
+                <span class="bc-badge bc-badge-blue" data-i18n="banner.standard_badge">★ STANDARD</span>
                 <span class="bc-pulls blue-val" id="standard-pulls-display">
                   <img src="assets/ui/empyrean-wish.webp" style="width: 14px; vertical-align: middle; margin-right: 4px;" alt=""> 250
                 </span>
               </div>
-              <p class="bc-title">Xspace Echo</p>
+              <p class="bc-title" data-i18n="banner.xspace_echo">Xspace Echo</p>
               <div class="bc-dotrow" aria-hidden="true">· · · · · · · · · · · · · · · · · · · ·</div>
               <div class="bc-footer-row">
-                <span class="bc-featured">5-Star Memory guaranteed within</span>
-                <span class="bc-pity blue-val" id="standard-pity-display">70 pulls</span>
+                <span class="bc-featured"><span data-i18n="banner.guarantee_pre">5-Star Memory guaranteed within </span><span class="bc-pity blue-val" id="standard-pity-display">70</span><span data-i18n="banner.guarantee_post"> pulls</span></span>
               </div>
             </div>
           </article>
@@ -264,11 +262,11 @@
       <footer class="select-footer">
         <div class="daily-reset-row">
           <svg class="reset-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-          <span>Daily pulls reset in</span>
+          <span data-i18n="home.footer_reset">Daily pulls reset in</span>
           <span class="countdown-timer" id="reset-countdown" aria-live="polite">--:--:--</span>
         </div>
-        <p class="footer-hint">5★ at 70 pity &nbsp;·&nbsp; 4★ every 10 pulls &nbsp;·&nbsp; 50/50 on limited</p>
-        <p class="footer-disclaimer">Disclaimer: This is an unofficial, fan-made web application and is not affiliated with, endorsed, sponsored, or approved by Papergames or Infold Games. Love and Deepspace, its characters, artwork, audio, and all associated intellectual property are the exclusive property of their respective copyright holders. This project is created strictly for entertainment and fan purposes, with no commercial intent. No copyright infringement is intended.</p>
+        <p class="footer-hint" data-i18n="home.footer_hint">5★ at 70 pity &nbsp;·&nbsp; 4★ every 10 pulls &nbsp;·&nbsp; 50/50 on limited</p>
+        <p class="footer-disclaimer" data-i18n="home.footer_disclaimer">Disclaimer: This is an unofficial, fan-made web application and is not affiliated with, endorsed, sponsored, or approved by Papergames or Infold Games. Love and Deepspace, its characters, artwork, audio, and all associated intellectual property are the exclusive property of their respective copyright holders. This project is created strictly for entertainment and fan purposes, with no commercial intent. No copyright infringement is intended.</p>
       </footer>
 
     </div><!-- /screen-select -->
@@ -355,14 +353,14 @@
 
             <div class="pity-section">
               <div class="pity-header-row">
-                <span class="pity-heading">5★ Pity</span>
+                <span class="pity-heading" data-i18n="pull.pity_title">5★ Pity</span>
                 <span class="pity-counter" id="pity-counter">0 / 70</span>
               </div>
               <div class="pity-track" role="progressbar" aria-label="5 star pity progress" aria-valuemin="0" aria-valuemax="70" id="pity-track-el">
                 <div class="pity-fill" id="pity-fill"></div>
                 <div class="pity-soft-marker" title="Soft pity starts at pull 60"></div>
               </div>
-              <span class="pity-soft-hint">↑ Soft pity at 60</span>
+              <span class="pity-soft-hint" data-i18n="pull.soft_pity_hint">↑ Soft pity at 60</span>
             </div>
 
             <div class="guarantee-zone" id="guarantee-zone" aria-live="polite"></div>
@@ -370,7 +368,7 @@
             <div class="precise-wish-container" id="pw-container" style="display:none; text-align: center; margin-bottom: 4px; margin-top: -8px;">
               <button class="pw-trigger-btn" id="pw-trigger-btn">
                 <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
-                Precise Wish: <span id="pw-status-text">None</span>
+                <span data-i18n="pw.btn">Precise Wish: </span><span id="pw-status-text">None</span>
               </button>
             </div>
 
@@ -378,16 +376,16 @@
               <button class="pull-action-btn" id="pull-1-btn" aria-label="Pull once">
                 <div class="btn-shine" aria-hidden="true"></div>
                 <span class="pull-btn-gem" aria-hidden="true">✦</span>
-                <span class="pull-btn-text">Pull ×1</span>
+                <span class="pull-btn-text" data-i18n="pull.btn_pull_1">Wish ×1</span>
               </button>
               <button class="pull-action-btn pull-ten-btn" id="pull-10-btn" aria-label="Pull ten times">
                 <div class="btn-shine" aria-hidden="true"></div>
                 <span class="pull-btn-gem" aria-hidden="true">✦✦</span>
-                <span class="pull-btn-text">Pull ×10</span>
+                <span class="pull-btn-text" data-i18n="pull.btn_pull_10">Wish ×10</span>
               </button>
             </div>
 
-            <p class="rules-hint">
+            <p class="rules-hint" data-i18n="pull.rules_hint">
               4★ guaranteed every 10 pulls · 5★ guaranteed at 70 pity
             </p>
           </section>
@@ -493,9 +491,9 @@
       <div class="reveal-flash" id="reveal-flash" aria-hidden="true"></div>
 
       <header class="reveal-header">
-        <p class="reveal-title" id="reveal-title">Memory Obtained</p>
+        <p class="reveal-title" id="reveal-title" data-i18n="pull.memory_obtained">Memory Obtained</p>
       </header>
-      <button id="skip-reveal-btn" class="skip-btn" aria-label="Skip Animation" style="display:none;">Skip</button>
+      <button id="skip-reveal-btn" class="skip-btn" aria-label="Skip Animation" style="display:none;" data-i18n="pull.skip">Skip</button>
 
       <div class="cards-stage layout-1" id="single-card-stage" aria-live="polite"></div>
       <div class="cards-stage layout-10" id="summary-card-stage" aria-live="polite" style="display:none;"></div>
@@ -504,7 +502,7 @@
         <p class="result-summary" id="result-summary" aria-live="polite"></p>
         <button class="collect-btn" id="collect-btn" aria-label="Collect all memories">
           <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l2.9 6.3 6.9 1-5 4.9 1.2 6.9-6.1-3.2-6.1 3.2 1.2-6.9-5-4.9 6.9-1z"/></svg>
-          <span id="collect-btn-text">Collect All</span>
+          <span id="collect-btn-text" data-i18n="pull.collect_all">Collect All</span>
         </button>
       </footer>
 
@@ -519,7 +517,7 @@
 
     <!-- Pull Start Universal Video -->
     <div id="pull-start-video-container" class="pull-start-video-container" aria-hidden="true" style="display:none;">
-      <button id="skip-pull-start-btn" class="skip-btn" aria-label="Skip Animation" style="display:none; z-index: 999;">Skip</button>
+      <button id="skip-pull-start-btn" class="skip-btn" aria-label="Skip Animation" style="display:none; z-index: 999;" data-i18n="pull.skip">Skip</button>
       <video id="pull-start-video" playsinline muted preload="auto"></video>
     </div>
 
@@ -534,49 +532,49 @@
     <div id="precise-wish-modal" class="settings-overlay" aria-modal="true" role="dialog" aria-hidden="true" style="display: none;">
       <div class="settings-container">
         <div class="settings-header">
-          <h2 class="pw-title" style="margin:0; font-family:var(--font-d); color:var(--gold-lt);">PRECISE WISH</h2>
+          <h2 class="pw-title" style="margin:0; font-family:var(--font-d); color:var(--gold-lt);" data-i18n="pw.title">PRECISE WISH</h2>
           <button id="pw-close-btn" class="settings-close" aria-label="Close Precise Wish">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg>
           </button>
         </div>
         <div class="settings-body">
-          <p class="pw-desc" style="color:var(--txt-2); font-size:14px; margin-bottom:16px;">Select your target love interest. If your first 5-Star pull is not your chosen love interest, the next 5-Star is guaranteed to be your choice.</p>
+          <p class="pw-desc" style="color:var(--txt-2); font-size:14px; margin-bottom:16px;" data-i18n="pw.desc">Select your target love interest. If your first 5-Star pull is not your chosen love interest, the next 5-Star is guaranteed to be your choice.</p>
           
           <div class="pw-status-bar">
-            <span>Current Wish: <strong id="pw-current-wish">None</strong></span>
+            <span><span data-i18n="pw.current_wish">Current Wish: </span><strong id="pw-current-wish">None</strong></span>
             <span class="pw-points" id="pw-points-display">0/1</span>
           </div>
 
           <div class="pw-grid">
             <button class="pw-char-btn" data-char="xavier">
               <img src="assets/ui/select/xavier.webp" alt="Xavier">
-              <span>Xavier</span>
+              <span data-i18n="char.xavier">Xavier</span>
             </button>
             <button class="pw-char-btn" data-char="zayne">
               <img src="assets/ui/select/zayne.webp" alt="Zayne">
-              <span>Zayne</span>
+              <span data-i18n="char.zayne">Zayne</span>
             </button>
             <button class="pw-char-btn" data-char="rafayel">
               <img src="assets/ui/select/rafayel.webp" alt="Rafayel">
-              <span>Rafayel</span>
+              <span data-i18n="char.rafayel">Rafayel</span>
             </button>
             <button class="pw-char-btn" data-char="sylus">
               <img src="assets/ui/select/sylus.webp" alt="Sylus">
-              <span>Sylus</span>
+              <span data-i18n="char.sylus">Sylus</span>
             </button>
             <button class="pw-char-btn" data-char="caleb">
               <img src="assets/ui/select/caleb.webp" alt="Caleb">
-              <span>Caleb</span>
+              <span data-i18n="char.caleb">Caleb</span>
             </button>
             <button class="pw-char-btn" data-char="valko">
               <img src="assets/ui/select/valko.webp" alt="Valko">
-              <span>Valko</span>
+              <span data-i18n="char.valko">Valko</span>
             </button>
           </div>
 
           <div class="pw-footer" style="display:flex; justify-content:center; gap:12px; margin-top:24px;">
-            <button id="pw-cancel-choice-btn" class="pw-action-btn cancel" style="display:none; background:transparent; border:1px solid #555; color:#ddd; padding:8px 16px; border-radius:var(--r-sm); cursor:pointer;">Cancel Wish</button>
-            <button id="pw-confirm-btn" class="pw-action-btn confirm" style="background:var(--gold-lt); color:#000; padding:8px 24px; border:none; border-radius:var(--r-sm); font-weight:600; cursor:pointer;" disabled>Confirm</button>
+            <button id="pw-cancel-choice-btn" class="pw-action-btn cancel" style="display:none; background:transparent; border:1px solid #555; color:#ddd; padding:8px 16px; border-radius:var(--r-sm); cursor:pointer;" data-i18n="pw.cancel">Cancel Wish</button>
+            <button id="pw-confirm-btn" class="pw-action-btn confirm" style="background:var(--gold-lt); color:#000; padding:8px 24px; border:none; border-radius:var(--r-sm); font-weight:600; cursor:pointer;" disabled data-i18n="pw.confirm">Confirm</button>
           </div>
         </div>
       </div>
@@ -599,6 +597,8 @@
             <h3 style="color: var(--gold); margin-bottom: 12px; font-family: var(--font-d); font-size: 20px;">Patch Notes</h3>
             <p style="color: var(--txt-2); margin-bottom: 8px;">Changes made since the last update:</p>
             <ul style="color: #ddd; padding-left: 20px; line-height: 1.6; font-size: 14px;">
+              <li><strong>[NEW]</strong> Simplified Chinese Translations</li>
+              <li><strong>[NEW]</strong> Rafayel Myth Memories</li>
               <li><strong>[NEW]</strong> Cosmo Photobooth</li>
               <li><strong>[NEW]</strong> Arcade Minigames</li>
               <ul style="color: #ddd; padding-left: 20px; line-height: 1.6; font-size: 14px;">
@@ -620,8 +620,9 @@
           <div class="notice-section">
             <h3 style="color: var(--gold); margin-bottom: 12px; font-family: var(--font-d); font-size: 20px;">Future Plans</h3>
             <ul style="color: #ddd; padding-left: 20px; line-height: 1.6; font-size: 14px;">
-              <li style="margin-bottom: 8px;"><strong>Simplified Chinese Translations</strong> For our sisters in China, I plan to add a translated version of the site. I just need help in the translations of the memories and UI.</li>
+              <li style="margin-bottom: 8px;"><strong>Other Language Translations:</strong> Traditional Chinese, Japanese, and Korean.</li>
               <li style="margin-bottom: 8px;"><strong>Claw Machine Minigame:</strong> Just like in-game, it's a claw machine game where you can collect variants of multiple plushies. For the first phase, I'll be adding a plush versions of the LI's (up to 4 variants).</li>
+              <li style="margin-bottom: 8px;"><strong>Kitty Cards Minigame:</strong> Just like in-game, a card game where you play against the computer (companion) while still having the LI's personality and traits.</li>
               <li style="margin-bottom: 8px;"><strong>Kindled Memories:</strong> Connect kindles through memories (as if in-game). Still studying the architecture for the implementation.</li>
               <li style="margin-bottom: 8px;"><strong>Interactive Companion of the LI's:</strong> This won't be through AI. Just randomized messages whenever you tap on your companion, but with rules and logic for the responses.</li>
             </ul>
@@ -636,22 +637,23 @@
 
   <div class="toast" id="toast" role="alert" aria-live="assertive"></div>
 
-  <script src="cards.js?v=23"></script>
-  <script src="memories.js?v=22"></script>
-  <script src="collection.js?v=22"></script>
+  <script src="i18n.js?v=3"></script>
+  <script src="cards.js?v=24"></script>
+  <script src="memories.js?v=23"></script>
+  <script src="collection.js?v=23"></script>
   <script src="audio-bridge.js?v=4"></script>
   <script src="app.js?v=29"></script>
   <script>
     window.PAGE_FAQ = {
       title: 'Gacha FAQ',
       items: [
-        { q: 'How does the pity system work?', a: '5-stars are guaranteed within 70 pulls. 4-stars are guaranteed within 10 pulls. Your pity counter is shared across all pulls on the same banner.' },
-        { q: 'What is the 50/50 system?', a: 'On limited banners, you have a 50% chance of pulling the featured character. If you lose the 50/50, your next 5-star on that banner is guaranteed to be the featured character.' },
-        { q: 'What is Precise Wish?', a: 'Precise Wish lets you designate a target Love Interest. If you lose the 50/50, your next guaranteed 5-star will always be from your chosen Love Interest instead of a random one.' },
-        { q: 'What are Deepspace Wish and Empyrean Wish tickets?', a: 'These are two different currency types. Deepspace Wishes are used for standard and limited banners, while Empyrean Wishes are used for the exclusive Empyrean banner. You can earn them from the Wishfall Frenzy arcade game.' },
-        { q: 'How do I rank up memories?', a: 'Pulling duplicate cards automatically increases the rank (stars) of the memory. Higher ranks unlock additional bonuses.' },
-        { q: 'How do I reset my data?', a: 'Open Settings → Reset Data → Confirm. This permanently deletes all pulls, pity, wishes, and your collection.' },
-        { q: 'Is this affiliated with Infold Games or Papergames?', a: 'No. This is a completely unofficial fan-made project for entertainment purposes only. No copyright infringement is intended.' }
+        { q: 'How does the pity system work?', a: '5-stars are guaranteed within 70 pulls. 4-stars are guaranteed within 10 pulls. Your pity counter is shared across all pulls on the same banner.', i18n_q: 'faq.q1', i18n_a: 'faq.a1' },
+        { q: 'What is the 50/50 system?', a: 'On limited banners, you have a 50% chance of pulling the featured character. If you lose the 50/50, your next 5-star on that banner is guaranteed to be the featured character.', i18n_q: 'faq.q2', i18n_a: 'faq.a2' },
+        { q: 'What is Precise Wish?', a: 'Precise Wish lets you designate a target Love Interest. If you lose the 50/50, your next guaranteed 5-star will always be from your chosen Love Interest instead of a random one.', i18n_q: 'faq.q3', i18n_a: 'faq.a3' },
+        { q: 'What are Deepspace Wish and Empyrean Wish tickets?', a: 'These are two different currency types. Deepspace Wishes are used for standard and limited banners, while Empyrean Wishes are used for the exclusive Empyrean banner. You can earn them from the Wishfall Frenzy arcade game.', i18n_q: 'faq.q4', i18n_a: 'faq.a4' },
+        { q: 'How do I rank up memories?', a: 'Pulling duplicate cards automatically increases the rank (stars) of the memory. Higher ranks unlock additional bonuses.', i18n_q: 'faq.q5', i18n_a: 'faq.a5' },
+        { q: 'How do I reset my data?', a: 'Open Settings → Reset Data → Confirm. This permanently deletes all pulls, pity, wishes, and your collection.', i18n_q: 'faq.q6', i18n_a: 'faq.a6' },
+        { q: 'Is this affiliated with Infold Games or Papergames?', a: 'No. This is a completely unofficial fan-made project for entertainment purposes only. No copyright infringement is intended.', i18n_q: 'faq.q7', i18n_a: 'faq.a7' }
       ]
     };
   </script>
@@ -664,35 +666,35 @@
   <!-- Arcade Modal -->
   <div id="arcade-modal" class="settings-overlay" aria-modal="true" role="dialog" style="display:none;">
     <div class="arcade-modal-inner">
-      <h2 class="arcade-modal-title">ARCADE</h2>
+      <h2 class="arcade-modal-title" data-i18n="arcade.title">ARCADE</h2>
       <div class="arcade-modal-grid">
 
         <a href="arcade/wishfall-frenzy.html" class="arcade-game-card">
           <div class="arcade-game-img-wrap">
             <img src="assets/ui/wishfall-frenzy.webp" alt="Wishfall Frenzy" class="arcade-game-img floating">
           </div>
-          <span class="arcade-game-name">Wishfall Frenzy</span>
+          <span class="arcade-game-name" data-i18n="arcade.wishfall">Wishfall Frenzy</span>
         </a>
 
         <div class="arcade-game-card arcade-game-soon">
           <div class="arcade-game-img-wrap">
             <img src="assets/ui/claw-machine.webp" alt="MASH" class="arcade-game-img floating" style="animation-delay: 0.8s;">
           </div>
-          <span class="arcade-game-name">Claw Machine</span>
+          <span class="arcade-game-name" data-i18n="arcade.claw">Claw Machine</span>
         </div>
 
         <a href="arcade/flames-ticket.html" class="arcade-game-card">
           <div class="arcade-game-img-wrap">
             <img src="assets/ui/flames-ticket.webp" alt="FLAMES Calculator" class="arcade-game-img floating" style="animation-delay: 0.4s;">
           </div>
-          <span class="arcade-game-name">FLAMES Ticket</span>
+          <span class="arcade-game-name" data-i18n="arcade.flames">FLAMES Ticket</span>
         </a>
 
         <a href="arcade/mash-future.html" class="arcade-game-card">
           <div class="arcade-game-img-wrap">
             <img src="assets/ui/mash.webp" alt="MASH" class="arcade-game-img floating" style="animation-delay: 0.8s;">
           </div>
-          <span class="arcade-game-name">MASH Future</span>
+          <span class="arcade-game-name" data-i18n="arcade.mash">MASH Future</span>
         </a>
 
       </div>

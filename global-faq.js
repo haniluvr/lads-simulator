@@ -28,15 +28,15 @@
   // Build accordion items from the items array
   const accordionItems = items.map((item, i) => `
     <details class="settings-accordion">
-      <summary>${item.q}</summary>
+      <summary ${item.i18n_q ? `data-i18n="${item.i18n_q}"` : ''}>${item.q}</summary>
       <div class="accordion-content">
-        <p class="settings-desc">${item.a}</p>
+        <p class="settings-desc" ${item.i18n_a ? `data-i18n="${item.i18n_a}"` : ''}>${item.a}</p>
       </div>
     </details>
   `).join('');
 
   const emptyMsg = items.length === 0
-    ? '<p class="settings-desc" style="text-align:center;opacity:.5;">No FAQ items for this page.</p>'
+    ? '<p class="settings-desc" style="text-align:center;opacity:.5;" data-i18n="faq.empty">No FAQ items for this page.</p>'
     : '';
 
   const faqHTML = `
@@ -49,7 +49,7 @@
   <div id="faq-modal" class="settings-overlay" aria-modal="true" role="dialog" style="display:none;">
     <div class="settings-container">
       <div class="settings-header">
-        <h2>FAQ</h2>
+        <h2 data-i18n="faq.title">FAQ</h2>
         <button id="faq-close-btn" class="settings-close" aria-label="Close FAQ">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg>
         </button>

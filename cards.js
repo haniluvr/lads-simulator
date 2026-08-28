@@ -8,6 +8,7 @@ const CARD_CATALOG = [
     "bannerType": "limited",
     "assetPath": "assets/caleb/five-star/lunar/limited/clearday return.mp4",
     "cardName": "Clearday Return",
+    "cardNameCN": "晴昼当归",
     "isVideo": true
   },
   {
@@ -18,6 +19,7 @@ const CARD_CATALOG = [
     "bannerType": "limited",
     "assetPath": "assets/caleb/five-star/lunar/limited/clearwind glide.mp4",
     "cardName": "Clearwind Glide",
+    "cardNameCN": "澄风掠海",
     "isVideo": true
   },
   {
@@ -28,6 +30,7 @@ const CARD_CATALOG = [
     "bannerType": "limited",
     "assetPath": "assets/caleb/five-star/lunar/limited/floating floraletter.mp4",
     "cardName": "Floating Floraletter",
+    "cardNameCN": "浮花以载",
     "isVideo": true
   },
   {
@@ -38,6 +41,7 @@ const CARD_CATALOG = [
     "bannerType": "limited",
     "assetPath": "assets/caleb/five-star/lunar/limited/imperial thronesong.mp4",
     "cardName": "Imperial Thronesong",
+    "cardNameCN": "浴冕歌",
     "isVideo": true
   },
   {
@@ -48,6 +52,7 @@ const CARD_CATALOG = [
     "bannerType": "limited",
     "assetPath": "assets/caleb/five-star/lunar/limited/indulgent scheme.mp4",
     "cardName": "Indulgent Scheme",
+    "cardNameCN": "慵懒共谋",
     "isVideo": true
   },
   {
@@ -58,6 +63,7 @@ const CARD_CATALOG = [
     "bannerType": "limited",
     "assetPath": "assets/caleb/five-star/lunar/limited/no-return night.mp4",
     "cardName": "No-return Night",
+    "cardNameCN": "无可逃逸夜",
     "isVideo": true
   },
   {
@@ -68,6 +74,7 @@ const CARD_CATALOG = [
     "bannerType": "limited",
     "assetPath": "assets/caleb/five-star/lunar/limited/painful signal.mp4",
     "cardName": "Painful Signal",
+    "cardNameCN": "触痛讯号",
     "isVideo": true
   },
   {
@@ -78,6 +85,7 @@ const CARD_CATALOG = [
     "bannerType": "limited",
     "assetPath": "assets/caleb/five-star/lunar/limited/passionate overload.mp4",
     "cardName": "Passionate Overload",
+    "cardNameCN": "灼频过载",
     "isVideo": true
   },
   {
@@ -88,6 +96,7 @@ const CARD_CATALOG = [
     "bannerType": "limited",
     "assetPath": "assets/caleb/five-star/lunar/limited/summer surge.mp4",
     "cardName": "Summer Surge",
+    "cardNameCN": "夏意涌向",
     "isVideo": true
   },
   {
@@ -98,6 +107,7 @@ const CARD_CATALOG = [
     "bannerType": "limited",
     "assetPath": "assets/caleb/five-star/lunar/limited/tainted cuts.mp4",
     "cardName": "Tainted Cuts",
+    "cardNameCN": "附骨之痕",
     "isVideo": true
   },
   {
@@ -108,6 +118,7 @@ const CARD_CATALOG = [
     "bannerType": "limited",
     "assetPath": "assets/caleb/five-star/lunar/limited/up close.mp4",
     "cardName": "Up Close",
+    "cardNameCN": "触而可及",
     "isVideo": true
   },
   {
@@ -118,6 +129,7 @@ const CARD_CATALOG = [
     "bannerType": "limited",
     "assetPath": "assets/caleb/five-star/lunar/limited/vinesurge instinct.mp4",
     "cardName": "Vinesurge Instinct",
+    "cardNameCN": "蔓生本能",
     "isVideo": true
   },
   {
@@ -128,6 +140,7 @@ const CARD_CATALOG = [
     "bannerType": "limited",
     "assetPath": "assets/caleb/five-star/lunar/limited/wayward wonderland.mp4",
     "cardName": "Wayward Wonderland",
+    "cardNameCN": "永无岛",
     "isVideo": true
   },
   {
@@ -138,6 +151,7 @@ const CARD_CATALOG = [
     "bannerType": "limited",
     "assetPath": "assets/caleb/five-star/lunar/limited/your skyblue.mp4",
     "cardName": "Your Skyblue",
+    "cardNameCN": "万里皆予你",
     "isVideo": true
   },
   {
@@ -148,6 +162,7 @@ const CARD_CATALOG = [
     "bannerType": "standard",
     "assetPath": "assets/caleb/five-star/lunar/standard/endless summer.mp4",
     "cardName": "Endless Summer",
+    "cardNameCN": "无尽夏",
     "isVideo": true
   },
   {
@@ -158,6 +173,7 @@ const CARD_CATALOG = [
     "bannerType": "standard",
     "assetPath": "assets/caleb/five-star/lunar/standard/exclusive aftertaste.mp4",
     "cardName": "Exclusive Aftertaste",
+    "cardNameCN": "限定余味",
     "isVideo": true
   },
   {
@@ -168,6 +184,7 @@ const CARD_CATALOG = [
     "bannerType": "standard",
     "assetPath": "assets/caleb/five-star/lunar/standard/hidden waves.mp4",
     "cardName": "Hidden Waves",
+    "cardNameCN": "暗潮边缘",
     "isVideo": true
   },
   {
@@ -178,6 +195,7 @@ const CARD_CATALOG = [
     "bannerType": "standard",
     "assetPath": "assets/caleb/five-star/lunar/standard/yearly nostalgia.mp4",
     "cardName": "Yearly Nostalgia",
+    "cardNameCN": "槐序",
     "isVideo": true
   },
   {
@@ -188,6 +206,7 @@ const CARD_CATALOG = [
     "bannerType": "limited",
     "assetPath": "assets/caleb/five-star/solar/limited/loneroad together.mp4",
     "cardName": "Loneroad Together",
+    "cardNameCN": "寂路同赴",
     "isVideo": true
   },
   {
@@ -198,6 +217,7 @@ const CARD_CATALOG = [
     "bannerType": "limited",
     "assetPath": "assets/caleb/five-star/solar/limited/loneroad unreturned.mp4",
     "cardName": "Loneroad Unreturned",
+    "cardNameCN": "寂路不归",
     "isVideo": true
   },
   {
@@ -208,6 +228,7 @@ const CARD_CATALOG = [
     "bannerType": "limited",
     "assetPath": "assets/caleb/five-star/solar/limited/nether parting.mp4",
     "cardName": "Nether Parting",
+    "cardNameCN": "沉冥相遥",
     "isVideo": true
   },
   {
@@ -218,6 +239,7 @@ const CARD_CATALOG = [
     "bannerType": "limited",
     "assetPath": "assets/caleb/five-star/solar/limited/nether yearning.mp4",
     "cardName": "Nether Yearning",
+    "cardNameCN": "沉冥幽眷",
     "isVideo": true
   },
   {
@@ -228,6 +250,7 @@ const CARD_CATALOG = [
     "bannerType": "standard",
     "assetPath": "assets/caleb/five-star/solar/standard/farspace bloomfall.mp4",
     "cardName": "Farspace Bloomfall",
+    "cardNameCN": "远空棠雨",
     "isVideo": true
   },
   {
@@ -238,6 +261,7 @@ const CARD_CATALOG = [
     "bannerType": "standard",
     "assetPath": "assets/caleb/five-star/solar/standard/farspace deviation.mp4",
     "cardName": "Farspace Deviation",
+    "cardNameCN": null,
     "isVideo": true
   },
   {
@@ -248,6 +272,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/caleb/four-star/lunar/borrowed promise.webp",
     "cardName": "Borrowed Promise",
+    "cardNameCN": "预支约定",
     "isVideo": false
   },
   {
@@ -258,6 +283,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/caleb/four-star/lunar/burnline.webp",
     "cardName": "Burnline",
+    "cardNameCN": "焚线",
     "isVideo": false
   },
   {
@@ -268,6 +294,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/caleb/four-star/lunar/chasing summer.webp",
     "cardName": "Chasing Summer",
+    "cardNameCN": "奔夏一刻",
     "isVideo": false
   },
   {
@@ -278,6 +305,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/caleb/four-star/lunar/deceptive solitude.webp",
     "cardName": "Deceptive Solitude",
+    "cardNameCN": "寥落假象",
     "isVideo": false
   },
   {
@@ -288,6 +316,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/caleb/four-star/lunar/held orchard.webp",
     "cardName": "Held Orchard",
+    "cardNameCN": "牵夜灼灼",
     "isVideo": false
   },
   {
@@ -298,6 +327,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/caleb/four-star/lunar/intertwined gold.webp",
     "cardName": "Intertwined Gold",
+    "cardNameCN": "绕金枝",
     "isVideo": false
   },
   {
@@ -308,6 +338,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/caleb/four-star/lunar/skyline.webp",
     "cardName": "Skyline",
+    "cardNameCN": "天际线",
     "isVideo": false
   },
   {
@@ -318,6 +349,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/caleb/four-star/lunar/spotlit gaze.webp",
     "cardName": "Spotlit Gaze",
+    "cardNameCN": "倾目如驻",
     "isVideo": false
   },
   {
@@ -328,6 +360,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/caleb/four-star/lunar/stage observer.webp",
     "cardName": "Stage Observer",
+    "cardNameCN": "戏中局外",
     "isVideo": false
   },
   {
@@ -338,6 +371,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/caleb/four-star/lunar/summer's echo.webp",
     "cardName": "Summer's Echo",
+    "cardNameCN": "回夏",
     "isVideo": false
   },
   {
@@ -348,6 +382,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/caleb/four-star/lunar/verdant wetlands.webp",
     "cardName": "Verdant Wetlands",
+    "cardNameCN": "潮湿盛野",
     "isVideo": false
   },
   {
@@ -358,6 +393,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/caleb/four-star/lunar/verified rumor.webp",
     "cardName": "Verified Rumor",
+    "cardNameCN": "适配流言",
     "isVideo": false
   },
   {
@@ -368,6 +404,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/caleb/four-star/solar/duskshard dreams.webp",
     "cardName": "Duskshard Dreams",
+    "cardNameCN": "残宵绯梦",
     "isVideo": false
   },
   {
@@ -378,6 +415,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/caleb/four-star/solar/duskshard lotus.webp",
     "cardName": "Duskshard Lotus",
+    "cardNameCN": "残宵莲烬",
     "isVideo": false
   },
   {
@@ -388,6 +426,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/caleb/four-star/solar/farewell dreamscape.webp",
     "cardName": "Farewell Dreamscape",
+    "cardNameCN": "离途幻乐",
     "isVideo": false
   },
   {
@@ -398,6 +437,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/caleb/four-star/solar/farewell intimacy.webp",
     "cardName": "Farewell Intimacy",
+    "cardNameCN": "离途密触",
     "isVideo": false
   },
   {
@@ -408,6 +448,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/caleb/four-star/solar/longtime moments.webp",
     "cardName": "Longtime Moments",
+    "cardNameCN": "长昼顷刻",
     "isVideo": false
   },
   {
@@ -418,6 +459,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/caleb/four-star/solar/longtime yesterday.webp",
     "cardName": "Longtime Yesterday",
+    "cardNameCN": "长昼如昨",
     "isVideo": false
   },
   {
@@ -428,6 +470,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/caleb/three-star/lunar/distant dreams.webp",
     "cardName": "Distant Dreams",
+    "cardNameCN": "遥想",
     "isVideo": false
   },
   {
@@ -438,6 +481,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/caleb/three-star/lunar/his gravity.webp",
     "cardName": "His Gravity",
+    "cardNameCN": "他心引力",
     "isVideo": false
   },
   {
@@ -448,6 +492,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/caleb/three-star/lunar/literary immersion.webp",
     "cardName": "Literary Immersion",
+    "cardNameCN": "字句沉浸",
     "isVideo": false
   },
   {
@@ -458,6 +503,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/caleb/three-star/lunar/lotus bond.webp",
     "cardName": "Lotus Bond",
+    "cardNameCN": "莲结",
     "isVideo": false
   },
   {
@@ -468,6 +514,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/caleb/three-star/lunar/maximum energy.webp",
     "cardName": "Maximum Energy",
+    "cardNameCN": "能量满格",
     "isVideo": false
   },
   {
@@ -478,6 +525,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/caleb/three-star/lunar/skyward flair.webp",
     "cardName": "Skyward Flair",
+    "cardNameCN": "飒然当空",
     "isVideo": false
   },
   {
@@ -488,6 +536,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/caleb/three-star/lunar/stay in touch.webp",
     "cardName": "Stay In Touch",
+    "cardNameCN": "保持联络",
     "isVideo": false
   },
   {
@@ -498,6 +547,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/caleb/three-star/lunar/the termination.webp",
     "cardName": "The Termination",
+    "cardNameCN": "终结",
     "isVideo": false
   },
   {
@@ -508,6 +558,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/caleb/three-star/solar/critical strike.webp",
     "cardName": "Critical Strike",
+    "cardNameCN": null,
     "isVideo": false
   },
   {
@@ -518,6 +569,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/caleb/three-star/solar/perfect apple.webp",
     "cardName": "Perfect Apple",
+    "cardNameCN": "满分苹果",
     "isVideo": false
   },
   {
@@ -528,6 +580,7 @@ const CARD_CATALOG = [
     "bannerType": "limited",
     "assetPath": "assets/rafayel/five-star/lunar/limited/boundless seas.mp4",
     "cardName": "Boundless Seas",
+    "cardNameCN": "沉入无尽海",
     "isVideo": true
   },
   {
@@ -538,6 +591,7 @@ const CARD_CATALOG = [
     "bannerType": "limited",
     "assetPath": "assets/rafayel/five-star/lunar/limited/carved gemheart.mp4",
     "cardName": "Carved Gemheart",
+    "cardNameCN": "锦夜琢心",
     "isVideo": true
   },
   {
@@ -548,6 +602,7 @@ const CARD_CATALOG = [
     "bannerType": "limited",
     "assetPath": "assets/rafayel/five-star/lunar/limited/destined dawntide.mp4",
     "cardName": "Destined Dawntide",
+    "cardNameCN": "朝汐屿",
     "isVideo": true
   },
   {
@@ -558,6 +613,7 @@ const CARD_CATALOG = [
     "bannerType": "limited",
     "assetPath": "assets/rafayel/five-star/lunar/limited/duskbright steps.mp4",
     "cardName": "Duskbright Steps",
+    "cardNameCN": "步步向晚晴",
     "isVideo": true
   },
   {
@@ -568,6 +624,7 @@ const CARD_CATALOG = [
     "bannerType": "limited",
     "assetPath": "assets/rafayel/five-star/lunar/limited/extreme dose.mp4",
     "cardName": "Extreme Dose",
+    "cardNameCN": "狂热剂量",
     "isVideo": true
   },
   {
@@ -578,6 +635,7 @@ const CARD_CATALOG = [
     "bannerType": "limited",
     "assetPath": "assets/rafayel/five-star/lunar/limited/fires of devotion.mp4",
     "cardName": "Fires Of Devotion",
+    "cardNameCN": "宴神曲",
     "isVideo": true
   },
   {
@@ -588,6 +646,7 @@ const CARD_CATALOG = [
     "bannerType": "limited",
     "assetPath": "assets/rafayel/five-star/lunar/limited/gem affection.mp4",
     "cardName": "Gem Affection",
+    "cardNameCN": "画琳琅",
     "isVideo": true
   },
   {
@@ -598,6 +657,7 @@ const CARD_CATALOG = [
     "bannerType": "limited",
     "assetPath": "assets/rafayel/five-star/lunar/limited/heatwave torrent.mp4",
     "cardName": "Heatwave Torrent",
+    "cardNameCN": "失重热浪",
     "isVideo": true
   },
   {
@@ -608,6 +668,7 @@ const CARD_CATALOG = [
     "bannerType": "limited",
     "assetPath": "assets/rafayel/five-star/lunar/limited/ignited echoes.mp4",
     "cardName": "Ignited Echoes",
+    "cardNameCN": "声浪复燃",
     "isVideo": true
   },
   {
@@ -618,6 +679,7 @@ const CARD_CATALOG = [
     "bannerType": "limited",
     "assetPath": "assets/rafayel/five-star/lunar/limited/intertidal zone.mp4",
     "cardName": "Intertidal Zone",
+    "cardNameCN": "潮间带",
     "isVideo": true
   },
   {
@@ -628,6 +690,7 @@ const CARD_CATALOG = [
     "bannerType": "limited",
     "assetPath": "assets/rafayel/five-star/lunar/limited/into the canvas.mp4",
     "cardName": "Into The Canvas",
+    "cardNameCN": "长思入画",
     "isVideo": true
   },
   {
@@ -638,6 +701,7 @@ const CARD_CATALOG = [
     "bannerType": "limited",
     "assetPath": "assets/rafayel/five-star/lunar/limited/omnipotent perception.mp4",
     "cardName": "Omnipotent Perception",
+    "cardNameCN": "纵我沉沦",
     "isVideo": true
   },
   {
@@ -648,6 +712,7 @@ const CARD_CATALOG = [
     "bannerType": "limited",
     "assetPath": "assets/rafayel/five-star/lunar/limited/rippling blossoms.mp4",
     "cardName": "Rippling Blossoms",
+    "cardNameCN": "滟滟花期",
     "isVideo": true
   },
   {
@@ -658,6 +723,7 @@ const CARD_CATALOG = [
     "bannerType": "limited",
     "assetPath": "assets/rafayel/five-star/lunar/limited/sunset on canvas.mp4",
     "cardName": "Sunset On Canvas",
+    "cardNameCN": "彼日如恒",
     "isVideo": true
   },
   {
@@ -668,6 +734,7 @@ const CARD_CATALOG = [
     "bannerType": "limited",
     "assetPath": "assets/rafayel/five-star/lunar/limited/sweet overdrive.mp4",
     "cardName": "Sweet Overdrive",
+    "cardNameCN": "甜野极驰",
     "isVideo": true
   },
   {
@@ -678,6 +745,7 @@ const CARD_CATALOG = [
     "bannerType": "limited",
     "assetPath": "assets/rafayel/five-star/lunar/limited/tailwag moment.mp4",
     "cardName": "Tailwag Moment",
+    "cardNameCN": "摇尾时刻",
     "isVideo": true
   },
   {
@@ -688,6 +756,7 @@ const CARD_CATALOG = [
     "bannerType": "limited",
     "assetPath": "assets/rafayel/five-star/lunar/limited/tipsy invitation.mp4",
     "cardName": "Tipsy Invitation",
+    "cardNameCN": "酌意邀礼",
     "isVideo": true
   },
   {
@@ -698,6 +767,7 @@ const CARD_CATALOG = [
     "bannerType": "limited",
     "assetPath": "assets/rafayel/five-star/lunar/limited/unforgettable adventure.mp4",
     "cardName": "Unforgettable Adventure",
+    "cardNameCN": "此生奇遇",
     "isVideo": true
   },
   {
@@ -708,6 +778,7 @@ const CARD_CATALOG = [
     "bannerType": "limited",
     "assetPath": "assets/rafayel/five-star/lunar/limited/whispers.mp4",
     "cardName": "Whispers",
+    "cardNameCN": "唇畔絮语",
     "isVideo": true
   },
   {
@@ -718,6 +789,7 @@ const CARD_CATALOG = [
     "bannerType": "limited",
     "assetPath": "assets/rafayel/five-star/lunar/limited/wisteria waltz.mp4",
     "cardName": "Wisteria Waltz",
+    "cardNameCN": "盈盈摇曳",
     "isVideo": true
   },
   {
@@ -728,6 +800,7 @@ const CARD_CATALOG = [
     "bannerType": "standard",
     "assetPath": "assets/rafayel/five-star/lunar/standard/before sunrise.mp4",
     "cardName": "Before Sunrise",
+    "cardNameCN": "隐秘日出",
     "isVideo": true
   },
   {
@@ -738,6 +811,7 @@ const CARD_CATALOG = [
     "bannerType": "standard",
     "assetPath": "assets/rafayel/five-star/lunar/standard/blossoms.mp4",
     "cardName": "Blossoms",
+    "cardNameCN": "花落未夏",
     "isVideo": true
   },
   {
@@ -748,6 +822,7 @@ const CARD_CATALOG = [
     "bannerType": "standard",
     "assetPath": "assets/rafayel/five-star/lunar/standard/rising tides.mp4",
     "cardName": "Rising Tides",
+    "cardNameCN": "共潮生",
     "isVideo": true
   },
   {
@@ -758,6 +833,7 @@ const CARD_CATALOG = [
     "bannerType": "standard",
     "assetPath": "assets/rafayel/five-star/lunar/standard/seething flames.mp4",
     "cardName": "Seething Flames",
+    "cardNameCN": "秘焰沸腾",
     "isVideo": true
   },
   {
@@ -768,6 +844,7 @@ const CARD_CATALOG = [
     "bannerType": "standard",
     "assetPath": "assets/rafayel/five-star/lunar/standard/sparkling traces.mp4",
     "cardName": "Sparkling Traces",
+    "cardNameCN": "熠熠描摹",
     "isVideo": true
   },
   {
@@ -778,6 +855,7 @@ const CARD_CATALOG = [
     "bannerType": "standard",
     "assetPath": "assets/rafayel/five-star/lunar/standard/your fragrance.mp4",
     "cardName": "Your Fragrance",
+    "cardNameCN": "闻香",
     "isVideo": true
   },
   {
@@ -788,6 +866,7 @@ const CARD_CATALOG = [
     "bannerType": "limited",
     "assetPath": "assets/rafayel/five-star/solar/limited/masked dissolution.mp4",
     "cardName": "Masked Dissolution",
+    "cardNameCN": "玄面无相",
     "isVideo": true
   },
   {
@@ -798,6 +877,7 @@ const CARD_CATALOG = [
     "bannerType": "limited",
     "assetPath": "assets/rafayel/five-star/solar/limited/masked radiance.mp4",
     "cardName": "Masked Radiance",
+    "cardNameCN": "玄面昭昭",
     "isVideo": true
   },
   {
@@ -806,8 +886,9 @@ const CARD_CATALOG = [
     "rarityStr": "5star",
     "type": "solar",
     "bannerType": "limited",
-    "assetPath": "assets/rafayel/five-star/solar/limited/mistea descent.mp4",
-    "cardName": "Mistea Descent",
+    "assetPath": "assets/rafayel/five-star/solar/limited/mistsea descent.mp4",
+    "cardName": "Mistsea Descent",
+    "cardNameCN": "雾海神临",
     "isVideo": true
   },
   {
@@ -816,8 +897,9 @@ const CARD_CATALOG = [
     "rarityStr": "5star",
     "type": "solar",
     "bannerType": "limited",
-    "assetPath": "assets/rafayel/five-star/solar/limited/mistea lament.mp4",
-    "cardName": "Mistea Lament",
+    "assetPath": "assets/rafayel/five-star/solar/limited/mistsea lament.mp4",
+    "cardName": "Mistsea Lament",
+    "cardNameCN": "雾海离歌",
     "isVideo": true
   },
   {
@@ -828,6 +910,7 @@ const CARD_CATALOG = [
     "bannerType": "limited",
     "assetPath": "assets/rafayel/five-star/solar/limited/temple's promise.mp4",
     "cardName": "Temple's Promise",
+    "cardNameCN": "神殿秘约",
     "isVideo": true
   },
   {
@@ -838,6 +921,18 @@ const CARD_CATALOG = [
     "bannerType": "limited",
     "assetPath": "assets/rafayel/five-star/solar/limited/temple's sunset.mp4",
     "cardName": "Temple's Sunset",
+    "cardNameCN": "神殿日落",
+    "isVideo": true
+  },
+  {
+    "character": "rafayel",
+    "rarity": 5,
+    "rarityStr": "5star",
+    "type": "solar",
+    "bannerType": "standard",
+    "assetPath": "assets/rafayel/five-star/solar/standard/deep sea promise.mp4",
+    "cardName": "Deep Sea Promise",
+    "cardNameCN": "深海成诺",
     "isVideo": true
   },
   {
@@ -848,16 +943,7 @@ const CARD_CATALOG = [
     "bannerType": "standard",
     "assetPath": "assets/rafayel/five-star/solar/standard/deep sea riches.mp4",
     "cardName": "Deep Sea Riches",
-    "isVideo": true
-  },
-  {
-    "character": "rafayel",
-    "rarity": 5,
-    "rarityStr": "5star",
-    "type": "solar",
-    "bannerType": "standard",
-    "assetPath": "assets/rafayel/five-star/solar/standard/deep see promise.mp4",
-    "cardName": "Deep See Promise",
+    "cardNameCN": "深海醉金",
     "isVideo": true
   },
   {
@@ -868,6 +954,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/rafayel/four-star/lunar/afternoon arclight.webp",
     "cardName": "Afternoon Arclight",
+    "cardNameCN": "午后弧光",
     "isVideo": false
   },
   {
@@ -878,6 +965,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/rafayel/four-star/lunar/banquet ablaze.webp",
     "cardName": "Banquet Ablaze",
+    "cardNameCN": "宴色如焚",
     "isVideo": false
   },
   {
@@ -888,6 +976,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/rafayel/four-star/lunar/dangerously close.webp",
     "cardName": "Dangerously Close",
+    "cardNameCN": "危险距离",
     "isVideo": false
   },
   {
@@ -898,6 +987,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/rafayel/four-star/lunar/entwined.webp",
     "cardName": "Entwined",
+    "cardNameCN": "缠绕",
     "isVideo": false
   },
   {
@@ -908,6 +998,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/rafayel/four-star/lunar/eventide recitative.webp",
     "cardName": "Eventide Recitative",
+    "cardNameCN": "暮色宣叙",
     "isVideo": false
   },
   {
@@ -918,6 +1009,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/rafayel/four-star/lunar/flowery words.webp",
     "cardName": "Flowery Words",
+    "cardNameCN": "繁花漫语",
     "isVideo": false
   },
   {
@@ -928,6 +1020,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/rafayel/four-star/lunar/fragrant dream.webp",
     "cardName": "Fragrant Dream",
+    "cardNameCN": "萦香入梦",
     "isVideo": false
   },
   {
@@ -938,6 +1031,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/rafayel/four-star/lunar/glistening hearts.webp",
     "cardName": "Glistening Hearts",
+    "cardNameCN": "透亮心期",
     "isVideo": false
   },
   {
@@ -948,6 +1042,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/rafayel/four-star/lunar/hearty knock.webp",
     "cardName": "Hearty Knock",
+    "cardNameCN": "轻叩心扉",
     "isVideo": false
   },
   {
@@ -958,6 +1053,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/rafayel/four-star/lunar/hidden shadow.webp",
     "cardName": "Hidden Shadow",
+    "cardNameCN": "匿影",
     "isVideo": false
   },
   {
@@ -968,6 +1064,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/rafayel/four-star/lunar/ivory nightfall.webp",
     "cardName": "Ivory Nightfall",
+    "cardNameCN": "纯白入夜",
     "isVideo": false
   },
   {
@@ -978,6 +1075,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/rafayel/four-star/lunar/journey seeker.webp",
     "cardName": "Journey Seeker",
+    "cardNameCN": "觅旅",
     "isVideo": false
   },
   {
@@ -988,6 +1086,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/rafayel/four-star/lunar/lost in your eyes.webp",
     "cardName": "Lost In Your Eyes",
+    "cardNameCN": "迷失于眸",
     "isVideo": false
   },
   {
@@ -998,6 +1097,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/rafayel/four-star/lunar/love's silhouette.webp",
     "cardName": "Love's Silhouette",
+    "cardNameCN": "一剪春",
     "isVideo": false
   },
   {
@@ -1008,6 +1108,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/rafayel/four-star/lunar/myths.webp",
     "cardName": "Myths",
+    "cardNameCN": "迷思",
     "isVideo": false
   },
   {
@@ -1018,6 +1119,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/rafayel/four-star/lunar/ocean at night.webp",
     "cardName": "Ocean At Night",
+    "cardNameCN": "夜海",
     "isVideo": false
   },
   {
@@ -1028,6 +1130,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/rafayel/four-star/lunar/oceanside exchange.webp",
     "cardName": "Oceanside Exchange",
+    "cardNameCN": "海底灵犀",
     "isVideo": false
   },
   {
@@ -1038,6 +1141,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/rafayel/four-star/lunar/promised wildfire.webp",
     "cardName": "Promised Wildfire",
+    "cardNameCN": "应许燎原日",
     "isVideo": false
   },
   {
@@ -1048,6 +1152,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/rafayel/four-star/lunar/scarlet invitation.webp",
     "cardName": "Scarlet Invitation",
+    "cardNameCN": "绯色夜邀",
     "isVideo": false
   },
   {
@@ -1058,6 +1163,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/rafayel/four-star/lunar/scorching rain.webp",
     "cardName": "Scorching Rain",
+    "cardNameCN": "炽雨",
     "isVideo": false
   },
   {
@@ -1068,6 +1174,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/rafayel/four-star/lunar/sunlit raindrops.webp",
     "cardName": "Sunlit Raindrops",
+    "cardNameCN": "漫雨时晴",
     "isVideo": false
   },
   {
@@ -1078,6 +1185,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/rafayel/four-star/lunar/tipsy.webp",
     "cardName": "Tipsy",
+    "cardNameCN": "微醺",
     "isVideo": false
   },
   {
@@ -1088,6 +1196,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/rafayel/four-star/lunar/transparent ocean.webp",
     "cardName": "Transparent Ocean",
+    "cardNameCN": "透明洋",
     "isVideo": false
   },
   {
@@ -1098,6 +1207,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/rafayel/four-star/lunar/trueheart flip.webp",
     "cardName": "Trueheart Flip",
+    "cardNameCN": "一掷独衷",
     "isVideo": false
   },
   {
@@ -1108,6 +1218,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/rafayel/four-star/lunar/vesperine glimmer.webp",
     "cardName": "Vesperine Glimmer",
+    "cardNameCN": "驭夜灯阑",
     "isVideo": false
   },
   {
@@ -1118,6 +1229,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/rafayel/four-star/lunar/whalefall lament.webp",
     "cardName": "Whalefall Lament",
+    "cardNameCN": "鲸落之歌",
     "isVideo": false
   },
   {
@@ -1128,6 +1240,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/rafayel/four-star/lunar/when light falls.webp",
     "cardName": "When Light Falls",
+    "cardNameCN": "光坠其间",
     "isVideo": false
   },
   {
@@ -1138,6 +1251,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/rafayel/four-star/solar/daybreak's touch.webp",
     "cardName": "Daybreak's Touch",
+    "cardNameCN": "点染晨曦",
     "isVideo": false
   },
   {
@@ -1148,6 +1262,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/rafayel/four-star/solar/heartfelt game.webp",
     "cardName": "Heartfelt Game",
+    "cardNameCN": "心晴游戏",
     "isVideo": false
   },
   {
@@ -1158,6 +1273,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/rafayel/four-star/solar/heartfelt moment.webp",
     "cardName": "Heartfelt Moment",
+    "cardNameCN": "心晴瞬间",
     "isVideo": false
   },
   {
@@ -1168,6 +1284,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/rafayel/four-star/solar/radiant halo.webp",
     "cardName": "Radiant Halo",
+    "cardNameCN": "斑斓余晕",
     "isVideo": false
   },
   {
@@ -1178,6 +1295,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/rafayel/four-star/solar/radiant heart.webp",
     "cardName": "Radiant Heart",
+    "cardNameCN": "斑斕心迹",
     "isVideo": false
   },
   {
@@ -1188,6 +1306,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/rafayel/four-star/solar/rainbow strokes.webp",
     "cardName": "Rainbow Strokes",
+    "cardNameCN": "点染虹色",
     "isVideo": false
   },
   {
@@ -1198,6 +1317,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/rafayel/four-star/solar/sapphire dream.webp",
     "cardName": "Sapphire Dream",
+    "cardNameCN": "碧海梦眠",
     "isVideo": false
   },
   {
@@ -1208,6 +1328,29 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/rafayel/four-star/solar/sapphire scar.webp",
     "cardName": "Sapphire Scar",
+    "cardNameCN": "碧海愈痕",
+    "isVideo": false
+  },
+  {
+    "character": "rafayel",
+    "rarity": 4,
+    "rarityStr": "4star",
+    "type": "solar",
+    "bannerType": "both",
+    "assetPath": "assets/rafayel/four-star/solar/skyflame expanse.webp",
+    "cardName": "Skyflame Expanse",
+    "cardNameCN": "烽燧同天",
+    "isVideo": false
+  },
+  {
+    "character": "rafayel",
+    "rarity": 4,
+    "rarityStr": "4star",
+    "type": "solar",
+    "bannerType": "both",
+    "assetPath": "assets/rafayel/four-star/solar/skyflame reach.webp",
+    "cardName": "Skyflame Reach",
+    "cardNameCN": "烽燧金戈",
     "isVideo": false
   },
   {
@@ -1218,6 +1361,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/rafayel/four-star/solar/tidefall allure.webp",
     "cardName": "Tidefall Allure",
+    "cardNameCN": "坠浪神威",
     "isVideo": false
   },
   {
@@ -1228,6 +1372,18 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/rafayel/four-star/solar/tidefall waves.webp",
     "cardName": "Tidefall Waves",
+    "cardNameCN": "坠浪盈波",
+    "isVideo": false
+  },
+  {
+    "character": "rafayel",
+    "rarity": 3,
+    "rarityStr": "3star",
+    "type": "lunar",
+    "bannerType": "both",
+    "assetPath": "assets/rafayel/three-star/lunar/autumn caress.webp",
+    "cardName": "Autumn Caress",
+    "cardNameCN": "揽秋拂面",
     "isVideo": false
   },
   {
@@ -1238,6 +1394,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/rafayel/three-star/lunar/backlight.webp",
     "cardName": "Backlight",
+    "cardNameCN": "背光",
     "isVideo": false
   },
   {
@@ -1248,6 +1405,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/rafayel/three-star/lunar/bloom gaze.webp",
     "cardName": "Bloom Gaze",
+    "cardNameCN": "执花以望",
     "isVideo": false
   },
   {
@@ -1258,6 +1416,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/rafayel/three-star/lunar/cherished moment.webp",
     "cardName": "Cherished Moment",
+    "cardNameCN": "念念留影",
     "isVideo": false
   },
   {
@@ -1268,6 +1427,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/rafayel/three-star/lunar/dawn's melody.webp",
     "cardName": "Dawn's Melody",
+    "cardNameCN": "晨歌",
     "isVideo": false
   },
   {
@@ -1278,6 +1438,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/rafayel/three-star/lunar/distant prayer.webp",
     "cardName": "Distant Prayer",
+    "cardNameCN": "遥祈",
     "isVideo": false
   },
   {
@@ -1288,6 +1449,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/rafayel/three-star/lunar/do not disturb.webp",
     "cardName": "Do Not Disturb",
+    "cardNameCN": "请勿打扰",
     "isVideo": false
   },
   {
@@ -1298,6 +1460,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/rafayel/three-star/lunar/in your eyes.webp",
     "cardName": "In Your Eyes",
+    "cardNameCN": "你的角度",
     "isVideo": false
   },
   {
@@ -1308,6 +1471,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/rafayel/three-star/lunar/left on read.webp",
     "cardName": "Left On Read",
+    "cardNameCN": "已读不回",
     "isVideo": false
   },
   {
@@ -1318,6 +1482,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/rafayel/three-star/lunar/quick sketch.webp",
     "cardName": "Quick Sketch",
+    "cardNameCN": "速写",
     "isVideo": false
   },
   {
@@ -1328,6 +1493,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/rafayel/three-star/lunar/secret.webp",
     "cardName": "Secret",
+    "cardNameCN": "秘密",
     "isVideo": false
   },
   {
@@ -1338,6 +1504,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/rafayel/three-star/lunar/social occasion.webp",
     "cardName": "Social Occasion",
+    "cardNameCN": "社交场合",
     "isVideo": false
   },
   {
@@ -1348,6 +1515,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/rafayel/three-star/lunar/swimming hearts.webp",
     "cardName": "Swimming Hearts",
+    "cardNameCN": "鱼随心萦",
     "isVideo": false
   },
   {
@@ -1358,6 +1526,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/rafayel/three-star/lunar/take care of me.webp",
     "cardName": "Take Care Of Me",
+    "cardNameCN": "多多关照",
     "isVideo": false
   },
   {
@@ -1368,6 +1537,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/rafayel/three-star/lunar/thinking.webp",
     "cardName": "Thinking",
+    "cardNameCN": "思索",
     "isVideo": false
   },
   {
@@ -1378,6 +1548,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/rafayel/three-star/lunar/troubled.webp",
     "cardName": "Troubled",
+    "cardNameCN": "烦恼",
     "isVideo": false
   },
   {
@@ -1388,6 +1559,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/rafayel/three-star/lunar/trump card.webp",
     "cardName": "Trump Card",
+    "cardNameCN": "王牌",
     "isVideo": false
   },
   {
@@ -1398,6 +1570,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/rafayel/three-star/lunar/whatcha doing.webp",
     "cardName": "Whatcha Doing",
+    "cardNameCN": "在干嘛",
     "isVideo": false
   },
   {
@@ -1408,6 +1581,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/rafayel/three-star/lunar/wish granted.webp",
     "cardName": "Wish Granted",
+    "cardNameCN": "所愿成真",
     "isVideo": false
   },
   {
@@ -1418,6 +1592,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/rafayel/three-star/solar/come with me.webp",
     "cardName": "Come With Me",
+    "cardNameCN": "跟上",
     "isVideo": false
   },
   {
@@ -1428,6 +1603,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/rafayel/three-star/solar/inspiration search.webp",
     "cardName": "Inspiration Search",
+    "cardNameCN": "灵感搜寻",
     "isVideo": false
   },
   {
@@ -1438,6 +1614,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/rafayel/three-star/solar/invitation.webp",
     "cardName": "Invitation",
+    "cardNameCN": "邀约",
     "isVideo": false
   },
   {
@@ -1448,6 +1625,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/rafayel/three-star/solar/lame party.webp",
     "cardName": "Lame Party",
+    "cardNameCN": "无趣派对",
     "isVideo": false
   },
   {
@@ -1458,6 +1636,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/rafayel/three-star/solar/not angry.webp",
     "cardName": "Not Angry",
+    "cardNameCN": "没有生气",
     "isVideo": false
   },
   {
@@ -1468,6 +1647,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/rafayel/three-star/solar/perfect smile.webp",
     "cardName": "Perfect Smile",
+    "cardNameCN": "标准微笑",
     "isVideo": false
   },
   {
@@ -1478,6 +1658,7 @@ const CARD_CATALOG = [
     "bannerType": "limited",
     "assetPath": "assets/sylus/five-star/lunar/limited/alternative darkborne.mp4",
     "cardName": "Alternative Darkborne",
+    "cardNameCN": "明暗界",
     "isVideo": true
   },
   {
@@ -1488,6 +1669,7 @@ const CARD_CATALOG = [
     "bannerType": "limited",
     "assetPath": "assets/sylus/five-star/lunar/limited/darkbound souls.mp4",
     "cardName": "Darkbound Souls",
+    "cardNameCN": "缭夜魂与",
     "isVideo": true
   },
   {
@@ -1498,6 +1680,7 @@ const CARD_CATALOG = [
     "bannerType": "limited",
     "assetPath": "assets/sylus/five-star/lunar/limited/finale undone.mp4",
     "cardName": "Finale Undone",
+    "cardNameCN": "别幕终曲",
     "isVideo": true
   },
   {
@@ -1508,6 +1691,7 @@ const CARD_CATALOG = [
     "bannerType": "limited",
     "assetPath": "assets/sylus/five-star/lunar/limited/goodcat code.mp4",
     "cardName": "Goodcat Code",
+    "cardNameCN": "猫德守则",
     "isVideo": true
   },
   {
@@ -1518,6 +1702,7 @@ const CARD_CATALOG = [
     "bannerType": "limited",
     "assetPath": "assets/sylus/five-star/lunar/limited/grassland romance.mp4",
     "cardName": "Grassland Romance",
+    "cardNameCN": "风临野",
     "isVideo": true
   },
   {
@@ -1528,6 +1713,7 @@ const CARD_CATALOG = [
     "bannerType": "limited",
     "assetPath": "assets/sylus/five-star/lunar/limited/improvised flow.mp4",
     "cardName": "Improvised Flow",
+    "cardNameCN": "即兴放逐",
     "isVideo": true
   },
   {
@@ -1538,6 +1724,7 @@ const CARD_CATALOG = [
     "bannerType": "limited",
     "assetPath": "assets/sylus/five-star/lunar/limited/innocent birdcage.mp4",
     "cardName": "Innocent Birdcage",
+    "cardNameCN": "无罪樊笼",
     "isVideo": true
   },
   {
@@ -1548,6 +1735,7 @@ const CARD_CATALOG = [
     "bannerType": "limited",
     "assetPath": "assets/sylus/five-star/lunar/limited/kitten included.mp4",
     "cardName": "Kitten Included",
+    "cardNameCN": "爱猫及喵",
     "isVideo": true
   },
   {
@@ -1558,6 +1746,7 @@ const CARD_CATALOG = [
     "bannerType": "limited",
     "assetPath": "assets/sylus/five-star/lunar/limited/lost oasis.mp4",
     "cardName": "Lost Oasis",
+    "cardNameCN": "失落绿洲",
     "isVideo": true
   },
   {
@@ -1568,6 +1757,7 @@ const CARD_CATALOG = [
     "bannerType": "limited",
     "assetPath": "assets/sylus/five-star/lunar/limited/lovespeed ride.mp4",
     "cardName": "Lovespeed Ride",
+    "cardNameCN": "恋速引擎",
     "isVideo": true
   },
   {
@@ -1578,6 +1768,7 @@ const CARD_CATALOG = [
     "bannerType": "limited",
     "assetPath": "assets/sylus/five-star/lunar/limited/night of secrecy.mp4",
     "cardName": "Night Of Secrecy",
+    "cardNameCN": "潜入夜",
     "isVideo": true
   },
   {
@@ -1588,6 +1779,7 @@ const CARD_CATALOG = [
     "bannerType": "limited",
     "assetPath": "assets/sylus/five-star/lunar/limited/no defense zone.mp4",
     "cardName": "No Defense Zone",
+    "cardNameCN": "不设防禁区",
     "isVideo": true
   },
   {
@@ -1598,6 +1790,7 @@ const CARD_CATALOG = [
     "bannerType": "limited",
     "assetPath": "assets/sylus/five-star/lunar/limited/passionate appraisal.mp4",
     "cardName": "Passionate Appraisal",
+    "cardNameCN": "热意揣度",
     "isVideo": true
   },
   {
@@ -1608,6 +1801,7 @@ const CARD_CATALOG = [
     "bannerType": "limited",
     "assetPath": "assets/sylus/five-star/lunar/limited/primordial chaos.mp4",
     "cardName": "Primordial Chaos",
+    "cardNameCN": "混沌纪",
     "isVideo": true
   },
   {
@@ -1618,6 +1812,7 @@ const CARD_CATALOG = [
     "bannerType": "limited",
     "assetPath": "assets/sylus/five-star/lunar/limited/radiant brilliance.mp4",
     "cardName": "Radiant Brilliance",
+    "cardNameCN": "炽光淋漓",
     "isVideo": true
   },
   {
@@ -1628,6 +1823,7 @@ const CARD_CATALOG = [
     "bannerType": "limited",
     "assetPath": "assets/sylus/five-star/lunar/limited/rainlit night.mp4",
     "cardName": "Rainlit Night",
+    "cardNameCN": "肆雨照夜",
     "isVideo": true
   },
   {
@@ -1638,6 +1834,7 @@ const CARD_CATALOG = [
     "bannerType": "limited",
     "assetPath": "assets/sylus/five-star/lunar/limited/shared lanterns.mp4",
     "cardName": "Shared Lanterns",
+    "cardNameCN": "千灯共我",
     "isVideo": true
   },
   {
@@ -1648,6 +1845,7 @@ const CARD_CATALOG = [
     "bannerType": "limited",
     "assetPath": "assets/sylus/five-star/lunar/limited/valleydream bloom.mp4",
     "cardName": "Valleydream Bloom",
+    "cardNameCN": "花漫谷间",
     "isVideo": true
   },
   {
@@ -1658,6 +1856,7 @@ const CARD_CATALOG = [
     "bannerType": "limited",
     "assetPath": "assets/sylus/five-star/lunar/limited/where hearts live.mp4",
     "cardName": "Where Hearts Live",
+    "cardNameCN": "至心栖之处",
     "isVideo": true
   },
   {
@@ -1668,6 +1867,7 @@ const CARD_CATALOG = [
     "bannerType": "standard",
     "assetPath": "assets/sylus/five-star/lunar/standard/immobilized.mp4",
     "cardName": "Immobilized",
+    "cardNameCN": "无效禁锢",
     "isVideo": true
   },
   {
@@ -1678,6 +1878,7 @@ const CARD_CATALOG = [
     "bannerType": "standard",
     "assetPath": "assets/sylus/five-star/lunar/standard/magnum opus.mp4",
     "cardName": "Magnum Opus",
+    "cardNameCN": "造物宣示",
     "isVideo": true
   },
   {
@@ -1688,6 +1889,7 @@ const CARD_CATALOG = [
     "bannerType": "standard",
     "assetPath": "assets/sylus/five-star/lunar/standard/nightplumes.mp4",
     "cardName": "Nightplumes",
+    "cardNameCN": "飞羽向夜",
     "isVideo": true
   },
   {
@@ -1698,6 +1900,7 @@ const CARD_CATALOG = [
     "bannerType": "standard",
     "assetPath": "assets/sylus/five-star/lunar/standard/within reach.mp4",
     "cardName": "Within Reach",
+    "cardNameCN": "方寸盈余",
     "isVideo": true
   },
   {
@@ -1708,6 +1911,7 @@ const CARD_CATALOG = [
     "bannerType": "limited",
     "assetPath": "assets/sylus/five-star/solar/limited/abyssal blossom.mp4",
     "cardName": "Abyssal Blossom",
+    "cardNameCN": "深渊霞辠",
     "isVideo": true
   },
   {
@@ -1718,6 +1922,7 @@ const CARD_CATALOG = [
     "bannerType": "limited",
     "assetPath": "assets/sylus/five-star/solar/limited/abyssal mark.mp4",
     "cardName": "Abyssal Mark",
+    "cardNameCN": "深渊秘印",
     "isVideo": true
   },
   {
@@ -1728,6 +1933,7 @@ const CARD_CATALOG = [
     "bannerType": "limited",
     "assetPath": "assets/sylus/five-star/solar/limited/crimson departure.mp4",
     "cardName": "Crimson Departure",
+    "cardNameCN": "猩红弥散",
     "isVideo": true
   },
   {
@@ -1738,6 +1944,7 @@ const CARD_CATALOG = [
     "bannerType": "limited",
     "assetPath": "assets/sylus/five-star/solar/limited/crimson rapture.mp4",
     "cardName": "Crimson Rapture",
+    "cardNameCN": "猩红席卷",
     "isVideo": true
   },
   {
@@ -1748,6 +1955,7 @@ const CARD_CATALOG = [
     "bannerType": "standard",
     "assetPath": "assets/sylus/five-star/solar/standard/captivating flavor.mp4",
     "cardName": "Captivating Flavor",
+    "cardNameCN": "掠心夺味",
     "isVideo": true
   },
   {
@@ -1758,6 +1966,7 @@ const CARD_CATALOG = [
     "bannerType": "standard",
     "assetPath": "assets/sylus/five-star/solar/standard/captivating lesson.mp4",
     "cardName": "Captivating Lesson",
+    "cardNameCN": "掠心相授",
     "isVideo": true
   },
   {
@@ -1768,6 +1977,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/sylus/four-star/lunar/approaching dusk.webp",
     "cardName": "Approaching Dusk",
+    "cardNameCN": "妄夜将近时",
     "isVideo": false
   },
   {
@@ -1778,6 +1988,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/sylus/four-star/lunar/awaiting.webp",
     "cardName": "Awaiting",
+    "cardNameCN": "虚位以待",
     "isVideo": false
   },
   {
@@ -1788,6 +1999,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/sylus/four-star/lunar/chaotic velocity.webp",
     "cardName": "Chaotic Velocity",
+    "cardNameCN": "喧嚣时速",
     "isVideo": false
   },
   {
@@ -1798,6 +2010,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/sylus/four-star/lunar/continuous symphony.webp",
     "cardName": "Continuous Symphony",
+    "cardNameCN": "续曲交响",
     "isVideo": false
   },
   {
@@ -1808,6 +2021,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/sylus/four-star/lunar/freefall gambit.webp",
     "cardName": "Freefall Gambit",
+    "cardNameCN": "坠空博弈",
     "isVideo": false
   },
   {
@@ -1818,6 +2032,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/sylus/four-star/lunar/grasped dominion.webp",
     "cardName": "Grasped Dominion",
+    "cardNameCN": "予夺掌间",
     "isVideo": false
   },
   {
@@ -1828,6 +2043,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/sylus/four-star/lunar/greedy heart.webp",
     "cardName": "Greedy Heart",
+    "cardNameCN": "独占心野",
     "isVideo": false
   },
   {
@@ -1838,6 +2054,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/sylus/four-star/lunar/melodic weave.webp",
     "cardName": "Melodic Weave",
+    "cardNameCN": "音悬一线",
     "isVideo": false
   },
   {
@@ -1848,6 +2065,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/sylus/four-star/lunar/nightglow.webp",
     "cardName": "Nightglow",
+    "cardNameCN": "流辉",
     "isVideo": false
   },
   {
@@ -1858,6 +2076,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/sylus/four-star/lunar/no way out.webp",
     "cardName": "No Way Out",
+    "cardNameCN": "绝处",
     "isVideo": false
   },
   {
@@ -1868,6 +2087,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/sylus/four-star/lunar/ordinary traces.webp",
     "cardName": "Ordinary Traces",
+    "cardNameCN": "人间事",
     "isVideo": false
   },
   {
@@ -1878,6 +2098,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/sylus/four-star/lunar/rosy hues.webp",
     "cardName": "Rosy Hues",
+    "cardNameCN": "洇染瑰色",
     "isVideo": false
   },
   {
@@ -1888,6 +2109,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/sylus/four-star/lunar/searing touch.webp",
     "cardName": "Searing Touch",
+    "cardNameCN": "局部热痕",
     "isVideo": false
   },
   {
@@ -1898,6 +2120,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/sylus/four-star/lunar/shared bliss.webp",
     "cardName": "Shared Bliss",
+    "cardNameCN": "共酣",
     "isVideo": false
   },
   {
@@ -1908,6 +2131,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/sylus/four-star/lunar/tender curve.webp",
     "cardName": "Tender Curve",
+    "cardNameCN": "温柔弧度",
     "isVideo": false
   },
   {
@@ -1918,6 +2142,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/sylus/four-star/lunar/wild gaze.webp",
     "cardName": "Wild Gaze",
+    "cardNameCN": "恣肆视线",
     "isVideo": false
   },
   {
@@ -1928,6 +2153,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/sylus/four-star/solar/bloodnight blaze.webp",
     "cardName": "Bloodnight Blaze",
+    "cardNameCN": "戮夜灼心",
     "isVideo": false
   },
   {
@@ -1938,6 +2164,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/sylus/four-star/solar/bloodnight drift.webp",
     "cardName": "Bloodnight Drift",
+    "cardNameCN": "戮夜渡梦",
     "isVideo": false
   },
   {
@@ -1948,6 +2175,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/sylus/four-star/solar/ivory prudence.webp",
     "cardName": "Ivory Prudence",
+    "cardNameCN": "纯白虔愿",
     "isVideo": false
   },
   {
@@ -1958,6 +2186,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/sylus/four-star/solar/ivory thirst.webp",
     "cardName": "Ivory Thirst",
+    "cardNameCN": "纯白迷吮",
     "isVideo": false
   },
   {
@@ -1968,6 +2197,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/sylus/four-star/solar/razor's dance.webp",
     "cardName": "Razor's Dance",
+    "cardNameCN": "锋尖流连",
     "isVideo": false
   },
   {
@@ -1978,6 +2208,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/sylus/four-star/solar/razor's grip.webp",
     "cardName": "Razor's Grip",
+    "cardNameCN": "锋尖欲擒",
     "isVideo": false
   },
   {
@@ -1988,6 +2219,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/sylus/three-star/lunar/composed.webp",
     "cardName": "Composed",
+    "cardNameCN": "从容",
     "isVideo": false
   },
   {
@@ -1998,6 +2230,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/sylus/three-star/lunar/dry ace.webp",
     "cardName": "Dry Ace",
+    "cardNameCN": "底牌",
     "isVideo": false
   },
   {
@@ -2008,6 +2241,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/sylus/three-star/lunar/gifted arrival.webp",
     "cardName": "Gifted Arrival",
+    "cardNameCN": "持礼应约",
     "isVideo": false
   },
   {
@@ -2018,6 +2252,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/sylus/three-star/lunar/gutsy rush.webp",
     "cardName": "Gutsy Rush",
+    "cardNameCN": null,
     "isVideo": false
   },
   {
@@ -2028,6 +2263,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/sylus/three-star/lunar/my decision.webp",
     "cardName": "My Decision",
+    "cardNameCN": "听我的",
     "isVideo": false
   },
   {
@@ -2038,6 +2274,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/sylus/three-star/lunar/reckless living.webp",
     "cardName": "Reckless Living",
+    "cardNameCN": "混世",
     "isVideo": false
   },
   {
@@ -2048,6 +2285,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/sylus/three-star/lunar/satiated.webp",
     "cardName": "Satiated",
+    "cardNameCN": "餍足",
     "isVideo": false
   },
   {
@@ -2058,6 +2296,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/sylus/three-star/lunar/shoo-in.webp",
     "cardName": "Shoo-in",
+    "cardNameCN": "胜券在握",
     "isVideo": false
   },
   {
@@ -2068,6 +2307,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/sylus/three-star/lunar/taking control.webp",
     "cardName": "Taking Control",
+    "cardNameCN": "肆意拿捏",
     "isVideo": false
   },
   {
@@ -2078,6 +2318,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/sylus/three-star/solar/in charge.webp",
     "cardName": "In Charge",
+    "cardNameCN": "掌控",
     "isVideo": false
   },
   {
@@ -2088,6 +2329,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/sylus/three-star/solar/just encounter.webp",
     "cardName": "Just Encounter",
+    "cardNameCN": "偶遇",
     "isVideo": false
   },
   {
@@ -2098,6 +2340,7 @@ const CARD_CATALOG = [
     "bannerType": "limited",
     "assetPath": "assets/valko/five-star/lunar/limited/a piece of cake.webp",
     "cardName": "A Piece Of Cake",
+    "cardNameCN": "小菜一碟",
     "isVideo": false
   },
   {
@@ -2108,6 +2351,7 @@ const CARD_CATALOG = [
     "bannerType": "limited",
     "assetPath": "assets/valko/five-star/lunar/limited/breaking the leash.webp",
     "cardName": "Breaking The Leash",
+    "cardNameCN": "挣脱枷锁",
     "isVideo": false
   },
   {
@@ -2118,6 +2362,7 @@ const CARD_CATALOG = [
     "bannerType": "limited",
     "assetPath": "assets/valko/five-star/lunar/limited/chocolate milk & charm.webp",
     "cardName": "Chocolate Milk & Charm",
+    "cardNameCN": "巧克力的诱惑",
     "isVideo": false
   },
   {
@@ -2128,6 +2373,7 @@ const CARD_CATALOG = [
     "bannerType": "limited",
     "assetPath": "assets/valko/five-star/lunar/limited/framing perfection.webp",
     "cardName": "Framing Perfection",
+    "cardNameCN": "定格完美",
     "isVideo": false
   },
   {
@@ -2138,6 +2384,7 @@ const CARD_CATALOG = [
     "bannerType": "limited",
     "assetPath": "assets/valko/five-star/lunar/limited/heat of the moment.webp",
     "cardName": "Heat Of The Moment",
+    "cardNameCN": "情迷至深",
     "isVideo": false
   },
   {
@@ -2148,6 +2395,7 @@ const CARD_CATALOG = [
     "bannerType": "limited",
     "assetPath": "assets/valko/five-star/lunar/limited/intense stare.webp",
     "cardName": "Intense Stare",
+    "cardNameCN": "灼热凝视",
     "isVideo": false
   },
   {
@@ -2158,6 +2406,7 @@ const CARD_CATALOG = [
     "bannerType": "limited",
     "assetPath": "assets/valko/five-star/lunar/limited/kiss attack.webp",
     "cardName": "Kiss Attack",
+    "cardNameCN": "深吻突袭",
     "isVideo": false
   },
   {
@@ -2168,6 +2417,7 @@ const CARD_CATALOG = [
     "bannerType": "limited",
     "assetPath": "assets/valko/five-star/lunar/limited/morning confessions.mp4",
     "cardName": "Morning Confessions",
+    "cardNameCN": "晨曦告白",
     "isVideo": true
   },
   {
@@ -2178,6 +2428,7 @@ const CARD_CATALOG = [
     "bannerType": "limited",
     "assetPath": "assets/valko/five-star/lunar/limited/pillow talk.mp4",
     "cardName": "Pillow Talk",
+    "cardNameCN": "枕边私语",
     "isVideo": true
   },
   {
@@ -2188,6 +2439,7 @@ const CARD_CATALOG = [
     "bannerType": "limited",
     "assetPath": "assets/valko/five-star/lunar/limited/point blank flirt.webp",
     "cardName": "Point Blank Flirt",
+    "cardNameCN": "近距离撩拨",
     "isVideo": false
   },
   {
@@ -2198,6 +2450,7 @@ const CARD_CATALOG = [
     "bannerType": "limited",
     "assetPath": "assets/valko/five-star/lunar/limited/restless instincts.mp4",
     "cardName": "Restless Instincts",
+    "cardNameCN": "躁动本能",
     "isVideo": true
   },
   {
@@ -2208,6 +2461,7 @@ const CARD_CATALOG = [
     "bannerType": "limited",
     "assetPath": "assets/valko/five-star/lunar/limited/silent reflections.webp",
     "cardName": "Silent Reflections",
+    "cardNameCN": "静默反思",
     "isVideo": false
   },
   {
@@ -2218,6 +2472,7 @@ const CARD_CATALOG = [
     "bannerType": "limited",
     "assetPath": "assets/valko/five-star/lunar/limited/sleeping wolf.webp",
     "cardName": "Sleeping Wolf",
+    "cardNameCN": "蛰伏之狼",
     "isVideo": false
   },
   {
@@ -2228,6 +2483,7 @@ const CARD_CATALOG = [
     "bannerType": "limited",
     "assetPath": "assets/valko/five-star/lunar/limited/summer instinct.webp",
     "cardName": "Summer Instinct",
+    "cardNameCN": "盛夏本能",
     "isVideo": false
   },
   {
@@ -2238,6 +2494,7 @@ const CARD_CATALOG = [
     "bannerType": "limited",
     "assetPath": "assets/valko/five-star/lunar/limited/sunkissed wolf.webp",
     "cardName": "Sunkissed Wolf",
+    "cardNameCN": "吻明日之狼",
     "isVideo": false
   },
   {
@@ -2248,6 +2505,7 @@ const CARD_CATALOG = [
     "bannerType": "limited",
     "assetPath": "assets/valko/five-star/lunar/limited/sunlit sovereign.webp",
     "cardName": "Sunlit Sovereign",
+    "cardNameCN": "炽阳主宰",
     "isVideo": false
   },
   {
@@ -2258,6 +2516,7 @@ const CARD_CATALOG = [
     "bannerType": "limited",
     "assetPath": "assets/valko/five-star/lunar/limited/sweet tooth flex.webp",
     "cardName": "Sweet Tooth Flex",
+    "cardNameCN": "嗜甜天性",
     "isVideo": false
   },
   {
@@ -2268,6 +2527,7 @@ const CARD_CATALOG = [
     "bannerType": "limited",
     "assetPath": "assets/valko/five-star/lunar/limited/tasting victory.webp",
     "cardName": "Tasting Victory",
+    "cardNameCN": "凯旋之味",
     "isVideo": false
   },
   {
@@ -2278,6 +2538,7 @@ const CARD_CATALOG = [
     "bannerType": "limited",
     "assetPath": "assets/valko/five-star/lunar/limited/temptation.webp",
     "cardName": "Temptation",
+    "cardNameCN": "绝对诱惑",
     "isVideo": false
   },
   {
@@ -2288,6 +2549,7 @@ const CARD_CATALOG = [
     "bannerType": "limited",
     "assetPath": "assets/valko/five-star/lunar/limited/tethered alpha.webp",
     "cardName": "Tethered Alpha",
+    "cardNameCN": "受缚头狼",
     "isVideo": false
   },
   {
@@ -2298,6 +2560,7 @@ const CARD_CATALOG = [
     "bannerType": "limited",
     "assetPath": "assets/valko/five-star/lunar/limited/unexpected invitation.webp",
     "cardName": "Unexpected Invitation",
+    "cardNameCN": "意料之外的邀请",
     "isVideo": false
   },
   {
@@ -2308,6 +2571,7 @@ const CARD_CATALOG = [
     "bannerType": "limited",
     "assetPath": "assets/valko/five-star/lunar/limited/warm touch.webp",
     "cardName": "Warm Touch",
+    "cardNameCN": "掌心余温",
     "isVideo": false
   },
   {
@@ -2318,6 +2582,7 @@ const CARD_CATALOG = [
     "bannerType": "standard",
     "assetPath": "assets/valko/five-star/lunar/standard/cuddle exercise.mp4",
     "cardName": "Cuddle Exercise",
+    "cardNameCN": "拥抱练习",
     "isVideo": true
   },
   {
@@ -2328,6 +2593,7 @@ const CARD_CATALOG = [
     "bannerType": "standard",
     "assetPath": "assets/valko/five-star/lunar/standard/duskfall prelude.mp4",
     "cardName": "Duskfall Prelude",
+    "cardNameCN": "暮落前奏",
     "isVideo": true
   },
   {
@@ -2338,6 +2604,7 @@ const CARD_CATALOG = [
     "bannerType": "standard",
     "assetPath": "assets/valko/five-star/lunar/standard/paws first.mp4",
     "cardName": "Paws First",
+    "cardNameCN": "恶狼扑食",
     "isVideo": true
   },
   {
@@ -2348,6 +2615,7 @@ const CARD_CATALOG = [
     "bannerType": "standard",
     "assetPath": "assets/valko/five-star/lunar/standard/windrest plains.mp4",
     "cardName": "Windrest Plains",
+    "cardNameCN": "风驻原野",
     "isVideo": true
   },
   {
@@ -2358,6 +2626,7 @@ const CARD_CATALOG = [
     "bannerType": "limited",
     "assetPath": "assets/valko/five-star/solar/limited/after dark.webp",
     "cardName": "After Dark",
+    "cardNameCN": "夜幕降临",
     "isVideo": false
   },
   {
@@ -2368,6 +2637,7 @@ const CARD_CATALOG = [
     "bannerType": "limited",
     "assetPath": "assets/valko/five-star/solar/limited/after hours.webp",
     "cardName": "After Hours",
+    "cardNameCN": "放纵深夜",
     "isVideo": false
   },
   {
@@ -2378,6 +2648,7 @@ const CARD_CATALOG = [
     "bannerType": "limited",
     "assetPath": "assets/valko/five-star/solar/limited/behind closed doors.webp",
     "cardName": "Behind Closed Doors",
+    "cardNameCN": "门扉之下",
     "isVideo": false
   },
   {
@@ -2388,6 +2659,7 @@ const CARD_CATALOG = [
     "bannerType": "limited",
     "assetPath": "assets/valko/five-star/solar/limited/behind the desk.webp",
     "cardName": "Behind The Desk",
+    "cardNameCN": "·办公桌后",
     "isVideo": false
   },
   {
@@ -2398,6 +2670,7 @@ const CARD_CATALOG = [
     "bannerType": "standard",
     "assetPath": "assets/valko/five-star/solar/standard/verdancy entwined.mp4",
     "cardName": "Verdancy Entwined",
+    "cardNameCN": "苍野风行",
     "isVideo": true
   },
   {
@@ -2408,6 +2681,7 @@ const CARD_CATALOG = [
     "bannerType": "standard",
     "assetPath": "assets/valko/five-star/solar/standard/verdancy wildwind.mp4",
     "cardName": "Verdancy Wildwind",
+    "cardNameCN": "苍野同栖",
     "isVideo": true
   },
   {
@@ -2418,6 +2692,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/valko/four-star/lunar/after mission reprieve.webp",
     "cardName": "After Mission Reprieve",
+    "cardNameCN": "战后小憩",
     "isVideo": false
   },
   {
@@ -2428,6 +2703,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/valko/four-star/lunar/beloved wolflord.webp",
     "cardName": "Beloved Wolflord",
+    "cardNameCN": "挚爱狼王",
     "isVideo": false
   },
   {
@@ -2438,6 +2714,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/valko/four-star/lunar/beware of the night.webp",
     "cardName": "Beware Of The Night",
+    "cardNameCN": "夜色警惕",
     "isVideo": false
   },
   {
@@ -2448,6 +2725,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/valko/four-star/lunar/charging password.webp",
     "cardName": "Charging Password",
+    "cardNameCN": "充电密码",
     "isVideo": false
   },
   {
@@ -2458,6 +2736,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/valko/four-star/lunar/foregone fall.webp",
     "cardName": "Foregone Fall",
+    "cardNameCN": "本能沦陷法则",
     "isVideo": false
   },
   {
@@ -2468,6 +2747,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/valko/four-star/lunar/holydays.webp",
     "cardName": "Holydays",
+    "cardNameCN": "神圣假日",
     "isVideo": false
   },
   {
@@ -2478,6 +2758,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/valko/four-star/lunar/hot deal.webp",
     "cardName": "Hot Deal",
+    "cardNameCN": "火热交易",
     "isVideo": false
   },
   {
@@ -2488,6 +2769,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/valko/four-star/lunar/my lost dog.webp",
     "cardName": "My Lost Dog",
+    "cardNameCN": "走失的小狗",
     "isVideo": false
   },
   {
@@ -2498,6 +2780,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/valko/four-star/lunar/proof of my sincerity.webp",
     "cardName": "Proof Of My Sincerity",
+    "cardNameCN": "寸心为证",
     "isVideo": false
   },
   {
@@ -2508,6 +2791,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/valko/four-star/lunar/ramp romance.webp",
     "cardName": "Ramp Romance",
+    "cardNameCN": "秀场浪漫",
     "isVideo": false
   },
   {
@@ -2518,6 +2802,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/valko/four-star/lunar/scaredy wolf.webp",
     "cardName": "Scaredy Wolf",
+    "cardNameCN": "受惊之狼",
     "isVideo": false
   },
   {
@@ -2528,6 +2813,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/valko/four-star/lunar/square up.webp",
     "cardName": "Square Up",
+    "cardNameCN": "正面交锋",
     "isVideo": false
   },
   {
@@ -2538,6 +2824,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/valko/four-star/lunar/sweet morning.webp",
     "cardName": "Sweet Morning",
+    "cardNameCN": "甜蜜清晨",
     "isVideo": false
   },
   {
@@ -2548,6 +2835,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/valko/four-star/lunar/tales from winter.webp",
     "cardName": "Tales From Winter",
+    "cardNameCN": "冬夜物语",
     "isVideo": false
   },
   {
@@ -2558,6 +2846,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/valko/four-star/lunar/tameless game.webp",
     "cardName": "Tameless Game",
+    "cardNameCN": "不驯者的游戏",
     "isVideo": false
   },
   {
@@ -2568,6 +2857,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/valko/four-star/lunar/the scapegoat.webp",
     "cardName": "The Scapegoat",
+    "cardNameCN": "替罪羔羊",
     "isVideo": false
   },
   {
@@ -2578,6 +2868,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/valko/four-star/lunar/under staidrain.webp",
     "cardName": "Under Staidrain",
+    "cardNameCN": "塑雨之下",
     "isVideo": false
   },
   {
@@ -2588,6 +2879,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/valko/four-star/lunar/under the moon.webp",
     "cardName": "Under The Moon",
+    "cardNameCN": "月色之下",
     "isVideo": false
   },
   {
@@ -2598,6 +2890,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/valko/four-star/solar/alpha's restraint.webp",
     "cardName": "Alpha's Restraint",
+    "cardNameCN": "头狼的克制",
     "isVideo": false
   },
   {
@@ -2608,6 +2901,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/valko/four-star/solar/by your side.webp",
     "cardName": "By Your Side",
+    "cardNameCN": "伴你左右",
     "isVideo": false
   },
   {
@@ -2618,6 +2912,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/valko/four-star/solar/daylight questioning.webp",
     "cardName": "Daylight Questioning",
+    "cardNameCN": "日光审讯",
     "isVideo": false
   },
   {
@@ -2628,6 +2923,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/valko/four-star/solar/in your arms.webp",
     "cardName": "In Your Arms",
+    "cardNameCN": "入你怀中",
     "isVideo": false
   },
   {
@@ -2638,6 +2934,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/valko/four-star/solar/night visitor.webp",
     "cardName": "Night Visitor",
+    "cardNameCN": "深夜访客",
     "isVideo": false
   },
   {
@@ -2648,6 +2945,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/valko/three-star/lunar/butterfly effect.webp",
     "cardName": "Butterfly Effect",
+    "cardNameCN": "蝴蝶效应",
     "isVideo": false
   },
   {
@@ -2658,6 +2956,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/valko/three-star/lunar/choco comfort.webp",
     "cardName": "Choco Comfort",
+    "cardNameCN": "巧克力的慰藉",
     "isVideo": false
   },
   {
@@ -2668,6 +2967,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/valko/three-star/lunar/friend or foe.webp",
     "cardName": "Friend Or Foe",
+    "cardNameCN": "亦敌亦友",
     "isVideo": false
   },
   {
@@ -2678,6 +2978,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/valko/three-star/lunar/insomnia's embrace.webp",
     "cardName": "Insomnia's Embrace",
+    "cardNameCN": "失眠者的拥抱",
     "isVideo": false
   },
   {
@@ -2688,6 +2989,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/valko/three-star/lunar/iron bite.webp",
     "cardName": "Iron Bite",
+    "cardNameCN": "铁血撕咬",
     "isVideo": false
   },
   {
@@ -2698,6 +3000,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/valko/three-star/lunar/just a bite.webp",
     "cardName": "Just A Bite",
+    "cardNameCN": "轻咬一口",
     "isVideo": false
   },
   {
@@ -2708,6 +3011,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/valko/three-star/lunar/lone wolf by the moon.webp",
     "cardName": "Lone Wolf By The Moon",
+    "cardNameCN": "独狼映月",
     "isVideo": false
   },
   {
@@ -2718,6 +3022,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/valko/three-star/lunar/night-time territorial.webp",
     "cardName": "Night-time Territorial",
+    "cardNameCN": "深夜领地意识",
     "isVideo": false
   },
   {
@@ -2728,6 +3033,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/valko/three-star/lunar/steadfast belief.webp",
     "cardName": "Steadfast Belief",
+    "cardNameCN": "坚贞信仰",
     "isVideo": false
   },
   {
@@ -2738,6 +3044,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/valko/three-star/solar/chocolate day.webp",
     "cardName": "Chocolate Day",
+    "cardNameCN": "巧克力纪念日",
     "isVideo": false
   },
   {
@@ -2748,6 +3055,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/valko/three-star/solar/kitty's affection.webp",
     "cardName": "Kitty's Affection",
+    "cardNameCN": "猫咪的依恋",
     "isVideo": false
   },
   {
@@ -2758,6 +3066,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/valko/three-star/solar/lily of the valley lover's.webp",
     "cardName": "Lily Of The Valley Lover's",
+    "cardNameCN": "铃兰恋人",
     "isVideo": false
   },
   {
@@ -2768,6 +3077,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/valko/three-star/solar/mating dance.webp",
     "cardName": "Mating Dance",
+    "cardNameCN": "求偶之舞",
     "isVideo": false
   },
   {
@@ -2778,6 +3088,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/valko/three-star/solar/notice me.webp",
     "cardName": "Notice Me",
+    "cardNameCN": "向我注视",
     "isVideo": false
   },
   {
@@ -2788,6 +3099,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/valko/three-star/solar/playful plush.webp",
     "cardName": "Playful Plush",
+    "cardNameCN": "玩偶嬉戏",
     "isVideo": false
   },
   {
@@ -2798,6 +3110,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/valko/three-star/solar/pouty.webp",
     "cardName": "Pouty",
+    "cardNameCN": "闹小脾气",
     "isVideo": false
   },
   {
@@ -2808,6 +3121,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/valko/three-star/solar/revolution!.webp",
     "cardName": "Revolution!",
+    "cardNameCN": "变革风暴",
     "isVideo": false
   },
   {
@@ -2818,6 +3132,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/valko/three-star/solar/tail tells all.webp",
     "cardName": "Tail Tells All",
+    "cardNameCN": "出卖真心的尾巴",
     "isVideo": false
   },
   {
@@ -2828,6 +3143,7 @@ const CARD_CATALOG = [
     "bannerType": "limited",
     "assetPath": "assets/xavier/five-star/lunar/limited/between stars.mp4",
     "cardName": "Between Stars",
+    "cardNameCN": "来自星執间",
     "isVideo": true
   },
   {
@@ -2838,6 +3154,7 @@ const CARD_CATALOG = [
     "bannerType": "limited",
     "assetPath": "assets/xavier/five-star/lunar/limited/blades with blossoms.mp4",
     "cardName": "Blades With Blossoms",
+    "cardNameCN": "问剑观花",
     "isVideo": true
   },
   {
@@ -2848,6 +3165,7 @@ const CARD_CATALOG = [
     "bannerType": "limited",
     "assetPath": "assets/xavier/five-star/lunar/limited/celestial message.mp4",
     "cardName": "Celestial Message",
+    "cardNameCN": "星辰有信",
     "isVideo": true
   },
   {
@@ -2858,6 +3176,7 @@ const CARD_CATALOG = [
     "bannerType": "limited",
     "assetPath": "assets/xavier/five-star/lunar/limited/coolsplash soak.mp4",
     "cardName": "Coolsplash Soak",
+    "cardNameCN": "沁凉瞬击",
     "isVideo": true
   },
   {
@@ -2868,6 +3187,7 @@ const CARD_CATALOG = [
     "bannerType": "limited",
     "assetPath": "assets/xavier/five-star/lunar/limited/deluded fiction.mp4",
     "cardName": "Deluded Fiction",
+    "cardNameCN": "虚构妄根",
     "isVideo": true
   },
   {
@@ -2878,6 +3198,7 @@ const CARD_CATALOG = [
     "bannerType": "limited",
     "assetPath": "assets/xavier/five-star/lunar/limited/eulogy of light.mp4",
     "cardName": "Eulogy Of Light",
+    "cardNameCN": "洄光頌",
     "isVideo": true
   },
   {
@@ -2888,6 +3209,7 @@ const CARD_CATALOG = [
     "bannerType": "limited",
     "assetPath": "assets/xavier/five-star/lunar/limited/faint sensation.mp4",
     "cardName": "Faint Sensation",
+    "cardNameCN": "温软怦然",
     "isVideo": true
   },
   {
@@ -2898,6 +3220,7 @@ const CARD_CATALOG = [
     "bannerType": "limited",
     "assetPath": "assets/xavier/five-star/lunar/limited/feverish attempts.mp4",
     "cardName": "Feverish Attempts",
+    "cardNameCN": "寸寸熱潮",
     "isVideo": true
   },
   {
@@ -2908,6 +3231,7 @@ const CARD_CATALOG = [
     "bannerType": "limited",
     "assetPath": "assets/xavier/five-star/lunar/limited/floof attack.mp4",
     "cardName": "Floof Attack",
+    "cardNameCN": "茸毛攻势",
     "isVideo": true
   },
   {
@@ -2918,6 +3242,7 @@ const CARD_CATALOG = [
     "bannerType": "limited",
     "assetPath": "assets/xavier/five-star/lunar/limited/floral blessing.mp4",
     "cardName": "Floral Blessing",
+    "cardNameCN": "聆花意",
     "isVideo": true
   },
   {
@@ -2928,6 +3253,7 @@ const CARD_CATALOG = [
     "bannerType": "limited",
     "assetPath": "assets/xavier/five-star/lunar/limited/inflorescence imprints.mp4",
     "cardName": "Inflorescence Imprints",
+    "cardNameCN": "夕花显影",
     "isVideo": true
   },
   {
@@ -2938,6 +3264,7 @@ const CARD_CATALOG = [
     "bannerType": "limited",
     "assetPath": "assets/xavier/five-star/lunar/limited/misty silhouette.mp4",
     "cardName": "Misty Silhouette",
+    "cardNameCN": "雾色勾勒",
     "isVideo": true
   },
   {
@@ -2948,6 +3275,7 @@ const CARD_CATALOG = [
     "bannerType": "limited",
     "assetPath": "assets/xavier/five-star/lunar/limited/no restraint.mp4",
     "cardName": "No Restraint",
+    "cardNameCN": "执迷俘惑",
     "isVideo": true
   },
   {
@@ -2958,6 +3286,7 @@ const CARD_CATALOG = [
     "bannerType": "limited",
     "assetPath": "assets/xavier/five-star/lunar/limited/offbeat track.mp4",
     "cardName": "Offbeat Track",
+    "cardNameCN": "错拍溯行",
     "isVideo": true
   },
   {
@@ -2968,6 +3297,7 @@ const CARD_CATALOG = [
     "bannerType": "limited",
     "assetPath": "assets/xavier/five-star/lunar/limited/runaway hearts.mp4",
     "cardName": "Runaway Hearts",
+    "cardNameCN": "越夜携心",
     "isVideo": true
   },
   {
@@ -2978,6 +3308,7 @@ const CARD_CATALOG = [
     "bannerType": "limited",
     "assetPath": "assets/xavier/five-star/lunar/limited/silvery polyphony.mp4",
     "cardName": "Silvery Polyphony",
+    "cardNameCN": "银瀑奏鸣",
     "isVideo": true
   },
   {
@@ -2988,6 +3319,7 @@ const CARD_CATALOG = [
     "bannerType": "limited",
     "assetPath": "assets/xavier/five-star/lunar/limited/starfall sanctuary.mp4",
     "cardName": "Starfall Sanctuary",
+    "cardNameCN": "星泊地",
     "isVideo": true
   },
   {
@@ -2998,6 +3330,7 @@ const CARD_CATALOG = [
     "bannerType": "limited",
     "assetPath": "assets/xavier/five-star/lunar/limited/sunken glow.mp4",
     "cardName": "Sunken Glow",
+    "cardNameCN": "池光温陷",
     "isVideo": true
   },
   {
@@ -3008,6 +3341,7 @@ const CARD_CATALOG = [
     "bannerType": "limited",
     "assetPath": "assets/xavier/five-star/lunar/limited/tender night.mp4",
     "cardName": "Tender Night",
+    "cardNameCN": "馥情一隅",
     "isVideo": true
   },
   {
@@ -3018,6 +3352,7 @@ const CARD_CATALOG = [
     "bannerType": "limited",
     "assetPath": "assets/xavier/five-star/lunar/limited/tranquil moments.mp4",
     "cardName": "Tranquil Moments",
+    "cardNameCN": "烟火来処",
     "isVideo": true
   },
   {
@@ -3028,6 +3363,7 @@ const CARD_CATALOG = [
     "bannerType": "standard",
     "assetPath": "assets/xavier/five-star/lunar/standard/fluffy trap.mp4",
     "cardName": "Fluffy Trap",
+    "cardNameCN": "毛絨陷阱",
     "isVideo": true
   },
   {
@@ -3038,6 +3374,7 @@ const CARD_CATALOG = [
     "bannerType": "standard",
     "assetPath": "assets/xavier/five-star/lunar/standard/fragment of time.mp4",
     "cardName": "Fragment Of Time",
+    "cardNameCN": "时光碎片",
     "isVideo": true
   },
   {
@@ -3048,6 +3385,7 @@ const CARD_CATALOG = [
     "bannerType": "standard",
     "assetPath": "assets/xavier/five-star/lunar/standard/outcast's voyage.mp4",
     "cardName": "Outcast's Voyage",
+    "cardNameCN": "离群远航",
     "isVideo": true
   },
   {
@@ -3058,6 +3396,7 @@ const CARD_CATALOG = [
     "bannerType": "standard",
     "assetPath": "assets/xavier/five-star/lunar/standard/precious bonfire.mp4",
     "cardName": "Precious Bonfire",
+    "cardNameCN": "流光轻跃",
     "isVideo": true
   },
   {
@@ -3068,6 +3407,7 @@ const CARD_CATALOG = [
     "bannerType": "standard",
     "assetPath": "assets/xavier/five-star/lunar/standard/precious moment.mp4",
     "cardName": "Precious Moment",
+    "cardNameCN": "粲然须臾",
     "isVideo": true
   },
   {
@@ -3078,6 +3418,7 @@ const CARD_CATALOG = [
     "bannerType": "standard",
     "assetPath": "assets/xavier/five-star/lunar/standard/unique aftertaste.mp4",
     "cardName": "Unique Aftertaste",
+    "cardNameCN": "味蕾突装",
     "isVideo": true
   },
   {
@@ -3088,6 +3429,7 @@ const CARD_CATALOG = [
     "bannerType": "limited",
     "assetPath": "assets/xavier/five-star/solar/limited/midnight rainfall.mp4",
     "cardName": "Midnight Rainfall",
+    "cardNameCN": "未夜雨意",
     "isVideo": true
   },
   {
@@ -3098,6 +3440,7 @@ const CARD_CATALOG = [
     "bannerType": "limited",
     "assetPath": "assets/xavier/five-star/solar/limited/midnight whispers.mp4",
     "cardName": "Midnight Whispers",
+    "cardNameCN": "未夜心声",
     "isVideo": true
   },
   {
@@ -3108,6 +3451,7 @@ const CARD_CATALOG = [
     "bannerType": "limited",
     "assetPath": "assets/xavier/five-star/solar/limited/nightvow mooncurse.mp4",
     "cardName": "Nightvow Mooncurse",
+    "cardNameCN": "夜誓迷月",
     "isVideo": true
   },
   {
@@ -3118,6 +3462,7 @@ const CARD_CATALOG = [
     "bannerType": "limited",
     "assetPath": "assets/xavier/five-star/solar/limited/nightvow requiem.mp4",
     "cardName": "Nightvow Requiem",
+    "cardNameCN": "夜誓烬歌",
     "isVideo": true
   },
   {
@@ -3128,6 +3473,7 @@ const CARD_CATALOG = [
     "bannerType": "standard",
     "assetPath": "assets/xavier/five-star/solar/standard/lightseeking obsession.mp4",
     "cardName": "Lightseeking Obsession",
+    "cardNameCN": "逐光迷心",
     "isVideo": true
   },
   {
@@ -3138,6 +3484,7 @@ const CARD_CATALOG = [
     "bannerType": "standard",
     "assetPath": "assets/xavier/five-star/solar/standard/lightseeking shadowrend.mp4",
     "cardName": "Lightseeking Shadowrend",
+    "cardNameCN": "逐光破影",
     "isVideo": true
   },
   {
@@ -3148,6 +3495,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/xavier/four-star/lunar/a captured moment.webp",
     "cardName": "A Captured Moment",
+    "cardNameCN": "定格瞬间",
     "isVideo": false
   },
   {
@@ -3158,6 +3506,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/xavier/four-star/lunar/a day of snow.webp",
     "cardName": "A Day Of Snow",
+    "cardNameCN": "落雪之日",
     "isVideo": false
   },
   {
@@ -3168,6 +3517,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/xavier/four-star/lunar/beachside victory.webp",
     "cardName": "Beachside Victory",
+    "cardNameCN": "怦怦制胜",
     "isVideo": false
   },
   {
@@ -3178,6 +3528,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/xavier/four-star/lunar/celestial yearn.webp",
     "cardName": "Celestial Yearn",
+    "cardNameCN": "悬星向穹",
     "isVideo": false
   },
   {
@@ -3188,6 +3539,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/xavier/four-star/lunar/close feelings.webp",
     "cardName": "Close Feelings",
+    "cardNameCN": "咫尺心绪",
     "isVideo": false
   },
   {
@@ -3198,6 +3550,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/xavier/four-star/lunar/dawn to dusk.webp",
     "cardName": "Dawn To Dusk",
+    "cardNameCN": "朝花夕遇",
     "isVideo": false
   },
   {
@@ -3208,6 +3561,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/xavier/four-star/lunar/dreaming.webp",
     "cardName": "Dreaming",
+    "cardNameCN": "听梦",
     "isVideo": false
   },
   {
@@ -3218,6 +3572,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/xavier/four-star/lunar/dreams within reach.webp",
     "cardName": "Dreams Within Reach",
+    "cardNameCN": "指尖甜梦",
     "isVideo": false
   },
   {
@@ -3228,6 +3583,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/xavier/four-star/lunar/enlightenment.webp",
     "cardName": "Enlightenment",
+    "cardNameCN": "蒙光",
     "isVideo": false
   },
   {
@@ -3238,6 +3594,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/xavier/four-star/lunar/firelit embrace.webp",
     "cardName": "Firelit Embrace",
+    "cardNameCN": "燃点将拥",
     "isVideo": false
   },
   {
@@ -3248,6 +3605,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/xavier/four-star/lunar/galactic harmony.webp",
     "cardName": "Galactic Harmony",
+    "cardNameCN": "星河同鸣",
     "isVideo": false
   },
   {
@@ -3258,6 +3616,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/xavier/four-star/lunar/garden of secrets.webp",
     "cardName": "Garden Of Secrets",
+    "cardNameCN": "花野秘语",
     "isVideo": false
   },
   {
@@ -3268,6 +3627,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/xavier/four-star/lunar/horizon's pulse.webp",
     "cardName": "Horizon's Pulse",
+    "cardNameCN": "漫航悸遇",
     "isVideo": false
   },
   {
@@ -3278,6 +3638,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/xavier/four-star/lunar/lost signal.webp",
     "cardName": "Lost Signal",
+    "cardNameCN": "失控信号",
     "isVideo": false
   },
   {
@@ -3288,6 +3649,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/xavier/four-star/lunar/love syndrome.webp",
     "cardName": "Love Syndrome",
+    "cardNameCN": "恋爱症候",
     "isVideo": false
   },
   {
@@ -3298,6 +3660,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/xavier/four-star/lunar/moments refined.webp",
     "cardName": "Moments Refined",
+    "cardNameCN": "细琢辰光",
     "isVideo": false
   },
   {
@@ -3308,6 +3671,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/xavier/four-star/lunar/nocturnal hunt.webp",
     "cardName": "Nocturnal Hunt",
+    "cardNameCN": "猎夜",
     "isVideo": false
   },
   {
@@ -3318,6 +3682,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/xavier/four-star/lunar/perfect sunset.webp",
     "cardName": "Perfect Sunset",
+    "cardNameCN": "恰至日暮",
     "isVideo": false
   },
   {
@@ -3328,6 +3693,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/xavier/four-star/lunar/planned crush.webp",
     "cardName": "Planned Crush",
+    "cardNameCN": "预谋心动",
     "isVideo": false
   },
   {
@@ -3338,6 +3704,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/xavier/four-star/lunar/seeker of light.webp",
     "cardName": "Seeker Of Light",
+    "cardNameCN": "觅光",
     "isVideo": false
   },
   {
@@ -3348,6 +3715,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/xavier/four-star/lunar/shimmering sunlight.webp",
     "cardName": "Shimmering Sunlight",
+    "cardNameCN": "微光懒阳",
     "isVideo": false
   },
   {
@@ -3358,6 +3726,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/xavier/four-star/lunar/spring letter.webp",
     "cardName": "Spring Letter",
+    "cardNameCN": "春信夏至",
     "isVideo": false
   },
   {
@@ -3368,6 +3737,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/xavier/four-star/lunar/starry sound.webp",
     "cardName": "Starry Sound",
+    "cardNameCN": "星音",
     "isVideo": false
   },
   {
@@ -3378,6 +3748,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/xavier/four-star/lunar/sweetness pursuit.webp",
     "cardName": "Sweetness Pursuit",
+    "cardNameCN": "星晚觅甜",
     "isVideo": false
   },
   {
@@ -3388,6 +3759,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/xavier/four-star/lunar/twofold heartbeat.webp",
     "cardName": "Twofold Heartbeat",
+    "cardNameCN": "两心同",
     "isVideo": false
   },
   {
@@ -3398,6 +3770,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/xavier/four-star/lunar/unreturned traveler.webp",
     "cardName": "Unreturned Traveler",
+    "cardNameCN": "逆旅不归人",
     "isVideo": false
   },
   {
@@ -3408,6 +3781,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/xavier/four-star/lunar/warm wishes.webp",
     "cardName": "Warm Wishes",
+    "cardNameCN": "暖灯心愿",
     "isVideo": false
   },
   {
@@ -3418,6 +3792,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/xavier/four-star/lunar/winter's sun.webp",
     "cardName": "Winter's Sun",
+    "cardNameCN": "晴冬",
     "isVideo": false
   },
   {
@@ -3428,6 +3803,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/xavier/four-star/solar/an appointment.webp",
     "cardName": "An Appointment",
+    "cardNameCN": "暇日约定",
     "isVideo": false
   },
   {
@@ -3438,6 +3814,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/xavier/four-star/solar/gilded dreams.webp",
     "cardName": "Gilded Dreams",
+    "cardNameCN": "鎏光碎梦",
     "isVideo": false
   },
   {
@@ -3448,6 +3825,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/xavier/four-star/solar/gilded mirage.webp",
     "cardName": "Gilded Mirage",
+    "cardNameCN": "鎏光蜃影",
     "isVideo": false
   },
   {
@@ -3458,6 +3836,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/xavier/four-star/solar/heartfelt code.webp",
     "cardName": "Heartfelt Code",
+    "cardNameCN": "心晴暗号",
     "isVideo": false
   },
   {
@@ -3468,6 +3847,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/xavier/four-star/solar/heartfelt guide.webp",
     "cardName": "Heartfelt Guide",
+    "cardNameCN": "心晴攻略",
     "isVideo": false
   },
   {
@@ -3478,6 +3858,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/xavier/four-star/solar/moment's respite.webp",
     "cardName": "Moment's Respite",
+    "cardNameCN": "暇日余香",
     "isVideo": false
   },
   {
@@ -3488,6 +3869,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/xavier/four-star/solar/shining light.webp",
     "cardName": "Shining Light",
+    "cardNameCN": "弦光浅呓",
     "isVideo": false
   },
   {
@@ -3498,6 +3880,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/xavier/four-star/solar/shining traces.webp",
     "cardName": "Shining Traces",
+    "cardNameCN": "弦光轨迹",
     "isVideo": false
   },
   {
@@ -3508,6 +3891,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/xavier/four-star/solar/veiled guardian.webp",
     "cardName": "Veiled Guardian",
+    "cardNameCN": "匿光守护",
     "isVideo": false
   },
   {
@@ -3518,6 +3902,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/xavier/four-star/solar/veiled starlight.webp",
     "cardName": "Veiled Starlight",
+    "cardNameCN": "匿光星阑",
     "isVideo": false
   },
   {
@@ -3528,6 +3913,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/xavier/three-star/lunar/about to hit the ball.webp",
     "cardName": "About To Hit The Ball",
+    "cardNameCN": "击球准备",
     "isVideo": false
   },
   {
@@ -3538,6 +3924,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/xavier/three-star/lunar/ardent threads.webp",
     "cardName": "Ardent Threads",
+    "cardNameCN": "心意连结",
     "isVideo": false
   },
   {
@@ -3548,6 +3935,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/xavier/three-star/lunar/bad idea.webp",
     "cardName": "Bad Idea",
+    "cardNameCN": "不好吧",
     "isVideo": false
   },
   {
@@ -3558,6 +3946,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/xavier/three-star/lunar/calls.webp",
     "cardName": "Calls",
+    "cardNameCN": "呼叫",
     "isVideo": false
   },
   {
@@ -3568,6 +3957,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/xavier/three-star/lunar/combat ready.webp",
     "cardName": "Combat Ready",
+    "cardNameCN": "备战",
     "isVideo": false
   },
   {
@@ -3578,6 +3968,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/xavier/three-star/lunar/energy drink.webp",
     "cardName": "Energy Drink",
+    "cardNameCN": "充能饮料",
     "isVideo": false
   },
   {
@@ -3588,6 +3979,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/xavier/three-star/lunar/guardian.webp",
     "cardName": "Guardian",
+    "cardNameCN": "回守",
     "isVideo": false
   },
   {
@@ -3598,6 +3990,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/xavier/three-star/lunar/holding hands.webp",
     "cardName": "Holding Hands",
+    "cardNameCN": "牵手",
     "isVideo": false
   },
   {
@@ -3608,6 +4001,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/xavier/three-star/lunar/listen.webp",
     "cardName": "Listen",
+    "cardNameCN": "聆听",
     "isVideo": false
   },
   {
@@ -3618,6 +4012,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/xavier/three-star/lunar/nestle.webp",
     "cardName": "Nestle",
+    "cardNameCN": "依偎",
     "isVideo": false
   },
   {
@@ -3628,6 +4023,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/xavier/three-star/lunar/real look.webp",
     "cardName": "Real Look",
+    "cardNameCN": "真容",
     "isVideo": false
   },
   {
@@ -3638,6 +4034,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/xavier/three-star/lunar/recall.webp",
     "cardName": "Recall",
+    "cardNameCN": "回想",
     "isVideo": false
   },
   {
@@ -3648,6 +4045,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/xavier/three-star/lunar/reflection.webp",
     "cardName": "Reflection",
+    "cardNameCN": "映照",
     "isVideo": false
   },
   {
@@ -3658,6 +4056,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/xavier/three-star/lunar/silent swipe.webp",
     "cardName": "Silent Swipe",
+    "cardNameCN": "拭痕",
     "isVideo": false
   },
   {
@@ -3668,6 +4067,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/xavier/three-star/lunar/starry stroll.webp",
     "cardName": "Starry Stroll",
+    "cardNameCN": "星旅梦伴",
     "isVideo": false
   },
   {
@@ -3678,6 +4078,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/xavier/three-star/lunar/the rain.webp",
     "cardName": "The Rain",
+    "cardNameCN": "雨停",
     "isVideo": false
   },
   {
@@ -3688,6 +4089,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/xavier/three-star/lunar/unfading wish.webp",
     "cardName": "Unfading Wish",
+    "cardNameCN": "祈愿绵绵",
     "isVideo": false
   },
   {
@@ -3698,6 +4100,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/xavier/three-star/solar/a break.webp",
     "cardName": "A Break",
+    "cardNameCN": "小憩",
     "isVideo": false
   },
   {
@@ -3708,6 +4111,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/xavier/three-star/solar/apple of my eye.webp",
     "cardName": "Apple Of My Eye",
+    "cardNameCN": "眼中的你",
     "isVideo": false
   },
   {
@@ -3718,6 +4122,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/xavier/three-star/solar/blade.webp",
     "cardName": "Blade",
+    "cardNameCN": "锋芒",
     "isVideo": false
   },
   {
@@ -3728,6 +4133,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/xavier/three-star/solar/gaze.webp",
     "cardName": "Gaze",
+    "cardNameCN": "凝望",
     "isVideo": false
   },
   {
@@ -3738,6 +4144,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/xavier/three-star/solar/good morning.webp",
     "cardName": "Good Morning",
+    "cardNameCN": "早安",
     "isVideo": false
   },
   {
@@ -3748,6 +4155,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/xavier/three-star/solar/heart-to-heart.webp",
     "cardName": "Heart-to-heart",
+    "cardNameCN": "比心",
     "isVideo": false
   },
   {
@@ -3758,6 +4166,7 @@ const CARD_CATALOG = [
     "bannerType": "limited",
     "assetPath": "assets/zayne/five-star/lunar/limited/absolute zeal.mp4",
     "cardName": "Absolute Zeal",
+    "cardNameCN": "零下沸点",
     "isVideo": true
   },
   {
@@ -3768,6 +4177,7 @@ const CARD_CATALOG = [
     "bannerType": "limited",
     "assetPath": "assets/zayne/five-star/lunar/limited/aeon's canon.mp4",
     "cardName": "Aeon's Canon",
+    "cardNameCN": "辰寰律",
     "isVideo": true
   },
   {
@@ -3778,6 +4188,7 @@ const CARD_CATALOG = [
     "bannerType": "limited",
     "assetPath": "assets/zayne/five-star/lunar/limited/chilling crescendo.mp4",
     "cardName": "Chilling Crescendo",
+    "cardNameCN": "冷调交熔",
     "isVideo": true
   },
   {
@@ -3788,6 +4199,7 @@ const CARD_CATALOG = [
     "bannerType": "limited",
     "assetPath": "assets/zayne/five-star/lunar/limited/dawn and devotion.mp4",
     "cardName": "Dawn And Devotion",
+    "cardNameCN": "曙色将倾",
     "isVideo": true
   },
   {
@@ -3798,6 +4210,7 @@ const CARD_CATALOG = [
     "bannerType": "limited",
     "assetPath": "assets/zayne/five-star/lunar/limited/dawnbreak promise.mp4",
     "cardName": "Dawnbreak Promise",
+    "cardNameCN": "以我寄黎明",
     "isVideo": true
   },
   {
@@ -3808,6 +4221,7 @@ const CARD_CATALOG = [
     "bannerType": "limited",
     "assetPath": "assets/zayne/five-star/lunar/limited/drunken intimacy.mp4",
     "cardName": "Drunken Intimacy",
+    "cardNameCN": "沉夜共醉",
     "isVideo": true
   },
   {
@@ -3818,6 +4232,7 @@ const CARD_CATALOG = [
     "bannerType": "limited",
     "assetPath": "assets/zayne/five-star/lunar/limited/entwined kites.mp4",
     "cardName": "Entwined Kites",
+    "cardNameCN": "飞鸢坠春",
     "isVideo": true
   },
   {
@@ -3828,6 +4243,7 @@ const CARD_CATALOG = [
     "bannerType": "limited",
     "assetPath": "assets/zayne/five-star/lunar/limited/eternal attachment.mp4",
     "cardName": "Eternal Attachment",
+    "cardNameCN": "一往而深",
     "isVideo": true
   },
   {
@@ -3838,6 +4254,7 @@ const CARD_CATALOG = [
     "bannerType": "limited",
     "assetPath": "assets/zayne/five-star/lunar/limited/everlasting wish.mp4",
     "cardName": "Everlasting Wish",
+    "cardNameCN": "愿缘长",
     "isVideo": true
   },
   {
@@ -3848,6 +4265,7 @@ const CARD_CATALOG = [
     "bannerType": "limited",
     "assetPath": "assets/zayne/five-star/lunar/limited/exclusive tutorial.mp4",
     "cardName": "Exclusive Tutorial",
+    "cardNameCN": "专属教学",
     "isVideo": true
   },
   {
@@ -3858,6 +4276,7 @@ const CARD_CATALOG = [
     "bannerType": "limited",
     "assetPath": "assets/zayne/five-star/lunar/limited/fluffy treatment.mp4",
     "cardName": "Fluffy Treatment",
+    "cardNameCN": "耳尖沉溺",
     "isVideo": true
   },
   {
@@ -3868,6 +4287,7 @@ const CARD_CATALOG = [
     "bannerType": "limited",
     "assetPath": "assets/zayne/five-star/lunar/limited/fragrant possession.mp4",
     "cardName": "Fragrant Possession",
+    "cardNameCN": "馥郁圈占",
     "isVideo": true
   },
   {
@@ -3878,6 +4298,7 @@ const CARD_CATALOG = [
     "bannerType": "limited",
     "assetPath": "assets/zayne/five-star/lunar/limited/heartstring notes.mp4",
     "cardName": "Heartstring Notes",
+    "cardNameCN": "脉脉倾音",
     "isVideo": true
   },
   {
@@ -3888,6 +4309,7 @@ const CARD_CATALOG = [
     "bannerType": "limited",
     "assetPath": "assets/zayne/five-star/lunar/limited/hidden motive.mp4",
     "cardName": "Hidden Motive",
+    "cardNameCN": "长日留痕",
     "isVideo": true
   },
   {
@@ -3898,6 +4320,7 @@ const CARD_CATALOG = [
     "bannerType": "limited",
     "assetPath": "assets/zayne/five-star/lunar/limited/iceborn warmth.mp4",
     "cardName": "Iceborn Warmth",
+    "cardNameCN": "渡雪境",
     "isVideo": true
   },
   {
@@ -3908,6 +4331,7 @@ const CARD_CATALOG = [
     "bannerType": "limited",
     "assetPath": "assets/zayne/five-star/lunar/limited/immediate disorder.mp4",
     "cardName": "Immediate Disorder",
+    "cardNameCN": "即时紊乱",
     "isVideo": true
   },
   {
@@ -3918,6 +4342,7 @@ const CARD_CATALOG = [
     "bannerType": "limited",
     "assetPath": "assets/zayne/five-star/lunar/limited/medical rescue.mp4",
     "cardName": "Medical Rescue",
+    "cardNameCN": "临危",
     "isVideo": true
   },
   {
@@ -3928,6 +4353,7 @@ const CARD_CATALOG = [
     "bannerType": "limited",
     "assetPath": "assets/zayne/five-star/lunar/limited/moonlit dream.mp4",
     "cardName": "Moonlit Dream",
+    "cardNameCN": "枕月眠",
     "isVideo": true
   },
   {
@@ -3938,6 +4364,7 @@ const CARD_CATALOG = [
     "bannerType": "limited",
     "assetPath": "assets/zayne/five-star/lunar/limited/runaway waves.mp4",
     "cardName": "Runaway Waves",
+    "cardNameCN": "私奔潮线",
     "isVideo": true
   },
   {
@@ -3948,6 +4375,7 @@ const CARD_CATALOG = [
     "bannerType": "limited",
     "assetPath": "assets/zayne/five-star/lunar/limited/secret's kiss.mp4",
     "cardName": "Secret's Kiss",
+    "cardNameCN": "窃窃私吻",
     "isVideo": true
   },
   {
@@ -3958,6 +4386,7 @@ const CARD_CATALOG = [
     "bannerType": "limited",
     "assetPath": "assets/zayne/five-star/lunar/limited/silent underflow.mp4",
     "cardName": "Silent Underflow",
+    "cardNameCN": "雪色深流",
     "isVideo": true
   },
   {
@@ -3968,6 +4397,7 @@ const CARD_CATALOG = [
     "bannerType": "standard",
     "assetPath": "assets/zayne/five-star/lunar/standard/business trip.mp4",
     "cardName": "Business Trip",
+    "cardNameCN": "失序",
     "isVideo": true
   },
   {
@@ -3978,6 +4408,7 @@ const CARD_CATALOG = [
     "bannerType": "standard",
     "assetPath": "assets/zayne/five-star/lunar/standard/cozy afternoon.mp4",
     "cardName": "Cozy Afternoon",
+    "cardNameCN": "余温过午",
     "isVideo": true
   },
   {
@@ -3988,6 +4419,7 @@ const CARD_CATALOG = [
     "bannerType": "standard",
     "assetPath": "assets/zayne/five-star/lunar/standard/engraved affection.mp4",
     "cardName": "Engraved Affection",
+    "cardNameCN": "抵此心上",
     "isVideo": true
   },
   {
@@ -3998,6 +4430,7 @@ const CARD_CATALOG = [
     "bannerType": "standard",
     "assetPath": "assets/zayne/five-star/lunar/standard/framed dusk.mp4",
     "cardName": "Framed Dusk",
+    "cardNameCN": "夕晖凝刻",
     "isVideo": true
   },
   {
@@ -4008,6 +4441,7 @@ const CARD_CATALOG = [
     "bannerType": "standard",
     "assetPath": "assets/zayne/five-star/lunar/standard/frozen nightfall.mp4",
     "cardName": "Frozen Nightfall",
+    "cardNameCN": "月下黑棘",
     "isVideo": true
   },
   {
@@ -4018,6 +4452,7 @@ const CARD_CATALOG = [
     "bannerType": "standard",
     "assetPath": "assets/zayne/five-star/lunar/standard/gentle twilight.mp4",
     "cardName": "Gentle Twilight",
+    "cardNameCN": "眷眷余晖",
     "isVideo": true
   },
   {
@@ -4028,6 +4463,7 @@ const CARD_CATALOG = [
     "bannerType": "limited",
     "assetPath": "assets/zayne/five-star/solar/limited/diviner's hymn.mp4",
     "cardName": "Diviner's Hymn",
+    "cardNameCN": "神谕圣咏",
     "isVideo": true
   },
   {
@@ -4038,6 +4474,7 @@ const CARD_CATALOG = [
     "bannerType": "limited",
     "assetPath": "assets/zayne/five-star/solar/limited/diviner's stillness.mp4",
     "cardName": "Diviner's Stillness",
+    "cardNameCN": "神谕归寂",
     "isVideo": true
   },
   {
@@ -4048,6 +4485,7 @@ const CARD_CATALOG = [
     "bannerType": "limited",
     "assetPath": "assets/zayne/five-star/solar/limited/snowfall embrace.mp4",
     "cardName": "Snowfall Embrace",
+    "cardNameCN": "拥雪未眠",
     "isVideo": true
   },
   {
@@ -4058,6 +4496,7 @@ const CARD_CATALOG = [
     "bannerType": "limited",
     "assetPath": "assets/zayne/five-star/solar/limited/snowfall encounter.mp4",
     "cardName": "Snowfall Encounter",
+    "cardNameCN": "拥雪见缘",
     "isVideo": true
   },
   {
@@ -4068,6 +4507,7 @@ const CARD_CATALOG = [
     "bannerType": "standard",
     "assetPath": "assets/zayne/five-star/solar/standard/forever sealed.mp4",
     "cardName": "Forever Sealed",
+    "cardNameCN": "永恒封尘",
     "isVideo": true
   },
   {
@@ -4078,6 +4518,7 @@ const CARD_CATALOG = [
     "bannerType": "standard",
     "assetPath": "assets/zayne/five-star/solar/standard/promise everlasting.mp4",
     "cardName": "Promise Everlasting",
+    "cardNameCN": "永恒心役",
     "isVideo": true
   },
   {
@@ -4088,6 +4529,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/zayne/four-star/lunar/5th intercostal space.webp",
     "cardName": "5th Intercostal Space",
+    "cardNameCN": "第五肋间",
     "isVideo": false
   },
   {
@@ -4098,6 +4540,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/zayne/four-star/lunar/a long night.webp",
     "cardName": "A Long Night",
+    "cardNameCN": "长夜",
     "isVideo": false
   },
   {
@@ -4108,6 +4551,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/zayne/four-star/lunar/beginning.webp",
     "cardName": "Beginning",
+    "cardNameCN": "预占",
     "isVideo": false
   },
   {
@@ -4118,6 +4562,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/zayne/four-star/lunar/blooming hour.webp",
     "cardName": "Blooming Hour",
+    "cardNameCN": "花问逢时",
     "isVideo": false
   },
   {
@@ -4128,6 +4573,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/zayne/four-star/lunar/chasing silhouettes.webp",
     "cardName": "Chasing Silhouettes",
+    "cardNameCN": "恣情逐影",
     "isVideo": false
   },
   {
@@ -4138,6 +4584,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/zayne/four-star/lunar/cherished longing.webp",
     "cardName": "Cherished Longing",
+    "cardNameCN": "声声惜",
     "isVideo": false
   },
   {
@@ -4148,6 +4595,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/zayne/four-star/lunar/dawn_s shadows.webp",
     "cardName": "Dawn's Shadows",
+    "cardNameCN": "薄晓危影",
     "isVideo": false
   },
   {
@@ -4158,6 +4606,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/zayne/four-star/lunar/delicacy.webp",
     "cardName": "Delicacy",
+    "cardNameCN": "人间至味",
     "isVideo": false
   },
   {
@@ -4168,6 +4617,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/zayne/four-star/lunar/destiny.webp",
     "cardName": "Destiny",
+    "cardNameCN": "命定",
     "isVideo": false
   },
   {
@@ -4178,6 +4628,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/zayne/four-star/lunar/doomsday.webp",
     "cardName": "Doomsday",
+    "cardNameCN": "末日游戏",
     "isVideo": false
   },
   {
@@ -4188,6 +4639,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/zayne/four-star/lunar/dream revisited.webp",
     "cardName": "Dream Revisited",
+    "cardNameCN": "堆叠心跳",
     "isVideo": false
   },
   {
@@ -4198,6 +4650,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/zayne/four-star/lunar/everlasting snowdrop.webp",
     "cardName": "Everlasting Snowdrop",
+    "cardNameCN": "绒雪永驻",
     "isVideo": false
   },
   {
@@ -4208,6 +4661,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/zayne/four-star/lunar/fleeting sweetness.webp",
     "cardName": "Fleeting Sweetness",
+    "cardNameCN": "浅尝风甜",
     "isVideo": false
   },
   {
@@ -4218,6 +4672,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/zayne/four-star/lunar/fragmented dreams.webp",
     "cardName": "Fragmented Dreams",
+    "cardNameCN": "梦境裂痕",
     "isVideo": false
   },
   {
@@ -4228,6 +4683,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/zayne/four-star/lunar/frost salvation.webp",
     "cardName": "Frost Salvation",
+    "cardNameCN": "朔雪以济",
     "isVideo": false
   },
   {
@@ -4238,6 +4694,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/zayne/four-star/lunar/glittering lights.webp",
     "cardName": "Glittering Lights",
+    "cardNameCN": "阑珊灯火",
     "isVideo": false
   },
   {
@@ -4248,6 +4705,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/zayne/four-star/lunar/holding autumn.webp",
     "cardName": "Holding Autumn",
+    "cardNameCN": "执此秋色",
     "isVideo": false
   },
   {
@@ -4258,6 +4716,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/zayne/four-star/lunar/morning drift.webp",
     "cardName": "Morning Drift",
+    "cardNameCN": "过晨风",
     "isVideo": false
   },
   {
@@ -4268,6 +4727,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/zayne/four-star/lunar/ramblings come true.webp",
     "cardName": "Ramblings Come True",
+    "cardNameCN": "呓语成真",
     "isVideo": false
   },
   {
@@ -4278,6 +4738,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/zayne/four-star/lunar/secret fairytale.webp",
     "cardName": "Secret Fairytale",
+    "cardNameCN": "秘密童话",
     "isVideo": false
   },
   {
@@ -4288,6 +4749,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/zayne/four-star/lunar/silent poem.webp",
     "cardName": "Silent Poem",
+    "cardNameCN": "缄默宇宙诗",
     "isVideo": false
   },
   {
@@ -4298,6 +4760,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/zayne/four-star/lunar/spring remnants.webp",
     "cardName": "Spring Remnants",
+    "cardNameCN": "春日回响",
     "isVideo": false
   },
   {
@@ -4308,6 +4771,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/zayne/four-star/lunar/stacked pulses.webp",
     "cardName": "Stacked Pulses",
+    "cardNameCN": "抵达稚梦",
     "isVideo": false
   },
   {
@@ -4318,6 +4782,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/zayne/four-star/lunar/steamy proximity.webp",
     "cardName": "Steamy Proximity",
+    "cardNameCN": "寸步氤氲",
     "isVideo": false
   },
   {
@@ -4328,6 +4793,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/zayne/four-star/lunar/surprise encounter.webp",
     "cardName": "Surprise Encounter",
+    "cardNameCN": "不期而遇",
     "isVideo": false
   },
   {
@@ -4338,6 +4804,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/zayne/four-star/lunar/sweet conspiracy.webp",
     "cardName": "Sweet Conspiracy",
+    "cardNameCN": "糖分密約",
     "isVideo": false
   },
   {
@@ -4348,6 +4815,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/zayne/four-star/lunar/thoughtful words.webp",
     "cardName": "Thoughtful Words",
+    "cardNameCN": "深浯",
     "isVideo": false
   },
   {
@@ -4358,6 +4826,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/zayne/four-star/lunar/your voice.webp",
     "cardName": "Your Voice",
+    "cardNameCN": "念念有声",
     "isVideo": false
   },
   {
@@ -4368,6 +4837,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/zayne/four-star/solar/finale_s ache.webp",
     "cardName": "Finale's Ache",
+    "cardNameCN": "终序牵怀",
     "isVideo": false
   },
   {
@@ -4378,6 +4848,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/zayne/four-star/solar/finale_s perpetuity.webp",
     "cardName": "Finale's Perpetuity",
+    "cardNameCN": "终序永劫",
     "isVideo": false
   },
   {
@@ -4388,6 +4859,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/zayne/four-star/solar/forest_s breeze.webp",
     "cardName": "Forest's Breeze",
+    "cardNameCN": "深林晴风",
     "isVideo": false
   },
   {
@@ -4398,6 +4870,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/zayne/four-star/solar/forest_s slumber.webp",
     "cardName": "Forest's Slumber",
+    "cardNameCN": "深林山眠",
     "isVideo": false
   },
   {
@@ -4408,6 +4881,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/zayne/four-star/solar/heartfelt encounter.webp",
     "cardName": "Heartfelt Encounter",
+    "cardNameCN": "心晴邂逅",
     "isVideo": false
   },
   {
@@ -4418,6 +4892,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/zayne/four-star/solar/heartfelt paradise.webp",
     "cardName": "Heartfelt Paradise",
+    "cardNameCN": "心晴乐园",
     "isVideo": false
   },
   {
@@ -4428,6 +4903,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/zayne/four-star/solar/neon night.webp",
     "cardName": "Neon Night",
+    "cardNameCN": "夜色霓虹",
     "isVideo": false
   },
   {
@@ -4438,6 +4914,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/zayne/four-star/solar/starry nocturne.webp",
     "cardName": "Starry Nocturne",
+    "cardNameCN": "夜色繁星",
     "isVideo": false
   },
   {
@@ -4448,6 +4925,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/zayne/four-star/solar/tranquil heart.webp",
     "cardName": "Tranquil Heart",
+    "cardNameCN": "静谧心声",
     "isVideo": false
   },
   {
@@ -4458,6 +4936,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/zayne/four-star/solar/tranquil moment.webp",
     "cardName": "Tranquil Moment",
+    "cardNameCN": "静谧瞬息",
     "isVideo": false
   },
   {
@@ -4468,6 +4947,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/zayne/three-star/lunar/aromatic.webp",
     "cardName": "Aromatic",
+    "cardNameCN": "馨香",
     "isVideo": false
   },
   {
@@ -4478,6 +4958,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/zayne/three-star/lunar/clean-up.webp",
     "cardName": "Clean-up",
+    "cardNameCN": "放晴",
     "isVideo": false
   },
   {
@@ -4488,6 +4969,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/zayne/three-star/lunar/crystal world.webp",
     "cardName": "Crystal World",
+    "cardNameCN": "冰晶世界",
     "isVideo": false
   },
   {
@@ -4498,6 +4980,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/zayne/three-star/lunar/demeanor.webp",
     "cardName": "Demeanor",
+    "cardNameCN": "风范",
     "isVideo": false
   },
   {
@@ -4508,6 +4991,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/zayne/three-star/lunar/doctor_s orders.webp",
     "cardName": "Doctor's Orders",
+    "cardNameCN": "医嘱",
     "isVideo": false
   },
   {
@@ -4518,6 +5002,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/zayne/three-star/lunar/fated reunion.webp",
     "cardName": "Fated Reunion",
+    "cardNameCN": "终见",
     "isVideo": false
   },
   {
@@ -4528,6 +5013,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/zayne/three-star/lunar/gaze from afar.webp",
     "cardName": "Gaze From Afar",
+    "cardNameCN": "远眺",
     "isVideo": false
   },
   {
@@ -4538,6 +5024,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/zayne/three-star/lunar/glasses.webp",
     "cardName": "Glasses",
+    "cardNameCN": "度数不深",
     "isVideo": false
   },
   {
@@ -4548,6 +5035,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/zayne/three-star/lunar/injection therapy.webp",
     "cardName": "Injection Therapy",
+    "cardNameCN": "注射治疗",
     "isVideo": false
   },
   {
@@ -4558,6 +5046,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/zayne/three-star/lunar/lost in thought.webp",
     "cardName": "Lost In Thought",
+    "cardNameCN": "失神瞬间",
     "isVideo": false
   },
   {
@@ -4568,6 +5057,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/zayne/three-star/lunar/precious treasure.webp",
     "cardName": "Precious Treasure",
+    "cardNameCN": "贵重物品",
     "isVideo": false
   },
   {
@@ -4578,6 +5068,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/zayne/three-star/lunar/secrets of fate.webp",
     "cardName": "Secrets Of Fate",
+    "cardNameCN": "天机",
     "isVideo": false
   },
   {
@@ -4588,6 +5079,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/zayne/three-star/lunar/shining blessing.webp",
     "cardName": "Shining Blessing",
+    "cardNameCN": "烁烁祝福",
     "isVideo": false
   },
   {
@@ -4598,6 +5090,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/zayne/three-star/lunar/sweet burden.webp",
     "cardName": "Sweet Burden",
+    "cardNameCN": "甜蜜负担",
     "isVideo": false
   },
   {
@@ -4608,6 +5101,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/zayne/three-star/lunar/treasure in palm.webp",
     "cardName": "Treasure In Palm",
+    "cardNameCN": "掌心珍重",
     "isVideo": false
   },
   {
@@ -4618,6 +5112,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/zayne/three-star/lunar/waiting.webp",
     "cardName": "Waiting",
+    "cardNameCN": "等你",
     "isVideo": false
   },
   {
@@ -4628,6 +5123,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/zayne/three-star/lunar/work plan.webp",
     "cardName": "Work Plan",
+    "cardNameCN": "工作计划",
     "isVideo": false
   },
   {
@@ -4638,6 +5134,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/zayne/three-star/solar/auscultation.webp",
     "cardName": "Auscultation",
+    "cardNameCN": "听诊",
     "isVideo": false
   },
   {
@@ -4648,6 +5145,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/zayne/three-star/solar/checkup.webp",
     "cardName": "Checkup",
+    "cardNameCN": "查房",
     "isVideo": false
   },
   {
@@ -4658,6 +5156,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/zayne/three-star/solar/little world.webp",
     "cardName": "Little World",
+    "cardNameCN": "小世界",
     "isVideo": false
   },
   {
@@ -4668,6 +5167,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/zayne/three-star/solar/no.webp",
     "cardName": "No",
+    "cardNameCN": "不行",
     "isVideo": false
   },
   {
@@ -4678,6 +5178,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/zayne/three-star/solar/playing around.webp",
     "cardName": "Playing Around",
+    "cardNameCN": "娱乐时间",
     "isVideo": false
   },
   {
@@ -4688,6 +5189,7 @@ const CARD_CATALOG = [
     "bannerType": "both",
     "assetPath": "assets/zayne/three-star/solar/thoughts.webp",
     "cardName": "Thoughts",
+    "cardNameCN": "思绪",
     "isVideo": false
   }
 ];

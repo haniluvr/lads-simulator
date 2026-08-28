@@ -60,7 +60,7 @@
   <div id="settings-modal" class="settings-overlay" aria-modal="true" role="dialog" style="display:none;">
     <div class="settings-container">
       <div class="settings-header">
-        <h2>SETTINGS</h2>
+        <h2 data-i18n="settings.title">SETTINGS</h2>
         <button id="settings-close-btn" class="settings-close" aria-label="Close settings">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg>
         </button>
@@ -68,24 +68,24 @@
       <div class="settings-body">
 
         <details class="settings-accordion" open>
-          <summary>Audio</summary>
+          <summary data-i18n="settings.audio">Audio</summary>
           <div class="accordion-content">
-            <p class="settings-desc">Adjust the volume for background music and sound effects.</p>
+            <p class="settings-desc" data-i18n="settings.audio_desc">Adjust the volume for background music and sound effects.</p>
             <div class="slider-row">
-              <span>Music</span>
+              <span data-i18n="settings.audio_music">Music</span>
               <input type="range" id="gs-volume-slider" class="settings-slider" min="0" max="1" step="0.01" value="1">
             </div>
             <div class="slider-row">
-              <span>SFX</span>
+              <span data-i18n="settings.audio_sfx">SFX</span>
               <input type="range" id="gs-sfx-slider" class="settings-slider" min="0" max="1" step="0.01" value="0.5">
             </div>
           </div>
         </details>
 
         <details class="settings-accordion" id="gs-cursor-section">
-          <summary>Cursor</summary>
+          <summary data-i18n="settings.cursor">Cursor</summary>
           <div class="accordion-content">
-            <p class="settings-desc">Select your preferred mouse cursor.</p>
+            <p class="settings-desc" data-i18n="settings.cursor_desc">Select your preferred mouse cursor.</p>
             <div class="cursor-options">
               <button class="cursor-btn active" data-cursor="default" aria-label="Reset Cursor" title="Reset Cursor">
                 <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
@@ -100,51 +100,64 @@
           </div>
         </details>
 
-        <details class="settings-accordion">
-          <summary>Reset Data</summary>
+        
+        
+        <details class="settings-accordion" id="gs-language-section">
+          <summary data-i18n="settings.language">Language</summary>
           <div class="accordion-content">
-            <p class="settings-desc">Clear your local progress, pity, and collection completely.</p>
-            <button id="gs-reset-btn" class="settings-action-btn">Reset Progress</button>
+            <p class="settings-desc" data-i18n="settings.language_desc" style="margin-bottom:12px;">Select the display language.</p>
+            <div class="cursor-options" style="display:flex; gap:12px;">
+              <button class="lang-btn" data-lang="en" style="flex:1; padding: 10px; background: transparent; border: 1px solid #555; color: #ddd; border-radius: 6px; cursor: pointer; font-family: var(--font-m); font-size: 14px; transition: all 0.2s;">English</button>
+              <button class="lang-btn" data-lang="zh" style="flex:1; padding: 10px; background: transparent; border: 1px solid #555; color: #ddd; border-radius: 6px; cursor: pointer; font-family: var(--font-m); font-size: 14px; transition: all 0.2s;">简体中文</button>
+            </div>
           </div>
         </details>
 
         <details class="settings-accordion">
-          <summary>Information</summary>
-          <div class="accordion-content info-content">
-            <p class="settings-desc">A fan-made, beautifully crafted wish (gacha) simulator for the game <b>Love and Deepspace</b>. Test your luck without spending real money!</p>
-            <p class="settings-desc">This project aims to recreate the authentic summoning experience from the game, featuring dynamic animations, a pity system, character collections, and a gorgeous, responsive UI built entirely with vanilla web technologies.</p>
-            <p class="settings-desc">
-              Acknowledgement:<br>
-              Thank you to <a href="https://x.com/SkylusRose" target="_blank" style="color:inherit;">Chey</a>, <a href="https://x.com/Tashter" target="_blank" style="color:inherit;">Tasha</a>, and <a href="https://x.com/YuhinaSan" target="_blank" style="color:inherit;">Yuhina</a> for helping me gather the missing memories in my collection.
-            </p>
-            <p class="settings-desc">
-              Fanart Credits:<br>
-              <strong style="color:var(--gold-lt);">Cards:</strong> <a href="https://x.com/celh0_0" target="_blank" style="color:inherit;">Cee</a>, <a href="https://x.com/Harlock_Mephistokitten" target="_blank" style="color:inherit;">Mephisto</a>, <a href="https://x.com/KC_7385" target="_blank" style="color:inherit;">KC_7385</a>, <a href="https://x.com/uulyaax" target="_blank" style="color:inherit;">uulyaax</a>, <a href="https://x.com/SpiritFucker93" target="_blank" style="color:inherit;">SpiritFucker93</a>, <a href="https://x.com/SALADYUMI" target="_blank" style="color:inherit;">salad</a>, <a href="https://x.com/starsxav" target="_blank" style="color:inherit;">jin</a>, <a href="https://x.com/beejawing" target="_blank" style="color:inherit;">b</a>, <a href="https://x.com/okojyomeimei" target="_blank" style="color:inherit;">Meimei</a>, <a href="https://x.com/Thekawacookiie" target="_blank" style="color:inherit;">Kihaiu</a>, <a href="https://x.com/Aagknorr" target="_blank" style="color:inherit;">Aagknorr</a>, <a href="https://x.com/imuyumiii" target="_blank" style="color:inherit;">Syer</a>, <a href="https://x.com/WanderingNika" target="_blank" style="color:inherit;">Nika</a>, <a href="https://x.com/OrangeTart_" target="_blank" style="color:inherit;">ASH</a>, <a href="https://x.com/godzileen" target="_blank" style="color:inherit;">godzileen</a>, <a href="https://x.com/Cereza_cristal" target="_blank" style="color:inherit;">Cereza_cristal</a>, <a href="https://x.com/raonnni" target="_blank" style="color:inherit;">raonnni</a>, <a href="https://x.com/zeitvon" target="_blank" style="color:inherit;">zeitvon</a>, <a href="https://x.com/Starry_Lottie" target="_blank" style="color:inherit;">Lottie</a>, <a href="https://x.com/very_octoink" target="_blank" style="color:inherit;">very_octoink</a>, <a href="https://x.com/n0niiiiii" target="_blank" style="color:inherit;">n0niiiiii</a>, <a href="https://x.com/acolyptic" target="_blank" style="color:inherit;">Acolyptic</a>, <a href="https://x.com/PencintaApelll" target="_blank" style="color:inherit;">Chel</a>, <a href="https://x.com/c0axyz" target="_blank" style="color:inherit;">c0axyz</a>, <a href="https://x.com/solisweirdddd" target="_blank" style="color:inherit;">solisweirdddd</a>, <a href="https://instagram.com/pinkieplum" target="_blank" style="color:inherit;">pinkieplum</a>, <a href="https://x.com/YuhinaSan" target="_blank" style="color:inherit;">Yuhina.san</a>, <a href="https://x.com/Aunimea" target="_blank" style="color:inherit;">Auniméa</a>, <a href="https://x.com/CELYNSICAL" target="_blank" style="color:inherit;">CELYNSICAL</a>, <a href="https://x.com/bonesandchocos" target="_blank" style="color:inherit;">bones</a>, <a href="https://x.com/fine_fiction" target="_blank" style="color:inherit;">Morgenty</a>, <a href="https://x.com/ayushnz_/" target="_blank" style="color:inherit;">Ayu</a>, <a href="https://x.com/NheaLonn" target="_blank" style="color:inherit;">NheaLonn</a>, <a href="https://x.com/koneko_hoshi" target="_blank" style="color:inherit;">KonekoHoshi</a>, <a href="https://bsky.app/profile/bellavictoria.bsky.social" target="_blank" style="color:inherit;">BellaVictoria</a><br><br>
-              <strong style="color:var(--gold-lt);">Stickers:</strong> <a href="https://xhslink.cn/m/8NTZMgjK6NN" target="_blank" style="color:inherit;">_Valko_</a>, <a href="https://x.com/Astareion" target="_blank" style="color:inherit;">Rei</a>, <a href="https://x.com/smallbento" target="_blank" style="color:inherit;">Bento</a>, <a href="https://x.com/fantasyartist26" target="_blank" style="color:inherit;">Ellie</a>
-            </p>
-            <p class="settings-desc" style="font-size: 11px;font-style: italic;">Disclaimer: This is an unofficial, fan-made web application and is not affiliated with, endorsed, sponsored, or approved by Papergames or Infold Games. Love and Deepspace, its characters, artwork, audio, and all associated intellectual property are the exclusive property of their respective copyright holders. This project is created strictly for entertainment and fan purposes, with no commercial intent. No copyright infringement is intended.</p>
+          <summary data-i18n="settings.reset">Reset Data</summary>
+          <div class="accordion-content">
+            <p class="settings-desc" data-i18n="settings.reset_desc">Clear your local progress, pity, and collection completely.</p>
+            <button id="gs-reset-btn" class="settings-action-btn" data-i18n="settings.reset_btn">Reset Progress</button>
           </div>
         </details>
 
         <details class="settings-accordion">
-          <summary>Privacy Policy</summary>
+          <summary data-i18n="settings.info">Information</summary>
           <div class="accordion-content info-content">
-            <h3 style="color: var(--gold, #c9a96e); margin-bottom: 8px; font-size: 14px; font-family: var(--font-d); text-align: left;">1. Data Collection and Usage</h3>
-            <p class="settings-desc">We do not collect, store, transmit, or share any of your personal information. This web application operates entirely on the client side (within your web browser). We do not have servers that record your gameplay, activity, or personal data.</p>
+            <p class="settings-desc" data-i18n="settings.info_p1">A fan-made, beautifully crafted wish (gacha) simulator for the game <b>Love and Deepspace</b>. Test your luck without spending real money!</p>
+            <p class="settings-desc" data-i18n="settings.info_p2">This project aims to recreate the authentic summoning experience from the game, featuring dynamic animations, a pity system, character collections, and a gorgeous, responsive UI built entirely with vanilla web technologies.</p>
+            <p class="settings-desc">
+              <span data-i18n="settings.info_ack">Acknowledgement:</span><br>
+              <span data-i18n="settings.info_ack_desc"><span data-i18n="settings.info_ack_desc">Thank you to <a href="https://x.com/SkylusRose" target="_blank" style="color:inherit;">Chey</a>, <a href="https://x.com/Tashter" target="_blank" style="color:inherit;">Tasha</a>, and <a href="https://x.com/YuhinaSan" target="_blank" style="color:inherit;">Yuhina</a> for helping me gather the missing memories in my collection.
+            </p>
+            <p class="settings-desc">
+              <span data-i18n="settings.info_fanart">Fanart Credits:</span><br>
+              <strong style="color:var(--gold-lt);" data-i18n="settings.info_cards">Cards:</strong> <a href="https://x.com/celh0_0" target="_blank" style="color:inherit;">Cee</a>, <a href="https://x.com/Harlock_Mephistokitten" target="_blank" style="color:inherit;">Mephisto</a>, <a href="https://x.com/KC_7385" target="_blank" style="color:inherit;">KC_7385</a>, <a href="https://x.com/uulyaax" target="_blank" style="color:inherit;">uulyaax</a>, <a href="https://x.com/SpiritFucker93" target="_blank" style="color:inherit;">SpiritFucker93</a>, <a href="https://x.com/SALADYUMI" target="_blank" style="color:inherit;">salad</a>, <a href="https://x.com/starsxav" target="_blank" style="color:inherit;">jin</a>, <a href="https://x.com/beejawing" target="_blank" style="color:inherit;">b</a>, <a href="https://x.com/okojyomeimei" target="_blank" style="color:inherit;">Meimei</a>, <a href="https://x.com/Thekawacookiie" target="_blank" style="color:inherit;">Kihaiu</a>, <a href="https://x.com/Aagknorr" target="_blank" style="color:inherit;">Aagknorr</a>, <a href="https://x.com/imuyumiii" target="_blank" style="color:inherit;">Syer</a>, <a href="https://x.com/WanderingNika" target="_blank" style="color:inherit;">Nika</a>, <a href="https://x.com/OrangeTart_" target="_blank" style="color:inherit;">ASH</a>, <a href="https://x.com/godzileen" target="_blank" style="color:inherit;">godzileen</a>, <a href="https://x.com/Cereza_cristal" target="_blank" style="color:inherit;">Cereza_cristal</a>, <a href="https://x.com/raonnni" target="_blank" style="color:inherit;">raonnni</a>, <a href="https://x.com/zeitvon" target="_blank" style="color:inherit;">zeitvon</a>, <a href="https://x.com/Starry_Lottie" target="_blank" style="color:inherit;">Lottie</a>, <a href="https://x.com/very_octoink" target="_blank" style="color:inherit;">very_octoink</a>, <a href="https://x.com/n0niiiiii" target="_blank" style="color:inherit;">n0niiiiii</a>, <a href="https://x.com/acolyptic" target="_blank" style="color:inherit;">Acolyptic</a>, <a href="https://x.com/PencintaApelll" target="_blank" style="color:inherit;">Chel</a>, <a href="https://x.com/c0axyz" target="_blank" style="color:inherit;">c0axyz</a>, <a href="https://x.com/solisweirdddd" target="_blank" style="color:inherit;">solisweirdddd</a>, <a href="https://instagram.com/pinkieplum" target="_blank" style="color:inherit;">pinkieplum</a>, <a href="https://x.com/YuhinaSan" target="_blank" style="color:inherit;">Yuhina.san</a>, <a href="https://x.com/Aunimea" target="_blank" style="color:inherit;">Auniméa</a>, <a href="https://x.com/CELYNSICAL" target="_blank" style="color:inherit;">CELYNSICAL</a>, <a href="https://x.com/bonesandchocos" target="_blank" style="color:inherit;">bones</a>, <a href="https://x.com/fine_fiction" target="_blank" style="color:inherit;">Morgenty</a>, <a href="https://x.com/ayushnz_/" target="_blank" style="color:inherit;">Ayu</a>, <a href="https://x.com/NheaLonn" target="_blank" style="color:inherit;">NheaLonn</a>, <a href="https://x.com/koneko_hoshi" target="_blank" style="color:inherit;">KonekoHoshi</a>, <a href="https://bsky.app/profile/bellavictoria.bsky.social" target="_blank" style="color:inherit;">BellaVictoria</a><br><br>
+              <strong style="color:var(--gold-lt);" data-i18n="settings.info_stickers">Stickers:</strong> <a href="https://xhslink.cn/m/8NTZMgjK6NN" target="_blank" style="color:inherit;">_Valko_</a>, <a href="https://x.com/Astareion" target="_blank" style="color:inherit;">Rei</a>, <a href="https://x.com/smallbento" target="_blank" style="color:inherit;">Bento</a>, <a href="https://x.com/fantasyartist26" target="_blank" style="color:inherit;">Ellie</a>
+            </p>
+            <p class="settings-desc" style="font-size: 11px;font-style: italic;" data-i18n="settings.info_disclaimer">Disclaimer: This is an unofficial, fan-made web application and is not affiliated with, endorsed, sponsored, or approved by Papergames or Infold Games. Love and Deepspace, its characters, artwork, audio, and all associated intellectual property are the exclusive property of their respective copyright holders. This project is created strictly for entertainment and fan purposes, with no commercial intent. No copyright infringement is intended.</p>
+          </div>
+        </details>
+
+        <details class="settings-accordion">
+          <summary data-i18n="settings.privacy">Privacy Policy</summary>
+          <div class="accordion-content info-content">
+            <h3 style="color: var(--gold, #c9a96e); margin-bottom: 8px; font-size: 14px; font-family: var(--font-d); text-align: left;" data-i18n="settings.priv_1_title">1. Data Collection and Usage</h3>
+            <p class="settings-desc" data-i18n="settings.priv_1_desc">We do not collect, store, transmit, or share any of your personal information. This web application operates entirely on the client side (within your web browser). We do not have servers that record your gameplay, activity, or personal data.</p>
             
-            <h3 style="color: var(--gold, #c9a96e); margin-bottom: 8px; font-size: 14px; font-family: var(--font-d); text-align: left;">2. Local Storage</h3>
-            <p class="settings-desc">To save your simulator progress (such as your pull history, pity count, memory collection, and audio settings), this site uses your browser's Local Storage. This data is stored strictly on your device and never leaves it. You can delete this data at any time by using the "Reset Data" option in the Settings menu or by clearing your browser's cache and site data.</p>
+            <h3 style="color: var(--gold, #c9a96e); margin-bottom: 8px; font-size: 14px; font-family: var(--font-d); text-align: left;" data-i18n="settings.priv_2_title">2. Local Storage</h3>
+            <p class="settings-desc" data-i18n="settings.priv_2_desc">To save your simulator progress (such as your pull history, pity count, memory collection, and audio settings), this site uses your browser's Local Storage. This data is stored strictly on your device and never leaves it. You can delete this data at any time by using the "Reset Data" option in the Settings menu or by clearing your browser's cache and site data.</p>
             
-            <h3 style="color: var(--gold, #c9a96e); margin-bottom: 8px; font-size: 14px; font-family: var(--font-d); text-align: left;">3. Photobooth & Images</h3>
-            <p class="settings-desc">The photobooth feature processes images locally on your device. Any photos you take, upload, or edit within the photobooth are never uploaded to our servers (because we don't have any). Everything stays on your phone or computer.</p>
+            <h3 style="color: var(--gold, #c9a96e); margin-bottom: 8px; font-size: 14px; font-family: var(--font-d); text-align: left;" data-i18n="settings.priv_3_title">3. Photobooth & Images</h3>
+            <p class="settings-desc" data-i18n="settings.priv_3_desc">The photobooth feature processes images locally on your device. Any photos you take, upload, or edit within the photobooth are never uploaded to our servers (because we don't have any). Everything stays on your phone or computer.</p>
             
-            <h3 style="color: var(--gold, #c9a96e); margin-bottom: 8px; font-size: 14px; font-family: var(--font-d); text-align: left;">4. Third-Party Hosting</h3>
-            <p class="settings-desc">This website is hosted on GitHub Pages. While the simulator itself tracks nothing, GitHub may automatically collect standard web server logs (such as IP addresses) for security and operational purposes. You can read more about this in the GitHub Privacy Statement.</p>
+            <h3 style="color: var(--gold, #c9a96e); margin-bottom: 8px; font-size: 14px; font-family: var(--font-d); text-align: left;" data-i18n="settings.priv_4_title">4. Third-Party Hosting</h3>
+            <p class="settings-desc" data-i18n="settings.priv_4_desc">This website is hosted on GitHub Pages. While the simulator itself tracks nothing, GitHub may automatically collect standard web server logs (such as IP addresses) for security and operational purposes. You can read more about this in the GitHub Privacy Statement.</p>
             
-            <h3 style="color: var(--gold, #c9a96e); margin-bottom: 8px; font-size: 14px; font-family: var(--font-d); text-align: left;">5. Contact</h3>
-            <p class="settings-desc">If you have any questions or concerns about this project, you can reach out via <a href="https://discordapp.com/users/914445892180906005" target="_blank" style="color:inherit;">Discord</a>, <a href="https://github.com/haniluvr" target="_blank" style="color:inherit;">Github</a>, <a href="https://www.instagram.com/hvniluvr" target="_blank" style="color:inherit;">Instagram</a>, and <a href="https://x.com/hvnibun" target="_blank" style="color:inherit;">X/Twitter</a>.</p>
+            <h3 style="color: var(--gold, #c9a96e); margin-bottom: 8px; font-size: 14px; font-family: var(--font-d); text-align: left;" data-i18n="settings.priv_5_title">5. Contact</h3>
+            <p class="settings-desc" data-i18n="settings.priv_5_desc">If you have any questions or concerns about this project, you can reach out via <a href="https://discordapp.com/users/914445892180906005" target="_blank" style="color:inherit;">Discord</a>, <a href="https://github.com/haniluvr" target="_blank" style="color:inherit;">Github</a>, <a href="https://www.instagram.com/hvniluvr" target="_blank" style="color:inherit;">Instagram</a>, and <a href="https://x.com/hvnibun" target="_blank" style="color:inherit;">X/Twitter</a>.</p>
             
-            <p class="settings-desc" style="font-size: 11px;font-style: italic;">Last Updated: August 2026</p>
+            <p class="settings-desc" style="font-size: 11px;font-style: italic;" data-i18n="settings.priv_updated">Last Updated: August 2026</p>
           </div>
         </details>
 
@@ -152,7 +165,7 @@
 
       <!-- Footer Info (Always visible) -->
       <div class="info-footer">
-        <p class="info-copy">LADS Wish Simulator, Code and Design © 2026 haniluvr.<br>Assets copyrights belong to their respective owners.</p>
+        <p class="info-copy" data-i18n="settings.footer_copy">LADS Wish Simulator, Code and Design © 2026 haniluvr.<br>Assets copyrights belong to their respective owners.</p>
         <div class="info-socials">
           <a href="https://ko-fi.com/haniluvr" aria-label="Ko-fi"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.881 8.948c-.773-4.085-4.859-4.593-4.859-4.593H.723c-.604 0-.679.798-.679.798s-.082 7.324-.022 11.822c.164 2.424 2.586 2.672 2.586 2.672s8.267-.023 11.966-.049c2.438-.426 2.683-2.566 2.658-3.734 4.352.24 7.422-2.831 6.649-6.916zm-11.062 3.511c-1.246 1.453-4.011 3.976-4.011 3.976s-.121.119-.31.023c-.076-.057-.108-.09-.108-.09-.443-.441-3.368-3.049-4.034-3.954-.709-.965-1.041-2.46-.091-3.71.951-1.252 2.771-1.082 3.839.055.05.048.093.094.135.14.041-.046.085-.092.135-.14 1.068-1.137 2.888-1.307 3.839-.055.95 1.25.218 2.745-.491 3.711zm9.589-2.023c-.22.955-1.42 1.442-2.316 1.547-.11.011-.22.016-.33.023V7.202c.866-.021 2.378-.061 3.036 1.261.262.525.257 1.487-.39 2.462z"/></svg></a>
           <a href="https://github.com/haniluvr" aria-label="GitHub"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg></a>
@@ -168,18 +181,18 @@
   <!-- ── Reset Confirm Alert ── -->
   <div id="gs-reset-confirm-modal" class="alert-overlay" aria-modal="true" role="dialog" style="display:none;">
     <div class="alert-modal">
-      <div class="alert-header">RESET DATA</div>
+      <div class="alert-header" data-i18n="alert.reset_title">RESET DATA</div>
       <div class="alert-body">
         <p style="color: var(--txt); font-size: 15px; line-height: 1.6; margin: 0;">
-          Are you sure you want to completely reset all gacha data?
+          <span data-i18n="alert.reset_body">Are you sure you want to completely reset all gacha data?</span>
         </p>
         <div class="alert-danger-box">
-          <span class="alert-danger-title">This will permanently delete:</span>
-          <span class="alert-danger-text">Pulls, Pity, Wishes, and Collection</span>
+          <span class="alert-danger-title" data-i18n="alert.reset_danger">This will permanently delete:</span>
+          <span class="alert-danger-text" data-i18n="alert.reset_items">Pulls, Pity, Wishes, and Collection</span>
         </div>
         <div style="display: flex; gap: 16px; justify-content: center;">
-          <button id="gs-reset-cancel-btn" class="alert-btn alert-btn-cancel">CANCEL</button>
-          <button id="gs-reset-confirm-btn" class="alert-btn alert-btn-confirm">CONFIRM</button>
+          <button id="gs-reset-cancel-btn" class="alert-btn alert-btn-cancel" data-i18n="alert.cancel">CANCEL</button>
+          <button id="gs-reset-confirm-btn" class="alert-btn alert-btn-confirm" data-i18n="alert.confirm">CONFIRM</button>
         </div>
       </div>
     </div>
@@ -406,6 +419,37 @@
           window.dispatchEvent(new CustomEvent('sfxvolumechange'));
         });
       }
+    }
+
+    
+    // ── Language buttons ──
+    const langBtns = settingsModal.querySelectorAll('.lang-btn');
+    const updateLangUI = (lang) => {
+      langBtns.forEach(btn => {
+        if (btn.getAttribute('data-lang') === lang) {
+          btn.style.background = 'rgba(201, 169, 110, 0.1)';
+          btn.style.color = 'var(--gold-lt)';
+          btn.style.borderColor = 'var(--gold-lt)';
+          btn.style.fontWeight = 'bold';
+        } else {
+          btn.style.background = 'transparent';
+          btn.style.color = '#ddd';
+          btn.style.borderColor = '#555';
+          btn.style.fontWeight = 'normal';
+        }
+      });
+    };
+    
+    // Initial state
+    if (window.i18n) {
+      updateLangUI(window.i18n.lang);
+      langBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const lang = btn.getAttribute('data-lang');
+          window.i18n.setLanguage(lang);
+          updateLangUI(lang);
+        });
+      });
     }
 
     // ── Cursor buttons ──

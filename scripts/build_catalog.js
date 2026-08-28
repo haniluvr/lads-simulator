@@ -24,7 +24,7 @@ function formatName(filename) {
     return name.split(' ').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
 }
 
-const assetsDir = path.join(__dirname, 'assets');
+const assetsDir = path.join(__dirname, '../assets');
 if (!fs.existsSync(assetsDir)) {
     console.error("Assets directory not found at " + assetsDir);
     process.exit(1);
@@ -32,6 +32,16 @@ if (!fs.existsSync(assetsDir)) {
 
 const files = walkDir(assetsDir);
 const catalog = [];
+
+let translations = {};
+try {
+    const translationsPath = path.join(__dirname, 'scripts', 'translations_cn.json');
+    if (fs.existsSync(translationsPath)) {
+        translations = JSON.parse(fs.readFileSync(translationsPath, 'utf8'));
+    }
+} catch (e) {
+    console.error("Failed to load translations:", e.message);
+}
 
 files.forEach(file => {
     // Relative path using forward slashes
@@ -65,6 +75,14 @@ files.forEach(file => {
     if (!cardFile) return;
     
     const ext = path.extname(cardFile).toLowerCase();
+    const englishName = formatName(cardFile);
+    
+    // Look up translation using lowercased english name
+    let translatedName = null;
+    const lookupKey = englishName.toLowerCase();
+    if (translations[lookupKey]) {
+        translatedName = translations[lookupKey];
+    }
     
     catalog.push({
         character: character,
@@ -73,8 +91,9 @@ files.forEach(file => {
         type: type, // 'lunar' or 'solar'
         bannerType: bannerType, // 'standard', 'limited', 'both'
         assetPath: `assets/${relativePath}`,
-        cardName: formatName(cardFile),
-        isVideo: ext === '.mp4' || ext === '.mp4' || ext === '.webm'
+        cardName: englishName,
+        cardNameCN: translatedName,
+        isVideo: ext === '.mp4' || ext === '.webm'
     });
 });
 

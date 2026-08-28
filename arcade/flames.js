@@ -1,12 +1,12 @@
 // ── FLAMES Logic & UI ──
 
 const FLAMES_DATA = {
-    F: { emoji: '👫', word: 'Friends',  meaning: 'You share a warm, genuine friendship. Perfect companions!' },
-    L: { emoji: '💕', word: 'Love',     meaning: 'A romantic connection — the sparks are real between you two.' },
-    A: { emoji: '🥰', word: 'Affection',meaning: 'Deep care and tenderness — you genuinely adore each other.' },
-    M: { emoji: '💍', word: 'Marriage', meaning: 'Soulmates alert! According to FLAMES, you two are meant to be together for the long haul.' },
-    E: { emoji: '😤', word: 'Enemies',  meaning: 'There might be some friction here — but remember, even rivals have an interesting dynamic.' },
-    S: { emoji: '👯', word: 'Siblings', meaning: 'You\'re like siblings — you might bicker sometimes, but deep down there\'s a genuine bond.' }
+    F: { emoji: '👫', wordKey: 'flames.f_word', meaningKey: 'flames.f_mean' },
+    L: { emoji: '💕', wordKey: 'flames.l_word', meaningKey: 'flames.l_mean' },
+    A: { emoji: '🥰', wordKey: 'flames.a_word', meaningKey: 'flames.a_mean' },
+    M: { emoji: '💍', wordKey: 'flames.m_word', meaningKey: 'flames.m_mean' },
+    E: { emoji: '😤', wordKey: 'flames.e_word', meaningKey: 'flames.e_mean' },
+    S: { emoji: '👯', wordKey: 'flames.s_word', meaningKey: 'flames.s_mean' }
 };
 
 let currentTicket = null;
@@ -31,25 +31,37 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function runFlames(name1, name2) {
-    const a = name1.toLowerCase().replace(/[^a-z]/g, '').split('');
-    const b = name2.toLowerCase().replace(/[^a-z]/g, '').split('');
+    const hasChinese = /[\u4e00-\u9fa5]/.test(name1) || /[\u4e00-\u9fa5]/.test(name2);
+    let a, b, count, strikePairs = [], strokesA = 0, strokesB = 0;
 
-    const usedA = new Array(a.length).fill(false);
-    const usedB = new Array(b.length).fill(false);
-    const strikePairs = [];
+    if (hasChinese) {
+        a = name1.replace(/\s+/g, '').split('');
+        b = name2.replace(/\s+/g, '').split('');
+        if (window.cnchar) {
+            strokesA = window.cnchar.stroke(a.join(''));
+            strokesB = window.cnchar.stroke(b.join(''));
+        }
+        count = Math.abs(strokesA - strokesB);
+        if (count === 0) count = 1;
+    } else {
+        a = name1.toLowerCase().replace(/[^a-z]/g, '').split('');
+        b = name2.toLowerCase().replace(/[^a-z]/g, '').split('');
 
-    for (let i = 0; i < a.length; i++) {
-        for (let j = 0; j < b.length; j++) {
-            if (!usedA[i] && !usedB[j] && a[i] === b[j]) {
-                usedA[i] = true;
-                usedB[j] = true;
-                strikePairs.push({ i, j, letter: a[i] });
-                break;
+        const usedA = new Array(a.length).fill(false);
+        const usedB = new Array(b.length).fill(false);
+
+        for (let i = 0; i < a.length; i++) {
+            for (let j = 0; j < b.length; j++) {
+                if (!usedA[i] && !usedB[j] && a[i] === b[j]) {
+                    usedA[i] = true;
+                    usedB[j] = true;
+                    strikePairs.push({ i, j, letter: a[i] });
+                    break;
+                }
             }
         }
+        count = usedA.filter(u => !u).length + usedB.filter(u => !u).length;
     }
-
-    const count = usedA.filter(u => !u).length + usedB.filter(u => !u).length;
 
     let indices = [0, 1, 2, 3, 4, 5];
     const eliminated = [];
@@ -62,7 +74,7 @@ function runFlames(name1, name2) {
         start = pos % indices.length;
     }
 
-    return { a, b, count, strikePairs, eliminated, winner: ['F','L','A','M','E','S'][indices[0]] };
+    return { a, b, count, strikePairs, eliminated, winner: ['F','L','A','M','E','S'][indices[0]], hasChinese, strokesA, strokesB };
 }
 
 function renderNameRow(rowEl, letters) {
@@ -91,14 +103,14 @@ function wait(ms) {
 
 async function animateStrikes(rowA, rowB, pairs, statusEl) {
     if (pairs.length === 0) {
-        statusEl.textContent = 'No matching letters — every letter counts!';
+        statusEl.textContent = window.i18n ? window.i18n.t('flames.anim_no_match') : 'No matching letters — every letter counts!';
         await wait(700);
         return;
     }
     for (const { i, j, letter } of pairs) {
         const lA = rowA.querySelector(`[data-idx="${i}"]`);
         const lB = rowB.querySelector(`[data-idx="${j}"]`);
-        statusEl.textContent = `Cancelling matching “${letter.toUpperCase()}”…`;
+        statusEl.textContent = window.i18n ? window.i18n.t('flames.anim_cancelling').replace('{L}', letter.toUpperCase()) : `Cancelling matching “${letter.toUpperCase()}”…`;
         lA.classList.add('matching');
         lB.classList.add('matching');
         await wait(280);
@@ -108,7 +120,7 @@ async function animateStrikes(rowA, rowB, pairs, statusEl) {
         lB.classList.add('struck');
         await wait(330);
     }
-    statusEl.textContent = 'All matching pairs cancelled ✓';
+    statusEl.textContent = window.i18n ? window.i18n.t('flames.anim_all_cancelled') : 'All matching pairs cancelled ✓';
     await wait(500);
 }
 
@@ -122,7 +134,7 @@ async function animateFlamesElimination(count, statusEl) {
             idx = (start + s - 1) % alive.length;
             const box = alive[idx];
             box.classList.add('counting');
-            if (statusEl) statusEl.textContent = `Counting ${s} of ${count}…`;
+            if (statusEl) statusEl.textContent = window.i18n ? window.i18n.t('flames.anim_counting').replace('{S}', s).replace('{C}', count) : `Counting ${s} of ${count}…`;
             await wait(Math.max(95, 185 - s * 6));
             if (s < count) box.classList.remove('counting');
         }
@@ -130,7 +142,7 @@ async function animateFlamesElimination(count, statusEl) {
         await wait(300);
         landed.classList.remove('counting');
         landed.classList.add('eliminated');
-        if (statusEl) statusEl.textContent = `${landed.dataset.l} is out! ${alive.length - 1} left…`;
+        if (statusEl) statusEl.textContent = window.i18n ? window.i18n.t('flames.anim_out').replace('{L}', landed.dataset.l).replace('{LEFT}', alive.length - 1) : `${landed.dataset.l} is out! ${alive.length - 1} left…`;
         alive.splice(idx, 1);
         start = idx % alive.length;
         await wait(alive.length === 1 ? 250 : 480);
@@ -146,7 +158,7 @@ function hashName(str, mult) {
 }
 
 function compatScore(n1, n2, letter) {
-    const s = (n1 + '&' + n2).toLowerCase().replace(/[^a-z]/g, '');
+    const s = (n1 + '&' + n2).toLowerCase().replace(/\s+/g, '');
     const h = hashName(s, 31);
     const ranges = { M: [88, 99], L: [80, 96], A: [72, 90], F: [58, 80], S: [48, 70], E: [20, 46] };
     const [lo, hi] = ranges[letter] || [50, 80];
@@ -154,7 +166,7 @@ function compatScore(n1, n2, letter) {
 }
 
 function makeTicketId(n1, n2, letter) {
-    const s = (n1 + n2).toLowerCase().replace(/[^a-z]/g, '');
+    const s = (n1 + n2).toLowerCase().replace(/\s+/g, '');
     return 'FL-' + letter + String(hashName(s, 131) % 10000).toString().padStart(4, '0');
 }
 
@@ -186,14 +198,25 @@ function showResult(letter, n1, n2) {
 
     const score = compatScore(n1, n2, letter);
     const id = makeTicketId(n1, n2, letter);
-    const date = new Date().toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
+    
+    let date;
+    if (window.i18n && window.i18n.lang === 'zh') {
+        const d = new Date();
+        date = `${d.getFullYear()}年${d.getMonth() + 1}月${d.getDate()}日`;
+    } else {
+        const loc = window.i18n && window.i18n.lang ? (window.i18n.lang === 'zh' ? 'zh-CN' : 'en-GB') : 'en-GB';
+        date = new Date().toLocaleDateString(loc, { day: '2-digit', month: 'short', year: 'numeric' });
+    }
 
-    currentTicket = { n1, n2, letter, word: data.word, emoji: data.emoji, meaning: data.meaning, score, id, date };
+    const word = window.i18n ? window.i18n.t(data.wordKey) : 'Result';
+    const meaning = window.i18n ? window.i18n.t(data.meaningKey) : 'Meaning';
+    
+    currentTicket = { n1, n2, letter, word, emoji: data.emoji, meaning, score, id, date };
 
     document.getElementById('tkNames').textContent = `${n1}  ❤  ${n2}`;
     document.getElementById('tkEmoji').textContent = data.emoji;
-    document.getElementById('tkWord').textContent = `${data.word}!`;
-    document.getElementById('tkMeaning').textContent = data.meaning;
+    document.getElementById('tkWord').textContent = `${word}!`;
+    document.getElementById('tkMeaning').textContent = meaning;
     document.getElementById('tkScore').textContent = `${score}%`;
     document.getElementById('tkId').textContent = id;
     document.getElementById('tkDate').textContent = date;
@@ -220,7 +243,7 @@ function showResult(letter, n1, n2) {
 
     const btn = document.getElementById('calcBtn');
     btn.disabled = false;
-    btn.textContent = 'Try New Names';
+    btn.textContent = window.i18n ? window.i18n.t('flames.try_new') : 'Try New Names';
 }
 
 async function calculateFlames() {
@@ -228,16 +251,26 @@ async function calculateFlames() {
     const n2 = document.getElementById('name2').value.trim();
 
     if (!n1 || !n2) {
-        alert('Please enter both names!');
+        alert(window.i18n ? window.i18n.t('flames.alert_both') : 'Please enter both names!');
         return;
     }
 
-    const cleanA = n1.replace(/[^a-zA-Z]/g, '');
-    const cleanB = n2.replace(/[^a-zA-Z]/g, '');
+    const hasChinese = /[\u4e00-\u9fa5]/.test(n1) || /[\u4e00-\u9fa5]/.test(n2);
 
-    if (!cleanA || !cleanB) {
-        alert('Names must contain at least one letter!');
-        return;
+    if (!hasChinese) {
+        const cleanA = n1.replace(/[^a-zA-Z]/g, '');
+        const cleanB = n2.replace(/[^a-zA-Z]/g, '');
+        if (!cleanA || !cleanB) {
+            alert(window.i18n ? window.i18n.t('flames.alert_letters') : 'Names must contain at least one letter!');
+            return;
+        }
+    } else {
+        const cleanA = n1.replace(/[^\u4e00-\u9fa5a-zA-Z]/g, '');
+        const cleanB = n2.replace(/[^\u4e00-\u9fa5a-zA-Z]/g, '');
+        if (!cleanA || !cleanB) {
+            alert(window.i18n ? window.i18n.t('flames.alert_letters_cn') : 'Names must contain at least one valid character!');
+            return;
+        }
     }
 
     // Reset UI
@@ -249,7 +282,7 @@ async function calculateFlames() {
     btn.disabled = true;
 
     skipAnim = false;
-    const { a, b, count, strikePairs, eliminated, winner } = runFlames(n1, n2);
+    const { a, b, count, strikePairs, eliminated, winner, hasChinese: isChinese, strokesA, strokesB } = runFlames(n1, n2);
 
     // Render and animate name letter strikes
     const stage = document.getElementById('strikeStage');
@@ -260,19 +293,30 @@ async function calculateFlames() {
     document.getElementById('strikeName2Label').textContent = n2;
     renderNameRow(rowA, a);
     renderNameRow(rowB, b);
-    status.textContent = 'Crossing out matching letters…';
+    
     stage.classList.add('visible');
     stage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 
-    await animateStrikes(rowA, rowB, strikePairs, status);
+    if (!isChinese) {
+        status.textContent = window.i18n ? window.i18n.t('flames.anim_crossing') : 'Crossing out matching letters…';
+        await animateStrikes(rowA, rowB, strikePairs, status);
+    } else {
+        status.textContent = '';
+        await wait(600);
+    }
 
     const countEl = document.getElementById('countDisplay');
-    countEl.textContent = `${count} letters left — counting through F·L·A·M·E·S…`;
+    if (isChinese) {
+        const baseTrans = window.i18n ? window.i18n.t('flames.anim_strokes_cn') : '{C} strokes difference (|{S1} - {S2}|) — counting through F·L·A·M·E·S…';
+        countEl.textContent = baseTrans.replace('{C}', Math.abs(strokesA - strokesB)).replace('{S1}', strokesA).replace('{S2}', strokesB);
+    } else {
+        countEl.textContent = window.i18n ? window.i18n.t('flames.anim_left').replace('{C}', count) : `${count} letters left — counting through F·L·A·M·E·S…`;
+    }
     await wait(650);
 
     const animatedWinner = await animateFlamesElimination(count, countEl);
 
-    countEl.textContent = 'And the result is…';
+    countEl.textContent = window.i18n ? window.i18n.t('flames.anim_result') : 'And the result is…';
     await wait(550);
     showResult(animatedWinner, n1, n2);
 }
@@ -291,7 +335,8 @@ function resetCalculator() {
     document.querySelectorAll('.flame-box')
         .forEach(b => b.classList.remove('eliminated', 'winner'));
     const btn = document.getElementById('calcBtn');
-    btn.innerHTML = 'Calculate <i data-lucide="calculator" style="width: 14px; height: 14px; color: #0a0a22;"></i>';
+    const btnText = window.i18n ? window.i18n.t('flames.calculate') : 'Calculate';
+    btn.innerHTML = `${btnText} <i data-lucide="calculator" style="width: 14px; height: 14px; color: #0a0a22;"></i>`;
     if (window.lucide) lucide.createIcons();
     currentTicket = null;
     document.getElementById('name1').focus();
@@ -369,9 +414,10 @@ function buildTicketCanvas() {
     roundRect(ctx, -78, -40, 156, 80, 10); ctx.stroke();
     ctx.fillStyle = '#E6C998'; ctx.textAlign = 'center';
     ctx.font = "700 26px 'Playfair Display', serif";
-    ctx.fillText('★ FLAMES ★', 0, -4);
+    const stampText = window.i18n ? window.i18n.t('flames.tk_stamp').split('<br>') : ['★ FLAMES ★', 'OFFICIAL'];
+    ctx.fillText(stampText[0], 0, -4);
     ctx.font = "700 22px 'Playfair Display', serif";
-    ctx.fillText('OFFICIAL', 0, 26);
+    ctx.fillText(stampText[1] || '', 0, 26);
     ctx.restore();
 
     ctx.textAlign = 'center';
@@ -379,12 +425,14 @@ function buildTicketCanvas() {
     // kicker
     ctx.font = "600 24px 'DM Sans', sans-serif";
     ctx.fillStyle = '#C9A96E';
-    ctx.fillText('♡ ADMIT TWO · NO REFUNDS ON FEELINGS ♡', cx, y + 80);
+    const kickerText = window.i18n ? window.i18n.t('flames.tk_kicker') : '♡ ADMIT TWO · NO REFUNDS ON FEELINGS ♡';
+    ctx.fillText(kickerText, cx, y + 80);
 
     // title
     ctx.font = "700 52px 'Playfair Display', serif";
     ctx.fillStyle = '#E6C998';
-    ctx.fillText('FLAMES Love Ticket', cx, y + 160);
+    const titleText = window.i18n ? window.i18n.t('flames.tk_title') : 'FLAMES Love Ticket';
+    ctx.fillText(titleText, cx, y + 160);
 
     // names
     ctx.font = "700 110px 'Caveat', cursive";
@@ -400,7 +448,8 @@ function buildTicketCanvas() {
     ctx.font = "700 26px 'DM Sans', sans-serif";
     ctx.fillStyle = '#C9A96E';
     ctx.textAlign = 'left';
-    ctx.fillText('COMPATIBILITY', cx - 240, y + 680);
+    const compatText = window.i18n ? window.i18n.t('flames.compatibility') : 'COMPATIBILITY';
+    ctx.fillText(compatText, cx - 240, y + 680);
     ctx.textAlign = 'right';
     ctx.fillStyle = '#E6C998';
     ctx.font = "700 34px 'DM Sans', sans-serif";
@@ -474,7 +523,8 @@ function buildTicketCanvas() {
     ctx.font = "700 24px 'DM Sans', sans-serif";
     ctx.fillStyle = '#C9A96E';
     ctx.textAlign = 'left';
-    ctx.fillText('TICKET NO', x + 70, py + 70);
+    const tkNoText = window.i18n ? window.i18n.t('flames.tk_no') : 'TICKET NO';
+    ctx.fillText(tkNoText.toUpperCase(), x + 70, py + 70);
     ctx.fillStyle = '#FFFFFF';
     ctx.font = "700 30px 'DM Sans', sans-serif";
     ctx.fillText(t.id, x + 70, py + 110);
@@ -482,7 +532,8 @@ function buildTicketCanvas() {
     ctx.font = "700 24px 'DM Sans', sans-serif";
     ctx.fillStyle = '#C9A96E';
     ctx.textAlign = 'center';
-    ctx.fillText('ISSUED', cx, py + 70);
+    const tkIssuedText = window.i18n ? window.i18n.t('flames.tk_issued') : 'ISSUED';
+    ctx.fillText(tkIssuedText.toUpperCase(), cx, py + 70);
     ctx.fillStyle = '#FFFFFF';
     ctx.font = "700 30px 'DM Sans', sans-serif";
     ctx.fillText(t.date, cx, py + 110);
@@ -490,10 +541,12 @@ function buildTicketCanvas() {
     ctx.font = "700 24px 'DM Sans', sans-serif";
     ctx.fillStyle = '#C9A96E';
     ctx.textAlign = 'right';
-    ctx.fillText('PLAY FREE AT', x + tw - 70, py + 70);
+    const tkPlayText = window.i18n ? window.i18n.t('flames.tk_play') : 'PLAY FREE AT';
+    ctx.fillText(tkPlayText.toUpperCase(), x + tw - 70, py + 70);
     ctx.fillStyle = '#E6C998';
     ctx.font = "700 30px 'DM Sans', sans-serif";
-    ctx.fillText('LADS SIMULATOR', x + tw - 70, py + 110);
+    const tkSimText = window.i18n ? window.i18n.t('flames.tk_sim') : 'LADS SIMULATOR';
+    ctx.fillText(tkSimText, x + tw - 70, py + 110);
 
     return cv;
 }
@@ -501,8 +554,8 @@ function buildTicketCanvas() {
 function downloadTicket() {
     if (!currentTicket) return;
     const btn = document.getElementById('tkDownload');
-    const oldText = btn.textContent;
-    btn.textContent = 'Saving...';
+    const oldText = btn.innerHTML;
+    btn.textContent = window.i18n ? window.i18n.t('flames.saving') : 'Saving...';
     btn.disabled = true;
 
     try {
@@ -517,43 +570,43 @@ function downloadTicket() {
         a.click();
         document.body.removeChild(a);
         
-        btn.textContent = 'Saved! ✓';
-        setTimeout(() => { btn.textContent = oldText; btn.disabled = false; }, 2000);
+        btn.textContent = window.i18n ? window.i18n.t('flames.saved') : 'Saved! ✓';
+        setTimeout(() => { btn.innerHTML = oldText; btn.disabled = false; }, 2000);
     } catch (e) {
         console.error(e);
-        btn.textContent = 'Error!';
-        setTimeout(() => { btn.textContent = oldText; btn.disabled = false; }, 2000);
+        btn.textContent = window.i18n ? window.i18n.t('flames.error') : 'Error!';
+        setTimeout(() => { btn.innerHTML = oldText; btn.disabled = false; }, 2000);
     }
 }
 
 async function shareTicket() {
     if (!currentTicket) return;
     const btn = document.getElementById('tkShare');
-    const oldText = btn.textContent;
+    const oldText = btn.innerHTML;
     
     if (navigator.share) {
         try {
-            btn.textContent = 'Preparing...';
+            btn.textContent = window.i18n ? window.i18n.t('flames.preparing') : 'Preparing...';
             const cv = await buildTicketCanvas();
             cv.toBlob(async (blob) => {
                 const file = new File([blob], `FLAMES_Ticket.png`, { type: 'image/png' });
                 try {
                     await navigator.share({
-                        title: 'FLAMES Love Ticket',
-                        text: `Check out our FLAMES compatibility! ❤️`,
+                        title: window.i18n ? window.i18n.t('flames.tk_title') : 'FLAMES Love Ticket',
+                        text: window.i18n ? window.i18n.t('flames.share_text') : `Check out our FLAMES compatibility! ❤️`,
                         files: [file]
                     });
-                    btn.textContent = oldText;
+                    btn.innerHTML = oldText;
                 } catch (e) {
-                    btn.textContent = oldText;
+                    btn.innerHTML = oldText;
                 }
             }, 'image/png');
         } catch (e) {
-            btn.textContent = 'Screenshot to share!';
-            setTimeout(() => { btn.textContent = oldText; }, 2000);
+            btn.textContent = window.i18n ? window.i18n.t('flames.screenshot') : 'Screenshot to share!';
+            setTimeout(() => { btn.innerHTML = oldText; }, 2000);
         }
     } else {
-        btn.textContent = 'Screenshot to share!';
-        setTimeout(() => { btn.textContent = oldText; }, 2000);
+        btn.textContent = window.i18n ? window.i18n.t('flames.screenshot') : 'Screenshot to share!';
+        setTimeout(() => { btn.innerHTML = oldText; }, 2000);
     }
 }

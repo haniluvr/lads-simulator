@@ -61,8 +61,8 @@ document.addEventListener('DOMContentLoaded', () => {
   // â”€â”€ Arc Title Builder â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   function buildArcTitle() {
     if (!titleEl) return;
-    const words = ['WISHFALL', 'FRENZY'];
-    const text  = 'WISHFALL FRENZY';
+    const words = window.i18n ? window.i18n.t('arcade.wishfall').split(' ') : ['WISHFALL', 'FRENZY'];
+    const text  = window.i18n ? window.i18n.t('arcade.wishfall') : 'WISHFALL FRENZY';
     const letters = text.split('');
     const total   = letters.filter(c => c !== ' ').length;
     const ARC = 10;
@@ -98,6 +98,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   buildArcTitle();
+  window.addEventListener('languageChanged', buildArcTitle);
   window.addEventListener('resize', buildArcTitle);
 
   function playSound(snd) {
@@ -361,7 +362,8 @@ document.addEventListener('DOMContentLoaded', () => {
     countdownTxt.style.animation = 'none';
     countdownTxt.textContent = '';
 
-    const steps = ['3', '2', '1', 'GO!'];
+    const goText = window.i18n ? window.i18n.t('wf.go') : 'GO!';
+    const steps = ['3', '2', '1', goText];
     let i = 0;
 
     function showStep() {

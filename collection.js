@@ -72,13 +72,13 @@ function injectRealCollectionModal() {
                   padding: 4px;
                 ">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 18px; height: 18px;"><path d="M15 18l-6-6 6-6"/></svg>
-                  Back
+                  <span data-i18n="col.back">Back</span>
                 </button>
               </div>
 
               <!-- Center: Title -->
               <div style="flex: 1; display: flex; justify-content: center; text-align: center;">
-                <h2 class="col-modal-title" id="rc-modal-title" style="margin: 0; white-space: nowrap;">Collection</h2>
+                <h2 class="col-modal-title" id="rc-modal-title" style="margin: 0; white-space: nowrap;" data-i18n="col.title">Collection</h2>
               </div>
 
               <!-- Right: Progress Pill -->
@@ -146,6 +146,10 @@ function initRealCollection() {
   // Inject HTML first
   injectRealCollectionModal();
 
+  if (window.i18n && window.i18n.applyTranslations) {
+    window.i18n.applyTranslations();
+  }
+
   const triggerBtn = document.getElementById('real-collection-btn');
   const modal = document.getElementById('real-collection-modal');
   const viewMain = document.getElementById('rc-view-main');
@@ -167,7 +171,7 @@ function initRealCollection() {
     viewMain.style.opacity = '1';
     viewMain.style.display = 'block';
     viewChar.style.display = 'none';
-    modalTitle.textContent = 'Collection';
+    modalTitle.textContent = window.i18n ? window.i18n.t('col.title') : 'Collection';
     document.getElementById('rc-modal-subtitle').style.display = 'none';
     if (document.getElementById('rc-back-btn')) {
       document.getElementById('rc-back-btn').style.display = 'none';
@@ -203,7 +207,7 @@ function initRealCollection() {
       currentView = 'main';
       viewChar.style.display = 'none';
       viewMain.style.display = 'block';
-      modalTitle.textContent = 'Collection';
+      modalTitle.textContent = window.i18n ? window.i18n.t('col.title') : 'Collection';
       rcBackBtn.style.display = 'none';
       document.getElementById('rc-modal-subtitle').style.display = 'none';
       
@@ -230,13 +234,18 @@ function initRealCollection() {
       currentView = 'char';
       viewMain.style.display = 'none';
       viewChar.style.display = 'flex';
-      modalTitle.textContent = charName;
+      modalTitle.textContent = window.i18n ? window.i18n.getCharName(charName) : charName;
       document.getElementById('rc-back-btn').style.display = 'flex';
       
       charGrid.innerHTML = '';
     
     const charCards = CARD_CATALOG.filter(c => c.character === charName.toLowerCase())
-      .sort((a, b) => b.rarity - a.rarity);
+      .sort((a, b) => {
+        if (b.rarity !== a.rarity) return b.rarity - a.rarity;
+        if (a.type !== b.type) return a.type === 'solar' ? -1 : 1;
+        if (a.bannerType !== b.bannerType) return a.bannerType === 'limited' ? -1 : 1;
+        return 0;
+      });
       
     let owned = 0;
     charCards.forEach(card => {
@@ -261,7 +270,7 @@ function initRealCollection() {
 
       const artHtml = card.isVideo
         ? `<video data-src="${card.assetPath}#t=0.001" class="col-card-media lazy-media" loop muted playsinline preload="metadata" onloadedmetadata="this.currentTime=0.1;"></video>`
-        : `<img data-src="${card.assetPath}" class="col-card-media lazy-media" alt="${card.cardName}" loading="lazy">`;
+        : `<img data-src="${card.assetPath}" class="col-card-media lazy-media" alt="${window.i18n ? window.i18n.getCardName(card) : card.cardName}" loading="lazy">`;
 
       const isMaxRank = rank >= 3;
       const item = document.createElement('div');
@@ -276,7 +285,7 @@ function initRealCollection() {
           <div class="col-card-type">${typeIcon}</div>
           <div class="col-card-stars">${starsHtml}</div>
         </div>
-        <div class="col-card-label">${card.cardName}</div>
+        <div class="col-card-label">${window.i18n ? window.i18n.getCardName(card) : card.cardName}</div>
       `;
 
       if (card.isVideo && isOwned) {
@@ -305,3 +314,5 @@ function initRealCollection() {
   }, 200);
   }
 }
+
+window.addEventListener('languageChanged', () => { if (typeof renderCollection === 'function') renderCollection(); });

@@ -8,11 +8,11 @@
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Infant:ital,wght@0,300;0,400;0,600;1,400&family=Inter:wght@300;400;500;600&family=Rubik+Bubbles&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Infant:ital,wght@0,300;0,400;0,600;1,400&family=Inter:wght@300;400;500;600&family=Rubik+Bubbles&family=Zhi+Mang+Xing&display=swap" rel="stylesheet">
   <!-- Global Styles -->
   <link rel="stylesheet" href="../style.css?v=33">
   <!-- Minigame Styles -->
-  <link rel="stylesheet" href="minigame.css?v=18">
+  <link rel="stylesheet" href="minigame.css?v=20">
   <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body style="margin: 0; padding: 0; overflow: hidden; background: #07071c;">
@@ -57,10 +57,10 @@
 
       <!-- Pause overlay (shown while paused) -->
       <div id="minigame-pause-overlay" style="display: none;">
-        <p class="pause-overlay-text">PAUSED</p>
+        <p class="pause-overlay-text" data-i18n="wf.paused">PAUSED</p>
         <div style="display: flex; gap: 8px; margin-top: 12px; flex-direction: column; width: 60%; max-width: 160px;">
-          <button id="minigame-resume-btn" class="arcade-btn primary-btn" style="width: 100%; font-size: 14px; padding: 10px;"><i data-lucide="play" id="play-icon" style="width: 14px; height: 14px; color: white;"></i> Resume</button>
-          <button id="minigame-end-btn" class="arcade-btn ghost-btn" style="width: 100%; font-size: 14px; padding: 10px;"><i data-lucide="square" id="square-icon" style="width: 14px; height: 14px; color: #7558b0;"></i> End Game</button>
+          <button id="minigame-resume-btn" class="arcade-btn primary-btn" style="width: 100%; font-size: 14px; padding: 10px;"><i data-lucide="play" id="play-icon" style="width: 14px; height: 14px; color: white;"></i> <span data-i18n="wf.resume">Resume</span></button>
+          <button id="minigame-end-btn" class="arcade-btn ghost-btn" style="width: 100%; font-size: 14px; padding: 10px;"><i data-lucide="square" id="square-icon" style="width: 14px; height: 14px; color: #7558b0;"></i> <span data-i18n="wf.end_game">End Game</span></button>
         </div>
       </div>
 
@@ -72,7 +72,7 @@
       <!-- Intro / Character Select Modal (within frame) -->
       <div id="minigame-intro" class="in-frame-overlay">
         <div class="intro-scroll">
-          <h2 class="intro-title">Choose Your Basket</h2>
+          <h2 class="intro-title" data-i18n="wf.choose_basket">Choose Your Basket</h2>
           <div class="minigame-character-select">
             <img src="../assets/ui/arcade/xavier-basket.webp" data-char="xavier" class="char-basket selected" title="Xavier">
             <img src="../assets/ui/arcade/zayne-basket.webp" data-char="zayne" class="char-basket" title="Zayne">
@@ -81,35 +81,35 @@
             <img src="../assets/ui/arcade/caleb-basket.webp" data-char="caleb" class="char-basket" title="Caleb">
             <img src="../assets/ui/arcade/valko-basket.webp" data-char="valko" class="char-basket" title="Valko">
           </div>
-          <button id="minigame-start-btn" class="arcade-btn primary-btn" style="margin-top: 12px;"><i data-lucide="play" id="play-icon" style="width: 14px; height: 14px; color: white;"></i> Start Game</button>
+          <button id="minigame-start-btn" class="arcade-btn primary-btn" style="margin-top: 12px;"><i data-lucide="play" id="play-icon" style="width: 14px; height: 14px; color: white;"></i> <span data-i18n="wf.start_game">Start Game</span></button>
         </div>
       </div>
 
       <!-- Game Over / Rewards (within frame) -->
       <div id="minigame-gameover" class="in-frame-overlay" style="display: none;">
         <div class="rewards-panel">
-          <h2 class="rewards-title">&#10022; Results &#10022;</h2>
+          <h2 class="rewards-title"><span data-i18n="wf.results">&#10022; Results &#10022;</span></h2>
           <div class="rewards-list">
             <div class="reward-item">
               <img src="../assets/ui/deepspace-wish.webp" alt="Deepspace Wish">
-              <div class="reward-label">Deepspace Wish</div>
+              <div class="reward-label" data-i18n="wf.ds_wish">Deepspace Wish</div>
               <div class="reward-count">&#215;<span id="reward-ds-count">0</span></div>
             </div>
             <div class="reward-sep"></div>
             <div class="reward-item">
               <img src="../assets/ui/empyrean-wish.webp" alt="Empyrean Wish">
-              <div class="reward-label">Empyrean Wish</div>
+              <div class="reward-label" data-i18n="wf.em_wish">Empyrean Wish</div>
               <div class="reward-count">&#215;<span id="reward-em-count">0</span></div>
             </div>
           </div>
-          <button id="minigame-claim-btn" class="arcade-btn primary-btn">&#10022; Claim</button>
+          <button id="minigame-claim-btn" class="arcade-btn primary-btn"><span data-i18n="wf.claim">&#10022; Claim</span></button>
         </div>
       </div>
     </div><!-- /.minigame-frame-wrapper -->
 
     <!-- Below-frame section -->
     <div class="below-frame">
-      <p class="mechanic-hint desktop-hint">
+      <p class="mechanic-hint desktop-hint" data-i18n="wf.hint_desktop">
         Use
         <img src="../assets/ui/arcade/icon-left.webp" alt="Left" class="key-icon">
         <img src="../assets/ui/arcade/icon-right.webp" alt="Right" class="key-icon">
@@ -118,10 +118,10 @@
         <img src="../assets/ui/arcade/icon-d.webp" alt="D" class="key-icon">
         to move the basket and collect wishes!<br>Don't forget to avoid the bombs!
       </p>
-      <p class="mechanic-hint mobile-hint">
+      <p class="mechanic-hint mobile-hint" data-i18n="wf.hint_mobile">
         Drag the basket to collect wishes!<br>Don't forget to avoid the bombs!
       </p>
-      <button id="minigame-exit-btn" class="arcade-btn ghost-btn"><i data-lucide="arrow-left" id="exit-icon" style="width: 14px; height: 14px; color: #7558b0;"></i> Back to Home</button>
+      <button id="minigame-exit-btn" class="arcade-btn ghost-btn"><i data-lucide="arrow-left" id="exit-icon" style="width: 14px; height: 14px; color: #7558b0;"></i> <span data-i18n="wf.back">Back to Home</span></button>
     </div>
   </div><!-- /#minigame-container -->
 
@@ -134,18 +134,19 @@
   </button>
 
   <script src="../audio-bridge.js?v=4"></script>
-  <script src="minigame.js?v=18"></script>
+  <script src="../i18n.js?v=5"></script>
+  <script src="minigame.js?v=19"></script>
   <script>
     window.PAGE_FAQ = {
       title: 'Wishfall Frenzy FAQ',
       items: [
-        { q: 'How do I play?', a: 'Move the basket left and right using the arrow keys (or A/D). On mobile, drag the basket with your finger. Catch falling wish orbs to earn rewards!' },
-        { q: 'What are the wish types?', a: 'Blue orbs are Deepspace Wishes (standard banner currency). Gold orbs are Empyrean Wishes (exclusive banner currency). Catch them both!' },
-        { q: 'What are the bombs?', a: 'Red bombs will deduct points if caught. Try to dodge them! Missing a wish does not penalize you.' },
-        { q: 'Is there a limit to how many wishes I can earn?', a: 'Yes. You can earn up to 250 Deepspace Wishes and 250 Empyrean Wishes total across all games. Rewards stop accumulating once you hit the cap.' },
-        { q: 'How long is each game?', a: 'Each round lasts 90 seconds (1:30). The score is calculated from orbs caught at the end.' },
-        { q: 'Where do my earned wishes go?', a: 'Wishes earned from Wishfall Frenzy are automatically added to your wish inventory on the main gacha page.' },
-        { q: 'Can I pause the game?', a: 'Yes! Click the pause button in the top corner of the game frame during a round to pause and resume.' }
+        { q: 'How do I play?', a: 'Move the basket left and right using the arrow keys (or A/D). On mobile, drag the basket with your finger. Catch falling wish orbs to earn rewards!', i18n_q: 'faq.wf_q1', i18n_a: 'faq.wf_a1' },
+        { q: 'What are the wish types?', a: 'Blue orbs are Deepspace Wishes (standard banner currency). Gold orbs are Empyrean Wishes (exclusive banner currency). Catch them both!', i18n_q: 'faq.wf_q2', i18n_a: 'faq.wf_a2' },
+        { q: 'What are the bombs?', a: 'Red bombs will deduct points if caught. Try to dodge them! Missing a wish does not penalize you.', i18n_q: 'faq.wf_q3', i18n_a: 'faq.wf_a3' },
+        { q: 'Is there a limit to how many wishes I can earn?', a: 'Yes. You can earn up to 250 Deepspace Wishes and 250 Empyrean Wishes total across all games. Rewards stop accumulating once you hit the cap.', i18n_q: 'faq.wf_q4', i18n_a: 'faq.wf_a4' },
+        { q: 'How long is each game?', a: 'Each round lasts 90 seconds (1:30). The score is calculated from orbs caught at the end.', i18n_q: 'faq.wf_q5', i18n_a: 'faq.wf_a5' },
+        { q: 'Where do my earned wishes go?', a: 'Wishes earned from Wishfall Frenzy are automatically added to your wish inventory on the main gacha page.', i18n_q: 'faq.wf_q6', i18n_a: 'faq.wf_a6' },
+        { q: 'Can I pause the game?', a: 'Yes! Click the pause button in the top corner of the game frame during a round to pause and resume.', i18n_q: 'faq.wf_q7', i18n_a: 'faq.wf_a7' }
       ]
     };
   </script>

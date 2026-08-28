@@ -359,16 +359,16 @@ function injectCollectionModal() {
               <span class="col-div-gem">✦</span>
               <span class="col-div-line"></span>
             </div>
-            <h2 class="col-modal-title">Memories</h2>
+            <h2 class="col-modal-title" data-i18n="mem.title">Memories</h2>
 
             <!-- Character Tabs: 1 row on desktop, 2 on mobile via CSS grid -->
             <div class="col-char-tabs">
-              <button class="col-char-tab" data-char="xavier">Xavier</button>
-              <button class="col-char-tab" data-char="zayne">Zayne</button>
-              <button class="col-char-tab" data-char="rafayel">Rafayel</button>
-              <button class="col-char-tab" data-char="sylus">Sylus</button>
-              <button class="col-char-tab" data-char="caleb">Caleb</button>
-              <button class="col-char-tab" data-char="valko">Valko</button>
+              <button class="col-char-tab" data-char="xavier"><span data-i18n="char.xavier">Xavier</span></button>
+              <button class="col-char-tab" data-char="zayne"><span data-i18n="char.zayne">Zayne</span></button>
+              <button class="col-char-tab" data-char="rafayel"><span data-i18n="char.rafayel">Rafayel</span></button>
+              <button class="col-char-tab" data-char="sylus"><span data-i18n="char.sylus">Sylus</span></button>
+              <button class="col-char-tab" data-char="caleb"><span data-i18n="char.caleb">Caleb</span></button>
+              <button class="col-char-tab" data-char="valko"><span data-i18n="char.valko">Valko</span></button>
             </div>
           </div>
         </div>
@@ -377,15 +377,15 @@ function injectCollectionModal() {
         <div class="col-body">
           <!-- Controls: All tab + Sort dropdown -->
           <div class="col-controls-row">
-            <button class="col-all-tab active" id="col-all-tab">All</button>
+            <button class="col-all-tab active" id="col-all-tab"><span data-i18n="mem.all">All</span></button>
             <div class="col-sort-wrap">
               <button class="col-sort-pill" id="col-sort-btn">
-                <span id="col-sort-label">Rarity</span>
+                <span id="col-sort-label" data-i18n="mem.rarity">Rarity</span>
                 <svg width="10" height="10" viewBox="0 0 10 10" fill="currentColor"><path d="M5 7L1 3h8z"/></svg>
               </button>
               <div class="col-sort-dropdown" id="col-sort-dropdown" style="display:none;">
-                <button class="col-sort-option" data-sort="rarity">Rarity</button>
-                <button class="col-sort-option" data-sort="new">New</button>
+                <button class="col-sort-option" data-sort="rarity" data-i18n="mem.rarity">Rarity</button>
+                <button class="col-sort-option" data-sort="new" data-i18n="mem.new">New</button>
               </div>
             </div>
           </div>
@@ -414,7 +414,7 @@ function injectCardDetailsModal() {
           <div class="cd-footer-name" id="cd-footer-name"></div>
           <div class="cd-footer-credit" id="cd-footer-credit"></div>
         </div>
-        <button class="rank-up-btn" id="rank-up-btn">Rank Up</button>
+        <button class="rank-up-btn" id="rank-up-btn" data-i18n="mem.rank_up">Rank Up</button>
       </div>
     </div>
   `;
@@ -427,6 +427,10 @@ let activeDetailsCard = null; // Track which card is open in details
 function initCollection() {
   injectCollectionModal();
   injectCardDetailsModal();
+
+  if (window.i18n && window.i18n.applyTranslations) {
+    window.i18n.applyTranslations();
+  }
 
   const openBtn  = document.getElementById('collection-open-btn');
   const modal    = document.getElementById('collection-modal');
@@ -473,7 +477,7 @@ function initCollection() {
   document.querySelectorAll('.col-sort-option').forEach(opt => {
     opt.addEventListener('click', () => {
       currentSort = opt.dataset.sort;
-      sortLabel.textContent = currentSort === 'rarity' ? 'Rarity' : 'New';
+      sortLabel.textContent = window.i18n ? (currentSort === 'rarity' ? window.i18n.t('mem.rarity') : window.i18n.t('mem.new')) : (currentSort === 'rarity' ? 'Rarity' : 'New');
       sortDD.style.display = 'none';
       renderCollection();
     });
@@ -515,7 +519,11 @@ function initCollection() {
     }
 
     if (currentSort === 'rarity') {
-      cards.sort((a, b) => b.rarity - a.rarity);
+      cards.sort((a, b) => {
+        if (b.rarity !== a.rarity) return b.rarity - a.rarity;
+        if (a.type !== b.type) return a.type === 'solar' ? -1 : 1;
+        return 0;
+      });
     } else {
       cards.sort((a, b) => {
         const aNew = gs.collection[a.cardName] === 1 ? 0 : 1;
@@ -526,7 +534,8 @@ function initCollection() {
     }
 
     if (cards.length === 0) {
-      grid.innerHTML = '<div class="col-empty">No memories collected yet.</div>';
+      const emptyText = window.i18n ? window.i18n.t('mem.empty') : 'No memories collected yet.';
+      grid.innerHTML = `<div class="col-empty">${emptyText}</div>`;
       return;
     }
 
@@ -535,7 +544,7 @@ function initCollection() {
       const rank  = gs.ranks[card.cardName] || 0;
       const isNew = count === 1 && currentSort === 'new';
       const canRankUp = count > rank + 1 && rank < 3;
-      const charCapitalized = card.character.charAt(0).toUpperCase() + card.character.slice(1);
+      const charCapitalized = window.i18n ? window.i18n.getCharName(card.character) : (card.character.charAt(0).toUpperCase() + card.character.slice(1));
       // 4-pointed sparkle star (image 2 style)
       const starSvg = `<svg class="col-star-icon" viewBox="0 0 24 24" fill="#eab308"><path d="M12 2 L13.8 10.2 L22 12 L13.8 13.8 L12 22 L10.2 13.8 L2 12 L10.2 10.2 Z"/></svg>`;
       const starsHtml = starSvg.repeat(card.rarity);
@@ -568,7 +577,7 @@ function initCollection() {
             <rect class="cube-right" x="51" y="45" width="26" height="26" rx="1" transform="rotate(45, 75, 70)" />
           </svg>
         </div>
-        <div class="col-card-label">${charCapitalized}: ${card.cardName}</div>
+        <div class="col-card-label">${charCapitalized}: ${window.i18n ? window.i18n.getCardName(card) : card.cardName}</div>
       `;
       
       item.addEventListener('click', () => openCardDetails(card));
@@ -590,7 +599,7 @@ function initCollection() {
     const count = gs.collection[card.cardName] || 0;
     const rank = gs.ranks[card.cardName] || 0;
     const canRankUp = count > rank + 1 && rank < 3;
-    const charCapitalized = card.character.charAt(0).toUpperCase() + card.character.slice(1);
+    const charCapitalized = window.i18n ? window.i18n.getCharName(card.character) : (card.character.charAt(0).toUpperCase() + card.character.slice(1));
 
     const starSvg = `<svg class="col-star-icon" viewBox="0 0 24 24" fill="#eab308"><path d="M12 2 L13.8 10.2 L22 12 L13.8 13.8 L12 22 L10.2 13.8 L2 12 L10.2 10.2 Z"/></svg>`;
     const starsHtml = starSvg.repeat(card.rarity);
@@ -603,7 +612,7 @@ function initCollection() {
       : `<img src="${card.assetPath}" class="cd-card-media" alt="${card.cardName}">`;
 
     document.getElementById('cd-header-char').textContent = charCapitalized;
-    document.getElementById('cd-footer-name').textContent = card.cardName;
+    document.getElementById('cd-footer-name').textContent = window.i18n ? window.i18n.getCardName(card) : card.cardName;
 
     const cdCredit = document.getElementById('cd-footer-credit');
     const cred = CARD_CREDITS[card.cardName];

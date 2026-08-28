@@ -26,6 +26,7 @@ This project aims to recreate the authentic summoning experience from the game, 
     - **FLAMES Calculator:** A nostalgic game used to playfully predict relationship compatibility between you and your bias based on your names.
     - **M.A.S.H. Future Predictor:** A classic fortune-telling game to predict a person's future lifestyle.
     - **`[FUTURE]` Claw Machine:** Win plushies with various designs to complete your collection.
+- **`[NEW]` Multi-language Support:** Added full support for Simplified Chinese UI translation, dynamically loading languages and region-specific web fonts.
 - **Persistent Data:** Your pity count, collection, and settings are saved locally in your browser so you don't lose progress when you refresh or close the tab.
 - **Global Audio & Settings:** A unified Settings and FAQ system across all pages to toggle background music, sound effects, and custom character-themed mouse cursors.
 - **Responsive UI:** A premium, space-themed user interface heavily utilizing glassmorphism, CSS grid/flexbox, and micro-animations.

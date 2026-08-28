@@ -20,7 +20,7 @@
 
   <!-- Back Button -->
   <a href="../index.html" class="enter-btn back-btn" aria-label="Back to Home">
-    <i data-lucide="arrow-left"></i> BACK TO HOME
+    <i data-lucide="arrow-left"></i> <span data-i18n="arcade.back">BACK TO HOME</span>
   </a>
 
   <!-- BGM Toggle -->
@@ -33,24 +33,24 @@
   <div class="mash-letters-display" id="mashLettersDisplay">
     <div class="mash-box" id="mbox-M">
       <span class="mbox-letter">M</span>
-      <span class="mbox-label">Mansion</span>
+      <span class="mbox-label" data-i18n="mash.label_m">Mansion</span>
     </div>
     <div class="mash-box" id="mbox-A">
       <span class="mbox-letter">A</span>
-      <span class="mbox-label">Apartment</span>
+      <span class="mbox-label" data-i18n="mash.label_a">Apartment</span>
     </div>
     <div class="mash-box" id="mbox-S">
       <span class="mbox-letter">S</span>
-      <span class="mbox-label">Shack</span>
+      <span class="mbox-label" data-i18n="mash.label_s">Shack</span>
     </div>
     <div class="mash-box" id="mbox-H">
       <span class="mbox-letter">H</span>
-      <span class="mbox-label">House</span>
+      <span class="mbox-label" data-i18n="mash.label_h">House</span>
     </div>
   </div>
 
   <div class="mash-page-header">
-    <p class="mash-subtitle-small">- where your future is written -</p>
+    <p class="mash-subtitle-small" data-i18n="mash.subtitle">- where your future is written -</p>
   </div>
 
   <!-- Main Container -->
@@ -63,59 +63,59 @@
         <!-- Left panel: categories -->
         <div class="mash-card input-panel-left">
           <div class="mash-card-header">
-            <p class="mash-booth-tagline">✦ FILL IN YOUR FATE ✦</p>
-            <button class="randomize-btn" id="randomizeBtn" onclick="randomizeAll()"><i data-lucide="dices"></i></span> Randomize</button>
+            <p class="mash-booth-tagline" data-i18n="mash.tagline">✦ FILL IN YOUR FATE ✦</p>
+            <button class="randomize-btn" id="randomizeBtn" onclick="randomizeAll()"><i data-lucide="dices"></i> <span data-i18n="mash.randomize">Randomize</span></button>
           </div>
 
           <div class="categories-grid" id="categoriesGrid">
 
             <!-- Partner -->
             <div class="category-block">
-              <h3 class="cat-title"><span class="cat-icon"><i data-lucide="heart"></i></span>Partner</h3>
+              <h3 class="cat-title"><span class="cat-icon"><i data-lucide="heart"></i></span><span data-i18n="mash.cat_partner">Partner</span></h3>
               <div class="cat-inputs" data-cat="partner">
-                <input type="text" class="mash-input" placeholder="Name 1…" maxlength="40" autocomplete="off">
-                <input type="text" class="mash-input" placeholder="Name 2…" maxlength="40" autocomplete="off">
-                <input type="text" class="mash-input" placeholder="Name 3…" maxlength="40" autocomplete="off">
-                <input type="text" class="mash-input" placeholder="Name 4…" maxlength="40" autocomplete="off">
+                <input type="text" class="mash-input" data-i18n-placeholder="mash.ph_name1" placeholder="Name 1…" maxlength="40" autocomplete="off">
+                <input type="text" class="mash-input" data-i18n-placeholder="mash.ph_name2" placeholder="Name 2…" maxlength="40" autocomplete="off">
+                <input type="text" class="mash-input" data-i18n-placeholder="mash.ph_name3" placeholder="Name 3…" maxlength="40" autocomplete="off">
+                <input type="text" class="mash-input" data-i18n-placeholder="mash.ph_name4" placeholder="Name 4…" maxlength="40" autocomplete="off">
               </div>
             </div>
 
             <!-- Transport -->
             <div class="category-block">
-              <h3 class="cat-title"><span class="cat-icon"><i data-lucide="rocket"></i></span>Car</h3>
+              <h3 class="cat-title"><span class="cat-icon"><i data-lucide="rocket"></i></span><span data-i18n="mash.cat_car">Car</span></h3>
               <div class="cat-inputs" data-cat="transport">
-                <input type="text" class="mash-input" placeholder="Option 1…" maxlength="40" autocomplete="off">
-                <input type="text" class="mash-input" placeholder="Option 2…" maxlength="40" autocomplete="off">
-                <input type="text" class="mash-input" placeholder="Option 3…" maxlength="40" autocomplete="off">
-                <input type="text" class="mash-input" placeholder="Option 4…" maxlength="40" autocomplete="off">
+                <input type="text" class="mash-input" data-i18n-placeholder="mash.ph_opt1" placeholder="Option 1…" maxlength="40" autocomplete="off">
+                <input type="text" class="mash-input" data-i18n-placeholder="mash.ph_opt2" placeholder="Option 2…" maxlength="40" autocomplete="off">
+                <input type="text" class="mash-input" data-i18n-placeholder="mash.ph_opt3" placeholder="Option 3…" maxlength="40" autocomplete="off">
+                <input type="text" class="mash-input" data-i18n-placeholder="mash.ph_opt4" placeholder="Option 4…" maxlength="40" autocomplete="off">
               </div>
             </div>
 
             <!-- Fave Color -->
             <div class="category-block">
-              <h3 class="cat-title"><span class="cat-icon"><i data-lucide="palette"></i></span>Colors</h3>
+              <h3 class="cat-title"><span class="cat-icon"><i data-lucide="palette"></i></span><span data-i18n="mash.cat_color">Colors</span></h3>
               <div class="cat-inputs" data-cat="color">
-                <input type="text" class="mash-input" placeholder="Color 1…" maxlength="40" autocomplete="off">
-                <input type="text" class="mash-input" placeholder="Color 2…" maxlength="40" autocomplete="off">
-                <input type="text" class="mash-input" placeholder="Color 3…" maxlength="40" autocomplete="off">
-                <input type="text" class="mash-input" placeholder="Color 4…" maxlength="40" autocomplete="off">
+                <input type="text" class="mash-input" data-i18n-placeholder="mash.ph_color1" placeholder="Color 1…" maxlength="40" autocomplete="off">
+                <input type="text" class="mash-input" data-i18n-placeholder="mash.ph_color2" placeholder="Color 2…" maxlength="40" autocomplete="off">
+                <input type="text" class="mash-input" data-i18n-placeholder="mash.ph_color3" placeholder="Color 3…" maxlength="40" autocomplete="off">
+                <input type="text" class="mash-input" data-i18n-placeholder="mash.ph_color4" placeholder="Color 4…" maxlength="40" autocomplete="off">
               </div>
             </div>
 
             <!-- Occupation -->
             <div class="category-block">
-              <h3 class="cat-title"><span class="cat-icon"><i data-lucide="briefcase"></i></span>Job</h3>
+              <h3 class="cat-title"><span class="cat-icon"><i data-lucide="briefcase"></i></span><span data-i18n="mash.cat_job">Job</span></h3>
               <div class="cat-inputs" data-cat="job">
-                <input type="text" class="mash-input" placeholder="Job 1…" maxlength="40" autocomplete="off">
-                <input type="text" class="mash-input" placeholder="Job 2…" maxlength="40" autocomplete="off">
-                <input type="text" class="mash-input" placeholder="Job 3…" maxlength="40" autocomplete="off">
-                <input type="text" class="mash-input" placeholder="Job 4…" maxlength="40" autocomplete="off">
+                <input type="text" class="mash-input" data-i18n-placeholder="mash.ph_job1" placeholder="Job 1…" maxlength="40" autocomplete="off">
+                <input type="text" class="mash-input" data-i18n-placeholder="mash.ph_job2" placeholder="Job 2…" maxlength="40" autocomplete="off">
+                <input type="text" class="mash-input" data-i18n-placeholder="mash.ph_job3" placeholder="Job 3…" maxlength="40" autocomplete="off">
+                <input type="text" class="mash-input" data-i18n-placeholder="mash.ph_job4" placeholder="Job 4…" maxlength="40" autocomplete="off">
               </div>
             </div>
 
             <!-- # of Kids -->
             <div class="category-block">
-              <h3 class="cat-title"><span class="cat-icon"><i data-lucide="baby"></i></span>Kids</h3>
+              <h3 class="cat-title"><span class="cat-icon"><i data-lucide="baby"></i></span><span data-i18n="mash.cat_kids">Kids</span></h3>
               <div class="cat-inputs" data-cat="kids">
                 <input type="text" class="mash-input" placeholder="e.g. 0" maxlength="10" autocomplete="off">
                 <input type="text" class="mash-input" placeholder="e.g. 2" maxlength="10" autocomplete="off">
@@ -126,12 +126,12 @@
 
             <!-- Location -->
             <div class="category-block">
-              <h3 class="cat-title"><span class="cat-icon"><i data-lucide="map-pin"></i></span>Location</h3>
+              <h3 class="cat-title"><span class="cat-icon"><i data-lucide="map-pin"></i></span><span data-i18n="mash.cat_location">Location</span></h3>
               <div class="cat-inputs" data-cat="location">
-                <input type="text" class="mash-input" placeholder="Place 1…" maxlength="40" autocomplete="off">
-                <input type="text" class="mash-input" placeholder="Place 2…" maxlength="40" autocomplete="off">
-                <input type="text" class="mash-input" placeholder="Place 3…" maxlength="40" autocomplete="off">
-                <input type="text" class="mash-input" placeholder="Place 4…" maxlength="40" autocomplete="off">
+                <input type="text" class="mash-input" data-i18n-placeholder="mash.ph_place1" placeholder="Place 1…" maxlength="40" autocomplete="off">
+                <input type="text" class="mash-input" data-i18n-placeholder="mash.ph_place2" placeholder="Place 2…" maxlength="40" autocomplete="off">
+                <input type="text" class="mash-input" data-i18n-placeholder="mash.ph_place3" placeholder="Place 3…" maxlength="40" autocomplete="off">
+                <input type="text" class="mash-input" data-i18n-placeholder="mash.ph_place4" placeholder="Place 4…" maxlength="40" autocomplete="off">
               </div>
             </div>
 
@@ -141,22 +141,22 @@
         <!-- Right panel: spiral -->
         <div class="mash-card input-panel-right">
           <div class="spiral-section">
-            <p class="spiral-label">Draw a spiral<br>to seal your fate</p>
-            <p class="spiral-sub">Each crossing of the center line counts — that's your magic number!</p>
+            <p class="spiral-label" data-i18n="mash.spiral_label">Draw a spiral<br>to seal your fate</p>
+            <p class="spiral-sub" data-i18n="mash.spiral_sub">Each crossing of the center line counts — that's your magic number!</p>
             <div class="spiral-canvas-wrap">
               <canvas id="spiralCanvas" width="280" height="280"></canvas>
               <div class="count-badge">
-                <span class="count-badge-label">Crossings</span>
+                <span class="count-badge-label" data-i18n="mash.crossings">Crossings</span>
                 <strong id="loopCount" class="count-badge-num">0</strong>
               </div>
             </div>
-            <button class="clear-spiral-btn" onclick="clearSpiral()">✕ Clear</button>
+            <button class="clear-spiral-btn" onclick="clearSpiral()">✕ <span data-i18n="mash.clear">Clear</span></button>
           </div>
 
           <p class="mash-error" id="mashError" style="display:none;"></p>
 
           <button class="mash-btn mash-btn-primary" id="predictBtn" onclick="predictFuture()">
-            ✦ PREDICT MY FUTURE ✦
+            <span data-i18n="mash.predict">✦ PREDICT MY FUTURE ✦</span>
           </button>
         </div><!-- /input-panel-right -->
 
@@ -166,11 +166,11 @@
     <!-- ═══ PHASE 2: Elimination ═══ -->
     <div class="elim-card" id="elimCard" style="display:none;">
       <div class="elim-header">
-        <p class="mash-booth-tagline">✦ Revealing your destiny ✦</p>
+        <p class="mash-booth-tagline" data-i18n="mash.revealing">✦ Revealing your destiny ✦</p>
         <div class="elim-magic-num">
-          Magic Number: <strong id="elimN">—</strong>
+          <span data-i18n="mash.magic_num">Magic Number:</span> <strong id="elimN">—</strong>
         </div>
-        <div class="elim-progress-label" id="elimLabel">Counting…</div>
+        <div class="elim-progress-label" id="elimLabel" data-i18n="mash.counting">Counting…</div>
       </div>
       <div class="elim-grid" id="elimGrid"></div>
     </div>
@@ -178,9 +178,9 @@
     <!-- ═══ PHASE 3: Result Scroll ═══ -->
     <div class="result-wrap" id="resultWrap" style="display:none;">
       <div class="result-scroll" id="resultScroll">
-        <div class="scroll-stamp">★ OFFICIAL ★<br>Proclamation</div>
+        <div class="scroll-stamp" data-i18n="mash.scroll_stamp">★ OFFICIAL ★<br>Proclamation</div>
         <div class="scroll-top">
-          <div class="scroll-kicker">✦ Your MASH Future ✦</div>
+          <div class="scroll-kicker" data-i18n="mash.scroll_kicker">✦ Your MASH Future ✦</div>
           <div class="scroll-headline" id="rHeadline"></div>
           <div class="scroll-summary" id="rSummary"></div>
           <div class="scroll-details-grid">
@@ -196,16 +196,16 @@
         <div class="scroll-barcode"></div>
         <div class="scroll-perf"></div>
         <div class="scroll-stub">
-          <span>Scroll No<b id="rId">—</b></span>
-          <span>Issued<b id="rDate">—</b></span>
-          <span class="booth">Read at<br><b>LADS SIMULATOR</b></span>
+          <span><span data-i18n="mash.scroll_no">Scroll No</span><b id="rId">—</b></span>
+          <span><span data-i18n="mash.issued">Issued</span><b id="rDate">—</b></span>
+          <span class="booth"><span data-i18n="mash.read_at">Read at</span><br><b data-i18n="mash.lads">LADS SIMULATOR</b></span>
         </div>
       </div>
 
       <div class="result-actions">
-        <button class="mash-btn mash-btn-primary" id="rDownload" onclick="downloadResult()"><i data-lucide="download" style="width: 14px; height: 14px; color: #0a0a22;"></i> Save</button>
-        <button class="mash-btn mash-btn-ghost" id="rShare" onclick="shareResult()"><i data-lucide="share" style="width: 14px; height: 14px; color: #c9a96e;"></i> Share</button>
-        <button class="mash-btn mash-btn-ghost" onclick="resetGame()"><i data-lucide="rotate-ccw" style="width: 14px; height: 14px; color: #c9a96e;"></i> Again</button>
+        <button class="mash-btn mash-btn-primary" id="rDownload" onclick="downloadResult()"><i data-lucide="download" style="width: 14px; height: 14px; color: #0a0a22;"></i> <span data-i18n="arcade.save">Save</span></button>
+        <button class="mash-btn mash-btn-ghost" id="rShare" onclick="shareResult()"><i data-lucide="share" style="width: 14px; height: 14px; color: #c9a96e;"></i> <span data-i18n="arcade.share">Share</span></button>
+        <button class="mash-btn mash-btn-ghost" onclick="resetGame()"><i data-lucide="rotate-ccw" style="width: 14px; height: 14px; color: #c9a96e;"></i> <span data-i18n="arcade.again">Again</span></button>
       </div>
     </div>
 
@@ -217,17 +217,18 @@
 
   <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
   <script src="../audio-bridge.js?v=4"></script>
+  <script src="../i18n.js?v=5"></script>
   <script src="mash.js?v=6" charset="utf-8"></script>
   <script>
     window.PAGE_FAQ = {
       title: 'MASH Future FAQ',
       items: [
-        { q: 'What is MASH?', a: 'MASH stands for Mansion, Apartment, Shack, House. It\'s a classic fortune-telling game that predicts your future life!' },
-        { q: 'How does the elimination work?', a: 'Pick your number of "strikes", then the game counts through all options and eliminates every Nth item until only one remains in each category.' },
-        { q: 'Can I customize my options?', a: 'Yes! Each category has default options but you can edit them to personalize your reading.' },
-        { q: 'What do the categories mean?', a: 'Each category represents a different aspect of your future — your home, career, Love Interest partner, where you live, and more. It\'s all in good fun!' },
-        { q: 'Can I save or share my result?', a: 'Yes! After the game concludes, use the Share/Download button to export your MASH result as an image.' },
-        { q: 'Can I replay?', a: 'Yes! Click the replay button at the end to run a new elimination round with the same or different options.' }
+        { q: 'What is MASH?', a: 'MASH stands for Mansion, Apartment, Shack, House. It\'s a classic fortune-telling game that predicts your future life!', i18n_q: 'faq.mash_q1', i18n_a: 'faq.mash_a1' },
+        { q: 'How does the elimination work?', a: 'Pick your number of "strikes", then the game counts through all options and eliminates every Nth item until only one remains in each category.', i18n_q: 'faq.mash_q2', i18n_a: 'faq.mash_a2' },
+        { q: 'Can I customize my options?', a: 'Yes! Each category has default options but you can edit them to personalize your reading.', i18n_q: 'faq.mash_q3', i18n_a: 'faq.mash_a3' },
+        { q: 'What do the categories mean?', a: 'Each category represents a different aspect of your future — your home, career, Love Interest partner, where you live, and more. It\'s all in good fun!', i18n_q: 'faq.mash_q4', i18n_a: 'faq.mash_a4' },
+        { q: 'Can I save or share my result?', a: 'Yes! After the game concludes, use the Share/Download button to export your MASH result as an image.', i18n_q: 'faq.mash_q5', i18n_a: 'faq.mash_a5' },
+        { q: 'Can I replay?', a: 'Yes! Click the replay button at the end to run a new elimination round with the same or different options.', i18n_q: 'faq.mash_q6', i18n_a: 'faq.mash_a6' }
       ]
     };
   </script>

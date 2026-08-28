@@ -789,8 +789,8 @@ function refreshBannerSelect() {
 
   document.getElementById('limited-pulls-display').innerHTML  = `<img src="assets/ui/deepspace-wish.webp" style="width: 14px; vertical-align: middle; margin-right: 4px;"> ${lRem}`;
   document.getElementById('standard-pulls-display').innerHTML = `<img src="assets/ui/empyrean-wish.webp" style="width: 14px; vertical-align: middle; margin-right: 4px;"> ${sRem}`;
-  document.getElementById('limited-pity-display').textContent   = `${70 - gs.limitedPity5} pulls`;
-  document.getElementById('standard-pity-display').textContent  = `${70 - gs.standardPity5} pulls`;
+  document.getElementById('limited-pity-display').textContent   = `${70 - gs.limitedPity5}`;
+  document.getElementById('standard-pity-display').textContent  = `${70 - gs.standardPity5}`;
 }
 
 // ── UI: PULL SCREEN ────────────────────────────────────────
@@ -823,9 +823,14 @@ function setupPullScreen(bannerType) {
   `;
 
   // Panel header
-  document.getElementById('panel-banner-title').textContent = isLim ? 'Heart in Orbit' : 'Xspace Echo';
+  document.getElementById('panel-banner-title').textContent = isLim 
+    ? (window.i18n ? window.i18n.t('banner.hearts_in_orbit') : 'Heart in Orbit') 
+    : (window.i18n ? window.i18n.t('banner.xspace_echo') : 'Xspace Echo');
+    
   const tagEl = document.getElementById('panel-event-tag');
-  tagEl.textContent  = isLim ? 'LIMITED EVENT' : 'STANDARD';
+  tagEl.textContent  = isLim 
+    ? (window.i18n ? window.i18n.t('banner.limited_tag') : 'LIMITED') 
+    : (window.i18n ? window.i18n.t('banner.standard_tag') : 'STANDARD');
   tagEl.className    = `panel-event-tag ${isLim ? 'tag-lim' : 'tag-std'}`;
 
   // Wish row
@@ -834,10 +839,13 @@ function setupPullScreen(bannerType) {
   wic.className   = `wish-icon-circle ${isLim ? 'wic-gold' : 'wic-blue'}`;
 
   const wlbl = document.getElementById('wish-type-label');
-  wlbl.textContent = isLim ? 'Deepspace Wishes' : 'Empyrean Wishes';
+  wlbl.textContent = isLim 
+    ? (window.i18n ? window.i18n.t('pull.deepspace_wishes') : 'Deepspace Wishes') 
+    : (window.i18n ? window.i18n.t('pull.empyrean_wishes') : 'Empyrean Wishes');
   wlbl.className   = `wish-type-label ${isLim ? 'lbl-gold' : 'lbl-blue'}`;
 
-  document.getElementById('wish-remaining-count').textContent = `${remaining} / ${MAX_DAILY_PULLS} remaining`;
+  const remText = window.i18n ? window.i18n.t('pull.remaining') : 'remaining';
+  document.getElementById('wish-remaining-count').textContent = `${remaining} / ${MAX_DAILY_PULLS} ${remText}`;
 
   // Pity bar
   updatePityUI(pity5, isLim);
@@ -920,7 +928,7 @@ function buildCard(result, layout) {
   if (result.isNew) {
     badgeHtml = `
       <div class="badge-new-stylized">
-        <span class="new-text">New</span>
+        <span class="new-text" data-i18n="pull.new">${window.i18n ? window.i18n.t('pull.new') : 'New'}</span>
         <svg class="new-sparkle" viewBox="0 0 24 24"><path fill="#fff" d="M12 0l3.5 8.5L24 12l-8.5 3.5L12 24l-3.5-8.5L0 12l8.5-3.5z"/></svg>
       </div>`;
   }
@@ -949,7 +957,7 @@ function buildCard(result, layout) {
           <div class="card-reveal-info">
             <div class="card-reveal-stars" aria-hidden="true">${starsHtml}</div>
             <div class="card-reveal-title">
-              <span class="char-name">${charData.name}: ${cardName}</span>
+              <span class="char-name">${window.i18n ? window.i18n.getCharName(charData.name) : charData.name}: ${window.i18n ? window.i18n.getCardName(result) : cardName}</span>
               ${typeIcon}
             </div>
             <div class="card-reveal-line"></div>
@@ -1006,7 +1014,9 @@ function showReveal(results, startSkipped = false) {
   
   const collectText = document.getElementById('collect-btn-text');
   if (collectText) {
-    collectText.textContent = revealState.layout === 1 ? 'Claim' : 'Claim All';
+    collectText.textContent = window.i18n ? 
+      (revealState.layout === 1 ? window.i18n.t('pull.claim') : window.i18n.t('pull.claim_all')) : 
+      (revealState.layout === 1 ? 'Claim' : 'Claim All');
   }
 
   skipBtn.style.display = revealState.layout === 1 ? 'none' : 'block';
@@ -1538,14 +1548,15 @@ function updatePreciseWishUI() {
   if (!triggerBtnText) return;
 
   if (gs.preciseWishChar) {
-    const charName = CHARACTERS[gs.preciseWishChar]?.name || gs.preciseWishChar;
+    const rawCharName = CHARACTERS[gs.preciseWishChar]?.name || gs.preciseWishChar;
+    const charName = window.i18n ? window.i18n.getCharName(rawCharName) : rawCharName;
     triggerBtnText.textContent = `${charName} (${gs.preciseWishPoint}/1)`;
     currentWishText.textContent = charName;
     pointsDisplay.textContent = `${gs.preciseWishPoint}/1`;
     cancelBtn.style.display = 'inline-block';
   } else {
-    triggerBtnText.textContent = 'None';
-    currentWishText.textContent = 'None';
+    triggerBtnText.textContent = window.i18n ? window.i18n.t('pw.none') : 'None';
+    currentWishText.textContent = window.i18n ? window.i18n.t('pw.none') : 'None';
     pointsDisplay.textContent = '0/1';
     cancelBtn.style.display = 'none';
   }

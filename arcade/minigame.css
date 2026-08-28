@@ -40,7 +40,7 @@
 
 /* ── WISHFALL FRENZY title — arc via per-letter vertical offset ── */
 .wishfall-title {
-  font-family: 'Rubik Bubbles', system-ui, sans-serif;
+  font-family: 'Rubik Bubbles', 'Zhi Mang Xing', system-ui, sans-serif;
   font-size: clamp(32px, 7.5vw, 64px);
   color: var(--arcade-white);
   letter-spacing: 2px;
@@ -242,7 +242,7 @@
 
 /* ── Countdown number ── */
 .countdown-num {
-  font-family: 'Rubik Bubbles', system-ui, sans-serif;
+  font-family: 'Rubik Bubbles', 'Zhi Mang Xing', system-ui, sans-serif;
   font-size: clamp(60px, 15vw, 100px);
   color: #7b58b8;
   text-shadow:
@@ -284,7 +284,7 @@
 }
 
 .pause-overlay-text {
-  font-family: 'Rubik Bubbles', system-ui, sans-serif;
+  font-family: 'Rubik Bubbles', 'Zhi Mang Xing', system-ui, sans-serif;
   font-size: clamp(28px, 8vw, 48px);
   color: #fff;
   text-shadow:

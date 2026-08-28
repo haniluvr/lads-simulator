@@ -76,18 +76,18 @@
           <path d="M18 6 6 18"/>
           <path d="m6 6 12 12"/>
         </svg>
-        <img src="../assets/photobooth/love-and-deepspace.webp" alt="Love and Deepspace" class="title-logo" draggable="false" />
+        <img id="pb-title-logo-img" src="../assets/photobooth/love-and-deepspace.webp" alt="Love and Deepspace" class="title-logo" draggable="false" />
       </h1>
       
-      <div class="project-badge">Love &amp; Deepspace Fan Project</div>
+      <div class="project-badge" data-i18n="pb.fan_project">Love &amp; Deepspace Fan Project</div>
       
-      <p class="booth-description">
+      <p class="booth-description" data-i18n="pb.desc">
         Step into the cosmos and capture your celestial moments. Choose exclusive frames featuring your favorite Love and Deepspace companions and instantly print gorgeous, personalized memory strips.
       </p>
 
       <a href="../index.html" class="enter-btn back-btn" aria-label="Back to Home">
         <i data-lucide="arrow-left"></i>
-        BACK TO HOME
+        <span data-i18n="pb.back">BACK TO HOME</span>
       </a>
     </div>
   </div>
@@ -112,10 +112,10 @@
               draggable="false"
             />
             <div class="secret-chamber-text">
-              <span>Enter</span>
-              <span>the</span>
-              <span>Secret</span>
-              <span>Chamber</span>
+              <span data-i18n="pb.sc_1">Enter</span>
+              <span data-i18n="pb.sc_2">the</span>
+              <span data-i18n="pb.sc_3">Secret</span>
+              <span data-i18n="pb.sc_4">Chamber</span>
             </div>
           </div>
         </div>
@@ -179,7 +179,7 @@
         <svg width="10" height="10" viewBox="0 0 24 24" fill="#C4A96A">
           <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/>
         </svg>
-        Printing your memories...
+        <span data-i18n="pb.printing">Printing your memories...</span>
       </div>
     </div>
   </div>
@@ -206,30 +206,30 @@
     <div id="notice-modal" class="settings-overlay" aria-modal="true" role="dialog" style="display: none;">
       <div class="settings-container">
         <div class="settings-header">
-          <h2>NOTICES</h2>
+          <h2 data-i18n="notice.title">NOTICES</h2>
           <button id="notice-close-btn" class="settings-close" aria-label="Close Notices">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg>
           </button>
         </div>
         <div class="settings-body notice-body">
           <div class="notice-section" style="margin-bottom: 24px;">
-            <h3 style="color: var(--gold); margin-bottom: 12px; font-family: var(--font-d); font-size: 20px;">Patch Notes</h3>
-            <p style="color: var(--txt-2); margin-bottom: 8px;">Changes made since the last update:</p>
+            <h3 style="color: var(--gold); margin-bottom: 12px; font-family: var(--font-d); font-size: 20px;" data-i18n="notice.patch_title">Patch Notes</h3>
+            <p style="color: var(--txt-2); margin-bottom: 8px;" data-i18n="notice.patch_desc">Changes made since the last update:</p>
             <ul style="color: #ddd; padding-left: 20px; line-height: 1.6; font-size: 14px;">
-              <li><strong>NEW Arcade Minigame: Wishfall Frenzy!</strong></li>
-              <li><strong>3 NEW Valko Memories</strong></li>
-              <li><strong>NEW Precise Wish System</strong></li>
-              <li><strong>NEW Memory Collection Tracker</strong></li>
+              <li data-i18n="notice.patch_1"><strong>NEW Arcade Minigame: Wishfall Frenzy!</strong></li>
+              <li data-i18n="notice.patch_2"><strong>3 NEW Valko Memories</strong></li>
+              <li data-i18n="notice.patch_3"><strong>NEW Precise Wish System</strong></li>
+              <li data-i18n="notice.patch_4"><strong>NEW Memory Collection Tracker</strong></li>
             </ul>
           </div>
         <div class="notice-section">
-            <h3 style="color: var(--gold); margin-bottom: 12px; font-family: var(--font-d); font-size: 20px;">Mechanics</h3>
+            <h3 style="color: var(--gold); margin-bottom: 12px; font-family: var(--font-d); font-size: 20px;" data-i18n="notice.mech_title">Mechanics</h3>
             <ul style="color: #ddd; padding-left: 20px; line-height: 1.6; font-size: 14px;">
-              <li style="margin-bottom: 8px;"><strong>Limited vs Standard:</strong> Limited banners have exclusive rate-ups while standard has the base 5-star pool.</li>
-              <li style="margin-bottom: 8px;"><strong>Pity System:</strong> 5-stars are guaranteed within 70 pulls, 4-stars within 10 pulls.</li>
-              <li style="margin-bottom: 8px;"><strong>Precise Wish:</strong> Choose a target Love Interest. If you lose the 50/50, your next 5-star is guaranteed to be from your chosen Love Interest.</li>
-              <li style="margin-bottom: 8px;"><strong>Ranking Memories Up:</strong> Pulling duplicates increases the rank of a memory.</li>
-              <li style="margin-bottom: 8px;"><strong>Arcade Minigame:</strong> Compete for the highest score to earn rewards like deepspace wish and empyrean wish tickets.</li>
+              <li style="margin-bottom: 8px;" data-i18n="notice.mech_1"><strong>Limited vs Standard:</strong> Limited banners have exclusive rate-ups while standard has the base 5-star pool.</li>
+              <li style="margin-bottom: 8px;" data-i18n="notice.mech_2"><strong>Pity System:</strong> 5-stars are guaranteed within 70 pulls, 4-stars within 10 pulls.</li>
+              <li style="margin-bottom: 8px;" data-i18n="notice.mech_3"><strong>Precise Wish:</strong> Choose a target Love Interest. If you lose the 50/50, your next 5-star is guaranteed to be from your chosen Love Interest.</li>
+              <li style="margin-bottom: 8px;" data-i18n="notice.mech_4"><strong>Ranking Memories Up:</strong> Pulling duplicates increases the rank of a memory.</li>
+              <li style="margin-bottom: 8px;" data-i18n="notice.mech_5"><strong>Arcade Minigame:</strong> Compete for the highest score to earn rewards like deepspace wish and empyrean wish tickets.</li>
             </ul>
           </div>
         </div>
@@ -238,17 +238,18 @@
 
 
 <script src="../audio-bridge.js?v=4"></script>
+<script src="../i18n.js?v=5"></script>
 <script src="main.js"></script>
 <script>
   window.PAGE_FAQ = {
     title: 'Photobooth FAQ',
     items: [
-      { q: 'How do I start the photobooth?', a: 'Select a frame from the banner list on the main screen, then click "Enter Photobooth" to begin your session.' },
-      { q: 'What frames are available?', a: 'Each Love Interest has their own unique themed frame. You can preview each frame before entering the booth.' },
-      { q: 'Can I use my own photos?', a: 'Yes! Inside the booth, tap the upload button in the camera controls to upload a photo from your device instead of using the live camera.' },
-      { q: 'How do I add stickers and filters?', a: 'After capturing your photos, use the decoration panel on the right side to apply filters, add stickers, or add text overlays to your strip.' },
-      { q: 'How do I save my photostrip?', a: 'On the export screen, click the download button to save your photostrip as an image file. You can also share it directly.' },
-      { q: 'Why is my camera not working?', a: 'Make sure you have granted camera permissions to your browser. If using HTTPS is required, try accessing via localhost or a secure connection.' }
+      { q: 'How do I start the photobooth?', a: 'Select a frame from the banner list on the main screen, then click "Enter Photobooth" to begin your session.', i18n_q: 'faq.pb_q1', i18n_a: 'faq.pb_a1' },
+      { q: 'What frames are available?', a: 'Each Love Interest has their own unique themed frame. You can preview each frame before entering the booth.', i18n_q: 'faq.pb_q2', i18n_a: 'faq.pb_a2' },
+      { q: 'Can I use my own photos?', a: 'Yes! Inside the booth, tap the upload button in the camera controls to upload a photo from your device instead of using the live camera.', i18n_q: 'faq.pb_q3', i18n_a: 'faq.pb_a3' },
+      { q: 'How do I add stickers and filters?', a: 'After capturing your photos, use the decoration panel on the right side to apply filters, add stickers, or add text overlays to your strip.', i18n_q: 'faq.pb_q4', i18n_a: 'faq.pb_a4' },
+      { q: 'How do I save my photostrip?', a: 'On the export screen, click the download button to save your photostrip as an image file. You can also share it directly.', i18n_q: 'faq.pb_q5', i18n_a: 'faq.pb_a5' },
+      { q: 'Why is my camera not working?', a: 'Make sure you have granted camera permissions to your browser. If using HTTPS is required, try accessing via localhost or a secure connection.', i18n_q: 'faq.pb_q6', i18n_a: 'faq.pb_a6' }
     ]
   };
 </script>

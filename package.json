@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "cnchar": "^3.2.6",
+    "jsdom": "^29.1.1"
+  }
+}

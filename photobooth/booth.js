@@ -842,7 +842,7 @@ function renderShootSidePanel(frameIdx) {
     if (isActive) pillClasses += ' active';
     if (isOpen) pillClasses += ' open';
     pill.className = pillClasses;
-    pill.textContent = charData.name;
+    pill.textContent = window.i18n ? window.i18n.getCharName(char) : charData.name;
     pill.onclick = () => {
       state.openAccordion = char;
       renderShootSidePanel(frameIdx);
@@ -872,7 +872,7 @@ function renderShootSidePanel(frameIdx) {
     btn.className = btnClasses;
     btn.setAttribute('role', 'button');
     btn.tabIndex = 0;
-    btn.innerHTML = `<span>${charData.name}</span> <span class="arrow"></span>`;
+    btn.innerHTML = `<span>${window.i18n ? window.i18n.getCharName(char) : charData.name}</span> <span class="arrow"></span>`;
 
     const posesDiv = document.createElement('div');
     posesDiv.className = 'shoot-char-poses' + (isOpen ? ' open' : '');
@@ -2099,6 +2099,14 @@ function updateDecoControls() {
                              font === 'playfair' ? '"Playfair Display", serif' :
                              font === 'outfit' ? '"Outfit", sans-serif' :
                              font === 'caveat' ? '"Caveat", cursive' :
+                             font === 'notosanssc' ? '"Noto Sans SC", sans-serif' :
+                             font === 'notoserifsc' ? '"Noto Serif SC", serif' :
+                             font === 'mashanzheng' ? '"Ma Shan Zheng", cursive' :
+                             font === 'zcoolxiaowei' ? '"ZCOOL XiaoWei", serif' :
+                             font === 'zcoolkuaile' ? '"ZCOOL KuaiLe", sans-serif' :
+                             font === 'zhimangxing' ? '"Zhi Mang Xing", cursive' :
+                             font === 'longcang' ? '"Long Cang", cursive' :
+                             font === 'liujianmaocao' ? '"Liu Jian Mao Cao", cursive' :
                              '"Inter", sans-serif';
           d.font = mappedFont;
           drawStudioCanvas();
@@ -2466,7 +2474,8 @@ function drawCharOverlaysOnCanvas(frame, fx, fy, fw, fh) {
     studioCtx.fillStyle = charData.color;
     studioCtx.font = `bold ${Math.max(9, charW * 0.12)}px "Chakra Petch", monospace`;
     studioCtx.textAlign = 'center';
-    studioCtx.fillText(charData.name.toUpperCase(), cx + charW / 2, fy + fh - 8);
+    const cName = window.i18n ? window.i18n.getCharName(char) : charData.name;
+    studioCtx.fillText(cName.toUpperCase(), cx + charW / 2, fy + fh - 8);
     studioCtx.textAlign = 'left';
   });
 }
@@ -2530,7 +2539,9 @@ function renderStickerGrid() {
     
     const btn = document.createElement('button');
     btn.className = 'sticker-nav-btn' + (i === 0 ? ' active' : '');
-    btn.textContent = category;
+    const isChar = ['xavier', 'zayne', 'rafayel', 'sylus', 'caleb', 'valko'].includes(category);
+    const catName = window.i18n ? (isChar ? window.i18n.getCharName(category) : window.i18n.t('sticker.cat.' + category)) : category;
+    btn.textContent = catName;
     
     if (i === 0) activeBtn = btn;
     
@@ -2562,7 +2573,9 @@ function renderStickerGrid() {
 
     const header = document.createElement('div');
     header.className = 'sticker-group-header';
-    header.textContent = category;
+    const isChar = ['xavier', 'zayne', 'rafayel', 'sylus', 'caleb', 'valko'].includes(category);
+    const catName = window.i18n ? (isChar ? window.i18n.getCharName(category) : window.i18n.t('sticker.cat.' + category)) : category;
+    header.textContent = catName;
     header.style.cssText = 'padding: 8px 12px; background: rgba(200,184,122,0.1); border-radius: 6px; cursor: pointer; font-family: "Chakra Petch", monospace; font-size: 0.75rem; text-transform: uppercase; color: #C8B87A; font-weight: 700; user-select: none;';
     
     const groupContent = document.createElement('div');
@@ -2642,15 +2655,23 @@ function addTextDecoration() {
   const color = colorBtn ? colorBtn.dataset.color : '#FFFFFF';
 
   const mappedFont = font === 'cormorant' ? '"Cormorant Garamond", serif' : 
-                     font === 'chakra' ? '"Chakra Petch", monospace' : 
-                     font === 'roboto' ? '"Roboto", sans-serif' :
-                     font === 'oswald' ? '"Oswald", sans-serif' :
-                     font === 'pacifico' ? '"Pacifico", cursive' :
-                     font === 'dancing' ? '"Dancing Script", cursive' :
-                     font === 'playfair' ? '"Playfair Display", serif' :
-                     font === 'outfit' ? '"Outfit", sans-serif' :
-                     font === 'caveat' ? '"Caveat", cursive' :
-                     '"Inter", sans-serif';
+                             font === 'chakra' ? '"Chakra Petch", monospace' : 
+                             font === 'roboto' ? '"Roboto", sans-serif' :
+                             font === 'oswald' ? '"Oswald", sans-serif' :
+                             font === 'pacifico' ? '"Pacifico", cursive' :
+                             font === 'dancing' ? '"Dancing Script", cursive' :
+                             font === 'playfair' ? '"Playfair Display", serif' :
+                             font === 'outfit' ? '"Outfit", sans-serif' :
+                             font === 'caveat' ? '"Caveat", cursive' :
+                             font === 'notosanssc' ? '"Noto Sans SC", sans-serif' :
+                             font === 'notoserifsc' ? '"Noto Serif SC", serif' :
+                             font === 'mashanzheng' ? '"Ma Shan Zheng", cursive' :
+                             font === 'zcoolxiaowei' ? '"ZCOOL XiaoWei", serif' :
+                             font === 'zcoolkuaile' ? '"ZCOOL KuaiLe", sans-serif' :
+                             font === 'zhimangxing' ? '"Zhi Mang Xing", cursive' :
+                             font === 'longcang' ? '"Long Cang", cursive' :
+                             font === 'liujianmaocao' ? '"Liu Jian Mao Cao", cursive' :
+                             '"Inter", sans-serif';
 
   state.decorations.push({
     type: 'text',
@@ -3301,3 +3322,50 @@ const initAudioCues = () => {
 };
 
 document.addEventListener('DOMContentLoaded', initAudioCues);
+
+function updateFontDropdown(lang) {
+  const fontSel = document.getElementById('text-font');
+  if (fontSel) {
+    if (lang === 'zh') {
+      fontSel.innerHTML = `
+        <option value="notosanssc">Noto Sans SC</option>
+        <option value="notoserifsc">Noto Serif SC</option>
+        <option value="mashanzheng">Ma Shan Zheng</option>
+        <option value="zcoolxiaowei">ZCOOL XiaoWei</option>
+        <option value="zcoolkuaile">ZCOOL KuaiLe</option>
+        <option value="zhimangxing">Zhi Mang Xing</option>
+        <option value="longcang">Long Cang</option>
+        <option value="liujianmaocao">Liu Jian Mao Cao</option>
+`;
+    } else {
+      fontSel.innerHTML = `
+        <option value="cormorant">Cormorant Garamond</option>
+        <option value="inter">Inter</option>
+        <option value="chakra">Chakra Petch</option>
+        <option value="roboto">Roboto</option>
+        <option value="oswald">Oswald</option>
+        <option value="pacifico">Pacifico</option>
+        <option value="dancing">Dancing Script</option>
+        <option value="playfair">Playfair Display</option>
+        <option value="outfit">Outfit</option>
+        <option value="caveat">Caveat</option>
+`;
+    }
+  }
+}
+
+window.addEventListener('languageChanged', (e) => {
+  renderShootSidePanel(state.currentFrame);
+  renderStickerGrid();
+  updateFontDropdown(e.detail);
+});
+
+// Force update immediately if i18n is already loaded
+const checkAndApplyLang = () => {
+  if (window.i18n && window.i18n.lang) {
+    updateFontDropdown(window.i18n.lang);
+  } else {
+    setTimeout(checkAndApplyLang, 100);
+  }
+};
+checkAndApplyLang();

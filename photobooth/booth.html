@@ -8,7 +8,7 @@
   <meta name="description" content="Create your photostrip with Love and Deepspace characters inside Cosmo Photobooth Studio." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&family=Cormorant+Infant:ital,wght@0,300..700;1,300..700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&family=Cormorant+Infant:ital,wght@0,300..700;1,300..700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Noto+Sans+SC:wght@400;700&family=Noto+Serif+SC:wght@400;700&family=ZCOOL+KuaiLe&family=ZCOOL+XiaoWei&family=Ma+Shan+Zheng&family=Zhi+Mang+Xing&family=Long+Cang&family=Liu+Jian+Mao+Cao&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css?v=7" />
   <link rel="stylesheet" href="landing.css" />
   <link rel="stylesheet" href="booth.css?v=5" />
@@ -60,9 +60,7 @@
   <!-- Top Left Back Button -->
   <a href="index.html" class="booth-back-btn" id="booth-back" aria-label="Back to landing page">
     <i data-lucide="chevron-left"></i>
-
-
-    Exit
+    <span data-i18n="pb.exit">Exit</span>
   </a>
 
   <!-- Top Right Music Button -->
@@ -81,9 +79,9 @@
   <div class="phase-inner">
 
     <div class="phase-header text-center">
-      <p class="section-label">Step 1</p>
-      <h1 class="phase-title">Choose Your <em>Layout</em></h1>
-      <p class="phase-subtitle">How many frames will your strip have?</p>
+      <p class="section-label" data-i18n="pb.step1">Step 1</p>
+      <h1 class="phase-title" data-i18n="pb.choose_layout">Choose Your <em>Layout</em></h1>
+      <p class="phase-subtitle" data-i18n="pb.choose_layout_desc">How many frames will your strip have?</p>
     </div>
 
     <!-- Layout Carousel -->
@@ -107,7 +105,7 @@
 
     <div class="phase-actions">
       <button class="btn-primary" id="phase1-next" disabled>
-        Start Shooting
+        <span data-i18n="pb.start_shooting">Start Shooting</span>
         <i data-lucide="camera" style="margin-left: 8px; height: 21px; width: 21px;"></i>
 
 
@@ -125,9 +123,9 @@
 <section class="phase-screen hidden" id="phase-2" data-phase="2" aria-label="Photoshoot">
 
   <div class="phase-header text-center">
-    <p class="section-label">Step 2</p>
-    <h1 class="phase-title">Strike a <em>Pose</em></h1>
-    <p class="phase-subtitle">Get ready for your photoshoot</p>
+    <p class="section-label" data-i18n="pb.step2">Step 2</p>
+    <h1 class="phase-title" data-i18n="pb.strike_pose">Strike a <em>Pose</em></h1>
+    <p class="phase-subtitle" data-i18n="pb.strike_pose_desc">Get ready for your photoshoot</p>
   </div>
 
   <!-- Camera area with 3-column layout -->
@@ -136,7 +134,7 @@
     <!-- Left panel: Captured Moments -->
     <div class="shoot-left-panel" id="shoot-left-panel">
       <div class="captured-moments-header">
-        <p class="captured-title">Captured<br>Moments</p>
+        <p class="captured-title" data-i18n="pb.captured_moments">Captured<br>Moments</p>
         <p class="captured-count" id="shoot-frame-count">0/4</p>
       </div>
       <div class="captured-moments-list" id="shoot-frame-dots">
@@ -161,12 +159,12 @@
           <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/>
           </svg>
-          <p>Camera not available</p>
-          <label class="btn-primary btn-sm" for="photo-upload-input">
+          <p data-i18n="pb.cam_na">Camera not available</p>
+          <label class="btn-primary btn-sm" for="photo-upload-input" data-i18n="pb.cam_upload">
             Upload Photo Instead
           </label>
           <input type="file" id="photo-upload-input" accept="image/*" class="sr-only" />
-          <a href="#" id="retry-camera-btn" style="display: block; margin-top: 16px; color: #E8DFC8; text-decoration: underline; font-size: 0.8rem; cursor: pointer;">Retry Camera Permissions</a>
+          <a href="#" id="retry-camera-btn" style="display: block; margin-top: 16px; color: #E8DFC8; text-decoration: underline; font-size: 0.8rem; cursor: pointer;" data-i18n="pb.cam_retry">Retry Camera Permissions</a>
         </div>
 
         <!-- Character overlay container -->
@@ -224,7 +222,7 @@
     <!-- Right panel: quick character swap -->
     <div class="shoot-side-panel" id="shoot-side-panel">
       <div style="margin-top: 8px;">
-        <p class="panel-label">Companions</p>
+        <p class="panel-label" data-i18n="pb.companions">Companions</p>
         <div class="shoot-char-list" id="shoot-char-list" role="group" aria-label="Toggle characters in frame">
           <!-- Injected by JS -->
         </div>
@@ -235,10 +233,10 @@
 
   <!-- Step 2 Bottom Actions -->
   <div class="phase-actions" id="shoot-actions">
-    <button class="btn-secondary" id="shoot-back" onclick="goToPhase(1)" aria-label="Go back"><span class="btn-icon">&#8592;</span><span class="btn-text">Back</span></button>
-    <button class="btn-secondary" id="retake-btn" onclick="retakePhotos()" disabled aria-label="Retake photos" style="background: #E8DFC8; color: #12122B; border-color: #E8DFC8;"><span class="btn-icon">&#8635;</span><span class="btn-text">Retake</span></button>
+    <button class="btn-secondary" id="shoot-back" onclick="goToPhase(1)" aria-label="Go back"><span class="btn-icon">&#8592;</span><span class="btn-text" data-i18n="pb.back_btn">Back</span></button>
+    <button class="btn-secondary" id="retake-btn" onclick="retakePhotos()" disabled aria-label="Retake photos" style="background: #E8DFC8; color: #12122B; border-color: #E8DFC8;"><span class="btn-icon">&#8635;</span><span class="btn-text" data-i18n="pb.retake">Retake</span></button>
     <button class="btn-primary" id="decorate-btn" onclick="proceedToDecorate()" disabled aria-label="Decorate photos">
-      Decorate
+      <span data-i18n="pb.decorate">Decorate</span>
       <i data-lucide="arrow-right" style="margin-left: 8px;"></i>
 
 
@@ -252,7 +250,7 @@
       <div class="developing-strip" aria-hidden="true">
         <div class="dev-progress" id="dev-progress"></div>
       </div>
-      <p class="developing-text">Developing your memories...</p>
+      <p class="developing-text" data-i18n="pb.developing">Developing your memories...</p>
     </div>
   </div>
 
@@ -263,9 +261,9 @@
      ============================================================ -->
 <section class="phase-screen hidden" id="phase-3" data-phase="3" aria-label="Decoration studio">
   <div class="phase-header text-center" style="padding-top: 24px; padding-bottom: 12px;">
-    <p class="section-label">Step 3</p>
-    <h1 class="phase-title">Decorate Your <em>Memories</em></h1>
-    <p class="phase-subtitle">Add filters, stickers, and text to your photostrip</p>
+    <p class="section-label" data-i18n="pb.step3">Step 3</p>
+    <h1 class="phase-title" data-i18n="pb.decorate_title">Decorate Your <em>Memories</em></h1>
+    <p class="phase-subtitle" data-i18n="pb.decorate_desc">Add filters, stickers, and text to your photostrip</p>
   </div>
   
   <div class="studio-layout">
@@ -305,15 +303,11 @@
         </button>
         <button class="btn-secondary btn-sm icon-btn" id="undo-btn" aria-label="Undo" disabled>
           <i data-lucide="rotate-ccw" style="width: 16px; height: 16px;"></i>
-
-
-          Undo
+          <span data-i18n="pb.undo">Undo</span>
         </button>
         <button class="btn-secondary btn-sm icon-btn" id="redo-btn" aria-label="Redo" disabled>
-          Redo
+          <span data-i18n="pb.redo">Redo</span>
           <i data-lucide="rotate-cw" style="width: 16px; height: 16px;"></i>
-
-
         </button>
       </div>
     </div>
@@ -323,9 +317,9 @@
 
       <!-- Tabs -->
       <div class="studio-tabs" role="tablist" aria-label="Decoration tools">
-        <button class="studio-tab" role="tab" aria-selected="false" aria-controls="tab-filters" id="tab-btn-filters" data-tab="filters">Filters</button>
-        <button class="studio-tab" role="tab" aria-selected="false" aria-controls="tab-stickers" id="tab-btn-stickers" data-tab="stickers">Stickers</button>
-        <button class="studio-tab" role="tab" aria-selected="false" aria-controls="tab-text" id="tab-btn-text" data-tab="text">Text</button>
+        <button class="studio-tab" role="tab" aria-selected="false" aria-controls="tab-filters" id="tab-btn-filters" data-tab="filters" data-i18n="pb.tab_filters">Filters</button>
+        <button class="studio-tab" role="tab" aria-selected="false" aria-controls="tab-stickers" id="tab-btn-stickers" data-tab="stickers" data-i18n="pb.tab_stickers">Stickers</button>
+        <button class="studio-tab" role="tab" aria-selected="false" aria-controls="tab-text" id="tab-btn-text" data-tab="text" data-i18n="pb.tab_text">Text</button>
       </div>
 
       <!-- Filters Tab -->
@@ -333,31 +327,31 @@
         <div class="filter-grid" role="radiogroup" aria-label="Photo filters">
           <label class="filter-option" for="filter-none">
             <input type="radio" name="filter" id="filter-none" value="none" checked />
-            <div class="filter-preview none-filter"><span>None</span></div>
+            <div class="filter-preview none-filter"><span data-i18n="pb.filter_none">None</span></div>
           </label>
           <label class="filter-option" for="filter-bloom">
             <input type="radio" name="filter" id="filter-bloom" value="bloom" />
-            <div class="filter-preview bloom-filter"><span>Soft Bloom</span></div>
+            <div class="filter-preview bloom-filter"><span data-i18n="pb.filter_bloom">Soft Bloom</span></div>
           </label>
           <label class="filter-option" for="filter-vintage">
             <input type="radio" name="filter" id="filter-vintage" value="vintage" />
-            <div class="filter-preview vintage-filter"><span>Vintage</span></div>
+            <div class="filter-preview vintage-filter"><span data-i18n="pb.filter_vintage">Vintage</span></div>
           </label>
           <label class="filter-option" for="filter-cool">
             <input type="radio" name="filter" id="filter-cool" value="cool" />
-            <div class="filter-preview cool-filter"><span>Cool Mist</span></div>
+            <div class="filter-preview cool-filter"><span data-i18n="pb.filter_cool">Cool Mist</span></div>
           </label>
           <label class="filter-option" for="filter-rose">
             <input type="radio" name="filter" id="filter-rose" value="rose" />
-            <div class="filter-preview rose-filter"><span>Rose Tint</span></div>
+            <div class="filter-preview rose-filter"><span data-i18n="pb.filter_rose">Rose Tint</span></div>
           </label>
           <label class="filter-option" for="filter-bw">
             <input type="radio" name="filter" id="filter-bw" value="bw" />
-            <div class="filter-preview bw-filter"><span>B&amp;W</span></div>
+            <div class="filter-preview bw-filter"><span data-i18n="pb.filter_bw">B&amp;W</span></div>
           </label>
           <label class="filter-option" for="filter-noir">
             <input type="radio" name="filter" id="filter-noir" value="noir" />
-            <div class="filter-preview noir-filter"><span>Noir</span></div>
+            <div class="filter-preview noir-filter"><span data-i18n="pb.filter_noir">Noir</span></div>
           </label>
         </div>
       </div>
@@ -374,11 +368,11 @@
         <div class="text-tool">
           <div class="text-inputs-row">
             <div>
-              <label class="tool-label" for="text-input">Text</label>
-              <input class="text-tool-input" type="text" id="text-input" placeholder="Type something..." maxlength="60" />
+              <label class="tool-label" for="text-input" data-i18n="pb.text_lbl">Text</label>
+              <input class="text-tool-input" type="text" id="text-input" placeholder="Type something..." data-i18n-placeholder="pb.text_ph" maxlength="60" />
             </div>
             <div>
-              <label class="tool-label" for="text-font">Font</label>
+              <label class="tool-label" for="text-font" data-i18n="pb.font_lbl">Font</label>
               <select id="text-font" class="text-tool-select" aria-label="Font family">
                 <option value="cormorant">Cormorant Garamond</option>
                 <option value="inter">Inter</option>
@@ -394,7 +388,7 @@
             </div>
           </div>
 
-          <label class="tool-label">Color</label>
+          <label class="tool-label" data-i18n="pb.color_lbl">Color</label>
           <div class="text-color-row">
             <button class="text-color-btn active" style="background-color: #FFFFFF;" data-color="#FFFFFF" aria-label="White"></button>
             <button class="text-color-btn" style="background-color: #000000;" data-color="#000000" aria-label="Black"></button>
@@ -418,7 +412,7 @@
           </div>
 
           <button class="btn-primary btn-sm" id="add-text-btn" style="width: 100%; margin-top: var(--space-4);">
-            Add Text to Strip
+            <span data-i18n="pb.add_text">Add Text to Strip</span>
           </button>
         </div>
       </div>
@@ -430,15 +424,11 @@
   <div class="phase-actions" id="studio-actions">
     <button class="btn-secondary" id="phase4-back">
       <i data-lucide="rotate-ccw" style="margin-right: 8px; width: 18px; height: 18px;"></i>
-      Reshoot
+      <span data-i18n="pb.reshoot">Reshoot</span>
     </button>
     <button class="btn-primary" id="phase4-next">
-      Print
+      <span data-i18n="pb.print">Print</span>
       <i data-lucide="printer" style="margin-left: 8px; width: 18px; height: 18px;"></i>
-
-
-
-
     </button>
   </div>
 
@@ -449,7 +439,7 @@
       <div class="developing-strip" aria-hidden="true">
         <div class="dev-progress" id="print-progress"></div>
       </div>
-      <p class="developing-text">Printing your memories...</p>
+      <p class="developing-text" data-i18n="pb.printing">Printing your memories...</p>
     </div>
   </div>
 </section>
@@ -464,11 +454,11 @@
 
     <!-- LEFT: Phase header + Animated Printer + Buttons -->
     <div class="export-actions-panel">
-      <p class="section-label">Your strip is ready!</p>
-      <h2 class="phase-title" style="font-size: clamp(1.6rem, 4vw, 2.5rem);">
+      <p class="section-label" data-i18n="pb.strip_ready">Your strip is ready!</p>
+      <h2 class="phase-title" style="font-size: clamp(1.6rem, 4vw, 2.5rem);" data-i18n="pb.capture_moment">
         Capture the <em>Moment</em>
       </h2>
-      <p class="phase-subtitle" style="margin-bottom: var(--space-6);">
+      <p class="phase-subtitle" style="margin-bottom: var(--space-6);" data-i18n="pb.capture_desc">
         Save your photostrip to your device or share it with the community.
       </p>
 
@@ -529,7 +519,7 @@
             <svg width="10" height="10" viewBox="0 0 24 24" fill="#C4A96A">
               <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/>
             </svg>
-            Printing your memories...
+            <span data-i18n="pb.printing">Printing your memories...</span>
           </div>
         </div>
       </div>
@@ -542,7 +532,7 @@
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
             </svg>
-            Download Strip
+            <span data-i18n="pb.dl_strip">Download Strip</span>
           </button>
 
           <!-- Row 2: Print + Share -->
@@ -551,13 +541,13 @@
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/>
               </svg>
-              Print
+              <span data-i18n="pb.print_btn">Print</span>
             </button>
             <button class="btn-secondary btn-pill" id="share-strip" aria-label="Share photostrip">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
               </svg>
-              Share
+              <span data-i18n="pb.share_btn">Share</span>
             </button>
           </div>
 
@@ -566,13 +556,13 @@
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <path d="M1 4v6h6"/><path d="M3.51 15a9 9 0 1 0 .49-4.68"/>
             </svg>
-            Enter Photobooth Again
+            <span data-i18n="pb.enter_again">Enter Photobooth Again</span>
           </button>
         </div>
 
         <!-- Hashtag copy block -->
         <div class="share-prompt">
-          <p class="share-text">Share your strip and tag:<br>
+          <p class="share-text"><span data-i18n="pb.share_tag">Share your strip and tag:</span><br>
             <button class="hashtag-copy-block" id="hashtag-copy-btn" aria-label="Click to copy all hashtags" title="Click to copy">
               <span id="hashtag-copy-text">#全世界都爱敖尹 #NoValkoNoTrust #NoValkoNoMoney #LADSIs6 #SpeakUpInfold #ValkoIsLoved #ValkoIsValuable #BringValkoBack #BringBackValko</span>
               <span class="hashtag-copy-icon" aria-hidden="true">
@@ -599,6 +589,7 @@
 <script src="../assets/photobooth/stickers/stickersData.js"></script>
   <script src="../assets/photobooth/frames/framesData.js"></script>
 <script src="../audio-bridge.js?v=6"></script>
+<script src="../i18n.js?v=5"></script>
 <script src="booth.js?v=20"></script>
 <script>
   (function() {
@@ -666,14 +657,14 @@
     window.PAGE_FAQ = {
       title: 'Studio FAQ',
       items: [
-        { q: 'How do I capture photos?', a: 'On the camera screen, position yourself and click the shutter button. The booth will automatically take a series of photos for your strip.' },
-        { q: 'Can I retake a photo?', a: 'Use the back arrow on the camera screen to go back and retake. You can redo any shot before confirming the strip.' },
-        { q: 'How do I add stickers?', a: 'Switch to the Stickers tab in the right panel. Tap any sticker to place it on your strip, then drag and resize it as you like.' },
-        { q: 'How do I apply filters?', a: 'Open the Filters tab in the right panel and select a filter. The effect is instantly previewed on your strip.' },
-        { q: 'How do I add text?', a: 'Go to the Text tab, type your message, and place it on the strip. You can drag and resize text overlays.' },
-        { q: 'How do I delete a sticker or text?', a: 'Select the decoration by tapping it, then use the red trash icon that appears on the top-left corner of the selected item.' },
-        { q: 'How do I download my strip?', a: 'On the final export screen, click the download button. Your photostrip will be saved as a PNG image.' },
-        { q: 'How do I print my strip?', a: 'After downloading, you can open the image and print it from your device. The strip is designed in a standard photostrip aspect ratio.' }
+        { q: 'How do I capture photos?', a: 'On the camera screen, position yourself and click the shutter button. The booth will automatically take a series of photos for your strip.', i18n_q: 'faq.pb_studio_q1', i18n_a: 'faq.pb_studio_a1' },
+        { q: 'Can I retake a photo?', a: 'Use the back arrow on the camera screen to go back and retake. You can redo any shot before confirming the strip.', i18n_q: 'faq.pb_studio_q2', i18n_a: 'faq.pb_studio_a2' },
+        { q: 'How do I add stickers?', a: 'Switch to the Stickers tab in the right panel. Tap any sticker to place it on your strip, then drag and resize it as you like.', i18n_q: 'faq.pb_studio_q3', i18n_a: 'faq.pb_studio_a3' },
+        { q: 'How do I apply filters?', a: 'Open the Filters tab in the right panel and select a filter. The effect is instantly previewed on your strip.', i18n_q: 'faq.pb_studio_q4', i18n_a: 'faq.pb_studio_a4' },
+        { q: 'How do I add text?', a: 'Go to the Text tab, type your message, and place it on the strip. You can drag and resize text overlays.', i18n_q: 'faq.pb_studio_q5', i18n_a: 'faq.pb_studio_a5' },
+        { q: 'How do I delete a sticker or text?', a: 'Select the decoration by tapping it, then use the red trash icon that appears on the top-left corner of the selected item.', i18n_q: 'faq.pb_studio_q6', i18n_a: 'faq.pb_studio_a6' },
+        { q: 'How do I download my strip?', a: 'On the final export screen, click the download button. Your photostrip will be saved as a PNG image.', i18n_q: 'faq.pb_studio_q7', i18n_a: 'faq.pb_studio_a7' },
+        { q: 'How do I print my strip?', a: 'After downloading, you can open the image and print it from your device. The strip is designed in a standard photostrip aspect ratio.', i18n_q: 'faq.pb_studio_q8', i18n_a: 'faq.pb_studio_a8' }
       ]
     };
   </script>

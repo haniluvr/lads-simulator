@@ -48,20 +48,20 @@ const MASH_EMOJIS = {
 };
 
 const DECREES = {
-  Mansion: 'You shall dwell in magnificent splendor \u2014 a palace worthy of royalty.',
-  Apartment: 'Your urban sanctuary awaits \u2014 chic, modern, and perfectly yours.',
-  Shack: 'Humble abode, infinite adventures. Home is where the heart is.',
-  House: 'A place to call your own, filled with warmth, laughter, and love.'
+  Mansion: 'mash.decree_m',
+  Apartment: 'mash.decree_a',
+  Shack: 'mash.decree_s',
+  House: 'mash.decree_h'
 };
 
 const CAT_META = {
-  mash:      { label: 'Home',       icon: '<i data-lucide="house"></i>' },
-  partner:   { label: 'Partner',    icon: '<i data-lucide="heart"></i>' },
-  transport: { label: 'Transport',  icon: '<i data-lucide="rocket"></i>' },
-  color:     { label: 'Color', icon: '<i data-lucide="palette"></i>' },
-  job:       { label: 'Occupation', icon: '<i data-lucide="briefcase"></i>' },
-  kids:      { label: '# of Kids',  icon: '<i data-lucide="baby"></i>' },
-  location:  { label: 'Location',   icon: '<i data-lucide="map-pin"></i>' }
+  mash:      { labelKey: 'mash.cat_home',       icon: '<i data-lucide="house"></i>' },
+  partner:   { labelKey: 'mash.cat_partner',    icon: '<i data-lucide="heart"></i>' },
+  transport: { labelKey: 'mash.cat_car',  icon: '<i data-lucide="rocket"></i>' },
+  color:     { labelKey: 'mash.cat_color', icon: '<i data-lucide="palette"></i>' },
+  job:       { labelKey: 'mash.cat_job', icon: '<i data-lucide="briefcase"></i>' },
+  kids:      { labelKey: 'mash.cat_kids',  icon: '<i data-lucide="baby"></i>' },
+  location:  { labelKey: 'mash.cat_location',   icon: '<i data-lucide="map-pin"></i>' }
 };
 
 // \u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550
@@ -230,7 +230,7 @@ function clearError() {
 function validate() {
   clearError();
   if (spiralN < 2) {
-    showError('\u2726 Draw a spiral on the canvas first \u2014 the crossing count is your magic number!');
+    showError(window.i18n ? window.i18n.t('mash.err_spiral') : '\u2726 Draw a spiral on the canvas first \u2014 the crossing count is your magic number!');
     spiralCanvas.style.boxShadow = '0 0 18px rgba(255,107,138,0.5), 0 0 0 2px rgba(255,107,138,0.4)';
     setTimeout(() => { spiralCanvas.style.boxShadow = ''; }, 1800);
     return false;
@@ -239,7 +239,8 @@ function validate() {
     const filled = [...document.querySelectorAll(`.cat-inputs[data-cat="${cat}"] .mash-input`)]
       .filter(i => i.value.trim());
     if (filled.length === 0) {
-      showError(`\u2726 Please fill in at least one option for "${CAT_META[cat].label}"`);
+      const catLabel = window.i18n ? window.i18n.t(CAT_META[cat].labelKey) : (CAT_META[cat].label || cat);
+      showError(window.i18n ? window.i18n.t('mash.err_fill').replace('{L}', catLabel) : `\u2726 Please fill in at least one option for "${catLabel}"`);
       return false;
     }
   }
@@ -336,12 +337,14 @@ function buildElimGrid(items) {
 
     const block = document.createElement('div');
     block.className = 'elim-category';
+    const catLabel = window.i18n ? window.i18n.t(meta.labelKey) : (meta.label || cat);
     block.innerHTML =
-      `<div class="elim-cat-title">${meta.icon} ${meta.label}</div>` +
+      `<div class="elim-cat-title">${meta.icon} ${catLabel}</div>` +
       `<div class="elim-items" id="ec-${cat}">` +
-        catItems.map(it =>
-          `<div class="elim-item" id="ei-${it.id}" title="${it.value}">${it.value}</div>`
-        ).join('') +
+        catItems.map(it => {
+          const valLabel = (it.category === 'mash' && window.i18n) ? window.i18n.t('mash.label_' + it.value.toLowerCase().charAt(0)) : it.value;
+          return `<div class="elim-item" id="ei-${it.id}" title="${valLabel}">${valLabel}</div>`;
+        }).join('') +
       `</div>`;
     grid.appendChild(block);
   }
@@ -373,8 +376,8 @@ async function animateElimination(items, order, results) {
     }
     const remaining = total - step - 1;
     label.textContent = remaining > 0
-      ? `${remaining} choice${remaining !== 1 ? 's' : ''} remain\u2026`
-      : 'Fate is decided\u2026';
+      ? (window.i18n ? window.i18n.t('mash.anim_remain').replace('{N}', remaining) : `${remaining} choice${remaining !== 1 ? 's' : ''} remain\u2026`)
+      : (window.i18n ? window.i18n.t('mash.anim_decided') : 'Fate is decided\u2026');
     await wait(60);
   }
 
@@ -395,7 +398,7 @@ async function animateElimination(items, order, results) {
     await wait(40);
   }
 
-  label.textContent = '\u2726 Your destiny is sealed \u2726';
+  label.textContent = window.i18n ? window.i18n.t('mash.anim_sealed') : '\u2726 Your destiny is sealed \u2726';
   await wait(700);
 }
 
@@ -415,22 +418,31 @@ function showResult(results) {
 
   // Headline: "Partner, MASH, N kid(s)"
   const kidsNum  = parseInt(kids, 10);
-  const kidLabel = !isNaN(kidsNum) ? `${kids} Kid${kidsNum !== 1 ? 's' : ''}` : `${kids} Kids`;
+  const mashLabel = window.i18n ? window.i18n.t('mash.label_' + mash.toLowerCase().charAt(0)) : mash;
+  const kidLabel = !isNaN(kidsNum) 
+    ? (window.i18n ? window.i18n.t('mash.kids_label').replace('{N}', kids) : `${kids} Kid${kidsNum !== 1 ? 's' : ''}`)
+    : kids;
   document.getElementById('rHeadline').textContent =
-    `${partner}, ${mash}, ${kidLabel}`;
+    `${partner}, ${mashLabel}, ${kidLabel}`;
 
   // Summary sentence
+  const decreeMsg = window.i18n && DECREES[mash] ? window.i18n.t(DECREES[mash]) : (DECREES[mash] || '');
   document.getElementById('rSummary').textContent =
-    `A ${job.toLowerCase()} life. ${transport}. ${color} everything. ${DECREES[mash] || ''}`;
+    window.i18n ? window.i18n.t('mash.summary_text')
+      .replace('{JOB}', job)
+      .replace('{CAR}', transport)
+      .replace('{COLOR}', color)
+      .replace('{DECREE}', decreeMsg)
+    : `A ${job.toLowerCase()} life. ${transport}. ${color} everything. ${decreeMsg}`;
 
   // Detail cards
   const cards = [
-    { id: 'rPartner',   icon: '<i data-lucide="heart"></i>', label: 'Partner',    value: partner },
-    { id: 'rMash',      icon: MASH_EMOJIS[mash] || '<i data-lucide="house"></i>', label: 'Home', value: mash },
-    { id: 'rJob',       icon: '<i data-lucide="briefcase"></i>', label: 'Job', value: job },
-    { id: 'rTransport', icon: '<i data-lucide="rocket"></i>', label: 'Car',  value: color + '  ' + transport },
-    { id: 'rKids',      icon: '<i data-lucide="baby"></i>', label: 'Kids',  value: kids },
-    { id: 'rLocation',  icon: '<i data-lucide="map-pin"></i>', label: 'Location', value: loc }
+    { id: 'rPartner',   icon: '<i data-lucide="heart"></i>', label: window.i18n ? window.i18n.t('mash.cat_partner') : 'Partner',    value: partner },
+    { id: 'rMash',      icon: MASH_EMOJIS[mash] || '<i data-lucide="house"></i>', label: window.i18n ? window.i18n.t('mash.cat_home') : 'Home', value: mashLabel },
+    { id: 'rJob',       icon: '<i data-lucide="briefcase"></i>', label: window.i18n ? window.i18n.t('mash.cat_job') : 'Job', value: job },
+    { id: 'rTransport', icon: '<i data-lucide="rocket"></i>', label: window.i18n ? window.i18n.t('mash.cat_car') : 'Car',  value: color + '  ' + transport },
+    { id: 'rKids',      icon: '<i data-lucide="baby"></i>', label: window.i18n ? window.i18n.t('mash.cat_kids') : 'Kids',  value: kids },
+    { id: 'rLocation',  icon: '<i data-lucide="map-pin"></i>', label: window.i18n ? window.i18n.t('mash.cat_location') : 'Location', value: loc }
   ];
 
   cards.forEach(c => {
@@ -440,7 +452,7 @@ function showResult(results) {
 
   if (window.lucide) window.lucide.createIcons();
 
-  document.getElementById('rDecree').textContent = DECREES[mash] || '';
+  document.getElementById('rDecree').textContent = decreeMsg;
   document.getElementById('rId').textContent   = gameScrollId;
   document.getElementById('rDate').textContent = gameScrollDate;
 
@@ -528,9 +540,10 @@ async function shareResult() {
       const file = new File([blob], 'MASH_result.png', { type: 'image/png' });
       if (navigator.canShare && navigator.canShare({ files: [file] })) {
         try {
+          const mashLabel = window.i18n ? window.i18n.t('mash.label_' + (gameResults.mash || 'Shack').toLowerCase().charAt(0)) : (gameResults.mash || 'Shack');
           await navigator.share({
-            title: 'My MASH Future!',
-            text: `\uD83C\uDFE0 ${gameResults.mash || 'Shack'} with ${gameResults.partner || '???'} \u2014 revealed by LADS SIMULATOR`,
+            title: window.i18n ? window.i18n.t('mash.share_title') : 'My MASH Future!',
+            text: window.i18n ? window.i18n.t('mash.share_text').replace('{MASH}', mashLabel).replace('{PARTNER}', gameResults.partner || '???') : `\uD83C\uDFE0 ${mashLabel} with ${gameResults.partner || '???'} \u2014 revealed by LADS SIMULATOR`,
             files: [file]
           });
         } catch (err) {
@@ -542,9 +555,10 @@ async function shareResult() {
 }
 
 function fallbackShare() {
-  const text = `\uD83C\uDFE0 ${gameResults.mash || 'Shack'} with ${gameResults.partner || '???'} \u2014 my MASH destiny revealed at LADS SIMULATOR!`;
+  const mashLabel = window.i18n ? window.i18n.t('mash.label_' + (gameResults.mash || 'Shack').toLowerCase().charAt(0)) : (gameResults.mash || 'Shack');
+  const text = window.i18n ? window.i18n.t('mash.share_text_full').replace('{MASH}', mashLabel).replace('{PARTNER}', gameResults.partner || '???') : `\uD83C\uDFE0 ${mashLabel} with ${gameResults.partner || '???'} \u2014 my MASH destiny revealed at LADS SIMULATOR!`;
   if (navigator.clipboard) {
-    navigator.clipboard.writeText(text).then(() => alert('\u2726 Result text copied to clipboard!'));
+    navigator.clipboard.writeText(text).then(() => alert(window.i18n ? window.i18n.t('mash.copied') : '\u2726 Result text copied to clipboard!'));
   } else {
     alert(text);
   }
