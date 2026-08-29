@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Claw Paradise — Love and Deepspace Simulator</title>
+    <link rel="icon" type="image/webp" href="../assets/ui/favicon.webp">
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Infant:ital,wght@0,300;0,400;0,600;1,400&family=Inter:wght@300;400;500;600&family=Rubik+Bubbles&family=Zhi+Mang+Xing&display=swap"
+        rel="stylesheet">
+    <!-- Global Styles -->
+    <link rel="stylesheet" href="../style.css?v=33">
+    <!-- Minigame Styles (Dynamic Cache Busting) -->
+    <script>document.write('<link rel="stylesheet" href="minigame.css?v=' + Date.now() + '">');</script>
+    <!-- Claw Machine Styles (Dynamic Cache Busting) -->
+    <script>document.write('<link rel="stylesheet" href="claw-machine.css?v=' + Date.now() + '">');</script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.19.0/matter.min.js"></script>
+</head>
+
+<body style="margin: 0; padding: 0; overflow: hidden; background: #07071c;">
+
+    <div id="cm-container" class="minigame-screen">
+
+        <!-- Page title -->
+        <h1 class="cm-title" id="cm-title-el" data-i18n="arcade.claw_paradise">CLAW PARADISE</h1>
+        <!-- Frame + game wrapper -->
+        <div class="minigame-frame-wrapper">
+            <!-- Frame image on top -->
+            <img src="../assets/ui/arcade/claw-machine/claw-machine.webp" alt="" class="game-frame-img" draggable="false">
+
+            <!-- In-frame HUD (shown during game only) -->
+            <div class="in-frame-hud cm-hud" id="cm-hud" style="display:none;">
+                <div class="hud-left" style="display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:4px;height:100%;">
+                    <span style="font-family:'Rubik Bubbles','Zhi Mang Xing',sans-serif;color:#5a3fa0;font-size:14px;line-height:1;"><span data-i18n="arcade.attempts">Attempts: </span><span id="cm-attempts-left">5</span></span>
+                    <span style="font-family:'Inter',sans-serif;color:#8b6dc4;font-size:12px;font-weight:600;line-height:1;"><span data-i18n="arcade.time">Time: </span><span id="cm-timer">30</span>s</span>
+                </div>
+                <div class="hud-right" style="display:flex;flex-direction:column;align-items:flex-end;gap:4px;height:100%;">
+                    <span style="font-family:'Rubik Bubbles','Zhi Mang Xing',sans-serif;font-size:12px;color:#5a3fa0;line-height:1;" data-i18n="arcade.collected">Collected</span>
+                    <!-- Collected plushies row -->
+                    <div id="cm-collected-row" style="display:flex;gap:4px;min-height:32px;"></div>
+                </div>
+            </div>
+
+            <!-- Glass Screen Container (Clipped to glass window) -->
+            <div class="cm-glass-container">
+                <div class="minigame-bg-fill cm-bg-fill"></div>
+
+                <!-- Pause button -->
+                <button id="cm-pause-btn" class="hud-pause-btn" aria-label="Pause" style="position:absolute; top:calc(var(--play-top) + 1.5em); right:calc(var(--play-right) + 1.5em); width:28px; height:28px; background:rgba(90, 63, 160, 0.9); z-index:40; display:none;">
+                    <i data-lucide="pause" id="cm-pause-icon" style="width:14px;height:14px;color:white;"></i>
+                    <i data-lucide="play" id="cm-play-icon" style="width:14px;height:14px;color:white;display:none;"></i>
+                </button>
+
+
+            <!-- The 3D game area (claw + prize bin) -->
+            <div id="cm-game-area" class="cm-game-area" style="display:none;">
+                <!-- Ceiling rail track -->
+                <div class="cm-rail-track">
+                    <div class="cm-rail" id="cm-rail">
+                        <div class="cm-arm" id="cm-arm">
+                            <svg id="cm-claw-svg" class="cm-claw-svg" viewBox="0 0 60 50"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <rect x="18" y="0" width="24" height="12" rx="4" fill="#7558b0" stroke="#5a3fa0"
+                                    stroke-width="1.5" />
+                                <path id="claw-prong-l" d="M24 12 Q10 25 8 44 Q6 48 10 46 Q14 44 22 30" fill="none"
+                                    stroke="#9b7dd4" stroke-width="3" stroke-linecap="round" />
+                                <path id="claw-prong-c" d="M30 12 L30 40 Q30 46 30 48 Q30 50 30 48" fill="none"
+                                    stroke="#9b7dd4" stroke-width="3" stroke-linecap="round" />
+                                <path id="claw-prong-r" d="M36 12 Q50 25 52 44 Q54 48 50 46 Q46 44 38 30" fill="none"
+                                    stroke="#9b7dd4" stroke-width="3" stroke-linecap="round" />
+                                <ellipse cx="30" cy="6" rx="8" ry="3" fill="rgba(255,255,255,0.2)" />
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+                <div class="cm-prize-bin" id="cm-prize-bin"></div>
+                <div class="cm-drop-box" id="cm-drop-box"></div>
+                <div class="cm-chute-flash" id="cm-chute-flash"></div>
+            </div>
+
+
+            <!-- INTRO SCREEN -->
+            <div id="cm-intro" class="in-frame-overlay">
+                <div class="intro-scroll">
+                    <p class="cm-intro-sub" data-i18n="arcade.intro_sub">Grab plushies and build your collection!</p>
+                    <div class="cm-status-card">
+                        <div class="cm-status-row">
+                            <i data-lucide="calendar" style="width:14px;height:14px;color:#8b6dc4;"></i>
+                            <span><span data-i18n="arcade.rounds_this_week">Rounds this week: </span><strong id="cm-rounds-display">3</strong> <span data-i18n="arcade.miss">remaining</span></span>
+                        </div>
+                        <div class="cm-status-row">
+                            <i data-lucide="target" style="width:14px;height:14px;color:#d97bbf;"></i>
+                            <span data-i18n="arcade.attempts_per_round">Attempts per round: <strong>5</strong></span>
+                        </div>
+                    </div>
+                    <div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-top:4px;">
+                        <button id="cm-start-btn" class="arcade-btn primary-btn">
+                            <i data-lucide="play" style="width:14px;height:14px;color:white;"></i>
+                            <span data-i18n="arcade.start_round">Start Round</span>
+                        </button>
+                        <button id="cm-collection-btn-intro" class="arcade-btn ghost-btn">
+                            <i data-lucide="package" style="width:14px;height:14px;color:#7558b0;"></i>
+                            <span data-i18n="arcade.my_collection">My Collection</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Win Screen -->
+                <div id="cm-win" class="in-frame-overlay" style="display:none;">
+                    <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;">
+                        <h2 class="rewards-title" style="margin-bottom:8px;" data-i18n="arcade.you_get">YOU GET</h2>
+                        <div id="cm-win-plushie" class="cm-win-plushie"></div>
+                        <span id="cm-win-label" class="cm-win-label"></span>
+                    </div>
+                    <div style="margin-top:8px;padding-bottom:12px;">
+                        <button id="cm-continue-btn" class="arcade-btn primary-btn">
+                            <span data-i18n="arcade.continue">Continue</span>
+                            <i data-lucide="arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Miss Screen -->
+                <div id="cm-miss" class="in-frame-overlay" style="display:none;background:rgba(255,255,255,0.95);">
+                    <div style="font-size:32px;margin-bottom:8px;">😔</div>
+                    <h2 class="rewards-title" style="margin:0;font-size:clamp(16px,4vw,20px);" data-i18n="arcade.so_close">So close...</h2>
+                    <p id="cm-miss-attempts" style="margin:4px 0 0 0;font-family:'Inter',sans-serif;font-size:12px;color:#7558b0;"></p>
+                </div>
+
+                <!-- Round Over Screen -->
+                <div id="cm-round-over" class="in-frame-overlay" style="display:none;">
+                    <h2 class="rewards-title" style="margin:0;" data-i18n="arcade.round_over">ROUND OVER</h2>
+                    <div id="cm-round-plushies-display" style="display:flex;justify-content:center;margin:12px 0;"></div>
+                    <div style="margin-top:8px;display:flex;flex-direction:column;align-items:center;gap:6px;">
+                        <button id="cm-next-round-btn" class="arcade-btn primary-btn">
+                            <i data-lucide="rotate-cw"></i>
+                            <span data-i18n="arcade.next_round">Next Round</span>
+                        </button>
+                        <button id="cm-exit-from-round-btn" class="arcade-btn ghost-btn">
+                            <i data-lucide="home"></i>
+                            <span data-i18n="arcade.back">BACK TO HOME</span>
+                        </button>
+                    </div>
+                </div>
+
+            <!-- WEEKLY LIMIT SCREEN -->
+            <div id="cm-weekly-limit" class="in-frame-overlay" style="display:none;">
+                <div class="intro-scroll">
+                    <div style="font-size:40px;">🌙</div>
+                    <h2 class="rewards-title" style="font-size:clamp(14px,3.5vw,20px);" data-i18n="arcade.see_you_next_week">See you next week!</h2>
+                    <p class="cm-intro-sub" data-i18n="arcade.weekly_reset">You've used all 3 rounds for this week.<br>Resets in: <strong
+                            id="cm-reset-countdown">—</strong></p>
+                    <button id="cm-collection-btn-limit" class="arcade-btn ghost-btn" style="margin-top:8px;">
+                        <i data-lucide="package" style="width:14px;height:14px;color:#7558b0;"></i>
+                        <span data-i18n="arcade.view_collection">View Collection</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- PAUSE OVERLAY -->
+            <div id="cm-pause-overlay" style="display:none;" class="in-frame-overlay">
+                <p class="pause-overlay-text" data-i18n="arcade.paused">PAUSED</p>
+                <div style="display:flex;gap:8px;margin-top:12px;flex-direction:column;">
+                    <button id="cm-resume-btn" class="arcade-btn primary-btn">
+                        <i data-lucide="play" style="width:14px;height:14px;color:white;"></i>
+                        <span data-i18n="arcade.resume">Resume</span>
+                    </button>
+                    <button id="cm-end-btn" class="arcade-btn ghost-btn">
+                        <i data-lucide="square" style="width:14px;height:14px;color:#7558b0;"></i>
+                        <span data-i18n="arcade.end_round">End Round</span>
+                    </button>
+                </div>
+            </div>
+
+            </div><!-- /.cm-glass-container -->
+
+            <!-- Controls Panel (positioned on the machine's white base) -->
+            <div class="cm-controls-panel" id="cm-controls-panel">
+                <div class="cm-joystick-wrap" id="cm-joystick-wrap">
+                    <img src="../assets/ui/arcade/claw-machine/joystick.png" alt="Joystick" class="cm-joystick-img"
+                        id="cm-joystick-img" draggable="false">
+                </div>
+                <div class="cm-drop-btn-wrap" id="cm-drop-btn-wrap">
+                    <img src="../assets/ui/arcade/claw-machine/button-up.png" alt="Drop" class="cm-drop-btn-img"
+                        id="cm-drop-btn-img" draggable="false">
+                </div>
+            </div>
+
+        <!-- Physical machine instructions -->
+        <div class="cm-machine-instructions" style="position: absolute; bottom: 3.5%; left: 16%; width: 30%; background: #fffaf7; border: 2px solid #a19be0; border-radius: 8px; padding: 10px 12px; font-size: 0.7rem; color: #5a3fa0; text-align: left; font-weight: 600; pointer-events: none; line-height: 1.4; z-index: 20;">
+            <p style="margin: 0 0 6px 0;" data-i18n="arcade.instr_move">Use <strong>WASD / Arrow Keys</strong> or joystick to move.</p>
+            <p style="margin: 0;" data-i18n="arcade.instr_drop">Press <strong>Space</strong>, <strong>Enter</strong> or DROP button to grab!</p>
+        </div>
+
+        </div><!-- /.minigame-frame-wrapper -->
+
+        <!-- Exit button (below frame on non-game screens) -->
+        <div class="below-frame" id="cm-below-exit">
+            <button id="cm-exit-btn" class="arcade-btn ghost-btn">
+                <i data-lucide="arrow-left" style="width:14px;height:14px;color:#7558b0;"></i>
+                <span data-i18n="arcade.back">Back to Home</span>
+            </button>
+        </div>
+
+    </div><!-- /#cm-container -->
+
+    <!-- COLLECTION MODAL -->
+    <div id="cm-collection-modal" class="cm-collection-modal" style="display:none;">
+        <div class="cm-collection-inner">
+            <div class="cm-collection-header">
+                <h2 class="cm-collection-title">✦ <span data-i18n="arcade.plushie_collection">Plushie Collection</span> ✦</h2>
+                <button id="cm-collection-close" class="settings-close" aria-label="Close collection">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M18 6 6 18M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+            <div class="cm-char-tabs" id="cm-char-tabs"></div>
+            <div class="cm-collection-grid" id="cm-collection-grid"></div>
+        </div>
+    </div>
+
+    <div class="toast" id="toast" role="alert" aria-live="assertive"></div>
+
+    <button id="music-toggle" class="music-toggle-btn" style="position:fixed;z-index:10001;"
+        aria-label="Toggle background music">
+        <i data-lucide="play" id="music-icon-play"></i>
+        <i data-lucide="pause" id="music-icon-pause" style="display:none;"></i>
+    </button>
+
+    <audio id="cm-bgm" src="../assets/ui/peach-soda.mp3" loop></audio>
+    <script src="../audio-bridge.js?v=4"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            if (window.AudioBridge) {
+                const bgmEl = document.getElementById('cm-bgm');
+                AudioBridge.init(bgmEl, 'music-icon-play', 'music-icon-pause');
+                document.getElementById('global-audio-toggle').addEventListener('click', () => {
+                    AudioBridge.toggle(bgmEl, 'music-icon-play', 'music-icon-pause');
+                });
+            }
+        });
+    </script>
+    <script src="../i18n.js?v=5"></script>
+    <script>document.write('<script src="claw-machine.js?v=' + Date.now() + '"><\/script>');</script>
+    <script>
+        window.PAGE_FAQ = {
+            title: 'Cosmo Claw FAQ',
+            items: [
+                { q: 'How do I play?', a: 'Move the claw using WASD or Arrow Keys (Desktop) or the on-screen Joystick (Mobile). You have 30 seconds per attempt—when ready, press Space / Enter (Desktop) or the DROP button (Mobile) to lower the claw and grab a plushie! If time runs out, the claw will automatically drop.', i18n_q: 'faq.cm_q1', i18n_a: 'faq.cm_a1' },
+                { q: 'How many times can I play?', a: 'You get 5 rounds per week (resets every Monday). Each round gives you 5 attempts to grab plushies.', i18n_q: 'faq.cm_q2', i18n_a: 'faq.cm_a2' },
+                { q: 'How does the collection work?', a: 'Each character has 2 plushie designs, each with 4 color variants. Collect 3 plushies of the same character to unlock Variant 2, 6 for Variant 3, and 9 for Variant 4!', i18n_q: 'faq.cm_q3', i18n_a: 'faq.cm_a3' },
+                { q: 'What counts toward unlock progress?', a: 'Only plushies of the same character count toward that character\'s unlock progress.', i18n_q: 'faq.cm_q4', i18n_a: 'faq.cm_a4' },
+                { q: 'What if the claw misses?', a: 'You lose one attempt but can try again. The claw\'s grip strength is randomized (50% chance of gripping)—keep trying!', i18n_q: 'faq.cm_q5', i18n_a: 'faq.cm_a5' },
+                { q: 'Where can I see my plushies?', a: 'Tap "My Collection" on the intro screen or after winning to view your full collection.', i18n_q: 'faq.cm_q6', i18n_a: 'faq.cm_a6' }
+            ]
+        };
+    </script>
+    <script src="../global-settings.js?v=6"></script>
+    <script src="../global-faq.js?v=3"></script>
+    <script>lucide.createIcons();</script>
+</body>
+
+</html>

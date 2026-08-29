@@ -1,0 +1,780 @@
+/* ═══════════════════════════════════════════════
+   COSMO CLAW — Claw Machine Styles
+   Separate from minigame.css (shared base)
+
+   Frame: assets/ui/arcade/claw-machine/claw-machine.webp
+   Image ratio: ~845 × 1390 → 0.608
+   Play zone (glass window) approx:
+     top: 29%   left: 12%   right: 12%   bottom: 43%
+═══════════════════════════════════════════════ */
+
+/* Override minigame.css frame variables for claw machine */
+#cm-container {
+  --frame-ratio:  0.683;
+  --play-top:    28.92%;
+  --play-left:   20.21%;
+  --play-right:  20.42%;
+  --play-bottom: 38.39%;
+}
+
+/* ── Page title ── */
+.cm-win-label {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: #55447a;
+  margin-top: 16px;
+  text-align: center;
+}
+.cm-title {
+  font-family: 'Rubik Bubbles', 'Zhi Mang Xing', system-ui, sans-serif;
+  font-size: clamp(28px, 7vw, 58px);
+  color: #ffffff;
+  letter-spacing: 3px;
+  margin: 0 0 8px;
+  user-select: none;
+  white-space: nowrap;
+  text-shadow:
+    0 2px 0 #7b58b8,
+    0 4px 0 rgba(100,60,180,0.25),
+    0 0 24px rgba(200,170,255,0.6);
+}
+
+/* ── Frame wrapper: use claw machine image ratio and scale up ── */
+#cm-container .minigame-frame-wrapper {
+  width: min(560px, 92vw, max(300px, calc((100vh - 180px) * (950 / 1563))));
+  aspect-ratio: 950 / 1563;
+}
+
+@media (max-width: 768px) {
+  #cm-container .minigame-frame-wrapper {
+    width: min(95vw, calc((100vh - 160px) * (950 / 1563))) !important;
+  }
+  .cm-machine-instructions {
+    display: none !important;
+  }
+  #cm-container .arcade-btn {
+    padding: 6px 10px;
+    font-size: 11px;
+  }
+  #cm-container .cm-status-card {
+    padding: 6px 10px;
+    width: 95%;
+  }
+  #cm-container .cm-status-row {
+    font-size: 10px;
+  }
+}
+
+/* ── Variables for Claw Machine Glass Window Bounds ── */
+#cm-container {
+  --play-top: 28%;
+  --play-bottom: 38%;
+  --play-left: 13%;
+  --play-right: 13%;
+}
+
+/* ── Background fill: background of the claw machine ── */
+.cm-bg-fill {
+  background-image: url('../assets/ui/arcade/game-background.webp') !important;
+  background-size: 100% 100%;
+  background-position: center;
+  border-radius: 0;
+  z-index: 1;
+}
+
+/* ── Glass Container (covers the whole machine, frame sits on top) ── */
+.cm-glass-container {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  pointer-events: none;
+}
+.cm-glass-container > * {
+  pointer-events: auto;
+}
+
+/* ── The claw machine frame image ── */
+.game-frame-img {
+  z-index: 10;
+  pointer-events: none !important;
+}
+
+/* ── Game area: perfectly sized to the glass screen and sits ON TOP of the frame ── */
+.cm-game-area {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  overflow: hidden;
+}
+
+/* ── Rail track (top ceiling bar) ── */
+.cm-rail-track {
+  position: absolute;
+  top: 28.92%;
+  left: 20.21%;
+  right: 20.42%;
+  height: 14px;
+  background: linear-gradient(90deg, #3d1f8a, #7558b0, #3d1f8a);
+  border-radius: 0 0 4px 4px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+  z-index: 25;
+}
+
+/* ── Rail (moving horizontal slider) ── */
+.cm-rail {
+  position: absolute;
+  top: 0;
+  left: 50%; /* JS moves this */
+  transform: translateX(-50%);
+  width: 28px;
+  height: 14px;
+  background: #c0a8e8;
+  border-radius: 4px;
+  box-shadow: 0 0 8px rgba(139,109,196,0.8);
+  transition: left 0.08s linear;
+  z-index: 6;
+}
+
+/* ── Arm (vertical cable from rail to claw) ── */
+.cm-arm {
+  position: absolute;
+  top: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 3px;
+  height: 60px; /* JS animates this */
+  background: linear-gradient(180deg, #9b7dd4, #c0a8e8);
+  border-radius: 2px;
+  transition: height 0.05s linear;
+  transform-origin: top center;
+}
+
+/* ── SVG Claw ── */
+.cm-claw-svg {
+  position: absolute;
+  bottom: -50px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 50px;
+  filter: drop-shadow(0 2px 4px rgba(90,63,160,0.5));
+  transition: d 0.2s ease;
+}
+
+/* ── 3D Prize bin ── */
+.cm-prize-bin {
+  position: absolute;
+  bottom: 38.39%;
+  left: 16.95%;
+  right: 12.95%;
+  height: 25%;
+  /* Subtle floor gradient */
+  background: linear-gradient(180deg,
+    rgba(30,10,70,0.0) 0%,
+    rgba(30,10,70,0.6) 80%,
+    rgba(10,5,30,0.9) 100%
+  );
+  border-radius: 0 0 10px 10px;
+}
+
+/* ── Individual plushie items ── */
+.cm-plushie {
+  position: absolute;
+  width: 64px;
+  height: 64px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  filter: drop-shadow(0 4px 6px rgba(0,0,0,0.5));
+  transform-origin: center center;
+}
+
+/* Plushie "grabbed" state */
+.cm-plushie.grabbed {
+  filter: drop-shadow(0 8px 12px rgba(139,109,196,0.8));
+}
+
+/* ── Prize chute flash (win animation) ── */
+.cm-chute-flash {
+  position: absolute;
+  bottom: 38.39%;
+  right: 13.5%;
+  width: 25%;
+  height: 12%;
+  background: radial-gradient(ellipse, rgba(255,220,100,0.9) 0%, transparent 70%);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 30;
+  border-radius: 50%;
+  transition: opacity 0.2s;
+}
+
+.cm-chute-flash.flash {
+  animation: chuteFlash 0.6s ease-out forwards;
+}
+
+@keyframes chuteFlash {
+  0%   { opacity: 0;   transform: scale(0.5); }
+  40%  { opacity: 1;   transform: scale(1.2); }
+  100% { opacity: 0;   transform: scale(1.5); }
+}
+
+/* ── Prize Bin (where the plushies sit before grabbing) ── */
+.cm-prize-bin {
+  position: absolute;
+  bottom: 38.39%;
+  left: 16.95%;
+  right: 12.95%;
+  height: 25%;
+  /* Removed dark floor gradient */
+  background: transparent;
+}
+
+/* ── Drop Box (where prize falls) ── */
+.cm-drop-box {
+  position: absolute;
+  bottom: 38.39%;
+  right: 12.95%;
+  width: 22%;
+  height: 4%;
+  background: rgba(184, 173, 246, 0.8);
+  border: 1px solid rgba(139, 109, 196, 0.5);
+  border-radius: 4px;
+  z-index: 35; /* On top of the screen game area */
+}
+/* ── HUD override for CM (positioned in the top purple box) ── */
+.cm-hud {
+  position: absolute !important;
+  top: 9.5% !important;
+  left: 12% !important;
+  right: 12% !important;
+  height: 12% !important;
+  background: transparent !important;
+  backdrop-filter: none !important;
+  border: none !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  flex-direction: row !important;
+  padding: 1em !important;
+  z-index: 15 !important; /* above game frame */
+}
+
+/* ── Pause overlay for CM (inherits from minigame.css) ── */
+#cm-pause-overlay {
+  position: absolute;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  background: rgba(80, 50, 140, 0.55);
+  backdrop-filter: blur(6px);
+  animation: pauseFadeIn 0.2s ease-out forwards;
+}
+
+/* ── Intro sub-text ── */
+.cm-intro-sub {
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(10px, 2.5vw, 13px);
+  color: #7558b0;
+  margin: 0;
+  text-align: center;
+  line-height: 1.6;
+}
+
+/* ── Round Over Plushie Display ── */
+#cm-round-plushies-display {
+  gap: 8px !important;
+  padding: 4px 0 !important;
+  margin: 4px 0 !important;
+  width: 100%;
+  flex-wrap: nowrap !important;
+  justify-content: center !important;
+}
+#cm-container .in-frame-overlay .arcade-btn {
+  padding: 6px 12px !important;
+  font-size: 12px !important;
+  gap: 6px !important;
+}
+#cm-round-plushies-display > div {
+  flex: 0 1 56px !important;
+  width: 100% !important;
+  max-width: 56px !important;
+  height: auto !important;
+  aspect-ratio: 1;
+  font-size: clamp(16px, 4vw, 24px) !important;
+}
+#cm-round-plushies-display > div > .badge {
+  font-size: 12px !important;
+  padding: 2px 4px !important;
+  bottom: -4px !important;
+  right: -4px !important;
+}
+
+@media (max-width: 480px) {
+  #cm-round-plushies-display > div > .badge {
+    font-size: 11px !important;
+    padding: 2px 4px !important;
+  }
+}
+
+/* ── Status card (weekly rounds info) ── */
+.cm-status-card {
+  background: rgba(255,255,255,0.6);
+  border: 1.5px solid #c0a8e8;
+  border-radius: 12px;
+  padding: 10px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 90%;
+  box-sizing: border-box;
+}
+
+.cm-status-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(10px, 2.5vw, 13px);
+  color: #5a3fa0;
+}
+
+.cm-status-row strong {
+  color: #7558b0;
+}
+
+/* ── Micro hint on intro ── */
+.cm-micro-hint {
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(9px, 2vw, 11px);
+  color: #8b7caa;
+  margin: 4px 0 0;
+  text-align: center;
+  line-height: 1.6;
+}
+
+/* ── Win plushie display ── */
+.cm-win-plushie {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  box-shadow:
+    0 4px 20px rgba(139,109,196,0.5),
+    inset 0 -4px 8px rgba(0,0,0,0.2),
+    inset 0 4px 8px rgba(255,255,255,0.4);
+  animation: winPop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+@keyframes winPop {
+  from { transform: scale(0); opacity: 0; }
+  to   { transform: scale(1); opacity: 1; }
+}
+
+.cm-win-label {
+  font-family: 'Rubik Bubbles', 'Zhi Mang Xing', system-ui, sans-serif;
+  font-size: clamp(11px, 2.5vw, 14px);
+  color: #5a3fa0;
+  margin: 4px 0 0;
+  text-align: center;
+}
+
+/* ── Progress bar for collection unlock ── */
+.cm-progress-wrap {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.cm-progress-bar-container {
+  background: rgba(139,109,196,0.15);
+  border-radius: 99px;
+  height: 8px;
+  overflow: hidden;
+  margin-top: 4px;
+}
+
+.cm-progress-bar-fill {
+  height: 100%;
+  border-radius: 99px;
+  background: linear-gradient(90deg, #9b7dd4, #d97bbf);
+  transition: width 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.cm-progress-label {
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(9px, 2vw, 11px);
+  color: #7558b0;
+  text-align: center;
+  margin: 0 0 2px;
+}
+
+/* ── Controls panel positioned on the white base of the machine ── */
+.cm-controls-panel {
+  position: absolute;
+  top: 59.5%;
+  left: 11%;
+  right: 16%;
+  height: 13%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 10px;
+  z-index: 20;
+  pointer-events: none;
+}
+
+.cm-controls-panel > * {
+  pointer-events: auto;
+}
+
+.cm-controls-panel.inactive > * {
+  pointer-events: none;
+}
+
+/* ── Joystick ── */
+.cm-joystick-wrap {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  touch-action: none;
+  cursor: grab;
+}
+
+.cm-joystick-img {
+  width: 70px;
+  height: 70px;
+  object-fit: contain;
+  pointer-events: none;
+  user-select: none;
+  transition: transform 0.1s ease;
+  transform-origin: bottom center;
+}
+
+/* ── Drop button ── */
+.cm-drop-btn-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+  user-select: none;
+  touch-action: none;
+  flex-shrink: 0;
+  margin-top: 24px;
+}
+
+.cm-drop-btn-img {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  pointer-events: none;
+  user-select: none;
+  transition: transform 0.1s ease;
+}
+
+.cm-drop-btn-wrap:active .cm-drop-btn-img,
+.cm-drop-btn-wrap.pressed .cm-drop-btn-img {
+  transform: scale(0.9);
+}
+
+/* ── Collection Modal ── */
+.cm-collection-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 20000;
+  background: rgba(10, 5, 30, 0.85);
+  backdrop-filter: blur(12px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  box-sizing: border-box;
+  animation: fadeInModal 0.25s ease forwards;
+}
+
+@keyframes fadeInModal {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.cm-collection-inner {
+  background: linear-gradient(145deg, #1e0d47, #2d1457);
+  border: 1.5px solid rgba(192,168,232,0.35);
+  border-radius: 20px;
+  width: 100%;
+  max-width: 600px;
+  max-height: 85vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: 0 24px 64px rgba(0,0,0,0.6);
+}
+
+.cm-collection-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px 12px;
+  border-bottom: 1px solid rgba(192,168,232,0.2);
+  flex-shrink: 0;
+}
+
+.cm-collection-title {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(14px, 3.5vw, 18px);
+  color: #c0a8e8;
+  margin: 0;
+  letter-spacing: 1px;
+}
+
+/* ── Character tabs ── */
+.cm-char-tabs {
+  display: flex;
+  overflow-x: auto;
+  gap: 4px;
+  padding: 10px 16px 0;
+  flex-shrink: 0;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(192,168,232,0.3) transparent;
+}
+
+.cm-char-tab {
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(10px, 2.5vw, 12px);
+  color: rgba(192,168,232,0.6);
+  background: transparent;
+  border: 1.5px solid rgba(192,168,232,0.2);
+  border-radius: 99px;
+  padding: 4px 12px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s;
+  flex-shrink: 0;
+}
+
+.cm-char-tab:hover {
+  background: rgba(192,168,232,0.1);
+  color: rgba(192,168,232,0.9);
+}
+
+.cm-char-tab.active {
+  background: rgba(139,109,196,0.3);
+  border-color: #9b7dd4;
+  color: #fff;
+}
+
+/* ── Collection grid ── */
+.cm-collection-grid {
+  padding: 14px 16px 20px;
+  overflow-y: auto;
+  flex: 1;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(192,168,232,0.3) transparent;
+}
+
+.cm-char-progress {
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(10px, 2.5vw, 12px);
+  color: rgba(192,168,232,0.7);
+  margin: 0 0 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.cm-char-progress-bar {
+  flex: 1;
+  height: 5px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 99px;
+  overflow: hidden;
+}
+
+.cm-char-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #9b7dd4, #d97bbf);
+  border-radius: 99px;
+  transition: width 0.4s ease;
+}
+
+.cm-design-group {
+  margin-bottom: 16px;
+}
+
+.cm-design-label {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(11px, 2.5vw, 13px);
+  color: rgba(192,168,232,0.5);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin: 0 0 8px;
+}
+
+.cm-variants-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+}
+
+.cm-variant-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.cm-variant-plushie {
+  width: 72px;
+  height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  position: relative;
+}
+
+.cm-variant-plushie.locked {
+  filter: brightness(0.2) saturate(0);
+}
+
+.cm-variant-plushie .lock-icon {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255,255,255,0.3);
+  font-size: 18px;
+}
+
+.cm-variant-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  color: rgba(192,168,232,0.5);
+  text-align: center;
+}
+
+.cm-variant-count {
+  font-family: 'Rubik Bubbles', 'Zhi Mang Xing', system-ui, sans-serif;
+  font-size: 12px;
+  color: #9b7dd4;
+}
+
+/* ── Mobile responsiveness ── */
+@media (max-width: 480px) {
+  .cm-title {
+    font-size: clamp(26px, 10vw, 42px);
+    letter-spacing: 2px;
+    margin-bottom: 4px;
+  }
+
+  .cm-controls {
+    padding: 6px 8px;
+    gap: 15px;
+  }
+
+  .cm-joystick-wrap {
+    width: 70px;
+    height: 70px;
+  }
+
+  .cm-joystick-img {
+    width: 48px;
+    height: 48px;
+  }
+
+  .cm-drop-btn-img {
+    width: 56px;
+    height: 56px;
+  }
+
+  .cm-below-frame {
+    margin-top: 2px;
+  }
+
+  .cm-collection-inner {
+    max-height: 90vh;
+  }
+
+  .cm-variants-row {
+    gap: 6px;
+  }
+
+  .cm-variant-plushie {
+    width: 44px;
+    height: 44px;
+    font-size: 17px;
+  }
+}
+
+/* ── Tablet specific (iPad Air, iPad Pro, etc) ── */
+@media (min-width: 769px) and (max-width: 1024px) {
+  /* Let the machine fill the larger tablet screen */
+  #cm-container .minigame-frame-wrapper {
+    width: min(92vw, max(400px, calc((100vh - 200px) * (950 / 1563)))) !important;
+  }
+  
+  /* Scale up controls */
+  .cm-joystick-wrap {
+    width: 120px !important;
+    height: 120px !important;
+  }
+  .cm-joystick-img {
+    width: 105px !important;
+    height: 105px !important;
+  }
+  .cm-drop-btn-img {
+    width: 120px !important;
+    height: 120px !important;
+  }
+  .cm-drop-btn-wrap {
+    margin-top: 36px !important;
+  }
+  
+  /* Scale up screens and text */
+  #cm-container .cm-intro-sub {
+    font-size: 16px !important;
+  }
+  #cm-container .rewards-title {
+    font-size: 26px !important;
+  }
+  #cm-container .cm-status-card {
+    padding: 16px 24px !important;
+  }
+  #cm-container .cm-status-row {
+    font-size: 14px !important;
+  }
+  #cm-container .arcade-btn {
+    padding: 10px 16px !important;
+    font-size: 14px !important;
+  }
+}
+
+.cm-collection-title {
+  font-family: 'Zhi Mang Xing', sans-serif;
+  font-size: 24px;
+  color: white;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+  margin: 0;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+html[lang^="zh"] .cm-collection-title {
+  font-size: 38px;
+}

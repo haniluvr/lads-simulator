@@ -3407,8 +3407,8 @@ body.cursor-zayne * {
 }
 
 .arcade-modal-grid {
-  display: grid;
-  grid-template-columns: repeat(2, auto);
+  display: flex;
+  flex-wrap: wrap;
   gap: 32px 48px; /* row-gap, column-gap */
   justify-content: center;
   align-items: flex-start;

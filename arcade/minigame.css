@@ -31,7 +31,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  overflow-y: auto;
+  overflow-y: hidden;
   overflow-x: hidden;
   padding: 16px;
   box-sizing: border-box;
@@ -196,7 +196,7 @@
   display: flex;
   align-items: center;
   gap: 4px;
-  font-family: 'Rubik Bubbles', system-ui, sans-serif;
+  font-family: 'Rubik Bubbles', 'Zhi Mang Xing', system-ui, sans-serif;
   font-size: clamp(10px, 2.2vw, 14px);
   color: #5a3fa0;
 }
@@ -213,7 +213,7 @@
   right: 0;
   text-align: center;
   pointer-events: none;
-  font-family: 'Rubik Bubbles', system-ui, sans-serif;
+  font-family: 'Rubik Bubbles', 'Zhi Mang Xing', system-ui, sans-serif;
   font-size: clamp(14px, 3.5vw, 22px);
   color: #5a3fa0;
   text-shadow: 0 1px 0 rgba(255,255,255,0.8);
@@ -230,8 +230,9 @@
   left: var(--play-left);
   right: var(--play-right);
   bottom: var(--play-bottom);
-  z-index: 4;
+  z-index: 50;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   background: rgba(240, 234, 251, 0.92);
@@ -315,7 +316,7 @@
 }
 
 .intro-title {
-  font-family: 'Rubik Bubbles', system-ui, sans-serif;
+  font-family: 'Rubik Bubbles', 'Zhi Mang Xing', system-ui, sans-serif;
   font-size: clamp(14px, 3.5vw, 20px);
   color: #5a3fa0;
   margin: 0;
@@ -357,7 +358,7 @@
 
 /* ── Shared arcade button ── */
 .arcade-btn {
-  font-family: 'Rubik Bubbles', system-ui, sans-serif;
+  font-family: 'Rubik Bubbles', 'Zhi Mang Xing', system-ui, sans-serif;
   font-size: clamp(11px, 2.5vw, 15px);
   border: none;
   border-radius: 40px;
@@ -412,10 +413,18 @@
 }
 
 .rewards-title {
-  font-family: 'Rubik Bubbles', system-ui, sans-serif;
+  font-family: 'Rubik Bubbles', 'Zhi Mang Xing', system-ui, sans-serif;
   font-size: clamp(16px, 4vw, 22px);
   color: #5a3fa0;
   margin: 0;
+}
+
+html[lang^="zh"] .arcade-btn {
+  font-size: clamp(16px, 3.5vw, 22px);
+}
+
+html[lang^="zh"] .rewards-title {
+  font-size: clamp(26px, 6vw, 34px);
 }
 
 .rewards-list {
@@ -451,7 +460,7 @@
 }
 
 .reward-count {
-  font-family: 'Rubik Bubbles', system-ui, sans-serif;
+  font-family: 'Rubik Bubbles', 'Zhi Mang Xing', system-ui, sans-serif;
   font-size: clamp(18px, 4.5vw, 28px);
   color: #5a3fa0;
 }
@@ -539,3 +548,28 @@
   }
 }
 
+/* Toast */
+.toast {
+  display: none;
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(50,30,100,0.95);
+  color: #e0d4ff;
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  padding: 10px 20px;
+  border-radius: 99px;
+  z-index: 99999;
+  white-space: nowrap;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+}
+
+.toast.show {
+  display: block;
+  animation: toastIn 0.2s ease, toastOut 0.3s 1.7s ease forwards;
+}
+
+@keyframes toastIn  { from { opacity:0; transform: translateX(-50%) translateY(8px); } to { opacity:1; transform: translateX(-50%) translateY(0); } }
+@keyframes toastOut { from { opacity:1; } to { opacity:0; } }

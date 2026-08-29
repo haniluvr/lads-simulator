@@ -22,10 +22,10 @@ This project aims to recreate the authentic summoning experience from the game, 
 - **Collection & Memories:** View all the cards you've collected in the "Memories" modal. Track duplicates through a visual Rank-Up cube system with real-time red badge notifications.
 - **`[NEW]` Photobooth Studio:** Take custom photos with your favorite memories! Decorate your photostrips with stickers, drag to swap frames, and export your creations.
 - **`[NEW]` Arcade Hub:** Access interactive minigames designed to test your luck and skills.
-    - **Wishfall Frenzy:** A fast-paced catcher game where you can earn wishes for your pulls. But be careful to avoid bombs!
+    - **Claw Paradise:** A claw machine game where you can win plushies with various designs to complete your collection.
+    - **Wishfall Frenzy:** A fast-paced rhythm game where you must collect falling wishes while avoiding bombs. The more you collect, the more wishes you get for your pulls!
     - **FLAMES Calculator:** A nostalgic game used to playfully predict relationship compatibility between you and your bias based on your names.
-    - **M.A.S.H. Future Predictor:** A classic fortune-telling game to predict a person's future lifestyle.
-    - **`[FUTURE]` Claw Machine:** Win plushies with various designs to complete your collection.
+    - **M.A.S.H. Future Predictor:** A classic fortune-telling game to predict your future with your favorite characters.
 - **`[NEW]` Multi-language Support:** Added full support for Simplified Chinese UI translation, dynamically loading languages and region-specific web fonts.
 - **Persistent Data:** Your pity count, collection, and settings are saved locally in your browser so you don't lose progress when you refresh or close the tab.
 - **Global Audio & Settings:** A unified Settings and FAQ system across all pages to toggle background music, sound effects, and custom character-themed mouse cursors.
@@ -47,9 +47,10 @@ This project aims to recreate the authentic summoning experience from the game, 
 
 ### Arcade Minigames
 1. **Enter Arcade:** Click the "Arcade" button on the home screen to access the arcade selection.
-2. **Wishfall Frenzy:** A rhythm-based catching game where you must collect falling wishes while avoiding bombs.
-3. **M.A.S.H. Future Predictor:** A nostalgic fortune-telling game to predict your future with your favorite characters.
-4. **FLAMES Calculator:** Discover your relationship compatibility through this classic name-matching game.
+2. **Claw Paradise:** A claw machine game where you can win plushies with various designs to complete your collection.
+3. **Wishfall Frenzy:** A rhythm-based catching game where you must collect falling wishes while avoiding bombs.
+4. **M.A.S.H. Future Predictor:** A nostalgic fortune-telling game to predict your future with your favorite characters.
+5. **FLAMES Calculator:** Discover your relationship compatibility through this classic name-matching game.
 
 ### Photobooth
 1. **Enter Photobooth:** Click the "Photobooth" image button on the home screen.

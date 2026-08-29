@@ -100,6 +100,8 @@
       window.history.replaceState({}, '', newUrl);
     } catch (_) {}
     
+    document.documentElement.lang = lang;
+    
     await loadDictionary(lang);
     applyTranslations();
     
@@ -153,6 +155,7 @@
     getCardName,
     getCharName,
     init: async function() {
+      document.documentElement.lang = currentLang;
       await loadDictionary(currentLang);
       
       const onReady = () => {
