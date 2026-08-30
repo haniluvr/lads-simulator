@@ -331,10 +331,14 @@
     const rightX = PHYS_W * 0.8705;
     const spawnWidth = rightX - leftX - PLUSHIE_RADIUS * 4;
 
+    const col = getCollection();
     for (let i = 0; i < count; i++) {
       const char      = CHAR_KEYS[Math.floor(Math.random() * CHAR_KEYS.length)];
       const designIdx = Math.floor(Math.random() * 2);
-      const colorIdx  = 0;
+      
+      const charTotal = col[char] ? col[char].total : 0;
+      const unlocked  = getUnlockedVariants(charTotal);
+      const colorIdx  = Math.floor(Math.random() * unlocked);
 
       const plushDiv = makePlushieEl(char, designIdx, colorIdx);
       plushDiv.style.zIndex = 20;

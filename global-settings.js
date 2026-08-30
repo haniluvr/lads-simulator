@@ -305,8 +305,8 @@
       .info-socials a { color: var(--txt-2, rgba(237, 228, 255, 0.58)); width: 20px; height: 20px; transition: color 0.2s, transform 0.2s; }
       .info-socials a:hover { color: var(--gold-lt, #e8cfa0); transform: scale(1.1); }
       
-      @media (max-width: 800px) { #cursor-settings-section { display: none; } }
-      @media (hover: none) and (pointer: coarse) { #cursor-settings-section { display: none; } }
+      @media (max-width: 800px) { #gs-cursor-section { display: none; } }
+      @media (hover: none) and (pointer: coarse) { #gs-cursor-section { display: none; } }
 
       /* Button positioning */
       .sf-reset-btn {
