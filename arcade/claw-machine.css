@@ -765,16 +765,4 @@
   }
 }
 
-.cm-collection-title {
-  font-family: 'Zhi Mang Xing', sans-serif;
-  font-size: 24px;
-  color: white;
-  text-shadow: 0 1px 3px rgba(0,0,0,0.3);
-  margin: 0;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-}
 
-html[lang^="zh"] .cm-collection-title {
-  font-size: 38px;
-}
