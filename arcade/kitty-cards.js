@@ -1406,8 +1406,10 @@ document.addEventListener('DOMContentLoaded', () => {
     if (checkGameOver()) return;
     if (state.pawComboActive && state.gameMode === 'advanced') {
       state.pawComboActive = false;
-      setStatus(`${COMPANIONS[state.companion].name} uses Paw Combo to take another action!`);
-      setTimeout(() => doAiTurn(), 800);
+      setStatus(`${COMPANIONS[state.companion].name} uses Paw Combo to play another Number Card!`);
+      setTimeout(() => {
+        executeAiAction(aiStrategyNumber());
+      }, 1500);
       return;
     }
     triggerAiCheatIfNeeded(() => endAiTurn());
@@ -3074,6 +3076,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function startAdvancedPlayerTurn() {
     if (state.phase !== 'playing') return;
+    state.pawComboActive = false;
+    state.pawComboCount = 0;
     // Deal 1 assist card at turn start
     dealAssistCard('playerAssistHand');
     renderAll();
@@ -3102,8 +3106,6 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
       }
       state.advancedPhase = 'number';
-      state.pawComboActive = false;
-      state.pawComboCount = 0;
       updateTurnBadge();
       renderAll();
       showAdvancedPhaseBanner('Number Phase', true, () => {
@@ -3370,6 +3372,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function startAdvancedAiTurn() {
     if (state.phase !== 'playing') return;
+    state.pawComboActive = false;
+    state.pawComboCount = 0;
     dealAssistCard('aiAssistHand');
     renderAll();
 
