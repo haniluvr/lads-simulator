@@ -19,10 +19,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // ── Assist Card Definitions ──────────────────────────────
   const ASSIST_CARD_TYPES = [
-    { key: 'skip',       name: 'Skip',       img: `${ASSET_BASE}/assist/Skip Card.png`,       desc: 'Your opponent skips their Number Card Phase next turn.' },
-    { key: 'freeze',     name: 'Freeze',     img: `${ASSET_BASE}/assist/Freeze Card.png`,     desc: 'Your opponent skips their Assist Card Phase next turn.' },
-    { key: 'meow_this', name: 'Meow This!', img: `${ASSET_BASE}/assist/Meow This! Card.png`, desc: 'Cancel an opponent assist card when they play one.' },
-    { key: 'cat_ching',  name: 'Cat-Ching!', img: `${ASSET_BASE}/assist/Cat-Ching Card.png`,  desc: 'Draw 2 Number Cards.' },
     { key: 'skip',       name: 'Skip',       img: `${ASSET_BASE}/assist/Skip Card.webp`,       desc: 'Your opponent skips their Number Card Phase next turn.' },
     { key: 'freeze',     name: 'Freeze',     img: `${ASSET_BASE}/assist/Freeze Card.webp`,     desc: 'Your opponent skips their Assist Card Phase next turn.' },
     { key: 'meow_this', name: 'Meow This!', img: `${ASSET_BASE}/assist/Meow This! Card.webp`, desc: 'Cancel an opponent assist card when they play one.' },
@@ -45,16 +41,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Card image path helper
   const cardImg = (color, value) =>
-    `${ASSET_BASE}/numbers/${capitalize(color)}/${value}.png`;
+    `${ASSET_BASE}/numbers/${capitalize(color)}/${value}.webp`;
 
   const cupImg = (color) =>
-    `${ASSET_BASE}/cups/${color} cup.png`;
+    `${ASSET_BASE}/cups/${color} cup.webp`;
 
   const catImg = (color) =>
-    `${ASSET_BASE}/${color} cat.png`;
+    `${ASSET_BASE}/${color} cat.webp`;
 
   const cardBackImg = () =>
-    `${ASSET_BASE}/back/number_card.png`;
+    `${ASSET_BASE}/back/number_card.webp`;
 
   function capitalize(s) { return s.charAt(0).toUpperCase() + s.slice(1); }
 
