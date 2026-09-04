@@ -393,7 +393,7 @@
     });
 
     // ── Volume sliders ──
-    const bgMusic     = document.getElementById('bg-music');
+    const bgMusic     = document.querySelector('audio[loop]') || document.querySelector('audio');
     const volSlider   = document.getElementById('gs-volume-slider');
     const sfxSlider   = document.getElementById('gs-sfx-slider');
 

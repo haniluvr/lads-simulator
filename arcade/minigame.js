@@ -31,8 +31,11 @@ document.addEventListener('DOMContentLoaded', () => {
   const musicIconPlay  = document.getElementById('music-icon-play');
   const musicIconPause = document.getElementById('music-icon-pause');
 
+  const isWishfall = window.location.pathname.includes('wishfall-frenzy');
+  const bgmSrc = isWishfall ? '../assets/ui/sunny-summer.mp3' : '../assets/ui/claw-paradise.mp3';
+
   const audio = {
-    bgm:       new Audio('../assets/ui/arcade/audio/claw-paradise.mp3'),
+    bgm:       new Audio(bgmSrc),
     bomb:      new Audio('../assets/ui/arcade/audio/bomb-cue.mp3'),
     click:     new Audio('../assets/ui/arcade/audio/click-tap-cue.mp3'),
     countdown: new Audio('../assets/ui/arcade/audio/countdown-cue.mp3'),

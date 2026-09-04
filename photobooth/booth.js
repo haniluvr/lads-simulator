@@ -3308,13 +3308,208 @@ const initAudioCues = () => {
   // Check if we need to resume the gold SFX from landing page
   const goldStartStr = sessionStorage.getItem('gold_sfx_start');
   if (goldStartStr) {
+    if (e.pointerType === 'mouse' && e.button !== 0) return;
+    isDragging = true;
+    const pos = getXY(e);
+    startX = pos.x;
+    startY = pos.y;
+    origX = state.uploadTransform.x;
+    origY = state.uploadTransform.y;
+    e.preventDefault();
+  }, { passive: false });
+
+  window.addEventListener('pointermove', (e) => {
+    if (!isDragging || imgView.style.display === 'none') return;
+    const pos = getXY(e);
+    state.uploadTransform.x = origX + (pos.x - startX);
+    state.uploadTransform.y = origY + (pos.y - startY);
+    updateTransform();
+    e.preventDefault();
+  }, { passive: false });
+
+  window.addEventListener('pointerup', () => {
+    isDragging = false;
+  });
+
+  // Touch pinch-to-zoom
+  viewport.addEventListener('touchstart', (e) => {
+    if (e.target !== viewport && e.target !== imgView) return;
+    if (imgView.style.display === 'none') return;
+    if (e.touches && e.touches.length === 2) {
+      initialDist = getDist(e.touches);
+      initialScale = state.uploadTransform.scale;
+      isDragging = false; // override drag
+      e.preventDefault();
+    }
+  }, { passive: false });
+
+  viewport.addEventListener('touchmove', (e) => {
+    if (imgView.style.display === 'none') return;
+    if (e.touches && e.touches.length === 2 && initialDist) {
+      const dist = getDist(e.touches);
+      state.uploadTransform.scale = initialScale * (dist / initialDist);
+      updateTransform();
+      e.preventDefault();
+    }
+  }, { passive: false });
+
+  viewport.addEventListener('touchend', (e) => {
+    if (e.touches.length < 2) {
+      initialDist = null;
+    }
+  });
+
+  // Wheel to zoom
+  viewport.addEventListener('wheel', (e) => {
+    if (e.target !== viewport && e.target !== imgView) return;
+    if (imgView.style.display === 'none') return;
+    e.preventDefault();
+    const zoomFactor = e.deltaY < 0 ? 1.05 : 0.95;
+    state.uploadTransform.scale *= zoomFactor;
+    updateTransform();
+  }, { passive: false });
+}
+
+function makeDraggable(el, bounds) {
+  let startX, startY, origX, origY;
+  let isDragging = false;
+  let isResizing = false;
+  let startScale = 1.0;
+  
+  // For pinch-to-zoom
+  let initialDist = null;
+  let initialScale = 1.0;
+  
+  const getXY = (e) => {
+    const src = e.touches ? e.touches[0] : e;
+    return { x: src.clientX, y: src.clientY };
+  };
+  
+  const getDist = (touches) => {
+    return Math.hypot(
+      touches[0].clientX - touches[1].clientX,
+      touches[0].clientY - touches[1].clientY
+    );
+  };
+  
+  el.addEventListener('mousedown', dragStart);
+  el.addEventListener('touchstart', dragStart, { passive: false });
+  
+  function dragStart(e) {
+    if (e.target.classList.contains('resize-handle')) {
+      isResizing = true;
+      const match = el.style.transform.match(/scale\(([^)]+)\)/);
+      startScale = match ? parseFloat(match[1]) : 1.0;
+    } else if (e.touches && e.touches.length === 2) {
+      initialDist = getDist(e.touches);
+      const match = el.style.transform.match(/scale\(([^)]+)\)/);
+      initialScale = match ? parseFloat(match[1]) : 1.0;
+      isDragging = false;
+    } else {
+      isDragging = true;
+    }
+    
+    if (isDragging || isResizing) {
+      e.preventDefault();
+      const pos = getXY(e);
+      startX = pos.x;
+      startY = pos.y;
+      origX = parseFloat(el.style.left) || 0;
+      origY = parseFloat(el.style.bottom) || 0; // It uses bottom initially
+    }
+    
+    document.addEventListener('mousemove', drag);
+    document.addEventListener('touchmove', drag, { passive: false });
+    document.addEventListener('mouseup', dragEnd);
+    document.addEventListener('touchend', dragEnd);
+  }
+  
+  function drag(e) {
+    if (e.touches && e.touches.length === 2 && initialDist) {
+      e.preventDefault();
+      const dist = getDist(e.touches);
+      const scale = initialScale * (dist / initialDist);
+      el.style.transform = `scale(${Math.max(0.1, scale)})`;
+      return;
+    }
+    
+    if (!isDragging && !isResizing) return;
+    e.preventDefault();
+    
+    const pos = getXY(e);
+    const dx = pos.x - startX;
+    const dy = pos.y - startY;
+    
+    if (isResizing) {
+      const scale = startScale + (dx - dy) * 0.01;
+      el.style.transform = `scale(${Math.max(0.1, scale)})`;
+    } else if (isDragging) {
+      el.style.left = (origX + dx) + 'px';
+      // moving up (negative dy) increases bottom
+      el.style.bottom = (origY - dy) + 'px';
+    }
+  }
+  
+  function dragEnd() {
+    isDragging = false;
+    isResizing = false;
+    initialDist = null;
+    document.removeEventListener('mousemove', drag);
+    document.removeEventListener('touchmove', drag);
+    document.removeEventListener('mouseup', dragEnd);
+    document.removeEventListener('touchend', dragEnd);
+    // Triggers camera feed update because overlay positions changed
+    // We can rely on the continuous requestAnimationFrame loop in updateCameraFeed
+    // Actually, drawCharOverlaysToContext is called inside updateCameraFeed which is a loop!
+  }
+}
+
+// Re-render shoot side panel on resize to handle mobile <-> desktop structure changes
+window.addEventListener('resize', () => {
+  if (state.phase === 2) {
+    const isMobile = window.innerWidth <= 767;
+    if (state.lastIsMobile !== isMobile) {
+      state.lastIsMobile = isMobile;
+      renderShootSidePanel(state.currentFrame);
+    }
+  }
+});
+
+// ============================================================
+// AUDIO VISIBILITY PAUSE/RESUME
+// ============================================================
+document.addEventListener('visibilitychange', () => {
+  const bgm = document.getElementById('bg-music');
+  const bgmToggle = document.getElementById('bg-m-toggle');
+  
+  if (bgm) {
+    if (document.hidden) {
+      bgm.pause();
+    } else {
+      // Only resume if it wasn't manually paused by the user
+      if (!bgmToggle || bgmToggle.getAttribute('aria-pressed') !== 'false') {
+        bgm.play().catch(err => {
+          console.warn('Audio resume prevented by browser policy:', err);
+        });
+      }
+    }
+  }
+});
+
+// ============================================================
+// AUDIO CUES
+// ============================================================
+const initAudioCues = () => {
+  // Check if we need to resume the gold SFX from landing page
+  const goldStartStr = sessionStorage.getItem('gold_sfx_start');
+  if (goldStartStr) {
     sessionStorage.removeItem('gold_sfx_start');
     const goldStart = parseInt(goldStartStr, 10);
     const elapsed = (Date.now() - goldStart) / 1000;
     
     if (elapsed < 5) {
       const goldSfx = new Audio('../assets/audio-cue/open_wish_gold_cue.mp3');
-      goldSfx.volume = 0.6;
+      goldSfx.volume = window.AudioBridge ? window.AudioBridge.getSfxVol() : 0.6;
       goldSfx.currentTime = elapsed;
       goldSfx.play().catch(()=>{});
     }

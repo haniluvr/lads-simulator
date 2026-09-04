@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Kitty Cards — Love and Deepspace Simulator</title>
+    <link rel="icon" type="image/webp" href="../assets/ui/favicon.webp">
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;500;600;700&family=Noto+Sans+JP:wght@300;400;500;700&family=Inter:wght@300;400;500;600;700&family=Rubik+Bubbles&family=Zhi+Mang+Xing&display=swap" rel="stylesheet">
+    <!-- Global Styles -->
+    <link rel="stylesheet" href="../style.css?v=33">
+    <!-- Minigame Shared Styles -->
+    <script>document.write('<link rel="stylesheet" href="minigame.css?v=' + Date.now() + '">');</script>
+    <!-- Kitty Cards Styles -->
+    <script>document.write('<link rel="stylesheet" href="kitty-cards.css?v=' + Date.now() + '">');</script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body style="margin: 0; padding: 0; overflow: hidden; background: #FDF0E8;">
+
+    <!-- ════════════════════════════════════════════
+         MAIN GAME SCREEN
+    ════════════════════════════════════════════ -->
+    <div id="kc-screen">
+        
+        <!-- Window Frame overlay -->
+        <div class="kc-window-frame">
+            <!-- Top Bar & Lights -->
+            <div class="kc-top-bar">
+                <div style="position:absolute; inset:0; display:flex; justify-content:space-evenly; pointer-events:none;">
+                    <!-- Light 1 -->
+                    <svg viewBox="0 0 60 100" style="width:60px; height:100px; overflow:visible;">
+                        <line x1="30" y1="0" x2="30" y2="40" stroke="#333" stroke-width="4"/>
+                        <circle cx="30" cy="60" r="10" fill="#FFD700"/>
+                        <circle cx="30" cy="60" r="20" fill="url(#glow1)" opacity="0.6"/>
+                        <path d="M10,40 L50,40 L60,60 L0,60 Z" fill="#555" stroke="#333" stroke-width="2"/>
+                        <defs><radialGradient id="glow1" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#FFD700" stop-opacity="1"/><stop offset="100%" stop-color="#FFD700" stop-opacity="0"/></radialGradient></defs>
+                    </svg>
+                    <!-- Light 2 -->
+                    <svg viewBox="0 0 60 100" style="width:60px; height:100px; overflow:visible;">
+                        <line x1="30" y1="0" x2="30" y2="40" stroke="#333" stroke-width="4"/>
+                        <circle cx="30" cy="60" r="10" fill="#FFD700"/>
+                        <circle cx="30" cy="60" r="20" fill="url(#glow2)" opacity="0.6"/>
+                        <path d="M10,40 L50,40 L60,60 L0,60 Z" fill="#555" stroke="#333" stroke-width="2"/>
+                        <defs><radialGradient id="glow2" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#FFD700" stop-opacity="1"/><stop offset="100%" stop-color="#FFD700" stop-opacity="0"/></radialGradient></defs>
+                    </svg>
+                    <!-- Light 3 -->
+                    <svg viewBox="0 0 60 100" style="width:60px; height:100px; overflow:visible;">
+                        <line x1="30" y1="0" x2="30" y2="40" stroke="#333" stroke-width="4"/>
+                        <circle cx="30" cy="60" r="10" fill="#FFD700"/>
+                        <circle cx="30" cy="60" r="20" fill="url(#glow3)" opacity="0.6"/>
+                        <path d="M10,40 L50,40 L60,60 L0,60 Z" fill="#555" stroke="#333" stroke-width="2"/>
+                        <defs><radialGradient id="glow3" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#FFD700" stop-opacity="1"/><stop offset="100%" stop-color="#FFD700" stop-opacity="0"/></radialGradient></defs>
+                    </svg>
+                    <!-- Light 4 -->
+                    <svg viewBox="0 0 60 100" style="width:60px; height:100px; overflow:visible;">
+                        <line x1="30" y1="0" x2="30" y2="40" stroke="#333" stroke-width="4"/>
+                        <circle cx="30" cy="60" r="10" fill="#FFD700"/>
+                        <circle cx="30" cy="60" r="20" fill="url(#glow4)" opacity="0.6"/>
+                        <path d="M10,40 L50,40 L60,60 L0,60 Z" fill="#555" stroke="#333" stroke-width="2"/>
+                        <defs><radialGradient id="glow4" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#FFD700" stop-opacity="1"/><stop offset="100%" stop-color="#FFD700" stop-opacity="0"/></radialGradient></defs>
+                    </svg>
+                </div>
+            </div>
+            <!-- Borders -->
+            <div class="kc-border-left"></div>
+            <div class="kc-border-right"></div>
+            <!-- Bottom Table -->
+            <div class="kc-table-surface"></div>
+            <!-- Props -->
+            <img src="../assets/ui/arcade/kitty-cards/kettle-1.webp" class="kc-prop kc-prop-kettle" alt="">
+            <img src="../assets/ui/arcade/kitty-cards/coffee-1.webp" class="kc-prop kc-prop-coffee" alt="">
+            <img src="../assets/ui/arcade/kitty-cards/plant-1.webp" class="kc-prop kc-prop-plant" alt="">
+        </div>
+
+        <!-- Title -->
+        <div class="kc-title-container" aria-label="Kitty Cards">
+            <svg viewBox="0 0 500 180" class="kc-title-svg">
+                <path id="kc-curve-top" d="M 50 110 Q 250 -20 450 110" fill="transparent" />
+                <path id="kc-curve-bottom" d="M 50 170 Q 250 40 450 170" fill="transparent" />
+                <text text-anchor="middle" class="kc-title-text kc-title-top">
+                    <textPath href="#kc-curve-top" startOffset="50%">
+                        Kitty
+                    </textPath>
+                </text>
+                <text text-anchor="middle" class="kc-title-text kc-title-bottom">
+                    <textPath href="#kc-curve-bottom" startOffset="50%">
+                        Cards
+                    </textPath>
+                </text>
+            </svg>
+            <h1 class="visually-hidden">Kitty Cards</h1>
+        </div>
+
+        <!-- Game Wrapper -->
+        <div id="kc-game-wrapper">
+
+            <!-- ── MODE SELECT SCREEN ── -->
+            <section id="kc-mode-select" class="active" aria-label="Mode select">
+                <p class="kc-section-title">Select Game Mode</p>
+                <div class="kc-mode-choices" style="display:flex; flex-direction:column; gap:12px; width:100%; max-width:240px;">
+                    <button id="kc-mode-normal-btn" class="kc-order-btn primary kc-mode-btn" style="font-size:16px; padding:14px;">
+                        Normal Mode
+                    </button>
+                    <button id="kc-mode-advanced-btn" class="kc-order-btn primary kc-mode-btn" style="font-size:16px; padding:14px;">
+                        Advanced Mode
+                    </button>
+                </div>
+                <button id="kc-exit-mode-btn" class="arcade-btn ghost-btn kc-ghost-mode-btn" style="font-family:'Noto Serif JP', serif; margin-top:20px;">
+                    <i data-lucide="arrow-left" style="width:14px;height:14px;"></i>
+                    Back to Home
+                </button>
+            </section>
+
+            <!-- ── CHARACTER SELECT SCREEN ── -->
+            <section id="kc-char-select" aria-label="Character select">
+                <p class="kc-section-title">Who would you like to play against?</p>
+                <div class="kc-char-grid" role="list">
+                    <!-- Characters injected by JS -->
+                </div>
+                <button id="kc-char-confirm-btn" class="kc-order-btn primary" style="display:none;" aria-label="Confirm character selection">
+                    Let's Play! →
+                </button>
+                <button id="kc-exit-char-btn" class="arcade-btn ghost-btn kc-ghost-mode-btn" style="font-family:'Noto Serif JP', serif;">
+                    <i data-lucide="arrow-left" style="width:14px;height:14px;opacity:0.6;"></i>
+                    Back to Menu
+                </button>
+            </section>
+
+            <!-- ── ORDER SELECT SCREEN ── -->
+            <section id="kc-order-screen" aria-label="Order selection" data-companion="">
+
+                <!-- Companion dialogue -->
+                <div class="kc-dialogue-box" id="kc-order-dialogue">
+                    <img src="" alt="" class="kc-dialogue-portrait" id="kc-order-portrait">
+                    <p class="kc-dialogue-speaker" id="kc-order-speaker"></p>
+                    <p class="kc-dialogue-text" id="kc-order-text"></p>
+                </div>
+
+                <!-- Choice buttons — populated by JS -->
+                <div class="kc-order-choices" id="kc-order-choices">
+                </div>
+
+                <button id="kc-back-to-char-btn" class="kc-order-btn" style="opacity:0.6;">
+                    ← Choose someone else
+                </button>
+            </section>
+
+            <!-- ── ZAYNE DIFFICULTY SCREEN ── -->
+            <section id="kc-zayne-diff-screen" aria-label="Difficulty selection">
+                <div class="kc-dialogue-box" id="kc-zayne-diff-dialogue">
+                    <img src="../assets/ui/select/zayne.webp" alt="Zayne" class="kc-dialogue-portrait">
+                    <p class="kc-dialogue-speaker" style="color: var(--zayne-color);">Zayne</p>
+                    <p class="kc-dialogue-text" id="kc-zayne-diff-text"></p>
+                </div>
+
+                <!-- Difficulty choices -->
+                <div class="kc-diff-choices" id="kc-diff-choices">
+                    <button class="kc-diff-btn" data-diff="easy" aria-label="Easy difficulty">
+                        <div class="kc-diff-icon">🌸</div>
+                        <div class="kc-diff-label">Easy</div>
+                        <div class="kc-diff-desc">I'll go easy on you.</div>
+                    </button>
+                    <button class="kc-diff-btn" data-diff="zayne-pick" aria-label="Let Zayne choose">
+                        <div class="kc-diff-icon">❓</div>
+                        <div class="kc-diff-label">Zayne's Call</div>
+                        <div class="kc-diff-desc">Let him decide.</div>
+                    </button>
+                    <button class="kc-diff-btn" data-diff="hell" aria-label="Hell difficulty">
+                        <div class="kc-diff-icon">❄️</div>
+                        <div class="kc-diff-label">Hell</div>
+                        <div class="kc-diff-desc">No mercy whatsoever.</div>
+                    </button>
+                </div>
+
+                <!-- Zayne picks result -->
+                <div id="kc-zayne-picked-result" style="display:none;" class="kc-dialogue-box" aria-live="polite">
+                    <p class="kc-dialogue-text" id="kc-zayne-picked-text"></p>
+                </div>
+
+                <button id="kc-zayne-diff-continue" class="kc-order-btn primary" style="display:none;">
+                    Start Game →
+                </button>
+            </section>
+
+            <!-- ── ROCK-PAPER-SCISSORS SCREEN (Caleb) ── -->
+            <section id="kc-rps-screen" aria-label="Rock Paper Scissors">
+                <div class="kc-dialogue-box" id="kc-rps-dialogue">
+                    <img src="../assets/ui/select/caleb.webp" alt="Caleb" class="kc-dialogue-portrait">
+                    <p class="kc-dialogue-speaker" style="color: var(--caleb-color);">Caleb</p>
+                    <p class="kc-dialogue-text" id="kc-rps-text">
+                        "Best of one — winner goes first. Ready?"
+                    </p>
+                </div>
+                <div class="kc-rps-choices" id="kc-rps-choices">
+                    <button class="kc-rps-btn" data-rps="rock" aria-label="Rock">
+                        ✊
+                        <span class="rps-label">Rock</span>
+                    </button>
+                    <button class="kc-rps-btn" data-rps="scissors" aria-label="Scissors">
+                        ✌️
+                        <span class="rps-label">Scissors</span>
+                    </button>
+                    <button class="kc-rps-btn" data-rps="paper" aria-label="Paper">
+                        🖐️
+                        <span class="rps-label">Paper</span>
+                    </button>
+                </div>
+                <div class="kc-rps-result" id="kc-rps-result"></div>
+                <button id="kc-rps-continue-btn" class="kc-order-btn primary" style="display:none;">
+                    Start Game →
+                </button>
+            </section>
+
+            <!-- ── MAIN GAME BOARD ── -->
+            <section id="kc-board" aria-label="Game board">
+
+                <!-- Match Round Tracker -->
+                <div id="kc-match-tracker" style="display:none; justify-content:center; align-items:center; gap:12px; margin-bottom:8px; font-family:'Noto Serif JP',serif; font-size:12px; font-weight:700;">
+                    <div style="color:var(--kc-text);"><span id="kc-match-tracker-ai-name">AI</span> <span id="kc-match-wins-ai" style="color:var(--companion-color);">0</span></div>
+                    <div style="background:var(--kc-text); color:var(--kc-cream); padding:2px 8px; border-radius:12px; font-size:10px;">ROUND <span id="kc-match-round-num">1</span></div>
+                    <div style="color:var(--kc-text);"><span id="kc-match-wins-player" style="color:#89CFF0;">0</span> You</div>
+                </div>
+
+                <!-- Score bar -->
+                <div class="kc-scorebar">
+                    <div class="kc-score-block ai-side">
+                        <div style="position:relative;">
+                            <img src="" alt="" class="kc-score-avatar" id="kc-ai-avatar">
+                            <img src="../assets/ui/arcade/kitty-cards/mark/arrow.png" id="kc-ai-skip-mark" class="kc-status-mark skip" style="display:none;" alt="Skip">
+                            <img src="../assets/ui/arcade/kitty-cards/mark/freeze.png" id="kc-ai-freeze-mark" class="kc-status-mark freeze" style="display:none;" alt="Freeze">
+                        </div>
+                        <div>
+                            <div class="kc-score-name" id="kc-ai-name-label">AI</div>
+                            <div class="kc-score-pts" id="kc-ai-score">0</div>
+                        </div>
+                    </div>
+
+                    <div class="kc-turn-badge" id="kc-turn-badge">—</div>
+
+                    <div class="kc-score-block mine">
+                        <div style="text-align:right;">
+                            <div class="kc-score-name">You</div>
+                            <div class="kc-score-pts" id="kc-player-score">0</div>
+                        </div>
+                        <div style="position:relative;">
+                            <div style="width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,#89CFF0,#33A5DB);border:2px solid #E8D8C8;display:flex;align-items:center;justify-content:center;">
+                                <i data-lucide="user" style="width:14px;height:14px;color:white;"></i>
+                            </div>
+                            <img src="../assets/ui/arcade/kitty-cards/mark/arrow.png" id="kc-player-skip-mark" class="kc-status-mark skip" style="display:none;" alt="Skip">
+                            <img src="../assets/ui/arcade/kitty-cards/mark/freeze.png" id="kc-player-freeze-mark" class="kc-status-mark freeze" style="display:none;" alt="Freeze">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- AI Hand -->
+                <div class="kc-ai-hand-label-wrap">
+                    <div class="kc-hand-label">
+                        <span id="kc-ai-hand-label-name">AI's</span> Hand
+                    </div>
+                </div>
+                <div class="kc-ai-hand" id="kc-ai-hand" aria-label="Opponent's hand (face-down)"></div>
+
+                <!-- Table / Cup Grid -->
+                <div class="kc-table-area">
+                    <div class="kc-cup-grid" id="kc-cup-grid" role="grid" aria-label="Game board cups">
+                        <!-- 9 cells: 8 cups + 1 center deck — injected by JS -->
+                    </div>
+                </div>
+
+                <!-- Status message -->
+                <p class="kc-status-msg" id="kc-status-msg" aria-live="polite"></p>
+
+                <!-- Player Hand -->
+                <div class="kc-hand-label">Your Hand</div>
+                <div class="kc-player-hand" id="kc-player-hand" aria-label="Your hand"></div>
+
+                <!-- Advanced Mode: Pass Assist Phase -->
+                <div id="kc-adv-pass-row" style="display:none; justify-content:center; margin-top:4px;">
+                    <button id="kc-adv-pass-assist-btn" class="kc-order-btn kc-adv-pass-btn">End Assist Phase →</button>
+                </div>
+
+                <!-- Pause / Exit -->
+                <div class="kc-back-row">
+                    <button id="kc-game-exit-btn" class="arcade-btn ghost-btn" style="font-family:'Inter',sans-serif;font-size:11px;padding:6px 14px;">
+                        <i data-lucide="x" style="width:12px;height:12px;"></i>
+                        Forfeit
+                    </button>
+                </div>
+
+            </section>
+
+            <!-- ── RESULTS SCREEN ── -->
+            <section id="kc-results-screen" aria-label="Game results">
+
+                <div class="kc-winner-banner" id="kc-winner-banner">
+                    <div class="kc-winner-text" id="kc-winner-text">—</div>
+                    <p class="kc-winner-sub" id="kc-winner-sub"></p>
+                </div>
+
+                <div class="kc-score-compare">
+                    <div class="kc-score-panel" id="kc-result-player-panel">
+                        <div style="width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,#89CFF0,#33A5DB);display:flex;align-items:center;justify-content:center;">
+                            <i data-lucide="user" style="width:20px;height:20px;color:white;"></i>
+                        </div>
+                        <div class="kc-score-panel-name">You</div>
+                        <div class="kc-score-panel-pts" id="kc-result-player-pts">0</div>
+                    </div>
+                    <div class="kc-score-panel" id="kc-result-ai-panel">
+                        <img src="" alt="" class="kc-score-panel-avatar" id="kc-result-ai-avatar">
+                        <div class="kc-score-panel-name" id="kc-result-ai-name">AI</div>
+                        <div class="kc-score-panel-pts" id="kc-result-ai-pts">0</div>
+                    </div>
+                </div>
+
+                <div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:center;">
+                    <button id="kc-play-again-btn" class="kc-order-btn primary">
+                        Play Again
+                    </button>
+                    <button id="kc-results-exit-btn" class="kc-order-btn" style="font-family:'Noto Serif JP', serif;opacity:0.6;">
+                        Back to Menu
+                    </button>
+                </div>
+
+            </section>
+
+        </div><!-- /#kc-game-wrapper -->
+
+    </div><!-- /#kc-screen -->
+
+    <!-- ════════════════════════════════════════════
+         CHEAT EVENT OVERLAYS
+    ════════════════════════════════════════════ -->
+
+    <!-- Xavier: Asleep — player can swap cups -->
+    <div id="kc-cheat-xavier" class="kc-cheat-overlay interactive-bg" style="display:none;" aria-modal="true">
+        <div class="kc-cheat-box">
+            <div class="kc-sleep-bubbles">💤 💤 💤</div>
+            <div class="kc-cheat-title">Xavier fell asleep...</div>
+            <p class="kc-cheat-desc" id="kc-xavier-cheat-desc">
+                While he's dozing off, you can secretly swap two cards between cups!<br>
+                Select two occupied cups to swap their cards.
+            </p>
+            <p class="kc-cheat-desc" style="font-size:11px;opacity:0.7;" id="kc-xavier-swap-status">
+                Select first cup...
+            </p>
+            <div class="kc-cheat-timer-bar">
+                <div class="kc-cheat-timer-fill" id="kc-xavier-timer"></div>
+            </div>
+            <div style="display:flex;gap:10px;">
+                <button id="kc-xavier-skip-swap" class="kc-order-btn" style="opacity:0.7;font-size:12px;">
+                    Wake him up
+                </button>
+                <button id="kc-xavier-do-swap" class="kc-order-btn primary" disabled>Swap</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Zayne: Card Trade -->
+    <div id="kc-cheat-zayne" class="kc-cheat-overlay interactive-bg" style="display:none;" aria-modal="true">
+        <div class="kc-cheat-box">
+            <div class="kc-cheat-title" id="kc-zayne-cheat-title">Zayne is thinking...</div>
+            <p class="kc-cheat-desc" style="font-size:15px; margin-bottom: 20px; font-style:italic; opacity:0.85;">(I'll act cutesy and see if he'll swap with me..)</p>
+            <button id="kc-zayne-beg-btn" class="kc-order-btn primary" style="width:100%;">Beg Him</button>
+        </div>
+    </div>
+
+
+    <!-- Zayne: Beg Fail -->
+    <div id="kc-cheat-zayne-beg-fail" class="kc-cheat-overlay interactive-bg" style="display:none;" aria-modal="true">
+        <div class="kc-cheat-box">
+            <div class="kc-cheat-title">Zayne declined...</div>
+            <p class="kc-cheat-desc" id="kc-zayne-beg-fail-desc" style="font-size:15px; margin-bottom: 20px;">I'll consider it if you try harder.</p>
+            <button id="kc-zayne-beg-fail-btn" class="kc-order-btn" style="width:100%;">Fine.</button>
+        </div>
+    </div>
+
+    <!-- Zayne: Beg Confirm (after swap) -->
+    <div id="kc-cheat-zayne-beg-confirm" class="kc-cheat-overlay interactive-bg" style="display:none;" aria-modal="true">
+        <div class="kc-cheat-box">
+            <div class="kc-cheat-title">Zayne agreed!</div>
+            <p class="kc-cheat-desc" id="kc-zayne-beg-success-desc" style="font-size:15px; margin-bottom: 15px;">...Take it.</p>
+            <p class="kc-cheat-desc" style="font-style:italic; opacity:0.8; margin-bottom: 15px;">(Is this Zayne's luck?)</p>
+            <div class="kc-cheat-timer-bar">
+                <div class="kc-cheat-timer-fill" id="kc-zayne-beg-timer"></div>
+            </div>
+            <div style="display:flex;gap:10px;">
+                <button id="kc-zayne-beg-confirm-btn" class="kc-order-btn primary" style="flex:1;">Confirm</button>
+                <button id="kc-zayne-beg-cancel-btn" class="kc-order-btn" style="flex:1;">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Rafayel: Drag Card Animation Overlay -->
+    <div id="kc-cheat-rafayel" style="display:none;position:fixed;inset:0;z-index:20000;pointer-events:none;" aria-live="polite">
+        <!-- The card being dragged -->
+        <div id="kc-raf-drag-card" class="kc-raf-drag-card">
+            <div class="kc-raf-drag-card-face" id="kc-raf-drag-card-face"></div>
+            <button id="kc-gotcha-btn" class="kc-raf-gotcha-btn" style="pointer-events:auto;">
+                🐾 GOTCHA!
+            </button>
+        </div>
+        <!-- Subtle hint at the top -->
+        <div class="kc-raf-drag-hint" id="kc-raf-drag-hint">Rafayel is sneaking a card away...</div>
+    </div>
+
+    <!-- Rafayel: Caught! — 3-choice follow-up -->
+    <div id="kc-cheat-rafayel-caught" class="kc-cheat-overlay interactive-bg" style="display:none;" aria-modal="true">
+        <div class="kc-cheat-box">
+            <div class="kc-cheat-title">You caught him!</div>
+            <p class="kc-cheat-desc" id="kc-rafayel-caught-desc">
+                "...You saw that?" He looks momentarily flustered.
+            </p>
+            <div style="display:flex;flex-direction:column;gap:8px;width:100%;">
+                <button id="kc-raf-stop-btn" class="kc-order-btn primary" style="width:100%;">Stop him.</button>
+                <button id="kc-raf-also-swap-btn" class="kc-order-btn" style="width:100%;">You swap but I'll also swap.</button>
+                <button id="kc-raf-let-slide-btn" class="kc-order-btn" style="width:100%;opacity:0.7;">Let it slide.</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Rafayel: Player's counter-swap modal -->
+    <div id="kc-cheat-rafayel-player-swap" class="kc-cheat-overlay interactive-bg" style="display:none;" aria-modal="true">
+        <div class="kc-cheat-box">
+            <div class="kc-cheat-title">Your turn to swap!</div>
+            <p class="kc-cheat-desc" style="font-style:italic;opacity:0.85;">It's not often I get a redo. Which one should I get?</p>
+            <p class="kc-cheat-desc" style="font-size:11px;opacity:0.6;">* Tap CONFIRM to swap cards.</p>
+
+            <p class="kc-cheat-desc" style="font-size:11px;opacity:0.55;">Select a card from your hand and a placed card from the board.</p>
+            <div style="display:flex;gap:10px;width:100%;">
+                <button id="kc-raf-swap-discard-btn" class="kc-order-btn" style="flex:1;opacity:0.75;">Discard</button>
+                <button id="kc-raf-swap-confirm-btn" class="kc-order-btn primary" style="flex:1;" disabled>Confirm</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sylus: Card Trade Offer (interactive) -->
+    <div id="kc-cheat-sylus-offer" class="kc-cheat-overlay interactive-bg" style="display:none;" aria-modal="true">
+        <div class="kc-cheat-box">
+            <div class="kc-cheat-title">Sylus makes you an offer.</div>
+            <p class="kc-cheat-desc" style="font-size:15px; margin-bottom: 20px; font-style:italic; opacity:0.85;">(More cards should lead to more strategic approaches, right?)</p>
+            <button id="kc-sylus-offer-trade-btn" class="kc-order-btn primary" style="width:100%;">Trade</button>
+        </div>
+    </div>
+
+    <!-- Sylus: Card Trade (cannot cancel) -->
+    <div id="kc-cheat-sylus" class="kc-cheat-overlay interactive-bg" style="display:none;" aria-modal="true">
+        <div class="kc-cheat-box">
+            <div class="kc-cheat-title">Sylus makes you an offer.</div>
+            <p class="kc-cheat-desc" id="kc-sylus-cheat-desc">
+                "Pick two cards from my hand. I'll take one of yours in exchange."
+            </p>
+            <div id="kc-sylus-hand-selection" style="display:flex; gap:10px; flex-wrap:wrap; justify-content:center; margin:15px 0;">
+                <!-- Sylus's cards injected by JS -->
+            </div>
+            <p class="kc-cheat-desc" style="font-size:11px;opacity:0.6;">* Select 2 cards.</p>
+            <button id="kc-sylus-confirm-btn" class="kc-order-btn primary" disabled>Take Cards</button>
+        </div>
+    </div>
+
+    <!-- Sylus: Picking Player's Card (Randomizer) -->
+    <div id="kc-cheat-sylus-steal" class="kc-cheat-overlay" style="display:none;" aria-modal="true">
+        <div class="kc-cheat-box">
+            <div class="kc-cheat-title">Sylus is choosing...</div>
+            <p class="kc-cheat-desc" style="margin-bottom:15px; font-style:italic; opacity:0.85;">"Let's see what you have."</p>
+            <div id="kc-sylus-steal-hand" style="display:flex; gap:10px; flex-wrap:wrap; justify-content:center; margin:15px 0;">
+                <!-- Player's cards injected by JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Valko: Colorblind Cheat -->
+    <div id="kc-cheat-valko-colorblind" class="kc-cheat-overlay" style="display:none;" aria-modal="true">
+        <div class="kc-cheat-box">
+            <div class="kc-cheat-title">Valko hesitates...</div>
+            <div id="kc-valko-colorblind-display" style="display:flex; justify-content:center; align-items:center; gap:20px; margin:16px 0;">
+                <div id="kc-valko-colorblind-card-container"></div>
+                <div style="font-size:24px; font-weight:bold; color:rgba(255,255,255,0.5);">?</div>
+                <div id="kc-valko-colorblind-cup-container"></div>
+            </div>
+            <p class="kc-cheat-desc" id="kc-valko-colorblind-desc" style="margin-bottom:14px; font-style:italic;">"Is this the right color? Don't lie to me."</p>
+            <div style="margin-bottom:14px; display:flex; flex-direction:column; align-items:center; gap:4px;">
+                <div style="width:100%; max-width:260px; height:8px; background:rgba(255,255,255,0.15); border-radius:6px; overflow:hidden;">
+                    <div id="kc-valko-colorblind-timer-bar" style="width:100%; height:100%; background:#e8a838; border-radius:6px; transition:width 0.05s linear;"></div>
+                </div>
+                <span id="kc-valko-colorblind-timer-text" style="font-size:11px; opacity:0.7; letter-spacing:0.5px;">5s to decide</span>
+            </div>
+            <div style="display:flex;gap:10px;justify-content:center;margin-top:10px;">
+                <button id="kc-valko-colorblind-yes" class="kc-order-btn primary">Yes, it matches</button>
+                <button id="kc-valko-colorblind-no" class="kc-order-btn">No, it doesn't</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast -->
+    <div class="kc-toast" id="kc-toast" role="alert" aria-live="assertive"></div>
+
+    <!-- Music toggle -->
+    <button id="music-toggle" class="music-toggle-btn" style="position:fixed;z-index:10001;"
+        aria-label="Toggle background music">
+        <i data-lucide="play" id="music-icon-play"></i>
+        <i data-lucide="pause" id="music-icon-pause" style="display:none;"></i>
+    </button>
+
+    <audio id="kc-bgm" src="../assets/ui/claw-paradise.mp3" loop></audio>
+
+    <script src="../audio-bridge.js?v=4"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            if (window.AudioBridge) {
+                const bgmEl = document.getElementById('kc-bgm');
+                AudioBridge.init(bgmEl, 'music-icon-play', 'music-icon-pause');
+                const globalToggle = document.getElementById('global-audio-toggle');
+                if (globalToggle) {
+                    globalToggle.addEventListener('click', () => {
+                        AudioBridge.toggle(bgmEl, 'music-icon-play', 'music-icon-pause');
+                    });
+                }
+            }
+        });
+    </script>
+    <script src="../i18n.js?v=5"></script>
+    <script>document.write('<script src="kitty-cards.js?v=' + Date.now() + '"><\/script>');</script>
+    <script src="../global-settings.js?v=6"></script>
+    <script>lucide.createIcons();</script>
+    <!-- Forfeit Dialog -->
+    <div id="kc-cheat-forfeit" class="kc-cheat-overlay" style="display:none;" aria-modal="true">
+        <div class="kc-cheat-box" style="text-align:center;">
+            <div class="kc-cheat-title" id="kc-forfeit-title">Forfeit Offer</div>
+            <img src="" alt="" class="kc-dialogue-portrait" id="kc-forfeit-portrait" style="float:none; margin: 0 auto 10px; display:block;">
+            <p class="kc-dialogue-speaker" id="kc-forfeit-speaker" style="text-align:center; font-size:16px; margin-bottom:8px;"></p>
+            <p class="kc-cheat-desc" id="kc-forfeit-desc" style="font-size:14px; margin-bottom:16px;"></p>
+            
+            <div style="display:flex;gap:10px;justify-content:center;">
+                <button id="kc-forfeit-accept-btn" class="kc-order-btn primary">Accept</button>
+                <button id="kc-forfeit-refuse-btn" class="kc-order-btn">Refuse</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ══ ADVANCED MODE OVERLAYS ══ -->
+
+    <!-- Phase Banner (slides in at top of board each phase) -->
+    <div id="kc-adv-phase-banner" style="display:none;" aria-live="polite">
+        <span id="kc-adv-phase-banner-text">Assist Phase</span>
+    </div>
+
+    <!-- AI Assist Play Reveal Modal -->
+    <div id="kc-ai-assist-reveal" class="kc-cheat-overlay" style="display:none;" aria-modal="true">
+        <div class="kc-cheat-box" style="text-align:center; animation: revealPop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);">
+            <div class="kc-cheat-title" id="kc-ai-assist-reveal-title">Zayne plays an Assist Card!</div>
+            <img id="kc-ai-assist-reveal-img" src="" alt="Assist card" style="width:180px; height:auto; border-radius:12px; margin:16px auto; display:block; box-shadow:0 8px 24px rgba(0,0,0,0.3);">
+            <p id="kc-ai-assist-reveal-desc" style="font-size:14px; margin-bottom:0; color:var(--kc-text); font-style:italic;"></p>
+        </div>
+    </div>
+
+    <!-- Player Assist Inspect Modal -->
+    <div id="kc-player-assist-inspect" class="kc-cheat-overlay" style="display:none;" aria-modal="true">
+        <div class="kc-cheat-box" style="text-align:center; animation: revealPop 0.3s ease-out;">
+            <div class="kc-cheat-title" id="kc-player-assist-inspect-title">Card Name</div>
+            <img id="kc-player-assist-inspect-img" src="" alt="Assist card" style="width:200px; height:auto; border-radius:14px; margin:12px auto; display:block; box-shadow:0 8px 24px rgba(0,0,0,0.3);">
+            <p id="kc-player-assist-inspect-desc" style="font-size:14px; margin-bottom:16px; color:var(--kc-text);"></p>
+            <div style="display:flex;gap:10px;justify-content:center;">
+                <button id="kc-player-assist-use-btn" class="kc-order-btn primary">Use</button>
+                <button id="kc-player-assist-cancel-btn" class="kc-order-btn">Cancel</button>
+            </div>
+            <p id="kc-player-assist-inspect-error" style="color:#d9534f; font-size:12px; margin-top:10px; display:none;"></p>
+        </div>
+    </div>
+
+    <!-- Meow This! Interrupt Modal -->
+    <div id="kc-adv-meow-interrupt" class="kc-cheat-overlay" style="display:none;" aria-modal="true">
+        <div class="kc-cheat-box">
+            <div class="kc-cheat-title">Meow This!</div>
+            <img id="kc-adv-meow-card-img" src="" alt="Assist card" style="width:160px;height:auto;border-radius:10px;margin:12px auto;display:block;box-shadow:0 4px 16px rgba(0,0,0,0.25);">
+            <p class="kc-cheat-desc" id="kc-adv-meow-desc" style="margin-bottom:14px;"></p>
+            <div style="margin-bottom:14px; display:flex; flex-direction:column; align-items:center; gap:4px;">
+                <div style="width:100%; max-width:260px; height:8px; background:rgba(255,255,255,0.15); border-radius:6px; overflow:hidden;">
+                    <div id="kc-adv-meow-timer-bar" style="width:100%; height:100%; background:#e8a838; border-radius:6px; transition:width 0.05s linear;"></div>
+                </div>
+                <span id="kc-adv-meow-timer-text" style="font-size:11px; opacity:0.7; letter-spacing:0.5px;">5s to decide</span>
+            </div>
+            <div style="display:flex;gap:10px;justify-content:center;">
+                <button id="kc-adv-meow-cancel-btn" class="kc-order-btn primary">Use Meow This!</button>
+                <button id="kc-adv-meow-allow-btn" class="kc-order-btn">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Assist Card Target Modal (multi-purpose: Purrceive, Magic Paw, Bye-Bye, Purrator, Kitty Plot discard, Meowster) -->
+    <div id="kc-adv-assist-target" class="kc-cheat-overlay" style="display:none;" aria-modal="true">
+        <div class="kc-cheat-box">
+            <div class="kc-cheat-title" id="kc-adv-target-title">Select a card</div>
+            <p class="kc-cheat-desc" id="kc-adv-target-desc" style="margin-bottom:15px;"></p>
+            <div id="kc-adv-target-cards" style="display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin:12px 0;"></div>
+            <div id="kc-adv-target-colors" style="display:none;flex-wrap:wrap;gap:8px;justify-content:center;margin:12px 0;"></div>
+            <div style="display:flex;gap:10px;justify-content:center;margin-top:10px;">
+                <button id="kc-adv-target-confirm" class="kc-order-btn primary" disabled>Confirm</button>
+                <button id="kc-adv-target-pass" class="kc-order-btn" style="display:none;">Pass</button>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
