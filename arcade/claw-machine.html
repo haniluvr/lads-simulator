@@ -241,9 +241,12 @@
             if (window.AudioBridge) {
                 const bgmEl = document.getElementById('cm-bgm');
                 AudioBridge.init(bgmEl, 'music-icon-play', 'music-icon-pause');
-                document.getElementById('global-audio-toggle').addEventListener('click', () => {
-                    AudioBridge.toggle(bgmEl, 'music-icon-play', 'music-icon-pause');
-                });
+                const globalToggle = document.getElementById('music-toggle');
+                if (globalToggle) {
+                    globalToggle.addEventListener('click', () => {
+                        AudioBridge.toggle(bgmEl, 'music-icon-play', 'music-icon-pause');
+                    });
+                }
             }
         });
     </script>

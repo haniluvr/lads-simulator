@@ -46,7 +46,10 @@
 /* ── Main Screen ── */
 #kc-screen {
   position: fixed;
-  inset: 0;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100dvh; /* Use dynamic viewport height to prevent mobile browser UI clipping */
   z-index: 10000;
   background: url('../assets/ui/arcade/kitty-cards/kitty-cards-bg.webp') repeat;
   background-size: 700px;
@@ -68,9 +71,23 @@
   transition: opacity 0.3s ease;
 }
 
+#kc-screen.in-game {
+  background: url('../assets/ui/arcade/kitty-cards/game-bg.webp') center/cover no-repeat;
+  overflow-y: auto;
+}
+
 #kc-screen.in-game .kc-window-frame,
 #kc-screen.in-game .kc-title-container {
   display: none;
+}
+
+body:has(#kc-screen.in-game) #faq-btn {
+  display: none !important;
+}
+
+body:has(#kc-screen.in-game) #notice-btn {
+  top: 36px !important;
+  right: 80px !important;
 }
 
 /* Top bar (dark gray/black) */
@@ -209,7 +226,8 @@
 
 #kc-screen.in-game #kc-game-wrapper {
   width: min(480px, 96vw);
-  height: 100vh;
+  min-height: 100dvh;
+  height: auto;
 }
 
 /* ══════════════════════════════════════════════
@@ -502,7 +520,10 @@
 .kc-score-block {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: clamp(6px, 2vw, 12px);
+  background: rgb(245, 235, 216);
+  padding: 6px 12px;
+  border-radius: 24px;
 }
 
 .kc-score-avatar {
@@ -596,9 +617,15 @@
   justify-content: center;
   align-items: center;
   gap: 0;
-  /* vertical overlap handled by row margins */
   min-height: clamp(58px, 14vw, 76px);
   flex-shrink: 0;
+  width: 70%;
+  margin: 0 auto;
+  
+  background: rgba(245, 235, 216, 0.6);
+  border: 2px dashed rgba(196, 149, 106, 0.6);
+  padding: 8px 12px;
+  border-radius: 12px;
 }
 
 .kc-hand-label {
@@ -608,7 +635,12 @@
   text-transform: uppercase;
   letter-spacing: 1px;
   text-align: center;
-  margin-bottom: 2px;
+  margin: 0 auto 2px auto;
+  background: rgb(245, 235, 216);
+  padding: 4px 12px;
+  border-radius: 20px;
+  display: block;
+  width: fit-content;
 }
 
 /* ── Cup Grid (3×3) ── */
@@ -616,7 +648,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 12px 0;
+  margin: 18px 0;
+  position: relative;
+  background: url('../assets/ui/arcade/kitty-cards/table-top.webp') center/contain no-repeat;
+  padding: 14px;
+  border-radius: 4px;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.1);
 }
 
 .kc-cup-grid {
@@ -857,7 +894,13 @@
   gap: 0;
   min-height: clamp(100px, 25vw, 135px);
   flex-shrink: 0;
-  padding-bottom: 4px;
+  width: 70%;
+  margin: 0 auto;
+  
+  background: rgba(245, 235, 216, 0.6);
+  border: 2px dashed rgba(196, 149, 106, 0.6);
+  padding: 8px 12px 12px;
+  border-radius: 12px;
 }
 
 .kc-hand-row {
@@ -1513,7 +1556,12 @@
   min-height: 18px;
   font-style: italic;
   flex-shrink: 0;
-  padding: 0 8px;
+  margin: 4px auto;
+  background: rgb(245, 235, 216);
+  padding: 6px 16px;
+  border-radius: 20px;
+  display: block;
+  width: fit-content;
 }
 
 /* ── Thinking indicator (AI turn) ── */

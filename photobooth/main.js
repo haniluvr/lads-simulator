@@ -171,10 +171,10 @@ function initAudio() {
 
   // AudioBridge handles track detection, position restore, volume, and autoplay.
   // Same track as booth.html → continues; different track → plays from start.
-  AudioBridge.init(bgMusic, 'music-icon-play', 'music-icon-pause');
+  AudioBridge.initBtn(bgMusic, musicToggleBtn);
 
   musicToggleBtn.addEventListener('click', () => {
-    AudioBridge.toggle(bgMusic, 'music-icon-play', 'music-icon-pause');
+    AudioBridge.toggleBtn(bgMusic, musicToggleBtn);
   });
 }
 

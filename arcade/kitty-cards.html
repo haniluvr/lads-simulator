@@ -220,9 +220,9 @@
 
                 <!-- Match Round Tracker -->
                 <div id="kc-match-tracker" style="display:none; justify-content:center; align-items:center; gap:12px; margin-bottom:8px; font-family:'Noto Serif JP',serif; font-size:12px; font-weight:700;">
-                    <div style="color:var(--kc-text);"><span id="kc-match-tracker-ai-name">AI</span> <span id="kc-match-wins-ai" style="color:var(--companion-color);">0</span></div>
+                    <div style="color:var(--kc-text); background: rgb(245, 235, 216); padding: 4px 12px; border-radius: 20px;"><span id="kc-match-tracker-ai-name">AI</span> <span id="kc-match-wins-ai" style="color:var(--companion-color);">0</span></div>
                     <div style="background:var(--kc-text); color:var(--kc-cream); padding:2px 8px; border-radius:12px; font-size:10px;">ROUND <span id="kc-match-round-num">1</span></div>
-                    <div style="color:var(--kc-text);"><span id="kc-match-wins-player" style="color:#89CFF0;">0</span> You</div>
+                    <div style="color:var(--kc-text); background: rgb(245, 235, 216); padding: 4px 12px; border-radius: 20px;"><span id="kc-match-wins-player" style="color:#89CFF0;">0</span> You</div>
                 </div>
 
                 <!-- Score bar -->
@@ -505,6 +505,132 @@
         <i data-lucide="pause" id="music-icon-pause" style="display:none;"></i>
     </button>
 
+    <!-- Notice button -->
+    <button id="notice-btn" class="sf-reset-btn sf-notice-btn" aria-label="Tutorial / Mechanics">
+        <i data-lucide="info"></i>
+    </button>
+
+    <!-- Notice Modal -->
+    <div id="notice-modal" class="settings-overlay" aria-modal="true" role="dialog" style="display: none;">
+      <div class="settings-container">
+        <div class="settings-header">
+          <h2>TUTORIAL / MECHANICS</h2>
+          <button id="notice-close-btn" class="settings-close" aria-label="Close Notices">
+            <i data-lucide="x"></i>
+          </button>
+        </div>
+        <div class="settings-body notice-body" style="padding: 16px;">
+          <!-- Tabs -->
+          <div style="display: flex; gap: 8px; margin-bottom: 16px; border-bottom: 1px solid rgba(201, 169, 110, 0.2); padding-bottom: 8px;">
+             <button id="tab-normal-btn" class="notice-tab-btn active" style="flex:1;">Normal</button>
+             <button id="tab-advanced-btn" class="notice-tab-btn" style="flex:1;">Advanced</button>
+          </div>
+          <style>
+            .notice-tab-btn {
+                background: rgba(255, 255, 255, 0.05);
+                color: var(--txt-2, rgba(237, 228, 255, 0.58));
+                border: 1px solid rgba(255, 255, 255, 0.1);
+                padding: 10px 16px;
+                border-radius: 6px;
+                cursor: pointer;
+                font-family: var(--font-m, sans-serif);
+                font-size: 14px;
+                transition: all 0.2s;
+            }
+            .notice-tab-btn:hover {
+                background: rgba(255, 255, 255, 0.1);
+                color: #fff;
+            }
+            .notice-tab-btn.active {
+                background: rgba(201, 169, 110, 0.15);
+                color: var(--gold, #c9a96e);
+                border-color: var(--gold, #c9a96e);
+                box-shadow: inset 0 0 8px rgba(201, 169, 110, 0.2);
+            }
+          </style>
+
+          <!-- Normal Tab Content -->
+          <div id="tab-normal-content" class="notice-section" style="display: block;">
+             <h3 style="color: var(--gold); margin-bottom: 8px; font-size: 18px;">About Rounds</h3>
+             <p style="color: #ddd; font-size: 14px; margin-bottom: 12px; line-height: 1.5;">At the start of each game, both players decide the order of play. The player going first receives 2 cards, while the player going second receives 3 cards.<br>Players alternate turns, and each round, they can choose to [Play] a card or [Draw] a card.</p>
+             
+             <h3 style="color: var(--gold); margin-bottom: 8px; font-size: 18px;">Rules</h3>
+             <p style="color: #ddd; font-size: 14px; margin-bottom: 12px; line-height: 1.5;">When all 8 cups are filled with kitties, the player with more points wins the game.</p>
+             
+             <h3 style="color: var(--gold); margin-bottom: 8px; font-size: 18px;">About Cards</h3>
+             <p style="color: #ddd; font-size: 14px; margin-bottom: 12px; line-height: 1.5;">There are 4 colors of cards and 5 colors of cups, one of which is the white cup.</p>
+             
+             <h3 style="color: var(--gold); margin-bottom: 8px; font-size: 18px;">About Points</h3>
+             <ul style="color: #ddd; font-size: 14px; padding-left: 20px; line-height: 1.5; margin-bottom: 12px;">
+                 <li>You can put your cards in any unoccupied cups.</li>
+                 <li>Place kitties in the cups and get points according to the color.</li>
+                 <li><strong>Matched Cup</strong> (kitty color identical to cup color) gains double points. White Cup gains standard points.</li>
+                 <li><strong>Unmatched Cup</strong> (kitty color different from cup color) gains no points.</li>
+             </ul>
+             
+             <h3 style="color: var(--gold); margin-bottom: 8px; font-size: 18px;">Special Cases</h3>
+             <p style="color: #ddd; font-size: 14px; margin-bottom: 12px; line-height: 1.5;">It is important to play by the rules, but you can also get naughty from time to time...</p>
+          </div>
+
+          <!-- Advanced Tab Content -->
+          <div id="tab-advanced-content" class="notice-section" style="display: none;">
+             <h3 style="color: var(--gold); margin-bottom: 8px; font-size: 18px;">Starting Phase</h3>
+             <ol style="color: #ddd; font-size: 14px; padding-left: 20px; line-height: 1.5; margin-bottom: 12px;">
+                 <li>At the start of a game, the player going first gets 2 Number Cards plus 1 Assist Card. The player going second gets 3 Number Cards plus 1 Assist Cards.</li>
+                 <li>At the start of your round, you get 1 additional Assist Card from the dealer (the same applies to your opponent).</li>
+             </ol>
+
+             <h3 style="color: var(--gold); margin-bottom: 8px; font-size: 18px;">Round Phase</h3>
+             <ol style="color: #ddd; font-size: 14px; padding-left: 20px; line-height: 1.5; margin-bottom: 12px;">
+                 <li>The advanced mode has different phases, namely Assist Card Phase and Number Card Phase.</li>
+                 <li>Both players take turns to play cards. Each round, each player must first deal with Assist Cards and then deal with Number Cards.</li>
+             </ol>
+
+             <h3 style="color: var(--gold); margin-bottom: 8px; font-size: 18px;">Tally</h3>
+             <p style="color: #ddd; font-size: 14px; margin-bottom: 12px; line-height: 1.5;">When all 8 cups are filled with kitties, the player with more points wins the game.</p>
+
+             <h3 style="color: var(--gold); margin-bottom: 8px; font-size: 18px;">About Assist Card Phase</h3>
+             <ol style="color: #ddd; font-size: 14px; padding-left: 20px; line-height: 1.5; margin-bottom: 12px;">
+                 <li>At the start of a round, you need to deal with Assist Cards first.</li>
+                 <li>There is no limit to how many Assist Cards you can play in a round. Tap END to enter the next phase.</li>
+                 <li>If you are out of Assist Cards or you can't play any Assist Cards, the Assist Card Phase will end.</li>
+             </ol>
+
+             <h3 style="color: var(--gold); margin-bottom: 8px; font-size: 18px;">About Number Card Phase</h3>
+             <ol style="color: #ddd; font-size: 14px; padding-left: 20px; line-height: 1.5; margin-bottom: 12px;">
+                 <li>After the Assist Card Phase, the Number Card Phase follows.</li>
+                 <li>When dealing with Number Cards, you can either play a card or draw a card, then this phase is over.</li>
+             </ol>
+
+             <h3 style="color: var(--gold); margin-bottom: 8px; font-size: 18px;">About Assist Cards</h3>
+             <ul style="color: #ddd; font-size: 14px; padding-left: 20px; line-height: 1.5; margin-bottom: 12px;">
+                 <li><strong>[Skip]</strong> Your opponent skips his Number Card Phase in the next round.</li>
+                 <li><strong>[Freeze]</strong> Your opponent skips his Assist Card Phase in the next round.</li>
+                 <li><strong>[Meow This!]</strong> When your opponent claims to play an Assist Card, you can deny that card.</li>
+                 <li><strong>[Cat-ching!]</strong> You get two Number Cards.</li>
+                 <li><strong>[Kitty Plot]</strong> You get two Assist Cards and discard a Number or Assist Card in your hand.</li>
+                 <li><strong>[Purrceive]</strong> Check 3 random cards in your opponent's hand (including Assist and Number cards). Then, select one of them and discard it.</li>
+                 <li><strong>[Meowster]</strong> Pick a random card from the last 5 Assist Cards your opponent played and add it to your hand.</li>
+                 <li><strong>[Purrator]</strong> Select a cell and change it to another color (including turning it into a normal cell).</li>
+                 <li><strong>[Kitty Pow!]</strong> Both players discard all their NumberCards.</li>
+                 <li><strong>[Magic Paw]</strong> Select a Kitty placed by your opponent and reduce it to 1 point (its cup has the same effects).</li>
+                 <li><strong>[Bye-bye!]</strong> You can play this card on any cup that contains cards to discard the cards there.</li>
+                 <li><strong>[Paw Combo]</strong> You can play two Number Cards this round.</li>
+             </ul>
+
+             <h3 style="color: var(--gold); margin-bottom: 8px; font-size: 18px;">About Hand Limit</h3>
+             <p style="color: #ddd; font-size: 14px; margin-bottom: 12px; line-height: 1.5;">You can have up to 10 cards in your hand, including Assist Cards and Number Cards. The same rule applies to the normal mode.</p>
+
+             <h3 style="color: var(--gold); margin-bottom: 8px; font-size: 18px;">About Assist Card Burn</h3>
+             <p style="color: #ddd; font-size: 14px; margin-bottom: 12px; line-height: 1.5;"><strong>Card Burn:</strong> When a card you draw from the pile is directly removed from your hand and excluded from the discard pile.<br>There are two possibilities when a card is burned in Kitty Card - Feature Edition:<br>1. When there are 10 cards in your hand and you draw a new card, that card will be burned.<br>2. At the start of your every round, you get one additional Assist Card (if the pile still has more cards to give). When this happens, if your hand is full, that additional card will be burned.</p>
+
+             <h3 style="color: var(--gold); margin-bottom: 8px; font-size: 18px;">Additional Rules</h3>
+             <p style="color: #ddd; font-size: 14px; margin-bottom: 12px; line-height: 1.5;">Notes: Meow This! is a special Assist Card. You can play it at any time to deny your opponent's Assist Card. Number Cards can't be denied. After the Assist Card Phase, the Number Card Phase follows.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <audio id="kc-bgm" src="../assets/ui/claw-paradise.mp3" loop></audio>
 
     <script src="../audio-bridge.js?v=4"></script>
@@ -513,17 +639,75 @@
             if (window.AudioBridge) {
                 const bgmEl = document.getElementById('kc-bgm');
                 AudioBridge.init(bgmEl, 'music-icon-play', 'music-icon-pause');
-                const globalToggle = document.getElementById('global-audio-toggle');
+                const globalToggle = document.getElementById('music-toggle');
                 if (globalToggle) {
                     globalToggle.addEventListener('click', () => {
                         AudioBridge.toggle(bgmEl, 'music-icon-play', 'music-icon-pause');
                     });
                 }
             }
+
+            // Notice Modal Logic
+            const noticeBtn = document.getElementById('notice-btn');
+            const noticeModal = document.getElementById('notice-modal');
+            const noticeCloseBtn = document.getElementById('notice-close-btn');
+            const tabNormalBtn = document.getElementById('tab-normal-btn');
+            const tabAdvancedBtn = document.getElementById('tab-advanced-btn');
+            const tabNormalContent = document.getElementById('tab-normal-content');
+            const tabAdvancedContent = document.getElementById('tab-advanced-content');
+
+            if (noticeBtn && noticeModal && noticeCloseBtn) {
+                const openNotice = () => {
+                    noticeModal.style.display = '';
+                    requestAnimationFrame(() => requestAnimationFrame(() => noticeModal.classList.add('active')));
+                };
+                
+                const closeNotice = () => {
+                    noticeModal.classList.remove('active');
+                    setTimeout(() => { noticeModal.style.display = 'none'; }, 300);
+                };
+
+                noticeBtn.addEventListener('click', openNotice);
+                noticeCloseBtn.addEventListener('click', closeNotice);
+
+                noticeModal.addEventListener('click', (e) => {
+                    if (e.target === noticeModal) {
+                        closeNotice();
+                    }
+                });
+            }
+
+            if (tabNormalBtn && tabAdvancedBtn) {
+                tabNormalBtn.addEventListener('click', () => {
+                    tabNormalBtn.classList.add('active');
+                    tabAdvancedBtn.classList.remove('active');
+                    tabNormalContent.style.display = 'block';
+                    tabAdvancedContent.style.display = 'none';
+                });
+                tabAdvancedBtn.addEventListener('click', () => {
+                    tabAdvancedBtn.classList.add('active');
+                    tabNormalBtn.classList.remove('active');
+                    tabAdvancedContent.style.display = 'block';
+                    tabNormalContent.style.display = 'none';
+                });
+            }
         });
     </script>
     <script src="../i18n.js?v=5"></script>
     <script>document.write('<script src="kitty-cards.js?v=' + Date.now() + '"><\/script>');</script>
+    <script>
+        window.PAGE_FAQ = {
+            title: 'Kitty Cards FAQ',
+            items: [
+                { q: 'Where are the game rules?', a: 'Click the Info (i) button in the bottom left corner to read the full Tutorial and Mechanics!' },
+                { q: 'How do I play Advanced Mode?', a: 'You can toggle the game mode to Advanced in the character select screen. Advanced mode includes Assist Cards that change the tide of the game!' },
+                { q: 'Why can\'t I play certain assist cards?', a: 'Some assist cards have specific conditions to be played, or you might be in the Number Card Phase instead of the Assist Phase. Check the Notice modal for details on every card.' },
+                { q: 'What is the hand limit?', a: 'You can hold a maximum of 10 cards in your hand. If you draw a new card when your hand is full, it will be automatically burned (discarded).' },
+                { q: 'Does the opponent cheat?', a: 'Some opponents (like Valko and Caleb) have special abilities or "cheats" that they can trigger during Advanced mode!' }
+            ]
+        };
+    </script>
+    <script src="../global-faq.js?v=3"></script>
     <script src="../global-settings.js?v=6"></script>
     <script>lucide.createIcons();</script>
     <!-- Forfeit Dialog -->

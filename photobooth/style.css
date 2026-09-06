@@ -668,6 +668,10 @@ body.cursor-zayne * {
   height: 16px;
 }
 
+.music-toggle-btn .icon-play { display: none; }
+.music-toggle-btn[aria-pressed="false"] .icon-pause { display: none; }
+.music-toggle-btn[aria-pressed="false"] .icon-play { display: block; }
+
 .music-toggle-btn:hover {
   background: rgba(201, 169, 110, 0.16);
   box-shadow: 0 0 12px var(--gold-glow);

@@ -1408,7 +1408,7 @@ document.addEventListener('DOMContentLoaded', () => {
       state.pawComboActive = false;
       setStatus(`${COMPANIONS[state.companion].name} uses Paw Combo to play another Number Card!`);
       setTimeout(() => {
-        executeAiAction(aiStrategyNumber());
+        doAiTurn();
       }, 1500);
       return;
     }
@@ -1416,6 +1416,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function endAiTurn() {
+    if (state.phase !== 'playing') return;
     state.advancedPhase = 'assist'; // always reset phase on turn end
     state.currentTurn = 'player';
     state.consecutiveAiTurns = 0;
@@ -2396,9 +2397,10 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function endCheat(callback) {
+    if (state.phase === 'gameover') return;
     state.phase = 'playing';
     state.cheatActive = null;
-    callback();
+    if (callback) callback();
   }
 
   // ── Hold Button Helper ─────────────────────────────────
@@ -2492,6 +2494,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // ═══════════════════════════════════════════════════════
 
   function checkGameOver() {
+    if (state.phase === 'gameover' || state.phase === 'results') return true;
     const allFilled = state.cups.every(c => c.card);
     if (!allFilled) return false;
 
