@@ -85,7 +85,12 @@ body:has(#kc-screen.in-game) #faq-btn {
   display: none !important;
 }
 
+#notice-btn {
+  display: none !important;
+}
+
 body:has(#kc-screen.in-game) #notice-btn {
+  display: flex !important;
   top: 36px !important;
   right: 80px !important;
 }
@@ -621,6 +626,7 @@ body:has(#kc-screen.in-game) #notice-btn {
   flex-shrink: 0;
   width: 70%;
   margin: 0 auto;
+  align-self: center;
   
   background: rgba(245, 235, 216, 0.6);
   border: 2px dashed rgba(196, 149, 106, 0.6);
@@ -896,6 +902,7 @@ body:has(#kc-screen.in-game) #notice-btn {
   flex-shrink: 0;
   width: 70%;
   margin: 0 auto;
+  align-self: center;
   
   background: rgba(245, 235, 216, 0.6);
   border: 2px dashed rgba(196, 149, 106, 0.6);
@@ -1074,6 +1081,7 @@ body:has(#kc-screen.in-game) #notice-btn {
   align-items: center;
   justify-content: center;
   animation: overlayIn 0.3s ease;
+  pointer-events: auto !important;
 }
 
 .kc-cheat-overlay.interactive-bg {

@@ -2505,6 +2505,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function showResults(forfeitedWinner = null) {
     const c = COMPANIONS[state.companion];
+    document.body.classList.remove('kc-ai-turn-active');
     
     // If a player forfeited, the other player automatically wins the match
     if (forfeitedWinner === 'player') {
@@ -2933,7 +2934,9 @@ document.addEventListener('DOMContentLoaded', () => {
       state.phase = 'select';
       // Hide all cheats
       [cheatXavier, cheatZayne, cheatZayneUndo, cheatRafayel, cheatRafayelCaught,
-       cheatSylus, cheatCaleb, cheatValko].forEach(el => el.style.display = 'none');
+       cheatSylus, cheatCaleb, cheatForfeit].forEach(el => {
+         if (el) el.style.display = 'none';
+       });
       playerHandEl.style.filter = '';
       selectedCompanion = null;
       showScreen('select');
