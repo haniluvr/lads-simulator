@@ -1092,13 +1092,13 @@ body:has(#kc-screen.in-game) #notice-btn {
 .kc-cheat-overlay.interactive-bg {
   background: rgba(30, 15, 5, 0.2);
   backdrop-filter: none;
-  pointer-events: none;
+  pointer-events: none !important;
   align-items: flex-start;
   padding-top: 20px;
 }
 
 .kc-cheat-overlay.interactive-bg .kc-cheat-box {
-  pointer-events: auto;
+  pointer-events: auto !important;
 }
 
 @keyframes overlayIn {
@@ -1375,11 +1375,22 @@ body:has(#kc-screen.in-game) #notice-btn {
 }
 
 /* Highlight mode: player hand cards and board cups during Rafayel swap */
+.kc-raf-swap-active .kc-table-area {
+  position: relative;
+  z-index: 20002;
+}
+
+.kc-raf-swap-active .kc-player-hand {
+  position: relative;
+  z-index: 20002;
+  pointer-events: auto !important;
+}
+
 .kc-raf-swap-active .kc-player-hand .kc-card {
   cursor: pointer;
   outline: 2px dashed #D4845A;
   outline-offset: 2px;
-  pointer-events: auto;
+  pointer-events: auto !important;
   position: relative;
   z-index: 20001;
 }
@@ -1393,13 +1404,18 @@ body:has(#kc-screen.in-game) #notice-btn {
   cursor: pointer;
   outline: 2px dashed #D4845A;
   outline-offset: 2px;
-  pointer-events: auto;
+  pointer-events: auto !important;
   position: relative;
-  z-index: 20001;
+  z-index: 20002;
 }
 
 .kc-raf-swap-active .kc-cup-cell.raf-cup-selected {
   outline: 3px solid #D4845A;
+}
+
+/* Cup children pass clicks to parent during player swap */
+.kc-raf-swap-active .kc-cup-cell.has-card > * {
+  pointer-events: none !important;
 }
 
 

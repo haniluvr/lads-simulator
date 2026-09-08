@@ -1930,7 +1930,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Player hand: clicking a card selects it
     function onHandCardClick(e) {
-      const cardEl = e.currentTarget;
+      // Walk up to find the .kc-card element in case a child was clicked
+      const cardEl = e.target.closest('.kc-card');
+      if (!cardEl) return;
       const idx = parseInt(cardEl.dataset.handIdx, 10);
       if (isNaN(idx)) return;
       // Deselect previous
@@ -1940,9 +1942,11 @@ document.addEventListener('DOMContentLoaded', () => {
       updateConfirm();
     }
 
-    // Board cups: clicking an occupied cup selects it
+    // Board cups: clicking an occupied player-owned cup selects it
     function onCupClick(e) {
-      const cupCell = e.currentTarget;
+      // Walk up to find the .kc-cup-cell element in case a child was clicked
+      const cupCell = e.target.closest('.kc-cup-cell');
+      if (!cupCell) return;
       const idx = parseInt(cupCell.dataset.cup, 10);
       if (isNaN(idx)) return;
       const cup = state.cups[idx];
@@ -1956,16 +1960,22 @@ document.addEventListener('DOMContentLoaded', () => {
     // Attach listeners (re-render first to get fresh elements)
     renderAll();
     setTimeout(() => {
-      document.querySelectorAll('.kc-player-hand .kc-card').forEach((el, i) => {
-        el.dataset.handIdx = i;
+      // Tag each hand card with its index into state.playerHand
+      let handCardIdx = 0;
+      document.querySelectorAll('.kc-player-hand .kc-card').forEach((el) => {
+        el.dataset.handIdx = handCardIdx++;
         el.addEventListener('click', onHandCardClick);
       });
+
+      // Tag player-owned occupied cups and attach click handler
       document.querySelectorAll('.kc-cup-cell').forEach((el) => {
         const cupIdxStr = el.dataset.cup;
         if (cupIdxStr === undefined) return;
         const i = parseInt(cupIdxStr, 10);
         if (state.cups[i] && state.cups[i].card && state.cups[i].owner === 'player') {
           el.classList.add('has-card');
+          // Make children non-interactive so clicks bubble to the cell
+          el.querySelectorAll('*').forEach(child => child.style.pointerEvents = 'none');
           el.addEventListener('click', onCupClick);
         }
       });
@@ -1981,6 +1991,8 @@ document.addEventListener('DOMContentLoaded', () => {
       document.querySelectorAll('.kc-cup-cell').forEach(el => {
         el.classList.remove('has-card', 'raf-cup-selected');
         el.removeEventListener('click', onCupClick);
+        // Restore children pointer-events
+        el.querySelectorAll('*').forEach(child => child.style.pointerEvents = '');
       });
     }
 
