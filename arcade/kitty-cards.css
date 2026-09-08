@@ -72,7 +72,7 @@
 }
 
 #kc-screen.in-game {
-  background: url('../assets/ui/arcade/kitty-cards/game-bg.webp') center/cover no-repeat;
+  background: url('../assets/ui/arcade/kitty-cards/game-bg.webp') center/contain repeat;
   overflow-y: auto;
 }
 
@@ -650,7 +650,7 @@ body:has(#kc-screen.in-game) #notice-btn {
   justify-content: center;
   margin: 18px 0;
   position: relative;
-  background: url('../assets/ui/arcade/kitty-cards/table-top.webp') center/contain no-repeat;
+  background: url('../assets/ui/arcade/kitty-cards/table-top.webp') center/contain no repeat;
   padding: 14px;
   border-radius: 4px;
   box-shadow: 0 8px 16px rgba(0,0,0,0.1);
