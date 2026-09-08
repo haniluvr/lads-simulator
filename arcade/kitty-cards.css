@@ -72,8 +72,14 @@
 }
 
 #kc-screen.in-game {
-  background: url('../assets/ui/arcade/kitty-cards/game-bg.webp') center/contain repeat;
+  background: url('../assets/ui/arcade/kitty-cards/game-bg-web.webp') center/cover no-repeat;
   overflow-y: auto;
+}
+
+@media (max-width: 768px) {
+  #kc-screen.in-game {
+    background: url('../assets/ui/arcade/kitty-cards/game-bg.webp') center/contain repeat;
+  }
 }
 
 #kc-screen.in-game .kc-window-frame,
@@ -659,7 +665,6 @@ body:has(#kc-screen.in-game) #notice-btn {
   background: url('../assets/ui/arcade/kitty-cards/table-top.webp') center/contain no-repeat;
   padding: 14px;
   border-radius: 4px;
-  box-shadow: 0 8px 16px rgba(0,0,0,0.1);
 }
 
 .kc-cup-grid {
