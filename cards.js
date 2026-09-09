@@ -400,6 +400,17 @@ const CARD_CATALOG = [
     "character": "caleb",
     "rarity": 4,
     "rarityStr": "4star",
+    "type": "lunar",
+    "bannerType": "both",
+    "assetPath": "assets/caleb/four-star/lunar/vivid strokes.webp",
+    "cardName": "Vivid Strokes",
+    "cardNameCN": "跃跃纸端",
+    "isVideo": false
+  },
+  {
+    "character": "caleb",
+    "rarity": 4,
+    "rarityStr": "4star",
     "type": "solar",
     "bannerType": "both",
     "assetPath": "assets/caleb/four-star/solar/duskshard dreams.webp",
@@ -1175,6 +1186,17 @@ const CARD_CATALOG = [
     "assetPath": "assets/rafayel/four-star/lunar/sunlit raindrops.webp",
     "cardName": "Sunlit Raindrops",
     "cardNameCN": "漫雨时晴",
+    "isVideo": false
+  },
+  {
+    "character": "rafayel",
+    "rarity": 4,
+    "rarityStr": "4star",
+    "type": "lunar",
+    "bannerType": "both",
+    "assetPath": "assets/rafayel/four-star/lunar/sunny swing.webp",
+    "cardName": "Sunny Swing",
+    "cardNameCN": "晒日长",
     "isVideo": false
   },
   {
@@ -2140,6 +2162,17 @@ const CARD_CATALOG = [
     "rarityStr": "4star",
     "type": "lunar",
     "bannerType": "both",
+    "assetPath": "assets/sylus/four-star/lunar/tipping point.webp",
+    "cardName": "Tipping Point",
+    "cardNameCN": "临界点",
+    "isVideo": false
+  },
+  {
+    "character": "sylus",
+    "rarity": 4,
+    "rarityStr": "4star",
+    "type": "lunar",
+    "bannerType": "both",
     "assetPath": "assets/sylus/four-star/lunar/wild gaze.webp",
     "cardName": "Wild Gaze",
     "cardNameCN": "恣肆视线",
@@ -2363,6 +2396,17 @@ const CARD_CATALOG = [
     "assetPath": "assets/valko/five-star/lunar/limited/chocolate milk & charm.webp",
     "cardName": "Chocolate Milk & Charm",
     "cardNameCN": "巧克力的诱惑",
+    "isVideo": false
+  },
+  {
+    "character": "valko",
+    "rarity": 5,
+    "rarityStr": "5star",
+    "type": "lunar",
+    "bannerType": "limited",
+    "assetPath": "assets/valko/five-star/lunar/limited/flowery dreams.webp",
+    "cardName": "Flowery Dreams",
+    "cardNameCN": "花之梦",
     "isVideo": false
   },
   {
@@ -2767,9 +2811,31 @@ const CARD_CATALOG = [
     "rarityStr": "4star",
     "type": "lunar",
     "bannerType": "both",
+    "assetPath": "assets/valko/four-star/lunar/lily's promise.webp",
+    "cardName": "Lily's Promise",
+    "cardNameCN": "百合之约",
+    "isVideo": false
+  },
+  {
+    "character": "valko",
+    "rarity": 4,
+    "rarityStr": "4star",
+    "type": "lunar",
+    "bannerType": "both",
     "assetPath": "assets/valko/four-star/lunar/my lost dog.webp",
     "cardName": "My Lost Dog",
     "cardNameCN": "走失的小狗",
+    "isVideo": false
+  },
+  {
+    "character": "valko",
+    "rarity": 4,
+    "rarityStr": "4star",
+    "type": "lunar",
+    "bannerType": "both",
+    "assetPath": "assets/valko/four-star/lunar/pharaoh's shadow.webp",
+    "cardName": "Pharaoh's Shadow",
+    "cardNameCN": "法老之影",
     "isVideo": false
   },
   {
@@ -4394,6 +4460,17 @@ const CARD_CATALOG = [
     "rarity": 5,
     "rarityStr": "5star",
     "type": "lunar",
+    "bannerType": "limited",
+    "assetPath": "assets/zayne/five-star/lunar/limited/when embers rise.mp4",
+    "cardName": "When Embers Rise",
+    "cardNameCN": "尘嚣起时",
+    "isVideo": true
+  },
+  {
+    "character": "zayne",
+    "rarity": 5,
+    "rarityStr": "5star",
+    "type": "lunar",
     "bannerType": "standard",
     "assetPath": "assets/zayne/five-star/lunar/standard/business trip.mp4",
     "cardName": "Business Trip",
@@ -5047,6 +5124,17 @@ const CARD_CATALOG = [
     "assetPath": "assets/zayne/three-star/lunar/lost in thought.webp",
     "cardName": "Lost In Thought",
     "cardNameCN": "失神瞬间",
+    "isVideo": false
+  },
+  {
+    "character": "zayne",
+    "rarity": 3,
+    "rarityStr": "3star",
+    "type": "lunar",
+    "bannerType": "both",
+    "assetPath": "assets/zayne/three-star/lunar/onward now.webp",
+    "cardName": "Onward Now",
+    "cardNameCN": "即刻前行",
     "isVideo": false
   },
   {
