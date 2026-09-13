@@ -1772,4 +1772,42 @@ document.addEventListener('DOMContentLoaded', () => {
       reader.readAsText(file);
     });
   }
+
+  // ── Migration Alert (Home page only) ──
+  if (window.location.hostname === 'haniluvr.github.io' || window.location.hostname.includes('localhost') || window.location.hostname.includes('127.0.0.1')) {
+    const migrationModal = document.getElementById('migration-modal');
+    const migrationClose = document.getElementById('migration-close-btn');
+    const migrationDownload = document.getElementById('migration-download-btn');
+    
+    if (migrationModal) {
+      setTimeout(() => {
+        migrationModal.style.display = 'flex';
+        requestAnimationFrame(() => requestAnimationFrame(() => migrationModal.classList.add('active')));
+      }, 800);
+    }
+
+    if (migrationClose) {
+      migrationClose.addEventListener('click', () => {
+        migrationModal.classList.remove('active');
+        setTimeout(() => { migrationModal.style.display = 'none'; }, 250);
+      });
+    }
+
+    if (migrationDownload) {
+      migrationDownload.addEventListener('click', () => {
+        const data = {};
+        for (let i = 0; i < localStorage.length; i++) {
+          const key = localStorage.key(i);
+          data[key] = localStorage.getItem(key);
+        }
+        const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'pseudo-gacha-data.json';
+        a.click();
+        URL.revokeObjectURL(url);
+      });
+    }
+  }
 });

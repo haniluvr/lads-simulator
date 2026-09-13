@@ -232,30 +232,6 @@
     </div>
   </div>
 
-  <!-- ── Migration Modal ── -->
-  <div id="gs-migration-modal" class="alert-overlay" aria-modal="true" role="dialog" style="display:none; z-index: 999999999;">
-    <div class="alert-modal">
-      <div class="alert-header" style="color: #c9a96e; margin-bottom: 16px;">SITE MIGRATION</div>
-      <div class="alert-body">
-        <p style="color: var(--txt); font-size: 15px; line-height: 1.6; margin: 0; text-align: left;">
-          The Love and Deepspace simulator is migrating to another site!
-        </p>
-        <p style="color: var(--txt); font-size: 15px; line-height: 1.6; margin: 0; text-align: left;">
-          If you want to keep your current data, please <b>download your data here</b> and upload it to the new site: <a href="https://lads-simulator.web.app" target="_blank" style="color: #c9a96e; text-decoration: underline;">https://lads-simulator.web.app</a>
-        </p>
-        <div class="alert-danger-box" style="border-color: rgba(201, 169, 110, 0.3); background: rgba(201, 169, 110, 0.08);">
-          <span class="alert-danger-title" style="color: #c9a96e;">Action Required</span>
-          <span class="alert-danger-text" style="font-size: 13px;">This old site will remain up for a month so you have time to save your data before it is disabled.</span>
-        </div>
-        <div style="display: flex; gap: 16px; justify-content: center;">
-          <button id="gs-migration-close-btn" class="alert-btn alert-btn-cancel">Close</button>
-          <button id="gs-migration-download-btn" class="alert-btn alert-btn-gold">
-            <i data-lucide="download" style="width: 16px; height: 16px; margin-right: 6px;"></i> Download Data
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
   `;
 
   document.body.insertAdjacentHTML('beforeend', settingsHTML);
@@ -609,45 +585,6 @@
         location.reload();
       }
     });
-
-    // ── Migration Alert ──
-    if (window.location.hostname === 'haniluvr.github.io' || window.location.hostname.includes('localhost') || window.location.hostname.includes('127.0.0.1')) {
-      const migrationModal = document.getElementById('gs-migration-modal');
-      const migrationClose = document.getElementById('gs-migration-close-btn');
-      const migrationDownload = document.getElementById('gs-migration-download-btn');
-      
-      if (migrationModal && !sessionStorage.getItem('migration-alert-dismissed')) {
-        setTimeout(() => {
-          migrationModal.style.display = 'flex';
-          requestAnimationFrame(() => requestAnimationFrame(() => migrationModal.classList.add('active')));
-        }, 800);
-      }
-
-      if (migrationClose) {
-        migrationClose.addEventListener('click', () => {
-          sessionStorage.setItem('migration-alert-dismissed', 'true');
-          migrationModal.classList.remove('active');
-          setTimeout(() => { migrationModal.style.display = 'none'; }, 250);
-        });
-      }
-
-      if (migrationDownload) {
-        migrationDownload.addEventListener('click', () => {
-          const data = {};
-          for (let i = 0; i < localStorage.length; i++) {
-            const key = localStorage.key(i);
-            data[key] = localStorage.getItem(key);
-          }
-          const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
-          const url = URL.createObjectURL(blob);
-          const a = document.createElement('a');
-          a.href = url;
-          a.download = 'pseudo-gacha-data.json';
-          a.click();
-          URL.revokeObjectURL(url);
-        });
-      }
-    }
 
     // ── Lucide icons (re-render for injected content) ──
     if (window.lucide) window.lucide.createIcons();

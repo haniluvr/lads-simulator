@@ -612,6 +612,34 @@
         </div>
       </div>
     </div>
+    
+    <!-- Migration Modal -->
+    <div id="migration-modal" class="settings-overlay" aria-modal="true" role="dialog" style="display: none; z-index: 10000;">
+      <div class="settings-container" style="max-width: 500px; border: 1px solid var(--gold-border);">
+        <div class="settings-header" style="justify-content: space-between;">
+          <h2 style="color: #c9a96e;">SITE MIGRATION</h2>
+          <button id="migration-close-btn" class="settings-close" aria-label="Close">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg>
+          </button>
+        </div>
+        <div class="settings-body" style="padding: 24px; display: flex; flex-direction: column; align-items: center; gap: 16px;">
+          <p style="color: var(--txt); font-size: 15px; line-height: 1.6; margin: 0; text-align: left; width: 100%;">
+            The Love and Deepspace simulator is migrating to another site!
+          </p>
+          <p style="color: var(--txt); font-size: 15px; line-height: 1.6; margin: 0; text-align: left; width: 100%;">
+            If you want to keep your current data, please <b>download your data here</b> and upload it to the new site: <a href="https://lads-simulator.web.app" target="_blank" style="color: #c9a96e; text-decoration: underline;">https://lads-simulator.web.app</a>
+          </p>
+          <div style="background: rgba(201, 169, 110, 0.08); border: 1px dashed rgba(201, 169, 110, 0.3); padding: 16px; border-radius: 8px; width: 100%; text-align: left; box-sizing: border-box;">
+            <span style="color: #c9a96e; font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; display: block; margin-bottom: 8px;">Action Required</span>
+            <span style="color: var(--txt-2); font-size: 13px; font-weight: 500; letter-spacing: 0.03em;">This old site will remain up for a month so you have time to save your data before it is disabled.</span>
+          </div>
+          <button id="migration-download-btn" class="pull-action-btn" style="width: 100%; justify-content: center; margin-top: 8px;">
+            <i data-lucide="download" style="width: 16px; height: 16px; margin-right: 8px;"></i> Download Data
+            <div class="btn-shine"></div>
+          </button>
+        </div>
+      </div>
+    </div>
 
     <!-- Notice Modal -->
     <div id="notice-modal" class="settings-overlay" aria-modal="true" role="dialog" style="display: none;">
