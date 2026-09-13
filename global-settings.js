@@ -241,7 +241,7 @@
           The Love and Deepspace simulator is migrating to another site!
         </p>
         <p style="color: var(--txt); font-size: 15px; line-height: 1.6; margin: 0; text-align: left;">
-          If you want to keep your current data, please <b>download your data here</b> and upload it to the new site.
+          If you want to keep your current data, please <b>download your data here</b> and upload it to the new site: <a href="https://lads-simulator.web.app" target="_blank" style="color: #c9a96e; text-decoration: underline;">https://lads-simulator.web.app</a>
         </p>
         <div class="alert-danger-box" style="border-color: rgba(201, 169, 110, 0.3); background: rgba(201, 169, 110, 0.08);">
           <span class="alert-danger-title" style="color: #c9a96e;">Action Required</span>

@@ -1714,6 +1714,12 @@ document.addEventListener('DOMContentLoaded', () => {
   const downloadBtn = document.getElementById('download-data-btn');
   const importBtn = document.getElementById('import-data-btn');
   const importInput = document.getElementById('import-data-input');
+  const newSiteBtn = document.getElementById('new-site-btn');
+
+  // Show "New Site" button only on the old site
+  if (newSiteBtn && (window.location.hostname === 'haniluvr.github.io' || window.location.hostname.includes('localhost') || window.location.hostname.includes('127.0.0.1'))) {
+    newSiteBtn.style.display = 'flex';
+  }
 
   if (downloadBtn) {
     downloadBtn.addEventListener('click', () => {
