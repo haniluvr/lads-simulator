@@ -247,11 +247,11 @@
           <span class="alert-danger-title" style="color: #c9a96e;">Action Required</span>
           <span class="alert-danger-text" style="font-size: 13px;">This old site will remain up for a month so you have time to save your data before it is disabled.</span>
         </div>
-        <div style="display: flex; gap: 16px; justify-content: center; flex-direction: column;">
-          <button id="gs-migration-download-btn" class="alert-btn" style="background: rgba(201, 169, 110, 0.15); color: #e8cfa0; border: 1px solid rgba(201, 169, 110, 0.4);">
-            <i data-lucide="download" style="width: 16px; height: 16px; margin-right: 8px;"></i> Download Data
+        <div style="display: flex; gap: 16px; justify-content: center;">
+          <button id="gs-migration-close-btn" class="alert-btn alert-btn-cancel">Close</button>
+          <button id="gs-migration-download-btn" class="alert-btn alert-btn-gold">
+            <i data-lucide="download" style="width: 16px; height: 16px; margin-right: 6px;"></i> Download Data
           </button>
-          <button id="gs-migration-close-btn" class="alert-btn alert-btn-cancel">I Understand</button>
         </div>
       </div>
     </div>
@@ -289,12 +289,14 @@
       .alert-danger-text { color: var(--txt-2); font-size: 15px; font-weight: 500; letter-spacing: 0.03em; }
       .alert-btn {
         flex: 1; height: 44px; border-radius: 22px; font-size: 12px; font-weight: 600; letter-spacing: 0.1em;
-        text-transform: uppercase; display: flex; align-items: center; justify-content: center; transition: all 0.2s ease;
+        text-transform: uppercase; display: flex; align-items: center; justify-content: center; transition: all 0.2s ease; cursor: pointer;
       }
       .alert-btn-cancel { background: transparent; color: var(--txt-2); border: 1px solid rgba(255,255,255,0.2); }
       .alert-btn-cancel:hover { background: rgba(255,255,255,0.05); color: var(--txt); }
       .alert-btn-confirm { background: rgba(255, 60, 60, 0.1); color: #ff6b6b; border: 1px solid rgba(255, 60, 60, 0.4); }
       .alert-btn-confirm:hover { background: rgba(255, 60, 60, 0.2); border-color: rgba(255, 60, 60, 0.6); box-shadow: 0 0 12px rgba(255, 60, 60, 0.2); }
+      .alert-btn-gold { background: rgba(201, 169, 110, 0.15); color: #e8cfa0; border: 1px solid rgba(201, 169, 110, 0.4); }
+      .alert-btn-gold:hover { background: rgba(201, 169, 110, 0.25); border-color: rgba(201, 169, 110, 0.6); box-shadow: 0 0 12px rgba(201, 169, 110, 0.2); }
       
       .settings-overlay {
         position: fixed; inset: 0; z-index: 9999999;
