@@ -1708,3 +1708,62 @@ document.addEventListener('visibilitychange', () => {
     }
   }
 });
+
+// ── Data Download / Import ─────────────────────────────────────────────
+document.addEventListener('DOMContentLoaded', () => {
+  const downloadBtn = document.getElementById('download-data-btn');
+  const importBtn = document.getElementById('import-data-btn');
+  const importInput = document.getElementById('import-data-input');
+
+  if (downloadBtn) {
+    downloadBtn.addEventListener('click', () => {
+      const data = {};
+      for (let i = 0; i < localStorage.length; i++) {
+        const key = localStorage.key(i);
+        data[key] = localStorage.getItem(key);
+      }
+      const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'pseudo-gacha-data.json';
+      a.click();
+      URL.revokeObjectURL(url);
+    });
+  }
+
+  if (importBtn && importInput) {
+    importBtn.addEventListener('click', () => {
+      importInput.click();
+    });
+    
+    importInput.addEventListener('change', (e) => {
+      const file = e.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        try {
+          const data = JSON.parse(event.target.result);
+          for (const key in data) {
+            localStorage.setItem(key, data[key]);
+          }
+          const successModal = document.getElementById('import-success-modal');
+          if (successModal) {
+            successModal.style.display = 'flex';
+            requestAnimationFrame(() => requestAnimationFrame(() => successModal.classList.add('active')));
+            if (window.lucide) window.lucide.createIcons();
+            document.getElementById('import-reload-btn').addEventListener('click', () => {
+              location.reload();
+            });
+          } else {
+            alert('Data imported successfully! The page will now reload.');
+            location.reload();
+          }
+        } catch (err) {
+          alert('Failed to import data. Invalid file format.');
+        }
+      };
+      reader.readAsText(file);
+    });
+  }
+});

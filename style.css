@@ -3496,3 +3496,25 @@ body:has(#screen-reveal.active) .sf-notice-btn {
   .arcade-game-img-wrap { width: 120px; height: 120px; }
   .arcade-modal-inner { padding: 40px 16px 44px; }
 }
+/* Data Buttons */
+.data-btn {
+  font-family: var(--font-d);
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: var(--r-full);
+  color: var(--blue-lt);
+  background: var(--blue-dim);
+  border: 1px solid rgba(123, 142, 247, .25);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: all var(--t-fast);
+}
+.data-btn:hover {
+  background: rgba(123, 142, 247, .2);
+  border-color: rgba(123, 142, 247, .4);
+}

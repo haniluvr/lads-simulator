@@ -67,7 +67,40 @@
       </div>
       <div class="settings-body">
 
-        <details class="settings-accordion" open>
+        <details class="settings-accordion" id="gs-account-section" open>
+          <summary data-i18n="settings.account">Account</summary>
+          <div class="accordion-content">
+            <p class="settings-desc" id="gs-account-status">Checking auth status...</p>
+            
+            <div id="gs-login-ui" style="display: none; grid-template-columns: 1fr 1fr; gap: 8px;">
+              <button id="btn-login-guest" class="settings-action-btn" style="background: rgba(255,255,255,0.05); color:#fff; border-color: rgba(255,255,255,0.2); display: flex; align-items: center; justify-content: center; gap: 8px;">
+                <i data-lucide="user" style="width:18px; height:18px;"></i> Play as Guest
+              </button>
+              
+              <button id="btn-login-google" class="settings-action-btn" style="background:#fff; color:#444; border-color:#ccc; display: flex; align-items: center; justify-content: center; gap: 8px;">
+                <svg width="18" height="18" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg> Google
+              </button>
+              
+              <button id="btn-login-x" class="settings-action-btn" style="background:#000; color:#fff; border-color:#333; display: flex; align-items: center; justify-content: center; gap: 8px;">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg> X
+              </button>
+
+              <button id="btn-login-facebook" class="settings-action-btn" style="background:#1877F2; color:#fff; border-color:#1877F2; display: flex; align-items: center; justify-content: center; gap: 8px;">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.469h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.469h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg> Facebook
+              </button>
+            </div>
+
+            <div id="gs-logged-in-ui" style="display: none; flex-direction: column; gap: 12px;">
+              <div style="display: flex; align-items: center; gap: 8px;">
+                <input type="text" id="gs-username-input" style="flex:1; padding: 10px; background: rgba(0,0,0,0.3); border: 1px solid var(--txt-3); color: var(--txt); border-radius: 6px; font-family: var(--font-m);" placeholder="Username">
+                <button id="btn-update-username" class="settings-action-btn" style="width: auto; padding: 10px 16px; background: rgba(201, 169, 110, 0.15); color: #e8cfa0; border-color: rgba(201, 169, 110, 0.4);">Save</button>
+              </div>
+              <button id="btn-logout" class="settings-action-btn" style="background:rgba(255, 60, 60, 0.1); color:#ff6b6b; border-color:rgba(255, 60, 60, 0.4); display: flex; align-items: center; justify-content: center; gap: 8px;"><i data-lucide="log-out" style="width:18px; height:18px;"></i> Sign Out</button>
+            </div>
+          </div>
+        </details>
+
+        <details class="settings-accordion">
           <summary data-i18n="settings.audio">Audio</summary>
           <div class="accordion-content">
             <p class="settings-desc" data-i18n="settings.audio_desc">Adjust the volume for background music and sound effects.</p>
@@ -194,6 +227,31 @@
         <div style="display: flex; gap: 16px; justify-content: center;">
           <button id="gs-reset-cancel-btn" class="alert-btn alert-btn-cancel" data-i18n="alert.cancel">CANCEL</button>
           <button id="gs-reset-confirm-btn" class="alert-btn alert-btn-confirm" data-i18n="alert.confirm">CONFIRM</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Migration Modal ── -->
+  <div id="gs-migration-modal" class="alert-overlay" aria-modal="true" role="dialog" style="display:none; z-index: 999999999;">
+    <div class="alert-modal">
+      <div class="alert-header" style="color: #c9a96e; margin-bottom: 16px;">SITE MIGRATION</div>
+      <div class="alert-body">
+        <p style="color: var(--txt); font-size: 15px; line-height: 1.6; margin: 0; text-align: left;">
+          The Love and Deepspace simulator is migrating to another site!
+        </p>
+        <p style="color: var(--txt); font-size: 15px; line-height: 1.6; margin: 0; text-align: left;">
+          If you want to keep your current data, please <b>download your data here</b> and upload it to the new site.
+        </p>
+        <div class="alert-danger-box" style="border-color: rgba(201, 169, 110, 0.3); background: rgba(201, 169, 110, 0.08);">
+          <span class="alert-danger-title" style="color: #c9a96e;">Action Required</span>
+          <span class="alert-danger-text" style="font-size: 13px;">This old site will remain up for a month so you have time to save your data before it is disabled.</span>
+        </div>
+        <div style="display: flex; gap: 16px; justify-content: center; flex-direction: column;">
+          <button id="gs-migration-download-btn" class="alert-btn" style="background: rgba(201, 169, 110, 0.15); color: #e8cfa0; border: 1px solid rgba(201, 169, 110, 0.4);">
+            <i data-lucide="download" style="width: 16px; height: 16px; margin-right: 8px;"></i> Download Data
+          </button>
+          <button id="gs-migration-close-btn" class="alert-btn alert-btn-cancel">I Understand</button>
         </div>
       </div>
     </div>
@@ -473,6 +531,54 @@
       });
     });
 
+    // --- Account / Firebase Logic ---
+    const accountStatus = document.getElementById('gs-account-status');
+    const loginUi = document.getElementById('gs-login-ui');
+    const loggedInUi = document.getElementById('gs-logged-in-ui');
+    const usernameInput = document.getElementById('gs-username-input');
+
+    if (usernameInput) {
+      usernameInput.addEventListener('input', (e) => {
+        e.target.value = e.target.value.toLowerCase().replace(/[^a-z0-9_]/g, '').slice(0, 15);
+      });
+    }
+
+    document.getElementById('btn-login-google').addEventListener('click', () => window.FirebaseSync && window.FirebaseSync.loginGoogle());
+    document.getElementById('btn-login-x').addEventListener('click', () => window.FirebaseSync && window.FirebaseSync.loginTwitter());
+    document.getElementById('btn-login-facebook').addEventListener('click', () => window.FirebaseSync && window.FirebaseSync.loginFacebook());
+    document.getElementById('btn-login-guest').addEventListener('click', () => window.FirebaseSync && window.FirebaseSync.loginGuest());
+    document.getElementById('btn-logout').addEventListener('click', () => window.FirebaseSync && window.FirebaseSync.logout());
+    
+    document.getElementById('btn-update-username').addEventListener('click', async () => {
+      const btn = document.getElementById('btn-update-username');
+      btn.textContent = 'Saving...';
+      try {
+        if (window.FirebaseSync) await window.FirebaseSync.updateUsername(usernameInput.value);
+        btn.textContent = 'Saved!';
+        setTimeout(() => btn.textContent = 'Save', 2000);
+      } catch (err) {
+        alert(err.message);
+        btn.textContent = 'Save';
+      }
+    });
+
+    window.addEventListener('firebase-auth-ready', async (e) => {
+      const user = e.detail.user;
+      if (user) {
+        loginUi.style.display = 'none';
+        loggedInUi.style.display = 'flex';
+        accountStatus.innerHTML = `Logged in as <b>${user.isAnonymous ? 'Guest' : (user.email || 'Cloud User')}</b>`;
+        if (window.FirebaseSync) {
+          usernameInput.value = await window.FirebaseSync.getUsername();
+        }
+      } else {
+        loginUi.style.display = 'grid'; // changed from flex to grid
+        loggedInUi.style.display = 'none';
+        accountStatus.textContent = 'Not logged in. Your data is only saved locally.';
+        lucide.createIcons();
+      }
+    });
+
     // ── Reset data ──
     const resetBtn   = document.getElementById('gs-reset-btn');
     const resetModal = document.getElementById('gs-reset-confirm-modal');
@@ -501,6 +607,45 @@
         location.reload();
       }
     });
+
+    // ── Migration Alert ──
+    if (window.location.hostname === 'haniluvr.github.io' || window.location.hostname.includes('localhost') || window.location.hostname.includes('127.0.0.1')) {
+      const migrationModal = document.getElementById('gs-migration-modal');
+      const migrationClose = document.getElementById('gs-migration-close-btn');
+      const migrationDownload = document.getElementById('gs-migration-download-btn');
+      
+      if (migrationModal && !sessionStorage.getItem('migration-alert-dismissed')) {
+        setTimeout(() => {
+          migrationModal.style.display = 'flex';
+          requestAnimationFrame(() => requestAnimationFrame(() => migrationModal.classList.add('active')));
+        }, 800);
+      }
+
+      if (migrationClose) {
+        migrationClose.addEventListener('click', () => {
+          sessionStorage.setItem('migration-alert-dismissed', 'true');
+          migrationModal.classList.remove('active');
+          setTimeout(() => { migrationModal.style.display = 'none'; }, 250);
+        });
+      }
+
+      if (migrationDownload) {
+        migrationDownload.addEventListener('click', () => {
+          const data = {};
+          for (let i = 0; i < localStorage.length; i++) {
+            const key = localStorage.key(i);
+            data[key] = localStorage.getItem(key);
+          }
+          const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+          const url = URL.createObjectURL(blob);
+          const a = document.createElement('a');
+          a.href = url;
+          a.download = 'pseudo-gacha-data.json';
+          a.click();
+          URL.revokeObjectURL(url);
+        });
+      }
+    }
 
     // ── Lucide icons (re-render for injected content) ──
     if (window.lucide) window.lucide.createIcons();
