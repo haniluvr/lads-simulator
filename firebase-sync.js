@@ -114,9 +114,9 @@
 
   // --- Auth Methods (Exposed Globally) ---
   window.FirebaseSync = {
-    loginGoogle: () => window.auth.signInWithPopup(googleProvider),
-    loginTwitter: () => window.auth.signInWithPopup(twitterProvider),
-    loginFacebook: () => window.auth.signInWithPopup(facebookProvider),
+    loginGoogle: () => window.auth.signInWithPopup(googleProvider).catch(e => alert("Google Login Error: " + e.message)),
+    loginTwitter: () => window.auth.signInWithPopup(twitterProvider).catch(e => alert("X Login Error: " + e.message)),
+    loginFacebook: () => window.auth.signInWithPopup(facebookProvider).catch(e => alert("Facebook Login Error: " + e.message)),
     loginGuest: () => window.auth.signInAnonymously(),
     logout: async () => {
       await window.auth.signOut();
